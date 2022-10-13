@@ -13,9 +13,9 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 
 namespace BackupProgram_V2
 {
-    public partial class Form1 : Form
+    public partial class Home_Forms : Form
     {
-        public Form1()
+        public Home_Forms()
         {
             InitializeComponent();
         }
@@ -119,8 +119,6 @@ namespace BackupProgram_V2
                 }
             }
             textBox1.Text = " ";
-
-            debug_tbx.Text = Convert.ToString(pathList.Count());
         }
 
         private void start_button1_Click(object sender, EventArgs e)
@@ -135,12 +133,12 @@ namespace BackupProgram_V2
             DateTime datetime = DateTime.Today;
 
             string date = datetime.ToString("dd/MM/yyyy");
-            string home = "G:/Backup/Backup " + date;
+            string dest = Destination_tbx.Text + date;
             string shrt = "";
 
             // Anfang der Arbeit -------------------------------------------------
 
-            Directory.CreateDirectory(home);
+            Directory.CreateDirectory(dest);
 
             for (int i = 0; i < pathList.Count; i++)
             {
@@ -168,28 +166,22 @@ namespace BackupProgram_V2
         private void Write_to_drive_btn_Click(object sender, EventArgs e)
         {
             string save = @"saves\settings\Backup_Saves" + " " + DateTime.Today.ToString("d") + ".txt";
-            if (!File.Exists(save))
-            {
-                File.WriteAllText(save, richTextBox2.Text);
-                MessageBox.Show("Settings wurden gespeichert");
-            }
-            else
-            {
-                MessageBox.Show("Die Datei exestiert schon");
-            }
+
+            File.WriteAllText(save,"Destination" + "\n" + Destination_tbx.Text + "\n" + "\n" + "Paths that are copied " + "\n" + "\n" + richTextBox2.Text);
+            MessageBox.Show("Settings wurden gespeichert");
         }
         private void clear_btn_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             richTextBox1.Clear();
-            debug_tbx.Text = "";
             pathList.Clear();
+            richTextBox2.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 f2 = new Form2();
+            History_Forms f2 = new History_Forms();
             f2.ShowDialog();
             this.Close();
         }
@@ -202,11 +194,9 @@ namespace BackupProgram_V2
         private void save_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Saves f3 = new Saves();
+            Saves_Forms f3 = new Saves_Forms();
             f3.ShowDialog();
             this.Close();
         }
-
-
     }
 }

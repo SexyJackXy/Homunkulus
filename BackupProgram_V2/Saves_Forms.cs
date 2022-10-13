@@ -11,9 +11,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BackupProgram_V2
 {
-    public partial class Saves : Form
+    public partial class Saves_Forms : Form
     {
-        public Saves()
+        public Saves_Forms()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace BackupProgram_V2
         private void home_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 f1 = new Form1();
+            Home_Forms f1 = new Home_Forms();
             f1.ShowDialog();
             this.Close();
         }
@@ -48,7 +48,7 @@ namespace BackupProgram_V2
         private void his_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 f2 = new Form2();
+            History_Forms f2 = new History_Forms();
             f2.ShowDialog();
             this.Close();
         }
@@ -87,6 +87,20 @@ namespace BackupProgram_V2
                 {
                     MessageBox.Show("Ups");
                 }         
+            }
+        }
+
+        private void Load_File_btn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Title = "Select A File";
+            openDialog.Filter = "Text Files (*.txt)|*.txt" + "|" +
+                                "All Files (*.*)|*.*";
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                string file = openDialog.FileName;
+                string content = File.ReadAllText(file);
+                richTextBox3.Text = content;
             }
         }
     }

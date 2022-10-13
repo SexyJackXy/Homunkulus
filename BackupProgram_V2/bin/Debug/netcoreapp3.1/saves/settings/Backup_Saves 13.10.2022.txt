@@ -1,0 +1,5 @@
+Destination
+G:\Backup
+Paths that are copied 
+C:\Users\Tim\Documents\GitHub\Homunkulus
+C:\Users\Tim\Documents\.16151814\Irl_3D\Cosplay

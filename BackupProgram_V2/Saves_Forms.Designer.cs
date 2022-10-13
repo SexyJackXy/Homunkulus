@@ -1,6 +1,6 @@
 ﻿namespace BackupProgram_V2
 {
-    partial class Saves
+    partial class Saves_Forms
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Saves));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Saves_Forms));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.save_btn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -50,6 +50,7 @@
             this.reload_btn = new System.Windows.Forms.Button();
             this.open_btn = new System.Windows.Forms.Button();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.Load_File_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -307,10 +308,26 @@
             this.richTextBox3.TabIndex = 14;
             this.richTextBox3.Text = "";
             // 
-            // Saves
+            // Load_File_btn
+            // 
+            this.Load_File_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.Load_File_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Load_File_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Load_File_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.Load_File_btn.Location = new System.Drawing.Point(81, 402);
+            this.Load_File_btn.Name = "Load_File_btn";
+            this.Load_File_btn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Load_File_btn.Size = new System.Drawing.Size(229, 31);
+            this.Load_File_btn.TabIndex = 15;
+            this.Load_File_btn.Text = "Load File";
+            this.Load_File_btn.UseVisualStyleBackColor = true;
+            this.Load_File_btn.Click += new System.EventHandler(this.Load_File_btn_Click);
+            // 
+            // Saves_Forms
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(832, 519);
+            this.Controls.Add(this.Load_File_btn);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.open_btn);
             this.Controls.Add(this.reload_btn);
@@ -320,7 +337,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Saves";
+            this.Name = "Saves_Forms";
             this.Load += new System.EventHandler(this.Saves_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
@@ -352,5 +369,6 @@
         private System.Windows.Forms.Button reload_btn;
         private System.Windows.Forms.Button open_btn;
         private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.Button Load_File_btn;
     }
 }

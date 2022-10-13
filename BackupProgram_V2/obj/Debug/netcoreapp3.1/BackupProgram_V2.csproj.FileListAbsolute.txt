@@ -94,10 +94,7 @@ C:\Users\Tim\Documents\.Projekte\C#\BackupProgram_V2\BackupProgram_V2\obj\Debug\
 C:\Users\Tim\Documents\.Projekte\C#\BackupProgram_V2\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.genruntimeconfig.cache
 C:\Users\Tim\Documents\.Projekte\C#\BackupProgram_V2\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Saves.resources
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.csproj.AssemblyReference.cache
-C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Form1.resources
-C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Form2.resources
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Properties.Resources.resources
-C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Saves.resources
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.csproj.GenerateResource.cache
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.AssemblyInfoInputs.cache
@@ -141,3 +138,6 @@ C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\bin\Debug\netcoreapp3.
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.csproj.CopyComplete
 C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.genruntimeconfig.cache
+C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.History_Forms.resources
+C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Home_Forms.resources
+C:\Users\Tim\Documents\GitHub\Homunkulus\BackupProgram_V2\obj\Debug\netcoreapp3.1\BackupProgram_V2.Saves_Forms.resources

@@ -8,9 +8,9 @@ using ClosedXML.Excel;
 
 namespace BackupProgram_V2
 {
-    public partial class Form2 : Form
+    public partial class History_Forms : Form
     {
-        public Form2()
+        public History_Forms()
         {
             InitializeComponent();
         }
@@ -18,7 +18,7 @@ namespace BackupProgram_V2
         private void Home_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 f1 = new Form1();
+            Home_Forms f1 = new Home_Forms();
             f1.ShowDialog();
             this.Close();
         }
@@ -51,7 +51,7 @@ namespace BackupProgram_V2
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Saves f3 = new Saves();
+            Saves_Forms f3 = new Saves_Forms();
             f3.ShowDialog();
             this.Close();
         }

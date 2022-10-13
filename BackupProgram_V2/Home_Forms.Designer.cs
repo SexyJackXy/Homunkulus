@@ -1,7 +1,7 @@
 ﻿
 namespace BackupProgram_V2
 {
-    partial class Form1
+    partial class Home_Forms
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@ namespace BackupProgram_V2
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home_Forms));
             this.start_button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,7 +47,8 @@ namespace BackupProgram_V2
             this.panel2 = new System.Windows.Forms.Panel();
             this.clear_btn = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.debug_tbx = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Destination_tbx = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -56,7 +57,8 @@ namespace BackupProgram_V2
             // start_button1
             // 
             this.start_button1.BackColor = System.Drawing.Color.Transparent;
-            this.start_button1.FlatAppearance.BorderSize = 0;
+            this.start_button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(169)))), ((int)(((byte)(32)))));
+            this.start_button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(228)))), ((int)(((byte)(182)))));
             this.start_button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.start_button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(169)))), ((int)(((byte)(32)))));
@@ -76,7 +78,7 @@ namespace BackupProgram_V2
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.textBox1.Location = new System.Drawing.Point(81, 112);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(727, 21);
+            this.textBox1.Size = new System.Drawing.Size(369, 21);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -84,7 +86,7 @@ namespace BackupProgram_V2
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.label1.Location = new System.Drawing.Point(94, 90);
+            this.label1.Location = new System.Drawing.Point(81, 90);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 20);
             this.label1.TabIndex = 2;
@@ -109,7 +111,7 @@ namespace BackupProgram_V2
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.label2.Location = new System.Drawing.Point(94, 172);
+            this.label2.Location = new System.Drawing.Point(80, 151);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 4;
@@ -180,8 +182,6 @@ namespace BackupProgram_V2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
@@ -275,29 +275,42 @@ namespace BackupProgram_V2
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.richTextBox2.Location = new System.Drawing.Point(80, 190);
+            this.richTextBox2.Location = new System.Drawing.Point(80, 174);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(756, 265);
+            this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.Size = new System.Drawing.Size(756, 281);
             this.richTextBox2.TabIndex = 11;
             this.richTextBox2.Text = "";
             // 
-            // debug_tbx
+            // label3
             // 
-            this.debug_tbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.debug_tbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.debug_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.debug_tbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.debug_tbx.Location = new System.Drawing.Point(814, 112);
-            this.debug_tbx.Name = "debug_tbx";
-            this.debug_tbx.Size = new System.Drawing.Size(22, 21);
-            this.debug_tbx.TabIndex = 12;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.label3.Location = new System.Drawing.Point(467, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 20);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Destination Path";
             // 
-            // Form1
+            // Destination_tbx
+            // 
+            this.Destination_tbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.Destination_tbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Destination_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Destination_tbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.Destination_tbx.Location = new System.Drawing.Point(467, 112);
+            this.Destination_tbx.Name = "Destination_tbx";
+            this.Destination_tbx.Size = new System.Drawing.Size(369, 21);
+            this.Destination_tbx.TabIndex = 14;
+            // 
+            // Home_Forms
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(848, 558);
-            this.Controls.Add(this.debug_tbx);
+            this.Controls.Add(this.Destination_tbx);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.panel2);
@@ -312,7 +325,7 @@ namespace BackupProgram_V2
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "Home_Forms";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -339,9 +352,10 @@ namespace BackupProgram_V2
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox debug_tbx;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox Destination_tbx;
     }
 }
 
