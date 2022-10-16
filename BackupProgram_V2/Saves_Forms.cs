@@ -103,5 +103,13 @@ namespace BackupProgram_V2
                 richTextBox3.Text = content;
             }
         }
+
+        private void settings_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Settings_Forms f4 = new Settings_Forms();
+            f4.ShowDialog();
+            this.Close();
+        }
     }
 }

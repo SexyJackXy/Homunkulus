@@ -49,6 +49,7 @@ namespace BackupProgram_V2
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Destination_tbx = new System.Windows.Forms.TextBox();
+            this.settings_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -148,6 +149,7 @@ namespace BackupProgram_V2
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.settings_btn);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -304,6 +306,22 @@ namespace BackupProgram_V2
             this.Destination_tbx.Size = new System.Drawing.Size(369, 21);
             this.Destination_tbx.TabIndex = 14;
             // 
+            // settings_btn
+            // 
+            this.settings_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.settings_btn.FlatAppearance.BorderSize = 0;
+            this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.settings_btn.Location = new System.Drawing.Point(539, 3);
+            this.settings_btn.Name = "settings_btn";
+            this.settings_btn.Size = new System.Drawing.Size(147, 68);
+            this.settings_btn.TabIndex = 4;
+            this.settings_btn.Text = "Settings";
+            this.settings_btn.UseVisualStyleBackColor = true;
+            this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
+            // 
             // Home_Forms
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -356,6 +374,7 @@ namespace BackupProgram_V2
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox Destination_tbx;
+        private System.Windows.Forms.Button settings_btn;
     }
 }
 

@@ -51,6 +51,7 @@
             this.open_btn = new System.Windows.Forms.Button();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.Load_File_btn = new System.Windows.Forms.Button();
+            this.settings_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -155,6 +156,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.settings_btn);
             this.panel5.Controls.Add(this.button6);
             this.panel5.Controls.Add(this.home_btn);
             this.panel5.Controls.Add(this.his_btn);
@@ -323,6 +325,22 @@
             this.Load_File_btn.UseVisualStyleBackColor = true;
             this.Load_File_btn.Click += new System.EventHandler(this.Load_File_btn_Click);
             // 
+            // settings_btn
+            // 
+            this.settings_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.settings_btn.FlatAppearance.BorderSize = 0;
+            this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.settings_btn.Location = new System.Drawing.Point(540, 3);
+            this.settings_btn.Name = "settings_btn";
+            this.settings_btn.Size = new System.Drawing.Size(147, 68);
+            this.settings_btn.TabIndex = 16;
+            this.settings_btn.Text = "Settings";
+            this.settings_btn.UseVisualStyleBackColor = true;
+            this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
+            // 
             // Saves_Forms
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
@@ -370,5 +388,6 @@
         private System.Windows.Forms.Button open_btn;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.Button Load_File_btn;
+        private System.Windows.Forms.Button settings_btn;
     }
 }
