@@ -40,6 +40,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.settings_btn = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.home_btn = new System.Windows.Forms.Button();
             this.his_btn = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.open_btn = new System.Windows.Forms.Button();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.Load_File_btn = new System.Windows.Forms.Button();
-            this.settings_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -168,6 +168,22 @@
             this.panel5.Size = new System.Drawing.Size(832, 74);
             this.panel5.TabIndex = 9;
             // 
+            // settings_btn
+            // 
+            this.settings_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.settings_btn.FlatAppearance.BorderSize = 0;
+            this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.settings_btn.Location = new System.Drawing.Point(540, 3);
+            this.settings_btn.Name = "settings_btn";
+            this.settings_btn.Size = new System.Drawing.Size(147, 68);
+            this.settings_btn.TabIndex = 16;
+            this.settings_btn.Text = "Settings";
+            this.settings_btn.UseVisualStyleBackColor = true;
+            this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
+            // 
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -228,7 +244,7 @@
             this.exit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.exit_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.exit_btn.Location = new System.Drawing.Point(761, 6);
+            this.exit_btn.Location = new System.Drawing.Point(761, 3);
             this.exit_btn.Name = "exit_btn";
             this.exit_btn.Size = new System.Drawing.Size(68, 68);
             this.exit_btn.TabIndex = 2;
@@ -324,22 +340,6 @@
             this.Load_File_btn.Text = "Load File";
             this.Load_File_btn.UseVisualStyleBackColor = true;
             this.Load_File_btn.Click += new System.EventHandler(this.Load_File_btn_Click);
-            // 
-            // settings_btn
-            // 
-            this.settings_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.settings_btn.FlatAppearance.BorderSize = 0;
-            this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.settings_btn.Location = new System.Drawing.Point(540, 3);
-            this.settings_btn.Name = "settings_btn";
-            this.settings_btn.Size = new System.Drawing.Size(147, 68);
-            this.settings_btn.TabIndex = 16;
-            this.settings_btn.Text = "Settings";
-            this.settings_btn.UseVisualStyleBackColor = true;
-            this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
             // 
             // Saves_Forms
             // 

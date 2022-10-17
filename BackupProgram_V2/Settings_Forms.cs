@@ -14,5 +14,36 @@ namespace BackupProgram_V2
         {
             InitializeComponent();
         }
+
+
+
+        private void home_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Home_Forms f1 = new Home_Forms();
+            f1.ShowDialog();
+            this.Close();
+        }
+
+        private void his_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            History_Forms f2 = new History_Forms();
+            f2.ShowDialog();
+            this.Close();
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Saves_Forms f3 = new Saves_Forms();
+            f3.ShowDialog();
+            this.Close();
+        }
+
+        private void Compress_btn_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
