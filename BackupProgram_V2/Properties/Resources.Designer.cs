@@ -59,5 +59,25 @@ namespace BackupProgram_V2.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Backup_Selceted___Kopie {
+            get {
+                object obj = ResourceManager.GetObject("Backup_Selceted - Kopie", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Save_Unselected___Kopie {
+            get {
+                object obj = ResourceManager.GetObject("Save_Unselected - Kopie", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
