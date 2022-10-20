@@ -73,6 +73,16 @@ namespace BackupProgram_V2.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Save_Unselected {
+            get {
+                object obj = ResourceManager.GetObject("Save_Unselected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Save_Unselected___Kopie {
             get {
                 object obj = ResourceManager.GetObject("Save_Unselected - Kopie", resourceCulture);

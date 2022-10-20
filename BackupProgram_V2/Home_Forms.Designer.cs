@@ -38,6 +38,8 @@ namespace BackupProgram_V2
             this.add_button2 = new System.Windows.Forms.Button();
             this.Write_to_drive_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.saves_btn = new System.Windows.Forms.Button();
+            this.Home = new System.Windows.Forms.Button();
             this.settings_btn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -48,12 +50,10 @@ namespace BackupProgram_V2
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Destination_tbx = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.import_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // start_button1
@@ -150,9 +150,10 @@ namespace BackupProgram_V2
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.import_btn);
+            this.panel1.Controls.Add(this.saves_btn);
+            this.panel1.Controls.Add(this.Home);
             this.panel1.Controls.Add(this.settings_btn);
-            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.panel3);
@@ -162,6 +163,38 @@ namespace BackupProgram_V2
             this.panel1.Size = new System.Drawing.Size(848, 74);
             this.panel1.TabIndex = 7;
             // 
+            // saves_btn
+            // 
+            this.saves_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.saves_btn.FlatAppearance.BorderSize = 0;
+            this.saves_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saves_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.saves_btn.Location = new System.Drawing.Point(446, 3);
+            this.saves_btn.Name = "saves_btn";
+            this.saves_btn.Size = new System.Drawing.Size(116, 68);
+            this.saves_btn.TabIndex = 21;
+            this.saves_btn.Text = "Saves";
+            this.saves_btn.UseVisualStyleBackColor = true;
+            this.saves_btn.Click += new System.EventHandler(this.saves_btn_Click);
+            // 
+            // Home
+            // 
+            this.Home.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Home.FlatAppearance.BorderSize = 0;
+            this.Home.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Home.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Home.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(169)))), ((int)(((byte)(32)))));
+            this.Home.Location = new System.Drawing.Point(80, 3);
+            this.Home.Name = "Home";
+            this.Home.Size = new System.Drawing.Size(116, 68);
+            this.Home.TabIndex = 5;
+            this.Home.Text = "Home";
+            this.Home.UseVisualStyleBackColor = true;
+            // 
             // settings_btn
             // 
             this.settings_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -170,9 +203,9 @@ namespace BackupProgram_V2
             this.settings_btn.FlatAppearance.BorderSize = 0;
             this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.settings_btn.Location = new System.Drawing.Point(539, 3);
+            this.settings_btn.Location = new System.Drawing.Point(568, 3);
             this.settings_btn.Name = "settings_btn";
-            this.settings_btn.Size = new System.Drawing.Size(147, 68);
+            this.settings_btn.Size = new System.Drawing.Size(116, 68);
             this.settings_btn.TabIndex = 4;
             this.settings_btn.Text = "Settings";
             this.settings_btn.UseVisualStyleBackColor = true;
@@ -204,9 +237,9 @@ namespace BackupProgram_V2
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(233, 3);
+            this.button1.Location = new System.Drawing.Point(324, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 68);
+            this.button1.Size = new System.Drawing.Size(116, 68);
             this.button1.TabIndex = 1;
             this.button1.Text = "Histroy";
             this.button1.UseVisualStyleBackColor = true;
@@ -291,31 +324,20 @@ namespace BackupProgram_V2
             this.Destination_tbx.Size = new System.Drawing.Size(369, 21);
             this.Destination_tbx.TabIndex = 14;
             // 
-            // pictureBox2
+            // import_btn
             // 
-            this.pictureBox2.Image = global::BackupProgram_V2.Properties.Resources.Backup_Selceted___Kopie;
-            this.pictureBox2.Location = new System.Drawing.Point(159, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(68, 68);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.import_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(386, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 68);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Saves";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.save_btn_Click);
+            this.import_btn.FlatAppearance.BorderSize = 0;
+            this.import_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.import_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.import_btn.Location = new System.Drawing.Point(202, 3);
+            this.import_btn.Name = "import_btn";
+            this.import_btn.Size = new System.Drawing.Size(116, 68);
+            this.import_btn.TabIndex = 22;
+            this.import_btn.Text = "Import";
+            this.import_btn.UseVisualStyleBackColor = true;
             // 
             // Home_Forms
             // 
@@ -343,7 +365,6 @@ namespace BackupProgram_V2
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,8 +390,9 @@ namespace BackupProgram_V2
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox Destination_tbx;
         private System.Windows.Forms.Button settings_btn;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Home;
+        private System.Windows.Forms.Button saves_btn;
+        private System.Windows.Forms.Button import_btn;
     }
 }
 
