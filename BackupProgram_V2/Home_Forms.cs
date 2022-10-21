@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using NPOI.SS.Formula.Functions;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
+using System.Web;
 
 namespace BackupProgram_V2
 {
@@ -132,28 +133,37 @@ namespace BackupProgram_V2
 
             DateTime datetime = DateTime.Today;
 
+
+            string destpath = @"resources/destination.txt";
+            StreamReader sr = new StreamReader(destpath);
             string date = datetime.ToString("dd/MM/yyyy");
-            string dest = Destination_tbx.Text + date;
+            string dest = sr + date;
             string shrt = "";
 
             // Anfang der Arbeit -------------------------------------------------
 
             Directory.CreateDirectory(dest);
 
-            for (int i = 0; i < pathList.Count; i++)
+            if (pathList.Count > 0)
             {
-                string sourceDirectory = pathList.ElementAt(i);
-                shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                string subfolder = "G:/Backup/Backup " + date + "/" + shrt;
-                string targetDirectory = subfolder;
-
-                if (Directory.Exists(sourceDirectory))
+                for (int i = 0; i < pathList.Count; i++)
                 {
-                    Directory.CreateDirectory(subfolder);
-                    Copy(sourceDirectory, targetDirectory);
-                }
+                    string sourceDirectory = pathList.ElementAt(i);
+                    shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                    string subfolder = "G:/Backup/Backup " + date + "/" + shrt;
+                    string targetDirectory = subfolder;
 
-            }    //Bearbeitung fuer die Erstellung ders Pfades zum Backup
+                    if (Directory.Exists(sourceDirectory))
+                    {
+                        Directory.CreateDirectory(subfolder);
+                        Copy(sourceDirectory, targetDirectory);
+                    }
+                }
+            }
+            else
+            {
+
+            }
 
             stopwatch.Stop();                       //Stop der Stopuhr
             TimeSpan ts = stopwatch.Elapsed;        //Zeitspanne der Stopuhr in eine Variable umwandeln
@@ -166,8 +176,11 @@ namespace BackupProgram_V2
         private void Write_to_drive_btn_Click(object sender, EventArgs e)
         {
             string save = @"saves\settings\Backup_Saves" + " " + DateTime.Today.ToString("d") + ".txt";
+            DateTime datetime = DateTime.Today;
+            string destpath = @"resources/destination.txt";
+            StreamReader sr = new StreamReader(destpath);
 
-            File.WriteAllText(save,"Destination" + "\n" + Destination_tbx.Text + "\n" + "\n" + "Paths that are copied " + "\n" + "\n" + richTextBox2.Text);
+            File.WriteAllText(save,"Destination" + "\n" + sr + "\n" + "\n" + "Paths that are copied " + "\n" + "\n" + richTextBox2.Text);
             MessageBox.Show("Settings wurden gespeichert");
         }
         private void clear_btn_Click(object sender, EventArgs e)
@@ -176,6 +189,20 @@ namespace BackupProgram_V2
             richTextBox1.Clear();
             pathList.Clear();
             richTextBox2.Clear();
+        }
+
+        private void file_load_btn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Title = "Select A File";
+            openDialog.Filter = "Text Files (*.txt)|*.txt" + "|" +
+                                "All Files (*.*)|*.*";
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                string file = openDialog.FileName;
+                string content = File.ReadAllText(file);
+                richTextBox2.Text = content;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

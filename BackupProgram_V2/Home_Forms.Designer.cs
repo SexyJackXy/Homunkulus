@@ -49,8 +49,7 @@ namespace BackupProgram_V2
             this.panel2 = new System.Windows.Forms.Panel();
             this.clear_btn = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Destination_tbx = new System.Windows.Forms.TextBox();
+            this.file_load_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -64,9 +63,9 @@ namespace BackupProgram_V2
             this.start_button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.start_button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.start_button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(169)))), ((int)(((byte)(32)))));
-            this.start_button1.Location = new System.Drawing.Point(94, 502);
+            this.start_button1.Location = new System.Drawing.Point(81, 502);
             this.start_button1.Name = "start_button1";
-            this.start_button1.Size = new System.Drawing.Size(742, 49);
+            this.start_button1.Size = new System.Drawing.Size(746, 49);
             this.start_button1.TabIndex = 0;
             this.start_button1.Text = "Start Backup";
             this.start_button1.UseVisualStyleBackColor = false;
@@ -78,9 +77,9 @@ namespace BackupProgram_V2
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.textBox1.Location = new System.Drawing.Point(81, 112);
+            this.textBox1.Location = new System.Drawing.Point(80, 113);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(369, 21);
+            this.textBox1.Size = new System.Drawing.Size(747, 21);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -125,10 +124,10 @@ namespace BackupProgram_V2
             this.add_button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.add_button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.add_button2.Location = new System.Drawing.Point(94, 465);
+            this.add_button2.Location = new System.Drawing.Point(81, 465);
             this.add_button2.Name = "add_button2";
             this.add_button2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.add_button2.Size = new System.Drawing.Size(245, 31);
+            this.add_button2.Size = new System.Drawing.Size(182, 31);
             this.add_button2.TabIndex = 5;
             this.add_button2.Text = "Add Path";
             this.add_button2.UseVisualStyleBackColor = true;
@@ -140,9 +139,9 @@ namespace BackupProgram_V2
             this.Write_to_drive_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Write_to_drive_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Write_to_drive_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.Write_to_drive_btn.Location = new System.Drawing.Point(591, 465);
+            this.Write_to_drive_btn.Location = new System.Drawing.Point(457, 465);
             this.Write_to_drive_btn.Name = "Write_to_drive_btn";
-            this.Write_to_drive_btn.Size = new System.Drawing.Size(245, 31);
+            this.Write_to_drive_btn.Size = new System.Drawing.Size(182, 31);
             this.Write_to_drive_btn.TabIndex = 6;
             this.Write_to_drive_btn.Text = "Save";
             this.Write_to_drive_btn.UseVisualStyleBackColor = true;
@@ -297,9 +296,9 @@ namespace BackupProgram_V2
             this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clear_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.clear_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.clear_btn.Location = new System.Drawing.Point(345, 465);
+            this.clear_btn.Location = new System.Drawing.Point(269, 465);
             this.clear_btn.Name = "clear_btn";
-            this.clear_btn.Size = new System.Drawing.Size(245, 31);
+            this.clear_btn.Size = new System.Drawing.Size(182, 31);
             this.clear_btn.TabIndex = 9;
             this.clear_btn.Text = "Clear List";
             this.clear_btn.UseVisualStyleBackColor = true;
@@ -314,39 +313,30 @@ namespace BackupProgram_V2
             this.richTextBox2.Location = new System.Drawing.Point(80, 174);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(756, 281);
+            this.richTextBox2.Size = new System.Drawing.Size(747, 281);
             this.richTextBox2.TabIndex = 11;
             this.richTextBox2.Text = "";
             // 
-            // label3
+            // file_load_btn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.label3.Location = new System.Drawing.Point(467, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 20);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Destination Path";
-            // 
-            // Destination_tbx
-            // 
-            this.Destination_tbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.Destination_tbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Destination_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Destination_tbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.Destination_tbx.Location = new System.Drawing.Point(467, 112);
-            this.Destination_tbx.Name = "Destination_tbx";
-            this.Destination_tbx.Size = new System.Drawing.Size(369, 21);
-            this.Destination_tbx.TabIndex = 14;
+            this.file_load_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(98)))), ((int)(((byte)(98)))));
+            this.file_load_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.file_load_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.file_load_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.file_load_btn.Location = new System.Drawing.Point(645, 465);
+            this.file_load_btn.Name = "file_load_btn";
+            this.file_load_btn.Size = new System.Drawing.Size(182, 31);
+            this.file_load_btn.TabIndex = 12;
+            this.file_load_btn.Text = "Upload File";
+            this.file_load_btn.UseVisualStyleBackColor = true;
+            this.file_load_btn.Click += new System.EventHandler(this.file_load_btn_Click);
             // 
             // Home_Forms
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(848, 558);
-            this.Controls.Add(this.Destination_tbx);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.file_load_btn);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.panel2);
@@ -388,12 +378,11 @@ namespace BackupProgram_V2
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Destination_tbx;
         private System.Windows.Forms.Button settings_btn;
         private System.Windows.Forms.Button Home;
         private System.Windows.Forms.Button saves_btn;
         private System.Windows.Forms.Button import_btn;
+        private System.Windows.Forms.Button file_load_btn;
     }
 }
 

@@ -28,7 +28,7 @@ namespace BackupProgram_V2
             this.Close();
         }
 
-        string path = @"History.xlsx";
+        string path = @"resources\History.xlsx";
 
         private void Form2_Load(object sender, EventArgs e)
         {

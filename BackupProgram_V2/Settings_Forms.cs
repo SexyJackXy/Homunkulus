@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -57,6 +58,13 @@ namespace BackupProgram_V2
         private void exit_btn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string path = @"resources/destination.txt";
+
+            File.WriteAllText(path,Destination_tbx.Text);
         }
     }
 }
