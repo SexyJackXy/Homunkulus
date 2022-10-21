@@ -42,6 +42,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.settings_btn = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.home_btn = new System.Windows.Forms.Button();
             this.his_btn = new System.Windows.Forms.Button();
             this.exit_btn = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -51,7 +52,7 @@
             this.open_btn = new System.Windows.Forms.Button();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.Load_File_btn = new System.Windows.Forms.Button();
-            this.home_btn = new System.Windows.Forms.Button();
+            this.import_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -156,10 +157,11 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.import_btn);
             this.panel5.Controls.Add(this.settings_btn);
+            this.panel5.Controls.Add(this.his_btn);
             this.panel5.Controls.Add(this.button6);
             this.panel5.Controls.Add(this.home_btn);
-            this.panel5.Controls.Add(this.his_btn);
             this.panel5.Controls.Add(this.exit_btn);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -176,9 +178,9 @@
             this.settings_btn.FlatAppearance.BorderSize = 0;
             this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.settings_btn.Location = new System.Drawing.Point(540, 3);
+            this.settings_btn.Location = new System.Drawing.Point(569, 3);
             this.settings_btn.Name = "settings_btn";
-            this.settings_btn.Size = new System.Drawing.Size(147, 68);
+            this.settings_btn.Size = new System.Drawing.Size(116, 68);
             this.settings_btn.TabIndex = 16;
             this.settings_btn.Text = "Settings";
             this.settings_btn.UseVisualStyleBackColor = true;
@@ -193,12 +195,28 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(169)))), ((int)(((byte)(32)))));
-            this.button6.Location = new System.Drawing.Point(387, 3);
+            this.button6.Location = new System.Drawing.Point(447, 3);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(147, 68);
+            this.button6.Size = new System.Drawing.Size(116, 68);
             this.button6.TabIndex = 0;
             this.button6.Text = "Saves";
             this.button6.UseVisualStyleBackColor = true;
+            // 
+            // home_btn
+            // 
+            this.home_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.home_btn.FlatAppearance.BorderSize = 0;
+            this.home_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.home_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.home_btn.Location = new System.Drawing.Point(81, 3);
+            this.home_btn.Name = "home_btn";
+            this.home_btn.Size = new System.Drawing.Size(116, 68);
+            this.home_btn.TabIndex = 3;
+            this.home_btn.Text = "Home";
+            this.home_btn.UseVisualStyleBackColor = true;
+            this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
             // his_btn
             // 
@@ -208,9 +226,9 @@
             this.his_btn.FlatAppearance.BorderSize = 0;
             this.his_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.his_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.his_btn.Location = new System.Drawing.Point(234, 3);
+            this.his_btn.Location = new System.Drawing.Point(325, 3);
             this.his_btn.Name = "his_btn";
-            this.his_btn.Size = new System.Drawing.Size(147, 68);
+            this.his_btn.Size = new System.Drawing.Size(116, 68);
             this.his_btn.TabIndex = 1;
             this.his_btn.Text = "Histroy";
             this.his_btn.UseVisualStyleBackColor = true;
@@ -325,21 +343,21 @@
             this.Load_File_btn.UseVisualStyleBackColor = true;
             this.Load_File_btn.Click += new System.EventHandler(this.Load_File_btn_Click);
             // 
-            // home_btn
+            // import_btn
             // 
-            this.home_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.import_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.home_btn.FlatAppearance.BorderSize = 0;
-            this.home_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.home_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.home_btn.Location = new System.Drawing.Point(81, 3);
-            this.home_btn.Name = "home_btn";
-            this.home_btn.Size = new System.Drawing.Size(147, 68);
-            this.home_btn.TabIndex = 3;
-            this.home_btn.Text = "Home";
-            this.home_btn.UseVisualStyleBackColor = true;
-            this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
+            this.import_btn.FlatAppearance.BorderSize = 0;
+            this.import_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.import_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.import_btn.Location = new System.Drawing.Point(203, 3);
+            this.import_btn.Name = "import_btn";
+            this.import_btn.Size = new System.Drawing.Size(116, 68);
+            this.import_btn.TabIndex = 23;
+            this.import_btn.Text = "Import";
+            this.import_btn.UseVisualStyleBackColor = true;
+            this.import_btn.Click += new System.EventHandler(this.import_btn_Click);
             // 
             // Saves_Forms
             // 
@@ -389,5 +407,6 @@
         private System.Windows.Forms.Button Load_File_btn;
         private System.Windows.Forms.Button settings_btn;
         private System.Windows.Forms.Button home_btn;
+        private System.Windows.Forms.Button import_btn;
     }
 }

@@ -45,5 +45,18 @@ namespace BackupProgram_V2
         {
 
         }
+
+        private void import_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Import_Forms f5 = new Import_Forms();
+            f5.ShowDialog();
+            this.Close();
+        }
+
+        private void exit_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

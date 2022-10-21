@@ -38,6 +38,7 @@ namespace BackupProgram_V2
             this.add_button2 = new System.Windows.Forms.Button();
             this.Write_to_drive_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.import_btn = new System.Windows.Forms.Button();
             this.saves_btn = new System.Windows.Forms.Button();
             this.Home = new System.Windows.Forms.Button();
             this.settings_btn = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@ namespace BackupProgram_V2
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Destination_tbx = new System.Windows.Forms.TextBox();
-            this.import_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -162,6 +162,22 @@ namespace BackupProgram_V2
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(848, 74);
             this.panel1.TabIndex = 7;
+            // 
+            // import_btn
+            // 
+            this.import_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.import_btn.FlatAppearance.BorderSize = 0;
+            this.import_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.import_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.import_btn.Location = new System.Drawing.Point(202, 3);
+            this.import_btn.Name = "import_btn";
+            this.import_btn.Size = new System.Drawing.Size(116, 68);
+            this.import_btn.TabIndex = 22;
+            this.import_btn.Text = "Import";
+            this.import_btn.UseVisualStyleBackColor = true;
+            this.import_btn.Click += new System.EventHandler(this.import_btn_Click);
             // 
             // saves_btn
             // 
@@ -323,21 +339,6 @@ namespace BackupProgram_V2
             this.Destination_tbx.Name = "Destination_tbx";
             this.Destination_tbx.Size = new System.Drawing.Size(369, 21);
             this.Destination_tbx.TabIndex = 14;
-            // 
-            // import_btn
-            // 
-            this.import_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.import_btn.FlatAppearance.BorderSize = 0;
-            this.import_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.import_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.import_btn.Location = new System.Drawing.Point(202, 3);
-            this.import_btn.Name = "import_btn";
-            this.import_btn.Size = new System.Drawing.Size(116, 68);
-            this.import_btn.TabIndex = 22;
-            this.import_btn.Text = "Import";
-            this.import_btn.UseVisualStyleBackColor = true;
             // 
             // Home_Forms
             // 
