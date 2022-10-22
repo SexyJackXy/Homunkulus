@@ -146,7 +146,6 @@ namespace BackupProgram_V2
 
             if (pathList.Count > 0)
             {
-                MessageBox.Show("IF");
                 for (int i = 0; i < pathList.Count; i++)
                 {
                     string sourceDirectory = pathList.ElementAt(i);
@@ -163,7 +162,6 @@ namespace BackupProgram_V2
             }
             else
             {
-                MessageBox.Show("ELSE");
                 int lines = Convert.ToInt32(richTextBox2.Lines.Length.ToString());
 
                 for(int i = 0; i < lines; i++)
