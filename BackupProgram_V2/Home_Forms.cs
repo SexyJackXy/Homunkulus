@@ -168,7 +168,8 @@ namespace BackupProgram_V2
 
                 for(int i = 0; i < lines; i++)
                 {
-
+                    string line = richTextBox2.Lines[i].ToString();
+                    MessageBox.Show(line);
                 }
             }
 
