@@ -168,8 +168,16 @@ namespace BackupProgram_V2
 
                 for(int i = 0; i < lines; i++)
                 {
-                    string line = richTextBox2.Lines[i].ToString();
-                    MessageBox.Show(line);
+                    string sourceDirectory = richTextBox2.Lines[i].ToString();
+                    shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                    string subfolder = "G:/Backup/Backup " + date + "/" + shrt;
+                    string targetDirectory = subfolder;
+
+                    if (Directory.Exists(sourceDirectory))
+                    {
+                        Directory.CreateDirectory(subfolder);
+                        Copy(sourceDirectory, targetDirectory);
+                    }
                 }
             }
 
