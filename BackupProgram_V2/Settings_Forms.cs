@@ -16,6 +16,12 @@ namespace BackupProgram_V2
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string path = @"resources/destination.txt";
+
+            File.WriteAllText(path, Destination_tbx.Text);
+        }
 
 
         private void home_btn_Click(object sender, EventArgs e)
@@ -42,11 +48,6 @@ namespace BackupProgram_V2
             this.Close();
         }
 
-        private void Compress_btn_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void import_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -58,13 +59,6 @@ namespace BackupProgram_V2
         private void exit_btn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string path = @"resources/destination.txt";
-
-            File.WriteAllText(path,Destination_tbx.Text);
         }
     }
 }

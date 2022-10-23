@@ -215,7 +215,6 @@
             this.Compress_btn.TabIndex = 14;
             this.Compress_btn.Text = "togglebutton1";
             this.Compress_btn.UseVisualStyleBackColor = true;
-            this.Compress_btn.CheckedChanged += new System.EventHandler(this.Compress_btn_CheckedChanged);
             // 
             // label3
             // 

@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 using NPOI.SS.Formula.Functions;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using System.Web;
+using BackupProgram_V2.Custom_Controlls;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace BackupProgram_V2
 {
@@ -21,6 +23,7 @@ namespace BackupProgram_V2
             InitializeComponent();
         }
         List<string> pathList = new List<string>();
+        private Settings_Forms settings_Forms;
 
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -34,7 +37,7 @@ namespace BackupProgram_V2
 
         static void writeToExcel()
         {
-            string path = @"History.xlsx";
+            string path = @"resources/History.xlsx";
 
             IXLWorkbook wb = new XLWorkbook(path);
             IXLWorksheet ws = wb.Worksheet(1);
@@ -144,13 +147,15 @@ namespace BackupProgram_V2
 
             Directory.CreateDirectory(dest);
 
+            togglebutton togglebutton = new togglebutton();
+
             if (pathList.Count > 0)
             {
                 for (int i = 0; i < pathList.Count; i++)
                 {
                     string sourceDirectory = pathList.ElementAt(i);
                     shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                    string subfolder = "G:/Backup/Backup " + date + "/" + shrt;
+                    string subfolder = destpath + "/Backup " + date + "/" + shrt;
                     string targetDirectory = subfolder;
 
                     if (Directory.Exists(sourceDirectory))
@@ -159,6 +164,7 @@ namespace BackupProgram_V2
                         Copy(sourceDirectory, targetDirectory);
                     }
                 }
+
             }
             else
             {
@@ -177,6 +183,9 @@ namespace BackupProgram_V2
                         Copy(sourceDirectory, targetDirectory);
                     }
                 }
+            }
+            if (togglebutton.Checked)
+            {
             }
 
             stopwatch.Stop();                       //Stop der Stopuhr
