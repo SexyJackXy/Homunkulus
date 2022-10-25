@@ -23,7 +23,6 @@ namespace BackupProgram_V2
             File.WriteAllText(path, Destination_tbx.Text);
         }
 
-
         private void home_btn_Click(object sender, EventArgs e)
         {
             this.Hide();

@@ -196,6 +196,7 @@
             this.import_button.TabIndex = 11;
             this.import_button.Text = "Import Backup";
             this.import_button.UseVisualStyleBackColor = false;
+            this.import_button.Click += new System.EventHandler(this.import_button_Click);
             // 
             // richTextBox2
             // 
