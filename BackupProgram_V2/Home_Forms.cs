@@ -23,7 +23,6 @@ namespace BackupProgram_V2
             InitializeComponent();
         }
         List<string> pathList = new List<string>();
-        private Settings_Forms settings_Forms;
 
         public static void Copy(string sourceDirectory, string targetDirectory)
         {

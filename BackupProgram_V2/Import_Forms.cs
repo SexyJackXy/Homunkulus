@@ -100,12 +100,20 @@ namespace BackupProgram_V2
                 richTextBox2.Text = fdb.SelectedPath;
 
                 string sourceDirectory = fdb.SelectedPath;
-                string targetDirectory = @"C:\Users\Tim\Documents";
-
-
-                if (Directory.Exists(sourceDirectory))
+                string foldeName = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                string targetDirectory = @"C:\Users\Tim\Documents\" + foldeName;
+                
+                if (Directory.Exists(targetDirectory))
                 {
                     Copy(sourceDirectory, targetDirectory);
+                    MessageBox.Show("Fertig");
+                }
+                else
+                {
+                    MessageBox.Show(targetDirectory + " wird erstellt");
+                    Directory.CreateDirectory(targetDirectory);
+                    Copy(sourceDirectory, targetDirectory);
+                    MessageBox.Show("Fertig");
                 }
             }
         }
