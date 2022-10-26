@@ -57,6 +57,14 @@ namespace BackupProgram_V2
             this.Close();
         }
 
+        public static void Copy(string sourceDirectory, string targetDirectory)
+        {
+            var diSource = new DirectoryInfo(sourceDirectory);
+            var diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+        }
+
         public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
@@ -86,20 +94,19 @@ namespace BackupProgram_V2
         private void import_button_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fdb = new FolderBrowserDialog();
-            FolderBrowserDialog fdb2 = new FolderBrowserDialog();
+
             if (fdb.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                MessageBox.Show(fdb.SelectedPath);
-            }
+                richTextBox2.Text = fdb.SelectedPath;
 
-            string sourceDirectory = fdb.SelectedPath;
-            string targetDirectory = @"C:\Users\Tim\Documents";
-            string subfolder;
+                string sourceDirectory = fdb.SelectedPath;
+                string targetDirectory = @"C:\Users\Tim\Documents";
 
 
-            if (Directory.Exists(sourceDirectory))
-            {
-                Copy(sourceDirectory, targetDirectory);
+                if (Directory.Exists(sourceDirectory))
+                {
+                    Copy(sourceDirectory, targetDirectory);
+                }
             }
         }
     }
