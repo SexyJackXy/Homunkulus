@@ -4,4 +4,7 @@
 You can find more information here: [Coming soon]
 
 ## Homunkulus meaning
-Homunculus refers to an artificially created copy of the human being. This program does the similar only that of the copies of their data creation.
+Homunkulus refers to an artificially created copy of the human being. This program does the similar only that of the copies of their data creation.
+
+#Version 1.0
+The version 1.0 of Homunkulus has 5 simple functions, these functions are creating backups, importing old backups, viewing old backups, loading old settings and finally a general settings page.
