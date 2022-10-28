@@ -210,7 +210,7 @@
             this.his_btn.FlatAppearance.BorderSize = 0;
             this.his_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.his_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.his_btn.Location = new System.Drawing.Point(447, 3);
+            this.his_btn.Location = new System.Drawing.Point(325, 3);
             this.his_btn.Name = "his_btn";
             this.his_btn.Size = new System.Drawing.Size(116, 68);
             this.his_btn.TabIndex = 1;
@@ -227,7 +227,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(169)))), ((int)(((byte)(32)))));
-            this.button6.Location = new System.Drawing.Point(325, 3);
+            this.button6.Location = new System.Drawing.Point(447, 3);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(116, 68);
             this.button6.TabIndex = 0;

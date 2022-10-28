@@ -82,7 +82,7 @@
             this.saves_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saves_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.saves_btn.ForeColor = System.Drawing.Color.White;
-            this.saves_btn.Location = new System.Drawing.Point(250, 3);
+            this.saves_btn.Location = new System.Drawing.Point(372, 3);
             this.saves_btn.Name = "saves_btn";
             this.saves_btn.Size = new System.Drawing.Size(116, 68);
             this.saves_btn.TabIndex = 21;
@@ -116,7 +116,7 @@
             this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.settings_btn.ForeColor = System.Drawing.Color.White;
-            this.settings_btn.Location = new System.Drawing.Point(372, 3);
+            this.settings_btn.Location = new System.Drawing.Point(494, 3);
             this.settings_btn.Name = "settings_btn";
             this.settings_btn.Size = new System.Drawing.Size(116, 68);
             this.settings_btn.TabIndex = 4;
@@ -133,7 +133,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(494, 3);
+            this.button1.Location = new System.Drawing.Point(250, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 68);
             this.button1.TabIndex = 1;
