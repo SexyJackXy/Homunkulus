@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tim\\Documents\\.Projekte\\C#\\Homunkulus\\RELEASE 2,0\\Homunkulus\\Homunkulus\\Homunkulus.csproj": {}
+    "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Homunkulus\\Homunkulus.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tim\\Documents\\.Projekte\\C#\\Homunkulus\\RELEASE 2,0\\Homunkulus\\Homunkulus\\Homunkulus.csproj": {
+    "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Homunkulus\\Homunkulus.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tim\\Documents\\.Projekte\\C#\\Homunkulus\\RELEASE 2,0\\Homunkulus\\Homunkulus\\Homunkulus.csproj",
+        "projectUniqueName": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Homunkulus\\Homunkulus.csproj",
         "projectName": "Homunkulus",
-        "projectPath": "C:\\Users\\Tim\\Documents\\.Projekte\\C#\\Homunkulus\\RELEASE 2,0\\Homunkulus\\Homunkulus\\Homunkulus.csproj",
+        "projectPath": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Homunkulus\\Homunkulus.csproj",
         "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tim\\Documents\\.Projekte\\C#\\Homunkulus\\RELEASE 2,0\\Homunkulus\\Homunkulus\\obj\\",
+        "outputPath": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Homunkulus\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
