@@ -1,0 +1,17 @@
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.exe
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.deps.json
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.runtimeconfig.json
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.dll
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.pdb
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.csproj.AssemblyReference.cache
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.Overview.resources
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.csproj.GenerateResource.cache
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.AssemblyInfoInputs.cache
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.AssemblyInfo.cs
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.csproj.CoreCompileInputs.cache
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.dll
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\refint\Homunkulus.dll
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.pdb
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.genruntimeconfig.cache
+C:\Users\Tim\Documents\.Projekte\C#\Homunkulus\RELEASE 2,0\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\ref\Homunkulus.dll
