@@ -32,3 +32,10 @@ C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\ref
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.pdb
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.genruntimeconfig.cache
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\ref\Homunkulus.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Irony.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\XLParser.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.csproj.CopyComplete

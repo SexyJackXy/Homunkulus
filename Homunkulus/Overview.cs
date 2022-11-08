@@ -1,16 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace Homunkulus
 {
@@ -129,7 +119,7 @@ namespace Homunkulus
             TimeSpan ts = stopwatch.Elapsed;        //Zeitspanne der Stopuhr in eine Variable umwandeln
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds / 10);
 
-            source_rtb.Text += Environment.NewLine + "Backup Finished";
+            //source_rtb.Text += Environment.NewLine + "Backup Finished";
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
@@ -194,6 +184,42 @@ namespace Homunkulus
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime datetime = DateTime.Today;
+
+            int row = 1;
+            string date = datetime.ToString("dd/MM/yyyy");
+            string path = @"Resources\database.xlsx";
+            string y = null;
+            var content = y;
+            string destination = Destination_txt.Text;
+
+            IXLWorkbook wb = new XLWorkbook(path); 
+            IXLWorksheet ws = wb.Worksheet(1);
+
+            ws.Cell(row, 1).Value = date;
+            
+            if (string.IsNullOrEmpty(destination))
+            {
+                ws.Cell(row, 2).Value = " - ";
+            }
+            else
+            {
+                ws.Cell(row, 2).Value = destination;
+            }
+
+            for(int i = 1;i > source_rtb.Lines.Count(); i++)
+            {
+                content = source_rtb.Lines[i] ;
+                ws.Cell(row, 3).Value = content + "\n";
+            }
+
+            wb.SaveAs(path);
+
+            MessageBox.Show("Backup Saved");
         }
     }
 }
