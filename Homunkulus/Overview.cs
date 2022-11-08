@@ -193,9 +193,10 @@ namespace Homunkulus
             int row = 1;
             string date = datetime.ToString("dd/MM/yyyy");
             string path = @"Resources\database.xlsx";
-            string y = null;
-            var content = y;
+            string content;
             string destination = Destination_txt.Text;
+            string lines = source_rtb.Lines.Count().ToString();
+            int numberlines = Convert.ToInt32(lines) - 1;
 
             IXLWorkbook wb = new XLWorkbook(path); 
             IXLWorksheet ws = wb.Worksheet(1);
@@ -211,11 +212,8 @@ namespace Homunkulus
                 ws.Cell(row, 2).Value = destination;
             }
 
-            for(int i = 1;i > source_rtb.Lines.Count(); i++)
-            {
-                content = source_rtb.Lines[i] ;
-                ws.Cell(row, 3).Value = content + "\n";
-            }
+            content = source_rtb.Text.Trim();
+            ws.Cell(row, 3).Value = content ;
 
             wb.SaveAs(path);
 
