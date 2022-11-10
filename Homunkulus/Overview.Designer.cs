@@ -40,7 +40,8 @@
             this.start_btn = new System.Windows.Forms.Button();
             this.multiple_folder_btn = new System.Windows.Forms.Button();
             this.add_data_btn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.save_btn = new System.Windows.Forms.Button();
+            this.Debug_Landingpage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // create_backup_btn
@@ -202,21 +203,37 @@
             this.add_data_btn.UseVisualStyleBackColor = false;
             this.add_data_btn.Click += new System.EventHandler(this.add_data_btn_Click);
             // 
-            // button1
+            // save_btn
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(731, 559);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(234, 40);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Save Backup";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.save_btn.AutoSize = true;
+            this.save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.save_btn.FlatAppearance.BorderSize = 0;
+            this.save_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.save_btn.ForeColor = System.Drawing.Color.White;
+            this.save_btn.Location = new System.Drawing.Point(731, 559);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Size = new System.Drawing.Size(234, 40);
+            this.save_btn.TabIndex = 13;
+            this.save_btn.Text = "Save Backup";
+            this.save_btn.UseVisualStyleBackColor = false;
+            this.save_btn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Debug_Landingpage
+            // 
+            this.Debug_Landingpage.AutoSize = true;
+            this.Debug_Landingpage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.Debug_Landingpage.FlatAppearance.BorderSize = 0;
+            this.Debug_Landingpage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
+            this.Debug_Landingpage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Debug_Landingpage.ForeColor = System.Drawing.Color.White;
+            this.Debug_Landingpage.Location = new System.Drawing.Point(812, 466);
+            this.Debug_Landingpage.Name = "Debug_Landingpage";
+            this.Debug_Landingpage.Size = new System.Drawing.Size(153, 28);
+            this.Debug_Landingpage.TabIndex = 14;
+            this.Debug_Landingpage.Text = "Add Data";
+            this.Debug_Landingpage.UseVisualStyleBackColor = false;
+            this.Debug_Landingpage.Click += new System.EventHandler(this.Debug_Landingpage_Click);
             // 
             // Overview
             // 
@@ -224,7 +241,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Debug_Landingpage);
+            this.Controls.Add(this.save_btn);
             this.Controls.Add(this.add_data_btn);
             this.Controls.Add(this.multiple_folder_btn);
             this.Controls.Add(this.start_btn);
@@ -258,6 +276,7 @@
         private Button start_btn;
         private Button multiple_folder_btn;
         private Button add_data_btn;
-        private Button button1;
+        private Button save_btn;
+        private Button Debug_Landingpage;
     }
 }

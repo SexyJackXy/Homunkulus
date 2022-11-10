@@ -31,6 +31,11 @@
             this.show_backup_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.create_btn = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.numb_backup = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // show_backup_btn
@@ -73,19 +78,61 @@
             this.create_btn.Text = "Create Backup";
             this.create_btn.UseVisualStyleBackColor = false;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Location = new System.Drawing.Point(246, 452);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(234, 100);
+            this.panel2.TabIndex = 5;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.numb_backup);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(504, 452);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(234, 100);
+            this.panel3.TabIndex = 6;
+            // 
+            // numb_backup
+            // 
+            this.numb_backup.AutoSize = true;
+            this.numb_backup.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.numb_backup.Location = new System.Drawing.Point(99, 24);
+            this.numb_backup.Name = "numb_backup";
+            this.numb_backup.Size = new System.Drawing.Size(35, 37);
+            this.numb_backup.TabIndex = 8;
+            this.numb_backup.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(65, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 18);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Backup Pläne";
+            // 
             // Landingpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.create_btn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.show_backup_btn);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Landingpage";
             this.Text = "Landingpage";
+            this.Load += new System.EventHandler(this.Landingpage_Load);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +143,9 @@
         private Button show_backup_btn;
         private Panel panel1;
         private Button create_btn;
+        private Panel panel2;
+        private Panel panel3;
+        private Label label1;
+        private Label numb_backup;
     }
 }

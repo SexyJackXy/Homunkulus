@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace Homunkulus
 {
@@ -15,6 +16,19 @@ namespace Homunkulus
         public Landingpage()
         {
             InitializeComponent();
+        }
+
+        private void Landingpage_Load(object sender, EventArgs e)
+        {
+            //Updating Number of Backuppläne
+            string path = @"Resources\database.xlsx";
+
+            IXLWorkbook wb = new XLWorkbook(path);
+            IXLWorksheet ws = wb.Worksheet(1);
+
+            var backupplans = ws.RowsUsed().Count();
+
+            numb_backup.Text = Convert.ToString(backupplans);
         }
     }
 }

@@ -185,7 +185,6 @@ namespace Homunkulus
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             DateTime datetime = DateTime.Today;
@@ -218,6 +217,14 @@ namespace Homunkulus
             wb.SaveAs(path);
 
             MessageBox.Show("Backup Saved");
+        }
+
+        private void Debug_Landingpage_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Landingpage lp = new Landingpage();
+            lp.ShowDialog();
+            this.Close();
         }
     }
 }

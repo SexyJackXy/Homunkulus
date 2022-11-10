@@ -39,3 +39,4 @@ C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Iro
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\XLParser.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.csproj.CopyComplete
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.Landingpage.resources
