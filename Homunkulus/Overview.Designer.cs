@@ -41,7 +41,6 @@
             this.multiple_folder_btn = new System.Windows.Forms.Button();
             this.add_data_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
-            this.Debug_Landingpage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // create_backup_btn
@@ -218,29 +217,12 @@
             this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Debug_Landingpage
-            // 
-            this.Debug_Landingpage.AutoSize = true;
-            this.Debug_Landingpage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.Debug_Landingpage.FlatAppearance.BorderSize = 0;
-            this.Debug_Landingpage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.Debug_Landingpage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Debug_Landingpage.ForeColor = System.Drawing.Color.White;
-            this.Debug_Landingpage.Location = new System.Drawing.Point(812, 466);
-            this.Debug_Landingpage.Name = "Debug_Landingpage";
-            this.Debug_Landingpage.Size = new System.Drawing.Size(153, 28);
-            this.Debug_Landingpage.TabIndex = 14;
-            this.Debug_Landingpage.Text = "Add Data";
-            this.Debug_Landingpage.UseVisualStyleBackColor = false;
-            this.Debug_Landingpage.Click += new System.EventHandler(this.Debug_Landingpage_Click);
-            // 
             // Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
-            this.Controls.Add(this.Debug_Landingpage);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.add_data_btn);
             this.Controls.Add(this.multiple_folder_btn);
@@ -276,6 +258,5 @@
         private Button multiple_folder_btn;
         private Button add_data_btn;
         private Button save_btn;
-        private Button Debug_Landingpage;
     }
 }

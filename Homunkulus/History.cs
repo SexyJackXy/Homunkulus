@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,9 +19,24 @@ namespace Homunkulus
             InitializeComponent();
         }
 
+        string path = @"Resources\database.xlsx";
+
         private void History_Load(object sender, EventArgs e)
         {
+            using (var wb = new XLWorkbook(path, XLEventTracking.Disabled))
+            {
+                var ws = wb.Worksheet(1);
+                DataTable dt = ws.RangeUsed().AsTable().AsNativeDataTable();
 
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+                }
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dataGridView1.Rows.Add(dr.ItemArray);
+                }
+            }
         }
     }
 }

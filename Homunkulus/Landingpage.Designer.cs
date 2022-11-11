@@ -55,6 +55,7 @@
             this.show_backup_btn.TabIndex = 2;
             this.show_backup_btn.Text = "Show Backups";
             this.show_backup_btn.UseVisualStyleBackColor = false;
+            this.show_backup_btn.Click += new System.EventHandler(this.show_backup_btn_Click);
             // 
             // panel1
             // 

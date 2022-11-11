@@ -12,7 +12,6 @@ namespace Homunkulus
         {
             InitializeComponent();
         }
-        public static string elapsedTime { get; set; }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
@@ -89,6 +88,7 @@ namespace Homunkulus
 
             DateTime datetime = DateTime.Today;
 
+            string elapsedTime;
             string destpath = Destination_txt.Text;
             string date = datetime.ToString("dd/MM/yyyy");
             string dest = destpath + "Backup "+ date;
@@ -105,8 +105,6 @@ namespace Homunkulus
                     string subfolder = destpath + "/Backup " + date + "/" + shrt;
                     string targetDirectory = subfolder;
 
-                    MessageBox.Show("Copy from " + sourceDirectory + "to" + targetDirectory);
-
                     if (Directory.Exists(sourceDirectory))
                     {
                         Directory.CreateDirectory(subfolder);
@@ -115,11 +113,11 @@ namespace Homunkulus
                 }
             }
 
-            stopwatch.Stop();                       //Stop der Stopuhr
-            TimeSpan ts = stopwatch.Elapsed;        //Zeitspanne der Stopuhr in eine Variable umwandeln
+            stopwatch.Stop();                       
+            TimeSpan ts = stopwatch.Elapsed;        
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds / 10);
 
-            source_rtb.Text += Environment.NewLine + "Backup Finished in " + elapsedTime;
+            MessageBox.Show("Backup Finished in " + elapsedTime);
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
@@ -209,13 +207,6 @@ namespace Homunkulus
 
                 MessageBox.Show("Backup Saved");
             }
-        }
-        private void Debug_Landingpage_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Landingpage lp = new Landingpage();
-            lp.ShowDialog();
-            this.Close();
         }
     }
 }
