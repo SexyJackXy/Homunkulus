@@ -32,9 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.create_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.numb_execute = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.numb_backup = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,18 +80,42 @@
             this.create_btn.TabIndex = 4;
             this.create_btn.Text = "Create Backup";
             this.create_btn.UseVisualStyleBackColor = false;
+            this.create_btn.Click += new System.EventHandler(this.create_btn_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.numb_execute);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(246, 452);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(234, 100);
             this.panel2.TabIndex = 5;
             // 
+            // numb_execute
+            // 
+            this.numb_execute.AutoSize = true;
+            this.numb_execute.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.numb_execute.Location = new System.Drawing.Point(97, 25);
+            this.numb_execute.Name = "numb_execute";
+            this.numb_execute.Size = new System.Drawing.Size(35, 37);
+            this.numb_execute.TabIndex = 9;
+            this.numb_execute.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(50, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 18);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Backups executed";
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.numb_backup);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Location = new System.Drawing.Point(504, 452);
@@ -111,9 +138,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(65, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 18);
+            this.label1.Size = new System.Drawing.Size(98, 18);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Backup Pläne";
+            this.label1.Text = "Backupplans";
             // 
             // Landingpage
             // 
@@ -131,6 +158,8 @@
             this.Name = "Landingpage";
             this.Text = "Landingpage";
             this.Load += new System.EventHandler(this.Landingpage_Load);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -147,5 +176,7 @@
         private Panel panel3;
         private Label label1;
         private Label numb_backup;
+        private Label numb_execute;
+        private Label label2;
     }
 }

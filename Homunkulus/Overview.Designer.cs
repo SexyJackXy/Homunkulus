@@ -150,7 +150,6 @@
             this.source_rtb.EnableAutoDragDrop = true;
             this.source_rtb.Location = new System.Drawing.Point(12, 112);
             this.source_rtb.Name = "source_rtb";
-            this.source_rtb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.source_rtb.Size = new System.Drawing.Size(794, 393);
             this.source_rtb.TabIndex = 9;
             this.source_rtb.TabStop = false;

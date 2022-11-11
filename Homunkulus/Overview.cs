@@ -91,9 +91,9 @@ namespace Homunkulus
 
             string destpath = Destination_txt.Text;
             string date = datetime.ToString("dd/MM/yyyy");
-            string dest = destpath + date;
+            string dest = destpath + "Backup "+ date;
             string shrt;
-
+            
             Directory.CreateDirectory(dest);
 
             if (folderlist.Count > 0)
@@ -105,7 +105,7 @@ namespace Homunkulus
                     string subfolder = destpath + "/Backup " + date + "/" + shrt;
                     string targetDirectory = subfolder;
 
-                    MessageBox.Show(sourceDirectory, targetDirectory);
+                    MessageBox.Show("Copy from " + sourceDirectory + "to" + targetDirectory);
 
                     if (Directory.Exists(sourceDirectory))
                     {
@@ -119,7 +119,7 @@ namespace Homunkulus
             TimeSpan ts = stopwatch.Elapsed;        //Zeitspanne der Stopuhr in eine Variable umwandeln
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds / 10);
 
-            //source_rtb.Text += Environment.NewLine + "Backup Finished";
+            source_rtb.Text += Environment.NewLine + "Backup Finished in " + elapsedTime;
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
@@ -130,7 +130,6 @@ namespace Homunkulus
                 string Fullpath = ofd.FileName;
                 string Filename = ofd.SafeFileName;
                 string folder = Fullpath.Replace(Filename, "");
-                var regex = new Regex(@"\s");
 
                 if (String.IsNullOrEmpty(folder))
                 {
@@ -138,24 +137,7 @@ namespace Homunkulus
                 }
                 else
                 {
-                    if (regex.IsMatch(folder))
-                    {
-                        string short_path = folder.Remove(0, 1);
-                        source_rtb.Text += short_path + "\n";
-                        source_rtb.SelectAll();
-                        source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                        source_rtb.DeselectAll();
-                        folderlist.Add(short_path);
-                    }
-                    else
-                    {
-                        source_rtb.Text += folder + "\n";
-                        source_rtb.SelectAll();
-                        source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                        source_rtb.DeselectAll();
-                        folderlist.Add(folder);
-                    }
-
+                    source_rtb.Text += folder;
                 }
             }
         }
@@ -176,49 +158,58 @@ namespace Homunkulus
                 {
                     if (regex.IsMatch(folder))
                     {
-                        Destination_txt.Text = folder;
+                        Destination_txt.Text = folder + @"\";
                     }
                     else
                     {
-                        Destination_txt.Text = folder;
+                        Destination_txt.Text = folder + @"\";
                     }
                 }
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime datetime = DateTime.Today;
-
-            int row = 1;
-            string date = datetime.ToString("dd/MM/yyyy");
-            string path = @"Resources\database.xlsx";
-            string content;
-            string destination = Destination_txt.Text;
-            string lines = source_rtb.Lines.Count().ToString();
-            int numberlines = Convert.ToInt32(lines) - 1;
-
-            IXLWorkbook wb = new XLWorkbook(path); 
-            IXLWorksheet ws = wb.Worksheet(1);
-
-            ws.Cell(row, 1).Value = date;
-            
-            if (string.IsNullOrEmpty(destination))
+            if(string.IsNullOrEmpty(source_rtb.Text))
             {
-                ws.Cell(row, 2).Value = " - ";
+                MessageBox.Show("You can not save anything");
             }
             else
             {
-                ws.Cell(row, 2).Value = destination;
+                DateTime datetime = DateTime.Today;
+
+                int row;
+                string date = datetime.ToString("dd/MM/yyyy");
+                string path = @"Resources\database.xlsx";
+                string content;
+                string destination = Destination_txt.Text;
+                string lines = source_rtb.Lines.Count().ToString();
+                int numberlines = Convert.ToInt32(lines) - 1;
+
+                IXLWorkbook wb = new XLWorkbook(path);
+                IXLWorksheet ws = wb.Worksheet(1);
+
+                var usedrow = ws.RowsUsed().Count();
+                row = usedrow + 1;
+
+                ws.Cell(row, 1).Value = date;
+
+                if (string.IsNullOrEmpty(destination))
+                {
+                    ws.Cell(row, 2).Value = " - ";
+                }
+                else
+                {
+                    ws.Cell(row, 2).Value = destination;
+                }
+
+                content = source_rtb.Text.Trim();
+                ws.Cell(row, 3).Value = content;
+
+                wb.SaveAs(path);
+
+                MessageBox.Show("Backup Saved");
             }
-
-            content = source_rtb.Text.Trim();
-            ws.Cell(row, 3).Value = content ;
-
-            wb.SaveAs(path);
-
-            MessageBox.Show("Backup Saved");
         }
-
         private void Debug_Landingpage_Click(object sender, EventArgs e)
         {
             this.Hide();
