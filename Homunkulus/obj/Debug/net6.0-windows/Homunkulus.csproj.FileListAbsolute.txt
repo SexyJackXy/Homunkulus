@@ -55,3 +55,4 @@ C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\run
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.History.resources
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.Properties.Resources.resources

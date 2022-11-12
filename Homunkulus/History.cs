@@ -38,5 +38,26 @@ namespace Homunkulus
                 }
             }
         }
+        private void create_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Overview ov = new Overview();
+            ov.Show();
+            this.Close();
+        }
+        private void home_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Landingpage lp = new Landingpage();
+            lp.Show();
+            this.Close();
+        }
+        private void plans_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            History hs = new History();
+            hs.Show();
+            this.Close();
+        }
     }
 }

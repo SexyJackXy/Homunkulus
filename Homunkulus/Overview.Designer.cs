@@ -31,6 +31,10 @@
             this.create_backup_btn = new System.Windows.Forms.Button();
             this.import_backup_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.restore_pbox = new System.Windows.Forms.PictureBox();
+            this.create_pbox = new System.Windows.Forms.PictureBox();
+            this.plans_pbox = new System.Windows.Forms.PictureBox();
+            this.home_pbox = new System.Windows.Forms.PictureBox();
             this.Destination_txt = new System.Windows.Forms.TextBox();
             this.add_folder_btn = new System.Windows.Forms.Button();
             this.Source_btn = new System.Windows.Forms.Label();
@@ -41,6 +45,11 @@
             this.multiple_folder_btn = new System.Windows.Forms.Button();
             this.add_data_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.home_pbox)).BeginInit();
             this.SuspendLayout();
             // 
             // create_backup_btn
@@ -77,11 +86,54 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
+            this.panel1.Controls.Add(this.restore_pbox);
+            this.panel1.Controls.Add(this.create_pbox);
+            this.panel1.Controls.Add(this.plans_pbox);
+            this.panel1.Controls.Add(this.home_pbox);
             this.panel1.Location = new System.Drawing.Point(-3, 606);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(982, 40);
             this.panel1.TabIndex = 0;
+            // 
+            // restore_pbox
+            // 
+            this.restore_pbox.Image = global::Homunkulus.Properties.Resources.restore;
+            this.restore_pbox.Location = new System.Drawing.Point(579, 5);
+            this.restore_pbox.Name = "restore_pbox";
+            this.restore_pbox.Size = new System.Drawing.Size(32, 32);
+            this.restore_pbox.TabIndex = 17;
+            this.restore_pbox.TabStop = false;
+            // 
+            // create_pbox
+            // 
+            this.create_pbox.Image = global::Homunkulus.Properties.Resources.create;
+            this.create_pbox.Location = new System.Drawing.Point(441, 5);
+            this.create_pbox.Name = "create_pbox";
+            this.create_pbox.Size = new System.Drawing.Size(32, 32);
+            this.create_pbox.TabIndex = 15;
+            this.create_pbox.TabStop = false;
+            this.create_pbox.Click += new System.EventHandler(this.create_pbox_Click);
+            // 
+            // plans_pbox
+            // 
+            this.plans_pbox.Image = global::Homunkulus.Properties.Resources.backupplans;
+            this.plans_pbox.Location = new System.Drawing.Point(510, 5);
+            this.plans_pbox.Name = "plans_pbox";
+            this.plans_pbox.Size = new System.Drawing.Size(32, 32);
+            this.plans_pbox.TabIndex = 16;
+            this.plans_pbox.TabStop = false;
+            this.plans_pbox.Click += new System.EventHandler(this.plans_pbox_Click);
+            // 
+            // home_pbox
+            // 
+            this.home_pbox.Image = global::Homunkulus.Properties.Resources.home;
+            this.home_pbox.Location = new System.Drawing.Point(377, 5);
+            this.home_pbox.Name = "home_pbox";
+            this.home_pbox.Size = new System.Drawing.Size(32, 32);
+            this.home_pbox.TabIndex = 14;
+            this.home_pbox.TabStop = false;
+            this.home_pbox.Click += new System.EventHandler(this.home_pbox_Click);
             // 
             // Destination_txt
             // 
@@ -239,6 +291,11 @@
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Overview";
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.home_pbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +315,9 @@
         private Button multiple_folder_btn;
         private Button add_data_btn;
         private Button save_btn;
+        private PictureBox restore_pbox;
+        private PictureBox create_pbox;
+        private PictureBox plans_pbox;
+        private PictureBox home_pbox;
     }
 }
