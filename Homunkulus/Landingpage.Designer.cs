@@ -41,6 +41,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.numb_backup = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
@@ -48,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.home_pbox)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // show_backup_btn
@@ -58,7 +61,7 @@
             this.show_backup_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.show_backup_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.show_backup_btn.ForeColor = System.Drawing.Color.White;
-            this.show_backup_btn.Location = new System.Drawing.Point(504, 558);
+            this.show_backup_btn.Location = new System.Drawing.Point(508, 535);
             this.show_backup_btn.Name = "show_backup_btn";
             this.show_backup_btn.Size = new System.Drawing.Size(234, 40);
             this.show_backup_btn.TabIndex = 2;
@@ -127,7 +130,7 @@
             this.create_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.create_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.create_btn.ForeColor = System.Drawing.Color.White;
-            this.create_btn.Location = new System.Drawing.Point(246, 558);
+            this.create_btn.Location = new System.Drawing.Point(250, 535);
             this.create_btn.Name = "create_btn";
             this.create_btn.Size = new System.Drawing.Size(234, 40);
             this.create_btn.TabIndex = 4;
@@ -141,7 +144,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.numb_execute);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(246, 452);
+            this.panel2.Location = new System.Drawing.Point(250, 429);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(234, 100);
             this.panel2.TabIndex = 5;
@@ -171,7 +174,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.numb_backup);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(504, 452);
+            this.panel3.Location = new System.Drawing.Point(508, 429);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(234, 100);
             this.panel3.TabIndex = 6;
@@ -195,12 +198,34 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Backupplans";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Homunkulus.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(365, 128);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(234, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(513, 41);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Welcome back to Homunkulus";
+            // 
             // Landingpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.create_btn);
@@ -220,6 +245,7 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,5 +266,7 @@
         private PictureBox plans_pbox;
         private PictureBox create_pbox;
         private PictureBox home_pbox;
+        private PictureBox pictureBox1;
+        private Label label3;
     }
 }
