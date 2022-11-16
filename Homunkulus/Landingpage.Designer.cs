@@ -201,7 +201,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Homunkulus.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(365, 128);
+            this.pictureBox1.Location = new System.Drawing.Point(375, 108);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(256, 256);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

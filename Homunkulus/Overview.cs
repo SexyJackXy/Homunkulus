@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using ClosedXML.Excel;
 
@@ -11,6 +12,27 @@ namespace Homunkulus
         public Overview()
         {
             InitializeComponent();
+        }
+
+        public static string OpenFileBrowserDialog(bool multiselect)
+        {
+            FolderSelectDialog fbd = new FolderSelectDialog();
+            fbd.Multiselect = multiselect;
+
+            fbd.ShowDialog();
+
+            string selected_folders = "";
+            if (multiselect)
+            {
+                string[] names = fbd.FileNames;
+                selected_folders = string.Join(",", names);
+            }
+            else
+            {
+                selected_folders = fbd.FileName;
+            }
+
+            return selected_folders;
         }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -228,6 +250,14 @@ namespace Homunkulus
             History hs = new History();
             hs.Show();
             this.Close();
+        }
+
+        private void multiple_folder_btn_Click(object sender, EventArgs e)
+        {
+            string test = OpenFileBrowserDialog(true);
+
+            MessageBox.Show(test);
+            Environment.Exit(0);
         }
     }
 }

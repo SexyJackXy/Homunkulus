@@ -236,6 +236,7 @@
             this.multiple_folder_btn.TabIndex = 11;
             this.multiple_folder_btn.Text = "Add Multiple Folder";
             this.multiple_folder_btn.UseVisualStyleBackColor = false;
+            this.multiple_folder_btn.Click += new System.EventHandler(this.multiple_folder_btn_Click);
             // 
             // add_data_btn
             // 
