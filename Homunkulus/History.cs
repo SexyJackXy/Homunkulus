@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,14 @@ namespace Homunkulus
 
         private void History_Load(object sender, EventArgs e)
         {
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            dataGridView1.AllowUserToResizeRows = true;
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeColumns = true;
+
             using (var wb = new XLWorkbook(path, XLEventTracking.Disabled))
             {
                 var ws = wb.Worksheet(1);
