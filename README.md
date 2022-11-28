@@ -9,6 +9,3 @@ Homunkulus refers to an artificially created copy of the human being. This progr
 ## Versions
 ### Version 1.0
 The version 1.0 of Homunkulus has 5 simple functions, these functions are creating backups, importing old backups, viewing old backups, loading old settings and finally a general settings page.
-
-### Version 2.0
-Version to is Work in Progress. But it will be better than the previous Version. 
