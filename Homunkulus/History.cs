@@ -51,21 +51,21 @@ namespace Homunkulus
         {
             this.Hide();
             Overview ov = new Overview();
-            ov.Show();
+            ov.ShowDialog();
             this.Close();
         }
         private void home_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
             Landingpage lp = new Landingpage();
-            lp.Show();
+            lp.ShowDialog();
             this.Close();
         }
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
             History hs = new History();
-            hs.Show();
+            hs.ShowDialog();
             this.Close();
         }
     }

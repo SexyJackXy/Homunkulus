@@ -63,14 +63,14 @@ namespace Homunkulus
         {
             this.Hide();
             Landingpage lp = new Landingpage();
-            lp.Show();
+            lp.ShowDialog();
             this.Close();
         }
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
             History hs = new History();
-            hs.Show();
+            hs.ShowDialog();
             this.Close();
         }
     }
