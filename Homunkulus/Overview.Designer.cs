@@ -46,6 +46,7 @@
             this.multiple_folder_btn = new System.Windows.Forms.Button();
             this.add_data_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
+            this.togglebutton1 = new BackupProgram_V2.Custom_Controlls.togglebutton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -271,12 +272,24 @@
             this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.button1_Click);
             // 
+            // togglebutton1
+            // 
+            this.togglebutton1.AutoSize = true;
+            this.togglebutton1.Location = new System.Drawing.Point(844, 214);
+            this.togglebutton1.MinimumSize = new System.Drawing.Size(30, 30);
+            this.togglebutton1.Name = "togglebutton1";
+            this.togglebutton1.Size = new System.Drawing.Size(121, 30);
+            this.togglebutton1.TabIndex = 14;
+            this.togglebutton1.Text = "togglebutton1";
+            this.togglebutton1.UseVisualStyleBackColor = true;
+            // 
             // Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.togglebutton1);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.add_data_btn);
             this.Controls.Add(this.multiple_folder_btn);
@@ -322,5 +335,6 @@
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
+        private BackupProgram_V2.Custom_Controlls.togglebutton togglebutton1;
     }
 }

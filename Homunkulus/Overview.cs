@@ -1,7 +1,13 @@
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using ClosedXML.Excel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System.Xml.Serialization;
 
 namespace Homunkulus
 {
@@ -12,6 +18,12 @@ namespace Homunkulus
         public Overview()
         {
             InitializeComponent();
+        }
+        public class Backupplan
+        {
+            public string source { get; set; }
+            public string destination { get; set; }
+
         }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -230,9 +242,28 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
-
         private void multiple_folder_btn_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("start");
+            try
+            {
+                Backupplan bp = new Backupplan();
+
+                bp.destination = Destination_txt.Text;
+                bp.source = source_rtb.Text;
+
+                XmlSerializer serializer = new XmlSerializer(typeof(Backupplan));
+                using (StreamWriter sw = new StreamWriter(@"C:\Users\Tim\Documents\text.xml"))
+                {
+                    serializer.Serialize(sw, bp);
+                }
+                MessageBox.Show("Fertig");
+            }
+            catch
+            {
+                MessageBox.Show("Ups");
+            }
+
         }
     }
 }
