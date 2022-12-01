@@ -239,17 +239,33 @@ namespace Homunkulus
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
 
-            XmlTextWriter texWriter = new XmlTextWriter(@"C:\Users\Tim\Documents\Backup_" + date,null);
+            XmlTextWriter texWriter = new XmlTextWriter(@"C:\Users\Tim\Documents\Backup_" + date + ".xml", System.Text.Encoding.UTF8);
 
+            int i = 1;
+            int lines = source_rtb.Lines.Length;
+            int checksum = lines - 1;
+
+            texWriter.Formatting = Formatting.Indented;
             texWriter.WriteStartDocument();
 
-            texWriter.WriteStartElement("Destination");
-            texWriter.WriteStartElement(Destination_txt.Text);
-            texWriter.WriteEndElement();
+            if(Destination_txt.Text )
+            {
+                texWriter.WriteStartElement("Destination");
+                texWriter.WriteStartElement(Destination_txt.Text);
+                texWriter.WriteEndElement();
+            }
 
-            texWriter.WriteStartElement("Source");
-            texWriter.WriteStartElement(source_rtb.Text);
-            texWriter.WriteEndElement();
+
+            foreach (string content in source_rtb.Lines)
+            {
+                if(checksum < lines)
+                {
+                    texWriter.WriteStartElement("Source");
+                    texWriter.WriteElementString("source", content);
+                    i++;
+                    texWriter.WriteEndElement();
+                }
+            }
 
             texWriter.WriteEndDocument();
             texWriter.Close();

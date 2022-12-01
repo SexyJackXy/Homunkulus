@@ -97,3 +97,5 @@ C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homun
 C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.pdb
 C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.genruntimeconfig.cache
 C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus\obj\Debug\net6.0-windows\ref\Homunkulus.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.Backupplans.resources
