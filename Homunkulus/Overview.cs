@@ -172,46 +172,41 @@ namespace Homunkulus
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(source_rtb.Text))
+            DateTime datetime = DateTime.Today;
+            string date = datetime.ToString("dd/MM/yyyy");
+
+            XmlTextWriter texWriter = new XmlTextWriter(@"Resources\Backup_" + date + ".xml", System.Text.Encoding.UTF8);
+
+            int i = 1;
+            int lines = source_rtb.Lines.Length;
+            int checksum = lines - 1;
+
+            texWriter.Formatting = Formatting.Indented;
+            texWriter.WriteStartDocument();
+
+            if (string.IsNullOrWhiteSpace(Destination_txt.Text))
             {
-                MessageBox.Show("You can not save anything");
+                texWriter.WriteStartElement("Destination");
+                texWriter.WriteStartElement(Destination_txt.Text);
+                texWriter.WriteEndElement();
             }
-            else
+
+
+            foreach (string content in source_rtb.Lines)
             {
-                DateTime datetime = DateTime.Today;
-
-                int row;
-                string date = datetime.ToString("dd/MM/yyyy");
-                string path = @"Resources\database.xlsx";
-                string content;
-                string destination = Destination_txt.Text;
-                string lines = source_rtb.Lines.Count().ToString();
-                int numberlines = Convert.ToInt32(lines) - 1;
-
-                IXLWorkbook wb = new XLWorkbook(path);
-                IXLWorksheet ws = wb.Worksheet(1);
-
-                var usedrow = ws.RowsUsed().Count();
-                row = usedrow + 1;
-
-                ws.Cell(row, 1).Value = date;
-
-                if (string.IsNullOrEmpty(destination))
+                if (checksum < lines)
                 {
-                    ws.Cell(row, 2).Value = " - ";
+                    texWriter.WriteStartElement("Source");
+                    texWriter.WriteElementString("source", content);
+                    i++;
+                    texWriter.WriteEndElement();
                 }
-                else
-                {
-                    ws.Cell(row, 2).Value = destination;
-                }
-
-                content = source_rtb.Text.Trim();
-                ws.Cell(row, 3).Value = content;
-
-                wb.SaveAs(path);
-
-                MessageBox.Show("Backup Saved");
             }
+
+            texWriter.WriteEndDocument();
+            texWriter.Close();
+
+            MessageBox.Show("Saved");
         }
         private void create_pbox_Click(object sender, EventArgs e)
         {
@@ -236,41 +231,7 @@ namespace Homunkulus
         }
         private void multiple_folder_btn_Click(object sender, EventArgs e)
         {
-            DateTime datetime = DateTime.Today;
-            string date = datetime.ToString("dd/MM/yyyy");
 
-            XmlTextWriter texWriter = new XmlTextWriter(@"C:\Users\Tim\Documents\Backup_" + date + ".xml", System.Text.Encoding.UTF8);
-
-            int i = 1;
-            int lines = source_rtb.Lines.Length;
-            int checksum = lines - 1;
-
-            texWriter.Formatting = Formatting.Indented;
-            texWriter.WriteStartDocument();
-
-            if(Destination_txt.Text )
-            {
-                texWriter.WriteStartElement("Destination");
-                texWriter.WriteStartElement(Destination_txt.Text);
-                texWriter.WriteEndElement();
-            }
-
-
-            foreach (string content in source_rtb.Lines)
-            {
-                if(checksum < lines)
-                {
-                    texWriter.WriteStartElement("Source");
-                    texWriter.WriteElementString("source", content);
-                    i++;
-                    texWriter.WriteEndElement();
-                }
-            }
-
-            texWriter.WriteEndDocument();
-            texWriter.Close();
-
-            MessageBox.Show("Fertig");
         }
     }
 }
