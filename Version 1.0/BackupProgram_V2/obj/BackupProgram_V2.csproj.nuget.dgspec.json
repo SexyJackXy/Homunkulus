@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\BackupProgram_V2\\BackupProgram_V2.csproj": {}
+    "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Version 1.0\\BackupProgram_V2\\BackupProgram_V2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\BackupProgram_V2\\BackupProgram_V2.csproj": {
+    "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Version 1.0\\BackupProgram_V2\\BackupProgram_V2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\BackupProgram_V2\\BackupProgram_V2.csproj",
+        "projectUniqueName": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Version 1.0\\BackupProgram_V2\\BackupProgram_V2.csproj",
         "projectName": "BackupProgram_V2",
-        "projectPath": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\BackupProgram_V2\\BackupProgram_V2.csproj",
+        "projectPath": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Version 1.0\\BackupProgram_V2\\BackupProgram_V2.csproj",
         "packagesPath": "C:\\Users\\Tim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\BackupProgram_V2\\obj\\",
+        "outputPath": "C:\\Users\\Tim\\Documents\\GitHub\\Homunkulus\\Version 1.0\\BackupProgram_V2\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Tim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +100,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

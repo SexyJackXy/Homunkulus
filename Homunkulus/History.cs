@@ -20,32 +20,30 @@ namespace Homunkulus
             InitializeComponent();
         }
 
-        string path = @"Resources\database.xlsx";
+        string path = @"Resources\backupplans";
+
+        public void PopulateTree(string dir, TreeNode node)
+        {
+            DirectoryInfo directory = new DirectoryInfo(dir);
+
+            foreach (DirectoryInfo d in directory.GetDirectories())
+            {
+                TreeNode t = new TreeNode(d.Name);
+                if (node != null) node.Nodes.Add(t);
+                else treeView1.Nodes.Add(t);
+                PopulateTree(d.FullName, t);
+            }
+            foreach (FileInfo f in directory.GetFiles())
+            {
+                TreeNode t = new TreeNode(f.Name);
+                if (node != null) node.Nodes.Add(t);
+                else treeView1.Nodes.Add(t);
+            }
+        }
 
         private void History_Load(object sender, EventArgs e)
         {
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
-            dataGridView1.AllowUserToResizeRows = true;
-            dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.AllowUserToResizeColumns = true;
-
-            using (var wb = new XLWorkbook(path, XLEventTracking.Disabled))
-            {
-                var ws = wb.Worksheet(1);
-                DataTable dt = ws.RangeUsed().AsTable().AsNativeDataTable();
-
-                foreach (DataColumn dc in dt.Columns)
-                {
-                    dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
-                }
-                foreach (DataRow dr in dt.Rows)
-                {
-                    dataGridView1.Rows.Add(dr.ItemArray);
-                }
-            }
+            PopulateTree(path, null);
         }
         private void create_pbox_Click(object sender, EventArgs e)
         {

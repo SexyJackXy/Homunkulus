@@ -20,23 +20,17 @@ namespace Homunkulus
 
         private void Landingpage_Load(object sender, EventArgs e)
         {
+            string path = @"Resources\backupplans";
+
             //Loading Number of Backuppläne
-            string path = @"Resources\database.xlsx";
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+            int count = dir.GetFiles().Length;
 
-            IXLWorkbook wb = new XLWorkbook(path);
-            IXLWorksheet wsb = wb.Worksheet(1);
-
-            var backupplans = wsb.RowsUsed().Count();
-
-            numb_backup.Text = Convert.ToString(backupplans);
+            numb_backup.Text = Convert.ToString(count);
 
             //Loading Times Executed a Backup
 
-            IXLWorksheet wse = wb.Worksheet(2);
-
-            var executed = wse.Cell(2, 2).Value;
-
-            numb_execute.Text= Convert.ToString(executed);
+            //numb_execute.Text= Convert.ToString();
         }
         private void create_btn_Click(object sender, EventArgs e)
         {
