@@ -186,7 +186,7 @@ namespace Homunkulus
 
             if (string.IsNullOrWhiteSpace(Destination_txt.Text))
             {
-                texWriter.WriteStartElement("Destination");
+                texWriter.WriteStartElement("Origin ");
                 texWriter.WriteStartElement(Destination_txt.Text);
                 texWriter.WriteEndElement();
             }
@@ -194,13 +194,10 @@ namespace Homunkulus
 
             foreach (string content in source_rtb.Lines)
             {
-                if (checksum < lines)
-                {
-                    texWriter.WriteStartElement("Source");
+                    texWriter.WriteStartElement("Target #" + i);
                     texWriter.WriteElementString("source", content);
                     i++;
                     texWriter.WriteEndElement();
-                }
             }
 
             texWriter.WriteEndDocument();

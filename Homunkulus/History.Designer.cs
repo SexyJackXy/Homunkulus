@@ -35,6 +35,7 @@
             this.plans_pbox = new System.Windows.Forms.PictureBox();
             this.home_pbox = new System.Windows.Forms.PictureBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.Load_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -108,12 +109,27 @@
             this.treeView1.TabIndex = 5;
             this.treeView1.TabStop = false;
             // 
+            // Load_btn
+            // 
+            this.Load_btn.AutoSize = true;
+            this.Load_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.Load_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Load_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Load_btn.ForeColor = System.Drawing.Color.White;
+            this.Load_btn.Location = new System.Drawing.Point(812, 12);
+            this.Load_btn.Name = "Load_btn";
+            this.Load_btn.Size = new System.Drawing.Size(153, 30);
+            this.Load_btn.TabIndex = 6;
+            this.Load_btn.Text = "Load";
+            this.Load_btn.UseVisualStyleBackColor = false;
+            // 
             // History
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.Load_btn);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -140,5 +156,6 @@
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
         private TreeView treeView1;
+        private Button Load_btn;
     }
 }
