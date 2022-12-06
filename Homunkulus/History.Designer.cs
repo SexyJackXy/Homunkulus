@@ -34,8 +34,8 @@
             this.create_pbox = new System.Windows.Forms.PictureBox();
             this.plans_pbox = new System.Windows.Forms.PictureBox();
             this.home_pbox = new System.Windows.Forms.PictureBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.Load_btn = new System.Windows.Forms.Button();
+            this.treeView2 = new System.Windows.Forms.TreeView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -96,19 +96,6 @@
             this.home_pbox.TabStop = false;
             this.home_pbox.Click += new System.EventHandler(this.home_pbox_Click);
             // 
-            // treeView1
-            // 
-            this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.Enabled = false;
-            this.treeView1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.treeView1.LabelEdit = true;
-            this.treeView1.Location = new System.Drawing.Point(12, 12);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(485, 590);
-            this.treeView1.TabIndex = 5;
-            this.treeView1.TabStop = false;
-            // 
             // Load_btn
             // 
             this.Load_btn.AutoSize = true;
@@ -122,6 +109,15 @@
             this.Load_btn.TabIndex = 6;
             this.Load_btn.Text = "Load";
             this.Load_btn.UseVisualStyleBackColor = false;
+            this.Load_btn.Click += new System.EventHandler(this.Load_btn_Click);
+            // 
+            // treeView2
+            // 
+            this.treeView2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
+            this.treeView2.Location = new System.Drawing.Point(171, 12);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(635, 590);
+            this.treeView2.TabIndex = 7;
             // 
             // History
             // 
@@ -129,8 +125,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.treeView2);
             this.Controls.Add(this.Load_btn);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -155,7 +151,7 @@
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
-        private TreeView treeView1;
         private Button Load_btn;
+        private TreeView treeView2;
     }
 }

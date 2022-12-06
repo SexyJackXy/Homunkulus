@@ -175,7 +175,7 @@ namespace Homunkulus
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
 
-            XmlTextWriter texWriter = new XmlTextWriter(@"Resources\Backup_" + date + ".xml", System.Text.Encoding.UTF8);
+            XmlTextWriter texWriter = new XmlTextWriter(@"Resources\backupplans\Backup_" + date + ".xml", System.Text.Encoding.UTF8);
 
             int i = 1;
             int lines = source_rtb.Lines.Length;
@@ -184,18 +184,15 @@ namespace Homunkulus
             texWriter.Formatting = Formatting.Indented;
             texWriter.WriteStartDocument();
 
-            if (string.IsNullOrWhiteSpace(Destination_txt.Text))
-            {
-                texWriter.WriteStartElement("Origin ");
-                texWriter.WriteStartElement(Destination_txt.Text);
-                texWriter.WriteEndElement();
-            }
+            texWriter.WriteStartElement("Backkupplan");
+            texWriter.WriteStartElement("origin",Destination_txt.Text);
+            texWriter.WriteEndElement();
 
 
             foreach (string content in source_rtb.Lines)
             {
-                    texWriter.WriteStartElement("Target #" + i);
-                    texWriter.WriteElementString("source", content);
+                    texWriter.WriteStartElement("Traget");
+                    texWriter.WriteElementString("targetSource", content);
                     i++;
                     texWriter.WriteEndElement();
             }

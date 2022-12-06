@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
@@ -30,17 +31,27 @@ namespace Homunkulus
             {
                 TreeNode t = new TreeNode(d.Name);
                 if (node != null) node.Nodes.Add(t);
-                else treeView1.Nodes.Add(t);
+                else treeView2.Nodes.Add(t);
                 PopulateTree(d.FullName, t);
             }
             foreach (FileInfo f in directory.GetFiles())
             {
                 TreeNode t = new TreeNode(f.Name);
                 if (node != null) node.Nodes.Add(t);
-                else treeView1.Nodes.Add(t);
+                else treeView2.Nodes.Add(t);
             }
         }
-
+        private void Load_btn_Click(object sender, EventArgs e)
+        {
+            TreeNode node = treeView2.SelectedNode;
+            if (node != null)
+            {
+                    string SelectedNode = node.Text;
+                    string Path = @"Resources\backupplans\" + SelectedNode;
+                    string Content = File.ReadAllText(Path);
+                    treeView2.Text = Content;
+            }
+        }
         private void History_Load(object sender, EventArgs e)
         {
             PopulateTree(path, null);
@@ -66,5 +77,6 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
+
     }
 }
