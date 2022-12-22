@@ -16,7 +16,10 @@ namespace Homunkulus
         {
             InitializeComponent();
         }
-
+        private void Overview_Load(object sender, EventArgs e)
+        {
+            source_rtb.Text = History.backupPlan;
+        }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);

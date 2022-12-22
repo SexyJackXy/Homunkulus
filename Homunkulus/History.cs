@@ -11,11 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Homunkulus
 {
     public partial class History : Form
     {
+        public static string backupPlan;
+
         public History()
         {
             InitializeComponent();
@@ -44,13 +47,16 @@ namespace Homunkulus
         private void Load_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
-            if (node != null)
-            {
-                    string SelectedNode = node.Text;
-                    string Path = @"Resources\backupplans\" + SelectedNode;
-                    string Content = File.ReadAllText(Path);
-                    treeView2.Text = Content;
-            }
+            string SelectedNode = node.Text;
+            string Path = @"Resources\backupplans\" + SelectedNode;
+            string Content = File.ReadAllText(Path);
+            backupPlan = Content;
+
+            this.Hide();
+            Overview ov = new Overview();
+            ov.ShowDialog();
+            this.Close();
+
         }
         private void History_Load(object sender, EventArgs e)
         {

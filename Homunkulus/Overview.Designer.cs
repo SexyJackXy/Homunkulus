@@ -307,6 +307,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Overview";
+            this.Load += new System.EventHandler(this.Overview_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).EndInit();
