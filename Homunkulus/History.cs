@@ -49,7 +49,11 @@ namespace Homunkulus
             TreeNode node = treeView2.SelectedNode;
             string SelectedNode = node.Text;
             string Path = @"Resources\backupplans\" + SelectedNode;
-            string Content = File.ReadAllText(Path);
+
+            var doc = new XmlDocument();
+            doc.LoadXml(path);
+
+            string Content = doc.DocumentElement?.Name;
             backupPlan = Content;
 
             this.Hide();

@@ -177,31 +177,14 @@ namespace Homunkulus
         {
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
+            string path = (@"Resources\backupplans\Backup_" + date + ".log");
 
-            XmlTextWriter texWriter = new XmlTextWriter(@"Resources\backupplans\Backup_" + date + ".xml", System.Text.Encoding.UTF8);
+            List<string> content;
 
-            int i = 1;
-            int lines = source_rtb.Lines.Length;
-            int checksum = lines - 1;
-
-            texWriter.Formatting = Formatting.Indented;
-            texWriter.WriteStartDocument();
-
-            texWriter.WriteStartElement("Backkupplan");
-            texWriter.WriteStartElement("origin",Destination_txt.Text);
-            texWriter.WriteEndElement();
-
-
-            foreach (string content in source_rtb.Lines)
+            foreach (string lines in source_rtb.Lines)
             {
-                    texWriter.WriteStartElement("Traget");
-                    texWriter.WriteElementString("targetSource", content);
-                    i++;
-                    texWriter.WriteEndElement();
+                lines = String.Join("", content);
             }
-
-            texWriter.WriteEndDocument();
-            texWriter.Close();
 
             MessageBox.Show("Saved");
         }
