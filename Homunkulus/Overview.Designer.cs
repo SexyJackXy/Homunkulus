@@ -43,10 +43,8 @@
             this.dest_folder_btn = new System.Windows.Forms.Button();
             this.source_rtb = new System.Windows.Forms.RichTextBox();
             this.start_btn = new System.Windows.Forms.Button();
-            this.multiple_folder_btn = new System.Windows.Forms.Button();
             this.add_data_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
-            this.togglebutton1 = new BackupProgram_V2.Custom_Controlls.togglebutton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -154,7 +152,7 @@
             this.add_folder_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.add_folder_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_folder_btn.ForeColor = System.Drawing.Color.White;
-            this.add_folder_btn.Location = new System.Drawing.Point(812, 146);
+            this.add_folder_btn.Location = new System.Drawing.Point(812, 112);
             this.add_folder_btn.Name = "add_folder_btn";
             this.add_folder_btn.Size = new System.Drawing.Size(153, 28);
             this.add_folder_btn.TabIndex = 4;
@@ -224,22 +222,6 @@
             this.start_btn.UseVisualStyleBackColor = false;
             this.start_btn.Click += new System.EventHandler(this.start_btn_Click);
             // 
-            // multiple_folder_btn
-            // 
-            this.multiple_folder_btn.AutoSize = true;
-            this.multiple_folder_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.multiple_folder_btn.FlatAppearance.BorderSize = 0;
-            this.multiple_folder_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.multiple_folder_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.multiple_folder_btn.ForeColor = System.Drawing.Color.White;
-            this.multiple_folder_btn.Location = new System.Drawing.Point(812, 112);
-            this.multiple_folder_btn.Name = "multiple_folder_btn";
-            this.multiple_folder_btn.Size = new System.Drawing.Size(153, 28);
-            this.multiple_folder_btn.TabIndex = 11;
-            this.multiple_folder_btn.Text = "Add Multiple Folder";
-            this.multiple_folder_btn.UseVisualStyleBackColor = false;
-            this.multiple_folder_btn.Click += new System.EventHandler(this.multiple_folder_btn_Click);
-            // 
             // add_data_btn
             // 
             this.add_data_btn.AutoSize = true;
@@ -248,7 +230,7 @@
             this.add_data_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.add_data_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_data_btn.ForeColor = System.Drawing.Color.White;
-            this.add_data_btn.Location = new System.Drawing.Point(812, 180);
+            this.add_data_btn.Location = new System.Drawing.Point(812, 146);
             this.add_data_btn.Name = "add_data_btn";
             this.add_data_btn.Size = new System.Drawing.Size(153, 28);
             this.add_data_btn.TabIndex = 12;
@@ -272,27 +254,14 @@
             this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // togglebutton1
-            // 
-            this.togglebutton1.AutoSize = true;
-            this.togglebutton1.Location = new System.Drawing.Point(844, 214);
-            this.togglebutton1.MinimumSize = new System.Drawing.Size(30, 30);
-            this.togglebutton1.Name = "togglebutton1";
-            this.togglebutton1.Size = new System.Drawing.Size(121, 30);
-            this.togglebutton1.TabIndex = 14;
-            this.togglebutton1.Text = "togglebutton1";
-            this.togglebutton1.UseVisualStyleBackColor = true;
-            // 
             // Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
-            this.Controls.Add(this.togglebutton1);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.add_data_btn);
-            this.Controls.Add(this.multiple_folder_btn);
             this.Controls.Add(this.start_btn);
             this.Controls.Add(this.source_rtb);
             this.Controls.Add(this.Destination_btn);
@@ -329,13 +298,11 @@
         private Button dest_folder_btn;
         private RichTextBox source_rtb;
         private Button start_btn;
-        private Button multiple_folder_btn;
         private Button add_data_btn;
         private Button save_btn;
         private PictureBox restore_pbox;
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
-        private BackupProgram_V2.Custom_Controlls.togglebutton togglebutton1;
     }
 }

@@ -209,9 +209,5 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
-        private void multiple_folder_btn_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
