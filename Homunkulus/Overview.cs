@@ -178,15 +178,13 @@ namespace Homunkulus
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
             string path = (@"Resources\backupplans\Backup_" + date + ".log");
+            string soruce = source_rtb.Text;
+            string destination = Destination_txt.Text;
 
-            List<string> content;
-
-            foreach (string lines in source_rtb.Lines)
-            {
-                lines = String.Join("", content);
-            }
-
+            File.WriteAllText(path, "Destination" + "\n" + destination + "\n" + "\n");
+            File.AppendAllText(path, "Source" + "\n" + soruce);
             MessageBox.Show("Saved");
+
         }
         private void create_pbox_Click(object sender, EventArgs e)
         {

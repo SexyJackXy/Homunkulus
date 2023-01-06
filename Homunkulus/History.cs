@@ -50,12 +50,6 @@ namespace Homunkulus
             string SelectedNode = node.Text;
             string Path = @"Resources\backupplans\" + SelectedNode;
 
-            var doc = new XmlDocument();
-            doc.LoadXml(path);
-
-            string Content = doc.DocumentElement?.Name;
-            backupPlan = Content;
-
             this.Hide();
             Overview ov = new Overview();
             ov.ShowDialog();
