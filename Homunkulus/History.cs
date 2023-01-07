@@ -18,6 +18,7 @@ namespace Homunkulus
     public partial class History : Form
     {
         public static string backupPlan;
+        public static string backupPlanDest;
 
         public History()
         {
@@ -48,7 +49,12 @@ namespace Homunkulus
         {
             TreeNode node = treeView2.SelectedNode;
             string SelectedNode = node.Text;
+            string destShort = "Destination";
             string Path = @"Resources\backupplans\" + SelectedNode;
+            string sourShort = File.ReadLines(path).Skip(1).Take(1).First();
+
+           // backupPlan =
+            backupPlanDest = sourShort;
 
             this.Hide();
             Overview ov = new Overview();

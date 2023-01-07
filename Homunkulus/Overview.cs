@@ -19,6 +19,7 @@ namespace Homunkulus
         private void Overview_Load(object sender, EventArgs e)
         {
             source_rtb.Text = History.backupPlan;
+            Destination_txt.Text = History.backupPlanDest;
         }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
