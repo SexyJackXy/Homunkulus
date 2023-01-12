@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Overview));
-            this.create_backup_btn = new System.Windows.Forms.Button();
             this.import_backup_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.restore_pbox = new System.Windows.Forms.PictureBox();
@@ -45,27 +44,13 @@
             this.start_btn = new System.Windows.Forms.Button();
             this.add_data_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
+            this.clear_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.home_pbox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // create_backup_btn
-            // 
-            this.create_backup_btn.AutoSize = true;
-            this.create_backup_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.create_backup_btn.FlatAppearance.BorderSize = 0;
-            this.create_backup_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.create_backup_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.create_backup_btn.ForeColor = System.Drawing.Color.White;
-            this.create_backup_btn.Location = new System.Drawing.Point(251, 559);
-            this.create_backup_btn.Name = "create_backup_btn";
-            this.create_backup_btn.Size = new System.Drawing.Size(234, 40);
-            this.create_backup_btn.TabIndex = 1;
-            this.create_backup_btn.Text = "Create Backup";
-            this.create_backup_btn.UseVisualStyleBackColor = false;
             // 
             // import_backup_btn
             // 
@@ -75,12 +60,13 @@
             this.import_backup_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.import_backup_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.import_backup_btn.ForeColor = System.Drawing.Color.White;
-            this.import_backup_btn.Location = new System.Drawing.Point(491, 559);
+            this.import_backup_btn.Location = new System.Drawing.Point(331, 559);
             this.import_backup_btn.Name = "import_backup_btn";
-            this.import_backup_btn.Size = new System.Drawing.Size(234, 40);
+            this.import_backup_btn.Size = new System.Drawing.Size(345, 40);
             this.import_backup_btn.TabIndex = 2;
             this.import_backup_btn.Text = "Import Backup";
             this.import_backup_btn.UseVisualStyleBackColor = false;
+            this.import_backup_btn.Click += new System.EventHandler(this.import_backup_btn_Click);
             // 
             // panel1
             // 
@@ -216,7 +202,7 @@
             this.start_btn.ForeColor = System.Drawing.Color.White;
             this.start_btn.Location = new System.Drawing.Point(12, 559);
             this.start_btn.Name = "start_btn";
-            this.start_btn.Size = new System.Drawing.Size(234, 40);
+            this.start_btn.Size = new System.Drawing.Size(298, 40);
             this.start_btn.TabIndex = 10;
             this.start_btn.Text = "Start Backup";
             this.start_btn.UseVisualStyleBackColor = false;
@@ -246,13 +232,29 @@
             this.save_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(731, 559);
+            this.save_btn.Location = new System.Drawing.Point(698, 559);
             this.save_btn.Name = "save_btn";
-            this.save_btn.Size = new System.Drawing.Size(234, 40);
+            this.save_btn.Size = new System.Drawing.Size(267, 40);
             this.save_btn.TabIndex = 13;
             this.save_btn.Text = "Save Backup";
             this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // clear_btn
+            // 
+            this.clear_btn.AutoSize = true;
+            this.clear_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.clear_btn.FlatAppearance.BorderSize = 0;
+            this.clear_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
+            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clear_btn.ForeColor = System.Drawing.Color.White;
+            this.clear_btn.Location = new System.Drawing.Point(812, 477);
+            this.clear_btn.Name = "clear_btn";
+            this.clear_btn.Size = new System.Drawing.Size(153, 28);
+            this.clear_btn.TabIndex = 14;
+            this.clear_btn.Text = "Clear";
+            this.clear_btn.UseVisualStyleBackColor = false;
+            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
             // Overview
             // 
@@ -260,6 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.add_data_btn);
             this.Controls.Add(this.start_btn);
@@ -270,7 +273,6 @@
             this.Controls.Add(this.add_folder_btn);
             this.Controls.Add(this.Destination_txt);
             this.Controls.Add(this.import_backup_btn);
-            this.Controls.Add(this.create_backup_btn);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -288,7 +290,6 @@
         }
 
         #endregion
-        private Button create_backup_btn;
         private Button import_backup_btn;
         private Panel panel1;
         private TextBox Destination_txt;
@@ -304,5 +305,6 @@
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
+        private Button clear_btn;
     }
 }

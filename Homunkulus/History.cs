@@ -47,31 +47,37 @@ namespace Homunkulus
         }
         private void Load_btn_Click(object sender, EventArgs e)
         {
+            List<string> source = new List<string>();
+
             TreeNode node = treeView2.SelectedNode;
             string SelectedNode = node.Text;
             string Path = @"Resources\backupplans\" + SelectedNode;
             StreamReader sr = new StreamReader(Path);
-
-            string destination = "";
-            string source = "";
+            string destination = string.Empty;
             int lineCout = File.ReadAllLines(Path).Length;
-            int sourceCout = lineCout - 4;
 
             for(int i = 0; i< 2; i++)
             {
                 destination= sr.ReadLine();
             }
-            
-            for(int i = 0; i < sourceCout; i++)
+
+            for(int i = 0; i < lineCout; i++)
             {
-                if (i >5)
+                if(i >= 2)
                 {
-                    source = sr.ReadToEnd();
+                    string content = sr.ReadLine();
+                    source.Add(content);
+                }
+                else
+                {
+                    string dumb = sr.ReadLine();
                 }
             }
 
+            MessageBox.Show(string.Join("\n", source));
+
             backupPlanDest = destination;
-            backupPlan = source;
+            backupPlan = string.Join("\n", source);
 
             this.Hide();
             Overview ov = new Overview();

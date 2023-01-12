@@ -208,5 +208,19 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
+
+        private void clear_btn_Click(object sender, EventArgs e)
+        {
+            Destination_txt.Text = string.Empty;
+            source_rtb.Text = string.Empty;
+        }
+
+        private void import_backup_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            History hs = new History();
+            hs.ShowDialog();
+            this.Close();
+        }
     }
 }
