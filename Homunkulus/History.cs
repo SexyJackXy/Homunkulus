@@ -49,12 +49,29 @@ namespace Homunkulus
         {
             TreeNode node = treeView2.SelectedNode;
             string SelectedNode = node.Text;
-            string destShort = "Destination";
             string Path = @"Resources\backupplans\" + SelectedNode;
-            string sourShort = File.ReadLines(path).Skip(1).Take(1).First();
+            StreamReader sr = new StreamReader(Path);
 
-           // backupPlan =
-            backupPlanDest = sourShort;
+            string destination = "";
+            string source = "";
+            int lineCout = File.ReadAllLines(Path).Length;
+            int sourceCout = lineCout - 4;
+
+            for(int i = 0; i< 2; i++)
+            {
+                destination= sr.ReadLine();
+            }
+            
+            for(int i = 0; i < sourceCout; i++)
+            {
+                if (i >5)
+                {
+                    source = sr.ReadToEnd();
+                }
+            }
+
+            backupPlanDest = destination;
+            backupPlan = source;
 
             this.Hide();
             Overview ov = new Overview();
