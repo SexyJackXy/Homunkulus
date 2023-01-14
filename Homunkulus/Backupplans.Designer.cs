@@ -34,6 +34,9 @@
             this.plans_pbox = new System.Windows.Forms.PictureBox();
             this.create_pbox = new System.Windows.Forms.PictureBox();
             this.home_pbox = new System.Windows.Forms.PictureBox();
+            this.import_backup_btn = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
@@ -91,16 +94,50 @@
             this.home_pbox.TabIndex = 7;
             this.home_pbox.TabStop = false;
             // 
+            // import_backup_btn
+            // 
+            this.import_backup_btn.AutoSize = true;
+            this.import_backup_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.import_backup_btn.FlatAppearance.BorderSize = 0;
+            this.import_backup_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
+            this.import_backup_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.import_backup_btn.ForeColor = System.Drawing.Color.White;
+            this.import_backup_btn.Location = new System.Drawing.Point(324, 557);
+            this.import_backup_btn.Name = "import_backup_btn";
+            this.import_backup_btn.Size = new System.Drawing.Size(345, 40);
+            this.import_backup_btn.TabIndex = 5;
+            this.import_backup_btn.Text = "Import ";
+            this.import_backup_btn.UseVisualStyleBackColor = false;
+            this.import_backup_btn.Click += new System.EventHandler(this.import_backup_btn_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(12, 63);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(953, 488);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(953, 26);
+            this.textBox1.TabIndex = 7;
+            // 
             // Backupplans
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.import_backup_btn);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Backupplans";
             this.Text = "Backupplans";
             this.panel1.ResumeLayout(false);
@@ -120,5 +157,8 @@
         private PictureBox plans_pbox;
         private PictureBox create_pbox;
         private PictureBox home_pbox;
+        private Button import_backup_btn;
+        private RichTextBox richTextBox1;
+        private TextBox textBox1;
     }
 }

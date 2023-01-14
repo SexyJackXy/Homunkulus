@@ -92,6 +92,7 @@
             this.restore_pbox.Size = new System.Drawing.Size(32, 32);
             this.restore_pbox.TabIndex = 10;
             this.restore_pbox.TabStop = false;
+            this.restore_pbox.Click += new System.EventHandler(this.restore_pbox_Click);
             // 
             // plans_pbox
             // 

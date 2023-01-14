@@ -64,7 +64,7 @@
             this.import_backup_btn.Name = "import_backup_btn";
             this.import_backup_btn.Size = new System.Drawing.Size(345, 40);
             this.import_backup_btn.TabIndex = 2;
-            this.import_backup_btn.Text = "Import Backup";
+            this.import_backup_btn.Text = "Load Backup";
             this.import_backup_btn.UseVisualStyleBackColor = false;
             this.import_backup_btn.Click += new System.EventHandler(this.import_backup_btn_Click);
             // 

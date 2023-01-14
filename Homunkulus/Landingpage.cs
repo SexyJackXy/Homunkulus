@@ -67,5 +67,13 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
+
+        private void restore_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Backupplans bps = new Backupplans();
+            bps.ShowDialog();
+            this.Close();
+        }
     }
 }
