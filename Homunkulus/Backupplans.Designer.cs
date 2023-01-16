@@ -35,8 +35,9 @@
             this.create_pbox = new System.Windows.Forms.PictureBox();
             this.home_pbox = new System.Windows.Forms.PictureBox();
             this.import_backup_btn = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Content_rtb = new System.Windows.Forms.RichTextBox();
+            this.path_tbx = new System.Windows.Forms.TextBox();
+            this.save_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
@@ -102,7 +103,7 @@
             this.import_backup_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
             this.import_backup_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.import_backup_btn.ForeColor = System.Drawing.Color.White;
-            this.import_backup_btn.Location = new System.Drawing.Point(324, 557);
+            this.import_backup_btn.Location = new System.Drawing.Point(146, 557);
             this.import_backup_btn.Name = "import_backup_btn";
             this.import_backup_btn.Size = new System.Drawing.Size(345, 40);
             this.import_backup_btn.TabIndex = 5;
@@ -110,20 +111,36 @@
             this.import_backup_btn.UseVisualStyleBackColor = false;
             this.import_backup_btn.Click += new System.EventHandler(this.import_backup_btn_Click);
             // 
-            // richTextBox1
+            // Content_rtb
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 63);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(953, 488);
-            this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "";
+            this.Content_rtb.Location = new System.Drawing.Point(12, 63);
+            this.Content_rtb.Name = "Content_rtb";
+            this.Content_rtb.Size = new System.Drawing.Size(953, 488);
+            this.Content_rtb.TabIndex = 6;
+            this.Content_rtb.Text = "";
             // 
-            // textBox1
+            // path_tbx
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(953, 26);
-            this.textBox1.TabIndex = 7;
+            this.path_tbx.Location = new System.Drawing.Point(12, 12);
+            this.path_tbx.Name = "path_tbx";
+            this.path_tbx.Size = new System.Drawing.Size(953, 26);
+            this.path_tbx.TabIndex = 7;
+            // 
+            // save_btn
+            // 
+            this.save_btn.AutoSize = true;
+            this.save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.save_btn.FlatAppearance.BorderSize = 0;
+            this.save_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.save_btn.ForeColor = System.Drawing.Color.White;
+            this.save_btn.Location = new System.Drawing.Point(497, 557);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Size = new System.Drawing.Size(345, 40);
+            this.save_btn.TabIndex = 8;
+            this.save_btn.Text = "Save ";
+            this.save_btn.UseVisualStyleBackColor = false;
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
             // Backupplans
             // 
@@ -131,8 +148,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.save_btn);
+            this.Controls.Add(this.path_tbx);
+            this.Controls.Add(this.Content_rtb);
             this.Controls.Add(this.import_backup_btn);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -158,7 +176,8 @@
         private PictureBox create_pbox;
         private PictureBox home_pbox;
         private Button import_backup_btn;
-        private RichTextBox richTextBox1;
-        private TextBox textBox1;
+        private RichTextBox Content_rtb;
+        private TextBox path_tbx;
+        private Button save_btn;
     }
 }

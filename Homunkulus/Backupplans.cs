@@ -1,9 +1,11 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Vml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,10 +19,42 @@ namespace Homunkulus
             InitializeComponent();
         }
 
+        public string fileName;
+
         private void import_backup_btn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.ShowDialog(this);
+
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                string sourceFile = ofd.FileName;
+                fileName = ofd.SafeFileName;
+
+                path_tbx.Text = sourceFile;
+
+                StreamReader sr = new StreamReader(sourceFile);
+
+                string content = sr.ReadToEnd();
+                Content_rtb.Text = content;
+            }
+
+        }
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            DateTime datetime = DateTime.Today;
+            string date = datetime.ToString("dd/MM/yyyy");
+
+            string source = path_tbx.Text;
+            string destination = @"Resources\backupplans\Backup_" + date + ".txt";
+            if(source.Length == 0 )
+            {
+                MessageBox.Show(" You need to Import a File at first");
+            }
+            else
+            {
+                File.Copy(source, destination);
+            }
         }
         private void create_btn_Click(object sender, EventArgs e)
         {

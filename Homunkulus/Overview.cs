@@ -178,7 +178,7 @@ namespace Homunkulus
         {
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
-            string path = (@"Resources\backupplans\Backup_" + date + ".log");
+            string path = (@"Resources\backupplans\Backup_" + date + ".txt");
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
