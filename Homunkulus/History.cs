@@ -80,7 +80,7 @@ namespace Homunkulus
             backupPlan = string.Join("\n", source);
 
             this.Hide();
-            Overview ov = new Overview();
+            createBackup ov = new createBackup();
             ov.ShowDialog();
             this.Close();
 
@@ -92,7 +92,7 @@ namespace Homunkulus
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Overview ov = new Overview();
+            createBackup ov = new createBackup();
             ov.ShowDialog();
             this.Close();
         }
@@ -111,5 +111,12 @@ namespace Homunkulus
             this.Close();
         }
 
+        private void restore_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            loadBackup bps = new loadBackup();
+            bps.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Homunkulus
         private void create_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Overview ov = new Overview();
+            createBackup ov = new createBackup();
             ov.ShowDialog();
             this.Close();
         }
@@ -49,7 +49,7 @@ namespace Homunkulus
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Overview ov = new Overview();
+            createBackup ov = new createBackup();
             ov.ShowDialog();
             this.Close();
         }
@@ -71,7 +71,7 @@ namespace Homunkulus
         private void restore_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Backupplans bps = new Backupplans();
+            loadBackup bps = new loadBackup();
             bps.ShowDialog();
             this.Close();
         }

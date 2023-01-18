@@ -1,6 +1,6 @@
 ﻿namespace Homunkulus
 {
-    partial class Backupplans
+    partial class loadBackup
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Backupplans));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(loadBackup));
             this.panel1 = new System.Windows.Forms.Panel();
             this.restore_pbox = new System.Windows.Forms.PictureBox();
             this.plans_pbox = new System.Windows.Forms.PictureBox();

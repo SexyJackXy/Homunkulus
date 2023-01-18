@@ -1,6 +1,6 @@
 ﻿namespace Homunkulus
 {
-    partial class Overview
+    partial class createBackup
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Overview));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(createBackup));
             this.import_backup_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.restore_pbox = new System.Windows.Forms.PictureBox();
@@ -90,6 +90,7 @@
             this.restore_pbox.Size = new System.Drawing.Size(32, 32);
             this.restore_pbox.TabIndex = 17;
             this.restore_pbox.TabStop = false;
+            this.restore_pbox.Click += new System.EventHandler(this.restore_pbox_Click);
             // 
             // create_pbox
             // 
