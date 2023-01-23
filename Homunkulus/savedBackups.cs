@@ -15,12 +15,12 @@ using System.Xml;
 
 namespace Homunkulus
 {
-    public partial class History : Form
+    public partial class savedBackups : Form
     {
         public static string backupPlan;
         public static string backupPlanDest;
 
-        public History()
+        public savedBackups()
         {
             InitializeComponent();
         }
@@ -106,7 +106,7 @@ namespace Homunkulus
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            History hs = new History();
+            savedBackups hs = new savedBackups();
             hs.ShowDialog();
             this.Close();
         }

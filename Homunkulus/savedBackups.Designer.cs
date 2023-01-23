@@ -1,6 +1,6 @@
 ﻿namespace Homunkulus
 {
-    partial class History
+    partial class savedBackups
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(savedBackups));
             this.panel1 = new System.Windows.Forms.Panel();
             this.restore_pbox = new System.Windows.Forms.PictureBox();
             this.create_pbox = new System.Windows.Forms.PictureBox();

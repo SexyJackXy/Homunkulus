@@ -18,8 +18,8 @@ namespace Homunkulus
         }
         private void Overview_Load(object sender, EventArgs e)
         {
-            source_rtb.Text = History.backupPlan;
-            Destination_txt.Text = History.backupPlanDest;
+            source_rtb.Text = savedBackups.backupPlan;
+            Destination_txt.Text = savedBackups.backupPlanDest;
         }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -204,7 +204,7 @@ namespace Homunkulus
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            History hs = new History();
+            savedBackups hs = new savedBackups();
             hs.ShowDialog();
             this.Close();
         }
@@ -218,7 +218,7 @@ namespace Homunkulus
         private void import_backup_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            History hs = new History();
+            savedBackups hs = new savedBackups();
             hs.ShowDialog();
             this.Close();
         }

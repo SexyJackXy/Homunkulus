@@ -42,7 +42,7 @@ namespace Homunkulus
         private void show_backup_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            History his = new History();
+            savedBackups his = new savedBackups();
             his.ShowDialog();
             this.Close();
         }
@@ -63,7 +63,7 @@ namespace Homunkulus
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            History hs = new History();
+            savedBackups hs = new savedBackups();
             hs.ShowDialog();
             this.Close();
         }

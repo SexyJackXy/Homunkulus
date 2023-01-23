@@ -10,7 +10,7 @@
     <Compile Update="Custom Controls\togglebutton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="History.cs">
+    <Compile Update="savedBackups.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Landingpage.cs">

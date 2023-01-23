@@ -38,6 +38,8 @@
             this.Content_rtb = new System.Windows.Forms.RichTextBox();
             this.path_tbx = new System.Windows.Forms.TextBox();
             this.save_btn = new System.Windows.Forms.Button();
+            this.Destination_btn = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
@@ -113,15 +115,19 @@
             // 
             // Content_rtb
             // 
-            this.Content_rtb.Location = new System.Drawing.Point(12, 63);
+            this.Content_rtb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
+            this.Content_rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Content_rtb.Location = new System.Drawing.Point(12, 107);
             this.Content_rtb.Name = "Content_rtb";
-            this.Content_rtb.Size = new System.Drawing.Size(953, 488);
+            this.Content_rtb.Size = new System.Drawing.Size(953, 444);
             this.Content_rtb.TabIndex = 6;
             this.Content_rtb.Text = "";
             // 
             // path_tbx
             // 
-            this.path_tbx.Location = new System.Drawing.Point(12, 12);
+            this.path_tbx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
+            this.path_tbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.path_tbx.Location = new System.Drawing.Point(12, 30);
             this.path_tbx.Name = "path_tbx";
             this.path_tbx.Size = new System.Drawing.Size(953, 26);
             this.path_tbx.TabIndex = 7;
@@ -142,12 +148,32 @@
             this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
-            // Backupplans
+            // Destination_btn
+            // 
+            this.Destination_btn.AutoSize = true;
+            this.Destination_btn.Location = new System.Drawing.Point(12, 9);
+            this.Destination_btn.Name = "Destination_btn";
+            this.Destination_btn.Size = new System.Drawing.Size(87, 18);
+            this.Destination_btn.TabIndex = 9;
+            this.Destination_btn.Text = "Import Path";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(144, 18);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Content from Import";
+            // 
+            // loadBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Destination_btn);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.path_tbx);
             this.Controls.Add(this.Content_rtb);
@@ -156,7 +182,7 @@
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Backupplans";
+            this.Name = "loadBackup";
             this.Text = "Backupplans";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).EndInit();
@@ -179,5 +205,7 @@
         private RichTextBox Content_rtb;
         private TextBox path_tbx;
         private Button save_btn;
+        private Label Destination_btn;
+        private Label label1;
     }
 }
