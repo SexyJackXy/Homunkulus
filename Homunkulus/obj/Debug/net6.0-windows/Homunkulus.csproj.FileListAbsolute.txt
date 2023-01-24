@@ -53,7 +53,6 @@ C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\run
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.History.resources
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.Properties.Resources.resources
 C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.exe
 C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homunkulus\bin\Debug\net6.0-windows\Homunkulus.deps.json
@@ -99,3 +98,4 @@ C:\Users\Tim\Downloads\Homunkulus-f297587c214161d76f20f6ade83775857b5779d2\Homun
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.createBackup.resources
 C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.loadBackup.resources
+C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\obj\Debug\net6.0-windows\Homunkulus.savedBackups.resources
