@@ -44,9 +44,11 @@ namespace Homunkulus
         {
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
-
             string source = path_tbx.Text;
             string destination = @"Resources\backupplans\Backup_" + date + ".txt";
+
+
+
             if(source.Length == 0 )
             {
                 MessageBox.Show(" You need to Import a File at first");
@@ -96,6 +98,27 @@ namespace Homunkulus
             this.Hide();
             loadBackup bps = new loadBackup();
             bps.ShowDialog();
+            this.Close();
+        }
+        private void plans_pbox_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            savedBackups hs = new savedBackups();
+            hs.ShowDialog();
+            this.Close();
+        }
+        private void create_pbox_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            createBackup ov = new createBackup();
+            ov.ShowDialog();
+            this.Close();
+        }
+        private void home_pbox_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Landingpage lp = new Landingpage();
+            lp.ShowDialog();
             this.Close();
         }
     }

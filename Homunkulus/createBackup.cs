@@ -99,6 +99,9 @@ namespace Homunkulus
             string date = datetime.ToString("dd/MM/yyyy");
             string dest = destpath + "Backup "+ date;
             string shrt;
+            int rtbLines = source_rtb.Lines.Count();
+
+
             try
             {
                 Directory.CreateDirectory(dest);
@@ -124,7 +127,11 @@ namespace Homunkulus
                 }
             }
 
-
+            for(int i = 0; i <= rtbLines; i++)
+            {
+                string sourceDirectory = folderlist.ElementAt(i);
+                folderlist.Add(sourceDirectory);
+            }
 
             if (folderlist.Count > 0)
             {
@@ -229,13 +236,11 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
-
         private void clear_btn_Click(object sender, EventArgs e)
         {
             Destination_txt.Text = string.Empty;
             source_rtb.Text = string.Empty;
         }
-
         private void import_backup_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -243,7 +248,6 @@ namespace Homunkulus
             hs.ShowDialog();
             this.Close();
         }
-
         private void restore_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();

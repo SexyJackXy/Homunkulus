@@ -69,6 +69,7 @@
             this.restore_pbox.Size = new System.Drawing.Size(32, 32);
             this.restore_pbox.TabIndex = 10;
             this.restore_pbox.TabStop = false;
+            this.restore_pbox.Click += new System.EventHandler(this.restore_pbox_Click_1);
             // 
             // plans_pbox
             // 
@@ -78,6 +79,7 @@
             this.plans_pbox.Size = new System.Drawing.Size(32, 32);
             this.plans_pbox.TabIndex = 9;
             this.plans_pbox.TabStop = false;
+            this.plans_pbox.Click += new System.EventHandler(this.plans_pbox_Click_1);
             // 
             // create_pbox
             // 
@@ -87,6 +89,7 @@
             this.create_pbox.Size = new System.Drawing.Size(32, 32);
             this.create_pbox.TabIndex = 8;
             this.create_pbox.TabStop = false;
+            this.create_pbox.Click += new System.EventHandler(this.create_pbox_Click_1);
             // 
             // home_pbox
             // 
@@ -96,6 +99,7 @@
             this.home_pbox.Size = new System.Drawing.Size(32, 32);
             this.home_pbox.TabIndex = 7;
             this.home_pbox.TabStop = false;
+            this.home_pbox.Click += new System.EventHandler(this.home_pbox_Click_1);
             // 
             // import_backup_btn
             // 
