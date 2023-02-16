@@ -66,25 +66,22 @@ namespace Homunkulus
                 {
                     MessageBox.Show("You can not add nothing");
                 }
+                if (regex.IsMatch(folder))
+                {
+                    string short_path = folder.Remove(0, 1);
+                    source_rtb.Text += short_path + "\n";
+                    source_rtb.SelectAll();
+                    source_rtb.SelectionAlignment = HorizontalAlignment.Left;
+                    source_rtb.DeselectAll();
+                    folderlist.Add(short_path);
+                }
                 else
                 {
-                    if (regex.IsMatch(folder))
-                    {
-                        string short_path = folder.Remove(0, 1);
-                        source_rtb.Text += short_path + "\n";
-                        source_rtb.SelectAll();
-                        source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                        source_rtb.DeselectAll();
-                        folderlist.Add(short_path);
-                    }
-                    else
-                    {
-                        source_rtb.Text += folder + "\n";
-                        source_rtb.SelectAll();
-                        source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                        source_rtb.DeselectAll();
-                        folderlist.Add(folder);
-                    }
+                    source_rtb.Text += folder + "\n";
+                    source_rtb.SelectAll();
+                    source_rtb.SelectionAlignment = HorizontalAlignment.Left;
+                    source_rtb.DeselectAll();
+                    folderlist.Add(folder);
                 }
             }
         }
@@ -102,8 +99,32 @@ namespace Homunkulus
             string date = datetime.ToString("dd/MM/yyyy");
             string dest = destpath + "Backup "+ date;
             string shrt;
-            
-            Directory.CreateDirectory(dest);
+            try
+            {
+                Directory.CreateDirectory(dest);
+            }
+            catch
+            {
+                DialogResult dr = MessageBox.Show("Do you want to select a oter Path to save your Backup", "ERROR 404", MessageBoxButtons.YesNo);
+                if(dr == DialogResult.Yes)
+                {
+                    FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+                    if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        destpath = fbd.SelectedPath;
+                        dest = destpath + @"\Backup " + date;
+                        MessageBox.Show(dest);
+                        Directory.CreateDirectory(dest);
+                    }
+                }
+                if (dr == DialogResult.No)
+                {
+                    this.Close();
+                }
+            }
+
+
 
             if (folderlist.Count > 0)
             {
