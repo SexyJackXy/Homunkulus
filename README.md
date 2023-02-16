@@ -7,5 +7,5 @@ You can find more information here: [Coming soon]
 Homunkulus refers to an artificially created copy of the human being. This program does the similar only that of the copies of their data creation.
 
 ## Versions
-### Version 1.0
-The version 1.0 of Homunkulus has 5 simple functions, these functions are creating backups, importing old backups, viewing old backups, loading old settings and finally a general settings page.
+### BETA
+Homunklus is still under development and therefore there is no finished version yet. But you are always welcome to download the program further or just use it as is
