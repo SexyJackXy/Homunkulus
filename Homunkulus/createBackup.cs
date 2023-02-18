@@ -94,13 +94,16 @@ namespace Homunkulus
 
             DateTime datetime = DateTime.Today;
 
+            string logPath = @"Resources\logs\";
             string elapsedTime;
             string destpath = Destination_txt.Text;
             string date = datetime.ToString("dd/MM/yyyy");
             string dest = destpath + "Backup "+ date;
             string shrt;
             int rtbLines = source_rtb.Lines.Count();
+            var sw = new StreamWriter(logPath + @"logs\" + date);
 
+            sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
 
             try
             {
@@ -154,7 +157,11 @@ namespace Homunkulus
             TimeSpan ts = stopwatch.Elapsed;        
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds / 10);
 
-            MessageBox.Show("Backup Finished in " + elapsedTime);
+            sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
+            sw.WriteLine(datetime.ToString(elapsedTime));
+
+            source_rtb.Clear();
+            source_rtb.Text = "Finished Sucessfull";
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {

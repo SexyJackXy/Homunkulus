@@ -1,0 +1,16 @@
+Destination
+F:\Backup\
+
+Source
+C:\Users\Tim\Documents\16151814
+C:\Users\Tim\Documents\Autos
+C:\Users\Tim\Documents\Bewerbungsuntlagen
+C:\Users\Tim\Documents\Buchaltung
+C:\Users\Tim\Documents\Dounjinshi
+C:\Users\Tim\Documents\GitHub
+C:\Users\Tim\Documents\Minecraft Server
+C:\Users\Tim\Documents\Projekte
+C:\Users\Tim\Documents\Projekte\xampp
+C:\Users\Tim\Pictures
+C:\Users\Tim\Music
+C:\Users\Tim\Videos

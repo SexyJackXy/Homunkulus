@@ -17,8 +17,8 @@ namespace Homunkulus
 {
     public partial class savedBackups : Form
     {
-        public static string backupPlan;
-        public static string backupPlanDest;
+        public static string backupPlan = " ";
+        public static string backupPlanDest = " ";
 
         public savedBackups()
         {
