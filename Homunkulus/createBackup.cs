@@ -100,7 +100,15 @@ namespace Homunkulus
             string date = datetime.ToString("dd/MM/yyyy");
             string dest = destpath + "Backup "+ date;
             string shrt;
-            int rtbLines = source_rtb.Lines.Count();
+            int rtbLines;
+            try
+            {
+                 rtbLines = source_rtb.Lines.Count();
+            }
+            catch
+            {
+                 rtbLines = 1;
+            }
             var sw = new StreamWriter(logPath + @"logs\" + date);
 
             sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
