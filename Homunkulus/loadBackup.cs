@@ -17,6 +17,7 @@ namespace Homunkulus
         public loadBackup()
         {
             InitializeComponent();
+            
         }
 
         public string fileName;

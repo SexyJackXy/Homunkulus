@@ -1,3 +1,0 @@
-startet:
-ended:
-runtime: 00:24

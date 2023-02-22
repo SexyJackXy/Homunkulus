@@ -90,8 +90,6 @@ namespace Homunkulus
             Stopwatch stopwatch = new Stopwatch();  
             stopwatch.Start();
 
-            source_rtb = null;
-
             DateTime datetime = DateTime.Today;
 
             string logPath = @"Resources\logs\";
@@ -99,19 +97,10 @@ namespace Homunkulus
             string destpath = Destination_txt.Text;
             string date = datetime.ToString("dd/MM/yyyy");
             string dest = destpath + "Backup "+ date;
+            string path = logPath + @"\" + date + ".txt";
             string shrt;
-            int rtbLines;
-            try
-            {
-                 rtbLines = source_rtb.Lines.Count();
-            }
-            catch
-            {
-                 rtbLines = 1;
-            }
-            var sw = new StreamWriter(logPath + @"logs\" + date);
-
-            sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
+            int rtbLines = source_rtb.Lines.Count();
+            using (StreamWriter sw = File.CreateText(path))
 
             try
             {
@@ -165,8 +154,11 @@ namespace Homunkulus
             TimeSpan ts = stopwatch.Elapsed;        
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds / 10);
 
-            sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
-            sw.WriteLine(datetime.ToString(elapsedTime));
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
+                sw.WriteLine(datetime.ToString(elapsedTime));
+            }
 
             source_rtb.Clear();
             source_rtb.Text = "Finished Sucessfull";

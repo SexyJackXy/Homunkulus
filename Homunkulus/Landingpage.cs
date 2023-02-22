@@ -34,10 +34,12 @@ namespace Homunkulus
         }
         private void create_btn_Click(object sender, EventArgs e)
         {
+            /*
             this.Hide();
             createBackup ov = new createBackup();
             ov.ShowDialog();
             this.Close();
+            */
         }
         private void show_backup_btn_Click(object sender, EventArgs e)
         {
