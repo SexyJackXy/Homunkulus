@@ -82,7 +82,7 @@ namespace Homunkulus
 
             this.Hide();
             createBackup ov = new createBackup();
-            //ov.ShowDialog();
+            ov.ShowDialog();
             this.Close();
         }
         private void History_Load(object sender, EventArgs e)

@@ -53,14 +53,25 @@ namespace Homunkulus
 
             }
         }
-        private void check_compress_CheckedChanged(object sender, EventArgs e)
+        public void Settings (bool comrpess, bool compliemntray)
         {
+            if (check_compress.Checked)
+            {
+                comrpess = true;
+            }
+            else
+            {
+                comrpess = false;
+            }
 
-        }
-
-        private void check_complimentary_CheckedChanged(object sender, EventArgs e)
-        {
-
+            if (check_compress.Checked)
+            {
+                comrpess = true;
+            }
+            else
+            {
+                comrpess = false;
+            }
         }
         private void src_btn_Click(object sender, EventArgs e)
         {
@@ -96,6 +107,9 @@ namespace Homunkulus
         }
         private void start_btn_Click(object sender, EventArgs e)
         {
+
+             
+
             Stopwatch stopwatch = new Stopwatch();  
             stopwatch.Start();
 
@@ -108,11 +122,8 @@ namespace Homunkulus
             string dest = destpath + "Backup "+ date;
             string path = logPath + @"\" + date + ".txt";
             string shrt;
-            int rtbLines = source_rtb.Lines.Count();
-            //StreamWriter sw = new StreamWriter(logPath);
-            //sw = File.CreateText(path);
-
-           MessageBox.Show(Convert.ToString(rtbLines));
+            int rtbLines = folderlist.Count();
+            StreamWriter sw = new StreamWriter(path);
 
             try
             {
@@ -139,7 +150,7 @@ namespace Homunkulus
                 }
             }
 
-            for(int i = 1; i <= rtbLines; i++)
+            for(int i = 0; i <= rtbLines; i++)
             {
                 string sourceDirectory = folderlist.ElementAt(i);
                 folderlist.Add(sourceDirectory);
@@ -227,7 +238,7 @@ namespace Homunkulus
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
-            File.WriteAllText(path, "Destination" + "\n" + destination + "\n" + "\n");
+            File.WriteAllText(path, "Destination" + "\n" + destination + "\n" + "\n"); // Bug
             File.AppendAllText(path, "Source" + "\n" + soruce);
             MessageBox.Show("Saved");
 

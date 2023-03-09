@@ -269,7 +269,6 @@
             this.check_compress.TabIndex = 15;
             this.check_compress.Text = "Compressed";
             this.check_compress.UseVisualStyleBackColor = false;
-            this.check_compress.CheckedChanged += new System.EventHandler(this.check_compress_CheckedChanged);
             // 
             // check_complimentary
             // 
@@ -280,7 +279,6 @@
             this.check_complimentary.TabIndex = 16;
             this.check_complimentary.Text = "Complimentary";
             this.check_complimentary.UseVisualStyleBackColor = true;
-            this.check_complimentary.CheckedChanged += new System.EventHandler(this.check_complimentary_CheckedChanged);
             // 
             // createBackup
             // 
