@@ -45,6 +45,8 @@
             this.add_data_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
             this.clear_btn = new System.Windows.Forms.Button();
+            this.check_compress = new System.Windows.Forms.CheckBox();
+            this.check_complimentary = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -257,12 +259,37 @@
             this.clear_btn.UseVisualStyleBackColor = false;
             this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
+            // check_compress
+            // 
+            this.check_compress.AutoSize = true;
+            this.check_compress.BackColor = System.Drawing.Color.Transparent;
+            this.check_compress.Location = new System.Drawing.Point(812, 180);
+            this.check_compress.Name = "check_compress";
+            this.check_compress.Size = new System.Drawing.Size(118, 22);
+            this.check_compress.TabIndex = 15;
+            this.check_compress.Text = "Compressed";
+            this.check_compress.UseVisualStyleBackColor = false;
+            this.check_compress.CheckedChanged += new System.EventHandler(this.check_compress_CheckedChanged);
+            // 
+            // check_complimentary
+            // 
+            this.check_complimentary.AutoSize = true;
+            this.check_complimentary.Location = new System.Drawing.Point(812, 208);
+            this.check_complimentary.Name = "check_complimentary";
+            this.check_complimentary.Size = new System.Drawing.Size(132, 22);
+            this.check_complimentary.TabIndex = 16;
+            this.check_complimentary.Text = "Complimentary";
+            this.check_complimentary.UseVisualStyleBackColor = true;
+            this.check_complimentary.CheckedChanged += new System.EventHandler(this.check_complimentary_CheckedChanged);
+            // 
             // createBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.check_complimentary);
+            this.Controls.Add(this.check_compress);
             this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.add_data_btn);
@@ -307,5 +334,7 @@
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
         private Button clear_btn;
+        private CheckBox check_compress;
+        private CheckBox check_complimentary;
     }
 }

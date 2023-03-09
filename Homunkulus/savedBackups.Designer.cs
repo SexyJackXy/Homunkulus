@@ -120,7 +120,7 @@
             this.treeView2.Size = new System.Drawing.Size(635, 590);
             this.treeView2.TabIndex = 7;
             // 
-            // History
+            // savedBackups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -132,7 +132,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "History";
+            this.Name = "savedBackups";
             this.Text = "History";
             this.Load += new System.EventHandler(this.History_Load);
             this.panel1.ResumeLayout(false);

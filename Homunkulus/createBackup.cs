@@ -53,6 +53,15 @@ namespace Homunkulus
 
             }
         }
+        private void check_compress_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void check_complimentary_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
         private void src_btn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -100,8 +109,8 @@ namespace Homunkulus
             string path = logPath + @"\" + date + ".txt";
             string shrt;
             int rtbLines = source_rtb.Lines.Count();
-            StreamWriter sw = new StreamWriter(logPath);
-            sw = File.CreateText(path);
+            //StreamWriter sw = new StreamWriter(logPath);
+            //sw = File.CreateText(path);
 
            MessageBox.Show(Convert.ToString(rtbLines));
 
@@ -263,5 +272,7 @@ namespace Homunkulus
             bps.ShowDialog();
             this.Close();
         }
+
+
     }
 }

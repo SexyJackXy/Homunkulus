@@ -50,20 +50,21 @@ namespace Homunkulus
             List<string> source = new List<string>();
 
             TreeNode node = treeView2.SelectedNode;
+
             string SelectedNode = node.Text;
             string Path = @"Resources\backupplans\" + SelectedNode;
             StreamReader sr = new StreamReader(Path);
             string destination = string.Empty;
             int lineCout = File.ReadAllLines(Path).Length;
 
-            for(int i = 0; i< 2; i++)
+            for (int i = 0; i < 2; i++)
             {
-                destination= sr.ReadLine();
+                destination = sr.ReadLine();
             }
 
-            for(int i = 0; i < lineCout; i++)
+            for (int i = 0; i < lineCout; i++)
             {
-                if(i >= 2)
+                if (i >= 2)
                 {
                     string content = sr.ReadLine();
                     source.Add(content);
@@ -81,9 +82,8 @@ namespace Homunkulus
 
             this.Hide();
             createBackup ov = new createBackup();
-            ov.ShowDialog();
+            //ov.ShowDialog();
             this.Close();
-
         }
         private void History_Load(object sender, EventArgs e)
         {
