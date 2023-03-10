@@ -30,7 +30,6 @@ namespace Homunkulus
             System.IO.DirectoryInfo dir2 = new System.IO.DirectoryInfo(runPath);
             int runCount = dir2.GetFiles().Length;
             numb_execute.Text = Convert.ToString(runCount);
-
         }
         private void create_btn_Click(object sender, EventArgs e)
         {     

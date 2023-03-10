@@ -107,9 +107,6 @@ namespace Homunkulus
         }
         private void start_btn_Click(object sender, EventArgs e)
         {
-
-             
-
             Stopwatch stopwatch = new Stopwatch();  
             stopwatch.Start();
 

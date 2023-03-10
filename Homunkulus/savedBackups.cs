@@ -75,8 +75,6 @@ namespace Homunkulus
                 }
             }
 
-            MessageBox.Show(string.Join("\n", source));
-
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
 
