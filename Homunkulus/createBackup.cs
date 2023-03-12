@@ -235,7 +235,7 @@ namespace Homunkulus
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
-            File.WriteAllText(path, "Destination" + "\n" + destination + "\n" + "\n"); // Bug
+            File.WriteAllText(path, "Destination" + "\n" + destination); 
             File.AppendAllText(path, "Source" + "\n" + soruce);
             MessageBox.Show("Saved");
 
