@@ -53,26 +53,6 @@ namespace Homunkulus
 
             }
         }
-        public void Settings (bool comrpess, bool compliemntray)
-        {
-            if (check_compress.Checked)
-            {
-                comrpess = true;
-            }
-            else
-            {
-                comrpess = false;
-            }
-
-            if (check_compress.Checked)
-            {
-                comrpess = true;
-            }
-            else
-            {
-                comrpess = false;
-            }
-        }
         private void src_btn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -227,38 +207,38 @@ namespace Homunkulus
                 }
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void save_btn_Click(object sender, EventArgs e)
         {
             DateTime datetime = DateTime.Today;
+
+            bool compress = check_compress.Checked ? true : false;
+            bool compliemntray = check_complimentary.Checked ? true : false;
+            string strCompress = Convert.ToString(compress);
+            string strCompliemntray = Convert.ToString(compliemntray);
             string date = datetime.ToString("dd/MM/yyyy");
             string path = (@"Resources\backupplans\Backup_" + date + ".txt");
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
-            File.WriteAllText(path, "Destination" + "\n" + destination); 
-            File.AppendAllText(path, "Source" + "\n" + soruce);
+            File.WriteAllText(path, "Destination" + "\n" + destination + "\n"); 
+            File.AppendAllText(path, "Source" + "\n" + soruce + "\n");
+            File.AppendAllText(path, "Compress " + strCompress + "\n");
+            File.AppendAllText(path, "Compliemntray " + strCompliemntray + "\n");
             MessageBox.Show("Saved");
-
         }
         private void create_pbox_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            createBackup ov = new createBackup();
-            ov.ShowDialog();
+            new createBackup().ShowDialog();
             this.Close();
         }
         private void home_pbox_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Landingpage lp = new Landingpage();
-            lp.ShowDialog();
+            new Landingpage().ShowDialog();
             this.Close();
         }
         private void plans_pbox_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            savedBackups hs = new savedBackups();
-            hs.ShowDialog();
+            new savedBackups().ShowDialog();
             this.Close();
         }
         private void clear_btn_Click(object sender, EventArgs e)
@@ -268,19 +248,13 @@ namespace Homunkulus
         }
         private void import_backup_btn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            savedBackups hs = new savedBackups();
-            hs.ShowDialog();
+            new savedBackups().ShowDialog();
             this.Close();
         }
         private void restore_pbox_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            loadBackup bps = new loadBackup();
-            bps.ShowDialog();
+            new loadBackup().ShowDialog();
             this.Close();
         }
-
-
     }
 }

@@ -56,12 +56,14 @@ namespace Homunkulus
             StreamReader sr = new StreamReader(Path);
             string destination = string.Empty;
             int lineCout = File.ReadAllLines(Path).Length;
+            bool booCompress = false;
+            bool booCompliemntray = false;
 
             for (int i = 0; i < 2; i++)
             {
                 destination = sr.ReadLine();
             }
-
+            
             for (int i = 0; i < lineCout; i++)
             {
                 if (i >= 2)
@@ -74,6 +76,7 @@ namespace Homunkulus
                     string dumb = sr.ReadLine();
                 }
             }
+            
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);

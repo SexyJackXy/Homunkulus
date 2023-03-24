@@ -1,0 +1,16 @@
+Destination
+G:\Backup\Source
+Source
+C:\Users\Tim\Documents\Bewerbungsuntlagen
+C:\Users\Tim\Documents\Buchaltung
+C:\Users\Tim\Documents\Dounjinshi
+C:\Users\Tim\Documents\GitHub
+C:\Users\Tim\Documents\Projekte
+C:\Users\Tim\Documents\xampp
+C:\Users\Tim\Pictures
+C:\Users\Tim\Videos
+C:\Users\Tim\Music
+
+
+Compress False
+Compliemntray True

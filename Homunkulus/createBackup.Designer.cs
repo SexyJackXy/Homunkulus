@@ -241,7 +241,7 @@
             this.save_btn.TabIndex = 13;
             this.save_btn.Text = "Save Backup";
             this.save_btn.UseVisualStyleBackColor = false;
-            this.save_btn.Click += new System.EventHandler(this.button1_Click);
+            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
             // clear_btn
             // 
