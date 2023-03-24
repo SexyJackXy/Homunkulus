@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.Vml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
@@ -54,8 +55,11 @@ namespace Homunkulus
             string SelectedNode = node.Text;
             string Path = @"Resources\backupplans\" + SelectedNode;
             StreamReader sr = new StreamReader(Path);
+
             string destination = string.Empty;
+
             int lineCout = File.ReadAllLines(Path).Length;
+
             bool booCompress = false;
             bool booCompliemntray = false;
 
@@ -64,16 +68,21 @@ namespace Homunkulus
                 destination = sr.ReadLine();
             }
             
-            for (int i = 0; i < lineCout; i++)
+            for (int i = 0; i <= lineCout - 1; i++)
             {
+                MessageBox.Show(Convert.ToString(i) + Convert.ToString(lineCout));
+                string currentLine = sr.ReadLine();
                 if (i >= 2)
                 {
-                    string content = sr.ReadLine();
-                    source.Add(content);
+                    source.Add(currentLine);
                 }
-                else
+                if (currentLine.Contains("Compress"))
                 {
-                    string dumb = sr.ReadLine();
+
+                }
+                if (currentLine.Contains("Compliemntray"))
+                {
+
                 }
             }
             

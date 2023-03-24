@@ -17,7 +17,6 @@ namespace Homunkulus
         public loadBackup()
         {
             InitializeComponent();
-            
         }
 
         public string fileName;
@@ -47,8 +46,6 @@ namespace Homunkulus
             string date = datetime.ToString("dd/MM/yyyy");
             string source = path_tbx.Text;
             string destination = @"Resources\backupplans\Backup_" + date + ".txt";
-
-
 
             if(source.Length == 0 )
             {
