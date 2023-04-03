@@ -76,6 +76,7 @@ namespace Homunkulus
                 {
                     source.Add(currentLine);
                 }
+                /*
                 if (currentLine.Contains("Compress"))
                 {
 
@@ -83,7 +84,7 @@ namespace Homunkulus
                 if (currentLine.Contains("Compliemntray"))
                 {
 
-                }
+               }*/
             }
             
 
