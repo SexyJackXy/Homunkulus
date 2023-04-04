@@ -67,26 +67,29 @@ namespace Homunkulus
             {
                 destination = sr.ReadLine();
             }
-            
+
             for (int i = 0; i <= lineCout - 1; i++)
             {
-                MessageBox.Show(Convert.ToString(i) + Convert.ToString(lineCout));
                 string currentLine = sr.ReadLine();
                 if (i >= 2)
                 {
                     source.Add(currentLine);
                 }
-                /*
+                if (currentLine == null)
+                {
+                    break;
+                }
                 if (currentLine.Contains("Compress"))
                 {
-
+                    int Status = currentLine.IndexOf(" ");
+                    string rightStatus = currentLine.Substring(Status + 1);
+                    MessageBox.Show(rightStatus);
                 }
                 if (currentLine.Contains("Compliemntray"))
                 {
-
-               }*/
+                    string Status = currentLine.Substring(0, currentLine.IndexOf(' '));
+                }
             }
-            
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
