@@ -20,6 +20,8 @@ namespace Homunkulus
     {
         public static string backupPlan = " ";
         public static string backupPlanDest = " ";
+        public static bool booCompress = false;
+        public static bool booCompliemntray = false;
 
         public savedBackups()
         {
@@ -59,9 +61,7 @@ namespace Homunkulus
             string destination = string.Empty;
 
             int lineCout = File.ReadAllLines(Path).Length;
-
-            bool booCompress = false;
-            bool booCompliemntray = false;
+            int stopAtLine = lineCout - 3;
 
             for (int i = 0; i < 2; i++)
             {
@@ -73,21 +73,25 @@ namespace Homunkulus
                 string currentLine = sr.ReadLine();
                 if (i >= 2)
                 {
-                    source.Add(currentLine);
-                }
-                if (currentLine == null)
-                {
-                    break;
-                }
-                if (currentLine.Contains("Compress"))
-                {
-                    int Status = currentLine.IndexOf(" ");
-                    string rightStatus = currentLine.Substring(Status + 1);
-                    MessageBox.Show(rightStatus);
-                }
-                if (currentLine.Contains("Compliemntray"))
-                {
-                    string Status = currentLine.Substring(0, currentLine.IndexOf(' '));
+                    if (currentLine == null)break;
+
+                    if (currentLine.Contains("Compress"))
+                    {
+                        string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
+                        MessageBox.Show(rightStatus);
+                        booCompress = true;
+                    }
+                    else if (currentLine.Contains("Compliemntray"))
+                    {
+                        string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
+                        MessageBox.Show(rightStatus);
+                        booCompliemntray = true;
+                    }
+                    else 
+                    {
+                        source.Add(currentLine);
+                        MessageBox.Show(currentLine);
+                    }             
                 }
             }
 

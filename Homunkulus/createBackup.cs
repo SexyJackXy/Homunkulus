@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using ClosedXML.Excel;
 using System.Xml;
 using System.IO;
+using System.Windows;
 
 namespace Homunkulus
 {
@@ -20,6 +21,18 @@ namespace Homunkulus
         {
             source_rtb.Text = savedBackups.backupPlan;
             Destination_txt.Text = savedBackups.backupPlanDest;
+
+            bool Compress = savedBackups.booCompress;
+            bool Compliemntray = savedBackups.booCompliemntray;
+
+            if (Compress == true)
+            {
+                check_compress.Checked= true;
+            }
+            if (Compliemntray == true)
+            {
+                check_complimentary.Checked = true;
+            }
         }
         public static void Copy(string sourceDirectory, string targetDirectory)
         {

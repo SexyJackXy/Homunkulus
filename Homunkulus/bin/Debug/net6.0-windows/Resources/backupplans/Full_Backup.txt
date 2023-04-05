@@ -11,3 +11,7 @@ C:\Users\Tim\Documents\xampp
 C:\Users\Tim\Pictures
 C:\Users\Tim\Videos
 C:\Users\Tim\Music
+
+
+Compress True
+Compliemntray True
