@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Vml;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -68,32 +69,30 @@ namespace Homunkulus
                 destination = sr.ReadLine();
             }
 
-            for (int i = 0; i <= lineCout - 1; i++)
+            for (int i = 0; i <= lineCout - 2; i++)
             {
                 string currentLine = sr.ReadLine();
                 if (i >= 2)
                 {
                     if (currentLine == null)break;
-
-                    if (currentLine.Contains("Compress"))
+                    if (currentLine.Contains("Compress True"))
                     {
                         string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
-                        MessageBox.Show(rightStatus);
                         booCompress = true;
                     }
-                    else if (currentLine.Contains("Compliemntray"))
+                    else if (currentLine.Contains("Compliemntray True"))
                     {
-                        string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
-                        MessageBox.Show(rightStatus);
+                        string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);;
                         booCompliemntray = true;
                     }
-                    else 
+                    else
                     {
                         source.Add(currentLine);
-                        MessageBox.Show(currentLine);
-                    }             
+                    }
                 }
             }
+
+            source.RemoveAt(source.Count - 1);
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
