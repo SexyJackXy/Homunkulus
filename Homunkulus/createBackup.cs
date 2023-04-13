@@ -246,11 +246,13 @@ namespace Homunkulus
         }
         private void home_pbox_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new Landingpage().ShowDialog();
             this.Close();
         }
         private void plans_pbox_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new savedBackups().ShowDialog();
             this.Close();
         }
@@ -261,11 +263,13 @@ namespace Homunkulus
         }
         private void import_backup_btn_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new savedBackups().ShowDialog();
             this.Close();
         }
         private void restore_pbox_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new loadBackup().ShowDialog();
             this.Close();
         }
