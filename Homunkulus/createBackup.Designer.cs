@@ -47,6 +47,7 @@
             this.clear_btn = new System.Windows.Forms.Button();
             this.check_compress = new System.Windows.Forms.CheckBox();
             this.check_complimentary = new System.Windows.Forms.CheckBox();
+            this.multifolder_select_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -263,7 +264,7 @@
             // 
             this.check_compress.AutoSize = true;
             this.check_compress.BackColor = System.Drawing.Color.Transparent;
-            this.check_compress.Location = new System.Drawing.Point(812, 180);
+            this.check_compress.Location = new System.Drawing.Point(812, 215);
             this.check_compress.Name = "check_compress";
             this.check_compress.Size = new System.Drawing.Size(118, 22);
             this.check_compress.TabIndex = 15;
@@ -273,12 +274,28 @@
             // check_complimentary
             // 
             this.check_complimentary.AutoSize = true;
-            this.check_complimentary.Location = new System.Drawing.Point(812, 208);
+            this.check_complimentary.Location = new System.Drawing.Point(812, 243);
             this.check_complimentary.Name = "check_complimentary";
             this.check_complimentary.Size = new System.Drawing.Size(132, 22);
             this.check_complimentary.TabIndex = 16;
             this.check_complimentary.Text = "Complimentary";
             this.check_complimentary.UseVisualStyleBackColor = true;
+            // 
+            // multifolder_select_btn
+            // 
+            this.multifolder_select_btn.AutoSize = true;
+            this.multifolder_select_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.multifolder_select_btn.FlatAppearance.BorderSize = 0;
+            this.multifolder_select_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
+            this.multifolder_select_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.multifolder_select_btn.ForeColor = System.Drawing.Color.White;
+            this.multifolder_select_btn.Location = new System.Drawing.Point(812, 180);
+            this.multifolder_select_btn.Name = "multifolder_select_btn";
+            this.multifolder_select_btn.Size = new System.Drawing.Size(153, 28);
+            this.multifolder_select_btn.TabIndex = 17;
+            this.multifolder_select_btn.Text = "Multifolder Select";
+            this.multifolder_select_btn.UseVisualStyleBackColor = false;
+            this.multifolder_select_btn.Click += new System.EventHandler(this.multifolder_select_btn_Click);
             // 
             // createBackup
             // 
@@ -286,6 +303,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.multifolder_select_btn);
             this.Controls.Add(this.check_complimentary);
             this.Controls.Add(this.check_compress);
             this.Controls.Add(this.clear_btn);
@@ -334,5 +352,6 @@
         private Button clear_btn;
         private CheckBox check_compress;
         private CheckBox check_complimentary;
+        private Button multifolder_select_btn;
     }
 }
