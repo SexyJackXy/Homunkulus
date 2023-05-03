@@ -275,7 +275,7 @@ namespace Homunkulus
         }
         private void multifolder_select_btn_Click(object sender, EventArgs e)
         {
-
+            new multiFolderSelect().ShowDialog();
         }
     }
 }
