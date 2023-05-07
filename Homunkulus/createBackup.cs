@@ -6,13 +6,15 @@ using ClosedXML.Excel;
 using System.Xml;
 using System.IO;
 using System.Windows;
+using DocumentFormat.OpenXml.Vml;
 
 namespace Homunkulus
 {
     public partial class createBackup : Form
     {
         List<string> folderlist = new List<string>();
-
+        List<string> destFolderList = new List<string>();
+        List<string> newFoldersList = new List<string>();
         public createBackup()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace Homunkulus
             foreach (FileInfo fi in source.GetFiles())
             {
                 Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
-                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                fi.CopyTo(System.IO.Path.Combine(target.FullName, fi.Name), true);
             }
             try
             {
@@ -64,6 +66,18 @@ namespace Homunkulus
             catch
             {
 
+            }
+        }
+        public static void FullBackup(string newBackupFolder, string sourceDirectory, string targetDirectory)
+        {
+            if (Directory.Exists(newBackupFolder))
+            {
+                Console.WriteLine("Folder Exsist");
+            }
+            else
+            {
+                Directory.CreateDirectory(newBackupFolder);
+                Copy(sourceDirectory, targetDirectory);
             }
         }
         private void src_btn_Click(object sender, EventArgs e)
@@ -100,79 +114,58 @@ namespace Homunkulus
         }
         private void start_btn_Click(object sender, EventArgs e)
         {
-            Stopwatch stopwatch = new Stopwatch();  
+            Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             DateTime datetime = DateTime.Today;
 
+            string destFolder = Destination_txt.Text;
             string logPath = @"Resources\logs";
             string elapsedTime;
-            string destpath = Destination_txt.Text;
             string date = datetime.ToString("dd/MM/yyyy");
-            string dest = destpath + "Backup "+ date;
-            string path = logPath + @"\" + date + ".txt";
+            string newBackupFolder = destFolder + "Backup " + date;
+            string logFile = logPath + @"\" + date + ".txt";
             string shrt;
-            int rtbLines = folderlist.Count();
-            StreamWriter sw = new StreamWriter(path);
+            string sourceDirectory = "";
+            string targetDirectory = "";
 
-            try
-            {
-                Directory.CreateDirectory(dest);
-            }
-            catch
-            {
-                DialogResult dr = MessageBox.Show("Do you want to select a oter Path to save your Backup", "ERROR 404", MessageBoxButtons.YesNo);
-                if(dr == DialogResult.Yes)
-                {
-                    FolderBrowserDialog fbd = new FolderBrowserDialog();
-
-                    if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        destpath = fbd.SelectedPath;
-                        dest = destpath + @"\Backup " + date;
-                        MessageBox.Show(dest);
-                        Directory.CreateDirectory(dest);
-                    }
-                }
-                if (dr == DialogResult.No)
-                {
-                    this.Close();
-                }
-            }
-
-            for(int i = 0; i <= rtbLines; i++)
-            {
-                string sourceDirectory = folderlist.ElementAt(i);
-                folderlist.Add(sourceDirectory);
-            }
+            var richTextBox = source_rtb.Lines.Count();
 
             if (folderlist.Count > 0)
             {
-                for(int i = 0; i < folderlist.Count; i++)
+                for (int i = 0; i < folderlist.Count; i++)
                 {
-                    string sourceDirectory = folderlist.ElementAt(i);
+                    sourceDirectory = folderlist.ElementAt(i);
                     shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                    string subfolder = destpath + "/Backup " + date + "/" + shrt;
-                    string targetDirectory = subfolder;
+                    targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+                }
+            }
+            else
+            {
+                int richTextBoxInt = Convert.ToInt32(richTextBox);
 
-                    if (Directory.Exists(sourceDirectory))
-                    {
-                        Directory.CreateDirectory(subfolder);
-                        Copy(sourceDirectory, targetDirectory);
-                    }
+                for (int i = 0; i < richTextBox - 2; i++)
+                {
+                    string rtbCurrentLine = source_rtb.Lines[i];
+                    folderlist.Add(rtbCurrentLine);
+                }
+
+                for (int i = 0; i < folderlist.Count; i++)
+                {
+                    sourceDirectory = folderlist.ElementAt(i);
+                    shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                    targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
                 }
             }
 
-            stopwatch.Stop();                       
-            TimeSpan ts = stopwatch.Elapsed;        
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds / 10);
-
-
-            sw.WriteLine(datetime.ToString(" dd/MM/yyyy" + "|" + "HH:mm"));
-            sw.WriteLine(datetime.ToString(elapsedTime));
-
-            source_rtb.Clear();
-            source_rtb.Text = "Finished Sucessfull";
+            if (check_complimentary.Checked)
+            {
+                MessageBox.Show("Complimentaty is not avialabe at the moment");
+            } 
+            else
+            {
+                FullBackup(newBackupFolder, sourceDirectory, targetDirectory);
+            }
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
