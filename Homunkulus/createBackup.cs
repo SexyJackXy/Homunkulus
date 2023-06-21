@@ -72,7 +72,7 @@ namespace Homunkulus
         {
             if (Directory.Exists(newBackupFolder))
             {
-                Console.WriteLine("Folder Exsist");
+                Copy(sourceDirectory, targetDirectory);
             }
             else
             {
@@ -138,6 +138,7 @@ namespace Homunkulus
                     sourceDirectory = folderlist.ElementAt(i);
                     shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
                     targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+                    FullBackup(newBackupFolder, sourceDirectory, targetDirectory);
                 }
             }
             else
@@ -158,14 +159,16 @@ namespace Homunkulus
                 }
             }
 
+            /*
             if (check_complimentary.Checked)
             {
                 MessageBox.Show("Complimentaty is not avialabe at the moment");
             } 
             else
-            {
+            {           
                 FullBackup(newBackupFolder, sourceDirectory, targetDirectory);
             }
+            */
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
