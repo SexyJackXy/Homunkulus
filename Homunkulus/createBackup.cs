@@ -19,6 +19,8 @@ namespace Homunkulus
         {
             InitializeComponent();
         }
+
+        //Own Methoden
         private void Overview_Load(object sender, EventArgs e)
         {
             source_rtb.Text = savedBackups.backupPlan;
@@ -68,7 +70,7 @@ namespace Homunkulus
 
             }
         }
-        public static void FullBackup(string newBackupFolder, string sourceDirectory, string targetDirectory)
+        public static void NormalBackup(string newBackupFolder, string sourceDirectory, string targetDirectory)
         {
             if (Directory.Exists(newBackupFolder))
             {
@@ -80,6 +82,9 @@ namespace Homunkulus
                 Copy(sourceDirectory, targetDirectory);
             }
         }
+
+
+        //Button Methoden
         private void src_btn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -129,46 +134,63 @@ namespace Homunkulus
             string sourceDirectory = "";
             string targetDirectory = "";
 
+            int caseNumber = 0;
+
             var richTextBox = source_rtb.Lines.Count();
 
-            if (folderlist.Count > 0)
-            {
-                for (int i = 0; i < folderlist.Count; i++)
-                {
-                    sourceDirectory = folderlist.ElementAt(i);
-                    shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                    targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
-                    FullBackup(newBackupFolder, sourceDirectory, targetDirectory);
-                }
-            }
-            else
-            {
-                int richTextBoxInt = Convert.ToInt32(richTextBox);
+            if (check_complimentary.Checked) { caseNumber++; }
+            if (check_compress.Checked) { caseNumber++; }
 
-                for (int i = 0; i < richTextBox - 2; i++)
-                {
-                    string rtbCurrentLine = source_rtb.Lines[i];
-                    folderlist.Add(rtbCurrentLine);
-                }
 
-                for (int i = 0; i < folderlist.Count; i++)
-                {
-                    sourceDirectory = folderlist.ElementAt(i);
-                    shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                    targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
-                }
-            }
-
-            /*
-            if (check_complimentary.Checked)
+            switch(caseNumber)
             {
-                MessageBox.Show("Complimentaty is not avialabe at the moment");
-            } 
-            else
-            {           
-                FullBackup(newBackupFolder, sourceDirectory, targetDirectory);
-            }
-            */
+                case 0:
+                    if (folderlist.Count > 0)
+                    {
+                        MessageBox.Show("Liste ist Leer");
+                        for (int i = 0; i < folderlist.Count; i++)
+                        {
+                            sourceDirectory = folderlist.ElementAt(i);
+                            shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                            targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+                            NormalBackup(newBackupFolder, sourceDirectory, targetDirectory);
+                        }
+                    }
+                    else
+                    {
+                        int richTextBoxInt = Convert.ToInt32(richTextBox);
+
+                        MessageBox.Show(Convert.ToString(richTextBoxInt));
+
+                        for (int i = 0; i < richTextBox - 2; i++)
+                        {
+                            string rtbCurrentLine = source_rtb.Lines[i];
+                            folderlist.Add(rtbCurrentLine);
+                        }
+
+                        for (int i = 0; i < folderlist.Count; i++)
+                        {
+                            sourceDirectory = folderlist.ElementAt(i);
+                            shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                            targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+                            NormalBackup(newBackupFolder, sourceDirectory, targetDirectory);
+                        }
+                    }
+                    break;
+                case 1:
+                    if (check_complimentary.Checked)
+                    {
+                        //Here comes the Complimentray method
+                    }
+                    if (check_compress.Checked)
+                    {
+                        //Here comes the Compressed method
+                    }
+                    break;
+                case 2:
+                    //Here comes the Compressed and Complimentray method  
+                    break;
+            }          
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {

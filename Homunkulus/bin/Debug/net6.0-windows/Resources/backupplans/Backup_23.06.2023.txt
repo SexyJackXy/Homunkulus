@@ -1,0 +1,7 @@
+Destination
+G:\\
+Source
+ C:\Users\Tim\Documents\Autos
+
+Compress False
+Compliemntray False

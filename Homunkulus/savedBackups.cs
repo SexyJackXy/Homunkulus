@@ -62,33 +62,35 @@ namespace Homunkulus
             string destination = string.Empty;
 
             int lineCout = File.ReadAllLines(Path).Length;
-            int stopAtLine = lineCout - 3;
+            int stopAtLine = lineCout - 5;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
+                if (sr.ReadLine().Contains("Source"))
+                {
+                    break;
+                }
+
                 destination = sr.ReadLine();
             }
 
-            for (int i = 0; i <= lineCout - 2; i++)
+            for (int i = 0; i <= stopAtLine; i++)
             {
                 string currentLine = sr.ReadLine();
-                if (i >= 2)
+                if (currentLine == null)break;
+                if (currentLine.Contains("Compress True"))
                 {
-                    if (currentLine == null)break;
-                    if (currentLine.Contains("Compress True"))
-                    {
-                        string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
-                        booCompress = true;
-                    }
-                    else if (currentLine.Contains("Compliemntray True"))
-                    {
-                        string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);;
-                        booCompliemntray = true;
-                    }
-                    else
-                    {
-                        source.Add(currentLine);
-                    }
+                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
+                    booCompress = true;
+                }
+                else if (currentLine.Contains("Compliemntray True"))
+                {
+                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);;
+                    booCompliemntray = true;
+                }
+                else
+                {
+                    source.Add(currentLine);
                 }
             }
 
