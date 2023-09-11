@@ -100,21 +100,24 @@ namespace Homunkulus
                 }
                 if (regex.IsMatch(folder))
                 {
-                    string short_path = folder.Remove(0, 1);
+                    MessageBox.Show("Regex hat gezogen");
+                    
+                    /*string short_path = folder.Remove();
                     source_rtb.Text += short_path + "\n";
-                    source_rtb.SelectAll();
-                    source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                    source_rtb.DeselectAll();
-                    folderlist.Add(short_path);
+                    folderlist.Add(short_path);*/
+                    
                 }
                 else
                 {
+                    MessageBox.Show("Regex hat nicht gezogen");
+                    
                     source_rtb.Text += folder + "\n";
-                    source_rtb.SelectAll();
-                    source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                    source_rtb.DeselectAll();
-                    folderlist.Add(folder);
+                    folderlist.Add(folder);              
                 }
+
+                source_rtb.SelectAll();
+                source_rtb.SelectionAlignment = HorizontalAlignment.Left;
+                source_rtb.DeselectAll();
             }
         }
         private void start_btn_Click(object sender, EventArgs e)

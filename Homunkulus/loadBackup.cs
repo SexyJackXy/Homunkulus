@@ -45,7 +45,7 @@ namespace Homunkulus
             DateTime datetime = DateTime.Today;
             string date = datetime.ToString("dd/MM/yyyy");
             string source = path_tbx.Text;
-            string destination = @"Resources\backupplans\Backup_" + date + ".txt";
+            string destination = @"Resources\backupplans\Backup_" + date + ".config";
 
             if(source.Length == 0 )
             {

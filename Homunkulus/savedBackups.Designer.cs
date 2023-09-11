@@ -36,6 +36,8 @@
             this.home_pbox = new System.Windows.Forms.PictureBox();
             this.Load_btn = new System.Windows.Forms.Button();
             this.treeView2 = new System.Windows.Forms.TreeView();
+            this.Open_btn = new System.Windows.Forms.Button();
+            this.back_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
@@ -120,12 +122,44 @@
             this.treeView2.Size = new System.Drawing.Size(635, 590);
             this.treeView2.TabIndex = 7;
             // 
+            // Open_btn
+            // 
+            this.Open_btn.AutoSize = true;
+            this.Open_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.Open_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Open_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Open_btn.ForeColor = System.Drawing.Color.White;
+            this.Open_btn.Location = new System.Drawing.Point(812, 48);
+            this.Open_btn.Name = "Open_btn";
+            this.Open_btn.Size = new System.Drawing.Size(153, 30);
+            this.Open_btn.TabIndex = 8;
+            this.Open_btn.Text = "Open Selected";
+            this.Open_btn.UseVisualStyleBackColor = false;
+            this.Open_btn.Click += new System.EventHandler(this.Open_btn_Click);
+            // 
+            // back_btn
+            // 
+            this.back_btn.AutoSize = true;
+            this.back_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
+            this.back_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.back_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.back_btn.ForeColor = System.Drawing.Color.White;
+            this.back_btn.Location = new System.Drawing.Point(12, 12);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(153, 30);
+            this.back_btn.TabIndex = 9;
+            this.back_btn.Text = "Back";
+            this.back_btn.UseVisualStyleBackColor = false;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            // 
             // savedBackups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 644);
+            this.Controls.Add(this.back_btn);
+            this.Controls.Add(this.Open_btn);
             this.Controls.Add(this.treeView2);
             this.Controls.Add(this.Load_btn);
             this.Controls.Add(this.panel1);
@@ -154,5 +188,7 @@
         private PictureBox home_pbox;
         private Button Load_btn;
         private TreeView treeView2;
+        private Button Open_btn;
+        private Button back_btn;
     }
 }
