@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Vml;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -14,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Homunkulus
 {
@@ -49,15 +51,9 @@ namespace Homunkulus
                 else treeView2.Nodes.Add(t);
             }
         }
-        private void Load_btn_Click(object sender, EventArgs e)
+        public void LoadBackups(string Path)
         {
             List<string> source = new List<string>();
-
-            TreeNode node = treeView2.SelectedNode;
-
-            string SelectedNode = node.Text;
-            string Path = @"Resources\backupplans\" + SelectedNode;
-            StreamReader sr = new StreamReader(Path);
 
             string destination = string.Empty;
 
@@ -77,7 +73,7 @@ namespace Homunkulus
             for (int i = 0; i <= stopAtLine; i++)
             {
                 string currentLine = sr.ReadLine();
-                if (currentLine == null)break;
+                if (currentLine == null) break;
                 if (currentLine.Contains("Compress True"))
                 {
                     string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
@@ -85,7 +81,7 @@ namespace Homunkulus
                 }
                 else if (currentLine.Contains("Compliemntray True"))
                 {
-                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);;
+                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1); ;
                     booCompliemntray = true;
                 }
                 else
@@ -103,6 +99,44 @@ namespace Homunkulus
             createBackup ov = new createBackup();
             ov.ShowDialog();
             this.Close();
+        }
+        public void Load_btn_Click(object sender, EventArgs e,string seltedDataPath)
+        {
+            TreeNode node = treeView2.SelectedNode;
+
+            seltedDataPath = string.Empty;
+            string selectedNode = node.Text;
+            string dataPath = @"Resources\backupplans\" + selectedNode;
+            StreamReader sr = new StreamReader(seltedDataPath);
+
+            LoadBackups(seltedDataPath);
+        }
+        private void Open_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TreeNode node = treeView2.SelectedNode;
+
+                string selectedNode = node.Text;
+                string path = @"Resources\backupplans\" + selectedNode;
+                string[] content = File.ReadAllLines(path);
+
+                treeView2.Nodes.Clear();
+
+                foreach (string line in content)
+                {
+                    treeView2.Nodes.Add(line);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sie haben keine Datein ausgewählt");
+            } 
+        }
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            treeView2.Nodes.Clear();
+            PopulateTree(path, null);
         }
         private void History_Load(object sender, EventArgs e)
         {
