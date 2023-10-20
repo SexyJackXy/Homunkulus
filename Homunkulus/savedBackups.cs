@@ -31,6 +31,8 @@ namespace Homunkulus
             InitializeComponent();
         }
 
+        List<string> cache = new List<string>();
+
         string path = @"Resources\backupplans";
 
         public void PopulateTree(string dir, TreeNode node)
@@ -51,13 +53,25 @@ namespace Homunkulus
                 else treeView2.Nodes.Add(t);
             }
         }
-        public void LoadBackups(string Path)
+        private void Load_btn_Click(object sender, EventArgs e)
         {
-            List<string> source = new List<string>();
+            TreeNode node = treeView2.SelectedNode;
 
+
+            string seltedDataPath = string.Empty;
             string destination = string.Empty;
 
-            int lineCout = File.ReadAllLines(Path).Length;
+            string selectedNode = node.Text;
+            seltedDataPath = @"Resources\backupplans\" + selectedNode;
+
+            List<string> source = new List<string>();
+
+            MessageBox.Show(seltedDataPath);
+
+            StreamReader sr = new StreamReader(seltedDataPath);
+
+
+            int lineCout = File.ReadAllLines(seltedDataPath).Length;
             int stopAtLine = lineCout - 5;
 
             for (int i = 0; i < 3; i++)
@@ -95,21 +109,7 @@ namespace Homunkulus
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
 
-            this.Hide();
-            createBackup ov = new createBackup();
-            ov.ShowDialog();
-            this.Close();
-        }
-        public void Load_btn_Click(object sender, EventArgs e,string seltedDataPath)
-        {
-            TreeNode node = treeView2.SelectedNode;
 
-            seltedDataPath = string.Empty;
-            string selectedNode = node.Text;
-            string dataPath = @"Resources\backupplans\" + selectedNode;
-            StreamReader sr = new StreamReader(seltedDataPath);
-
-            LoadBackups(seltedDataPath);
         }
         private void Open_btn_Click(object sender, EventArgs e)
         {
@@ -120,6 +120,8 @@ namespace Homunkulus
                 string selectedNode = node.Text;
                 string path = @"Resources\backupplans\" + selectedNode;
                 string[] content = File.ReadAllLines(path);
+
+                cache.Add(path);
 
                 treeView2.Nodes.Clear();
 
@@ -170,5 +172,7 @@ namespace Homunkulus
             bps.ShowDialog();
             this.Close();
         }
+
+
     }
 }
