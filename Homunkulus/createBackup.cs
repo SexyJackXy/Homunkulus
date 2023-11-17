@@ -126,7 +126,6 @@ namespace Homunkulus
 
             string destFolder = Destination_txt.Text;
             string logPath = @"Resources\logs";
-            string elapsedTime;
             string date = datetime.ToString("dd/MM/yyyy");
             string newBackupFolder = destFolder + "Backup " + date;
             string logFile = logPath + @"\" + date + ".txt";

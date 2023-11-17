@@ -29,7 +29,7 @@ namespace Homunkulus
             InitializeComponent();
         }
 
-        string path = @"Resources\backupplans";
+        string path = @"..\..\..\backupplans";
 
         public void PopulateTree(string dir, TreeNode node)
         {
@@ -56,12 +56,12 @@ namespace Homunkulus
             TreeNode node = treeView2.SelectedNode;
 
             string SelectedNode = node.Text;
-            string Path = @"Resources\backupplans\" + SelectedNode;
-            StreamReader sr = new StreamReader(Path);
+            string nodePath = path + SelectedNode;
+            StreamReader sr = new StreamReader(nodePath);
 
             string destination = string.Empty;
 
-            int lineCout = File.ReadAllLines(Path).Length;
+            int lineCout = File.ReadAllLines(nodePath).Length;
             int stopAtLine = lineCout - 5;
 
             for (int i = 0; i < 3; i++)
