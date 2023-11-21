@@ -102,19 +102,6 @@ namespace Homunkulus
                 folderlist.Add(folder);
 
 
-                if (source_rtb.Lines.Length > 1)
-                {
-                    source_rtb.Text += Environment.NewLine + folder;
-                }
-                else
-                {
-                    source_rtb.Text = folder;
-                }
-
-
-                source_rtb.SelectAll();
-                source_rtb.SelectionAlignment = HorizontalAlignment.Left;
-                source_rtb.DeselectAll();
             }
         }
         private void start_btn_Click(object sender, EventArgs e)
