@@ -31,7 +31,7 @@ namespace Homunkulus
 
             if (Compress == true)
             {
-                check_compress.Checked= true;
+                check_compress.Checked = true;
             }
             if (Compliemntray == true)
             {
@@ -91,6 +91,7 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                string folderPath;
                 string folder = fbd.SelectedPath;
                 var regex = new Regex(@"\s");
 
@@ -98,22 +99,18 @@ namespace Homunkulus
                 {
                     MessageBox.Show("You can not add nothing");
                 }
-                if (regex.IsMatch(folder))
+                folderlist.Add(folder);
+
+
+                if (source_rtb.Lines.Length > 1)
                 {
-                    MessageBox.Show("Regex hat gezogen");
-                    
-                    /*string short_path = folder.Remove();
-                    source_rtb.Text += short_path + "\n";
-                    folderlist.Add(short_path);*/
-                    
+                    source_rtb.Text += Environment.NewLine + folder;
                 }
                 else
                 {
-                    MessageBox.Show("Regex hat nicht gezogen");
-                    
-                    source_rtb.Text += folder + "\n";
-                    folderlist.Add(folder);              
+                    source_rtb.Text = folder;
                 }
+
 
                 source_rtb.SelectAll();
                 source_rtb.SelectionAlignment = HorizontalAlignment.Left;
@@ -145,7 +142,7 @@ namespace Homunkulus
             if (check_compress.Checked) { caseNumber++; }
 
 
-            switch(caseNumber)
+            switch (caseNumber)
             {
                 case 0:
                     if (folderlist.Count > 0)
@@ -193,7 +190,7 @@ namespace Homunkulus
                 case 2:
                     //Here comes the Compressed and Complimentray method  
                     break;
-            }          
+            }
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
@@ -254,7 +251,7 @@ namespace Homunkulus
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
-            File.WriteAllText(path, "Destination" + "\n" + destination + "\n"); 
+            File.WriteAllText(path, "Destination" + "\n" + destination + "\n");
             File.AppendAllText(path, "Source" + "\n" + soruce + "\n");
             File.AppendAllText(path, "Compress " + strCompress + "\n");
             File.AppendAllText(path, "Compliemntray " + strCompliemntray + "\n");
