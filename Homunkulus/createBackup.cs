@@ -7,6 +7,8 @@ using System.Xml;
 using System.IO;
 using System.Windows;
 using DocumentFormat.OpenXml.Vml;
+using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 namespace Homunkulus
 {
@@ -83,27 +85,7 @@ namespace Homunkulus
             }
         }
 
-
         //Button Methoden
-        private void src_btn_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string folderPath;
-                string folder = fbd.SelectedPath;
-                var regex = new Regex(@"\s");
-
-                if (String.IsNullOrEmpty(folder))
-                {
-                    MessageBox.Show("You can not add nothing");
-                }
-                folderlist.Add(folder);
-
-
-            }
-        }
         private void start_btn_Click(object sender, EventArgs e)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -118,8 +100,8 @@ namespace Homunkulus
             string newBackupFolder = destFolder + "Backup " + date;
             string logFile = logPath + @"\" + date + ".txt";
             string shrt;
-            string sourceDirectory = "";
-            string targetDirectory = "";
+            string sourceDirectory;
+            string targetDirectory;
 
             int caseNumber = 0;
 
@@ -179,6 +161,25 @@ namespace Homunkulus
                     break;
             }
         }
+        private void src_btn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            string folderPath;
+
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string folder = fbd.SelectedPath;
+                var regex = new Regex(@"\s");
+                var lineCount = source_rtb.Lines.Count();
+
+                if (String.IsNullOrEmpty(folder))
+                {
+                    MessageBox.Show("You can not add nothing");
+                }
+                source_rtb.AppendText(Environment.NewLine + folder);
+                folderlist.Add(folder);
+            }
+        }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -195,6 +196,7 @@ namespace Homunkulus
                 }
                 else
                 {
+                    MessageBox.Show(folder);
                     source_rtb.Text += folder;
                 }
             }
