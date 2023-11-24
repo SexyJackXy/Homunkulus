@@ -66,10 +66,7 @@ namespace Homunkulus
 
             List<string> source = new List<string>();
 
-            MessageBox.Show(seltedDataPath);
-
             StreamReader sr = new StreamReader(seltedDataPath);
-
 
             int lineCout = File.ReadAllLines(seltedDataPath).Length;
             int stopAtLine = lineCout - 5;
@@ -109,7 +106,10 @@ namespace Homunkulus
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
 
-
+            this.Hide();
+            createBackup ov = new createBackup();
+            ov.ShowDialog();
+            this.Close();
         }
         private void Open_btn_Click(object sender, EventArgs e)
         {
