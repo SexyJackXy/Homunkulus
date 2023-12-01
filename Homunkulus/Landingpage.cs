@@ -20,8 +20,8 @@ namespace Homunkulus
 
         private void Landingpage_Load(object sender, EventArgs e)
         {
-            string path = @"Resources\backupplans";
-            string runPath = @"Resources\logs";
+            string path = @"..\..\..\backupplans";
+            string runPath = @"..\..\..\logs";
 
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
             int count = dir.GetFiles().Length;
