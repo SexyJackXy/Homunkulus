@@ -20,15 +20,15 @@ namespace Homunkulus
 
         private void Landingpage_Load(object sender, EventArgs e)
         {
-            string path = @"..\..\..\backupplans";
-            string runPath = @"..\..\..\logs";
+            var path = @"..\..\..\backupplans";
+            var runPath = @"..\..\..\logs";
 
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
-            int count = dir.GetFiles().Length;
+            var count = dir.GetFiles().Length;
             numb_backup.Text = Convert.ToString(count);
 
             System.IO.DirectoryInfo dir2 = new System.IO.DirectoryInfo(runPath);
-            int runCount = dir2.GetFiles().Length;
+            var runCount = dir2.GetFiles().Length;
             numb_execute.Text = Convert.ToString(runCount);
         }
         private void create_btn_Click(object sender, EventArgs e)

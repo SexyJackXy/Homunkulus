@@ -28,8 +28,8 @@ namespace Homunkulus
             source_rtb.Text = savedBackups.backupPlan;
             Destination_txt.Text = savedBackups.backupPlanDest;
 
-            bool Compress = savedBackups.booCompress;
-            bool Compliemntray = savedBackups.booCompliemntray;
+            var Compress = savedBackups.booCompress;
+            var Compliemntray = savedBackups.booCompliemntray;
 
             if (Compress == true)
             {
@@ -163,11 +163,11 @@ namespace Homunkulus
         private void src_btn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            string folderPath;
+            var folderPath = "";
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string folder = fbd.SelectedPath;
+                var folder = fbd.SelectedPath;
                 var regex = new Regex(@"\s");
                 var lineCount = source_rtb.Lines.Count();
 
@@ -206,7 +206,7 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string folder = fbd.SelectedPath;
+                var folder = fbd.SelectedPath;
                 var regex = new Regex(@"\s");
 
                 if (String.IsNullOrEmpty(folder))

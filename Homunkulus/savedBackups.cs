@@ -58,20 +58,20 @@ namespace Homunkulus
             TreeNode node = treeView2.SelectedNode;
 
 
-            string seltedDataPath = string.Empty;
-            string destination = string.Empty;
+            var seltedDataPath = string.Empty;
+            var destination = string.Empty;
 
-            string selectedNode = node.Text;
+            var selectedNode = node.Text;
             seltedDataPath = @"Resources\backupplans\" + selectedNode;
 
-            List<string> source = new List<string>();
+            var source = new List<string>();
 
             StreamReader sr = new StreamReader(seltedDataPath);
 
-            int lineCout = File.ReadAllLines(seltedDataPath).Length;
-            int stopAtLine = lineCout - 5;
+            var lineCout = File.ReadAllLines(seltedDataPath).Length;
+            var stopAtLine = lineCout - 5;
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 if (sr.ReadLine().Contains("Source"))
                 {
@@ -81,18 +81,18 @@ namespace Homunkulus
                 destination = sr.ReadLine();
             }
 
-            for (int i = 0; i <= stopAtLine; i++)
+            for (var i = 0; i <= stopAtLine; i++)
             {
-                string currentLine = sr.ReadLine();
+                var currentLine = sr.ReadLine();
                 if (currentLine == null) break;
                 if (currentLine.Contains("Compress True"))
                 {
-                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
+                    var rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
                     booCompress = true;
                 }
                 else if (currentLine.Contains("Compliemntray True"))
                 {
-                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1); ;
+                    var rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1); ;
                     booCompliemntray = true;
                 }
                 else
@@ -117,15 +117,15 @@ namespace Homunkulus
             {
                 TreeNode node = treeView2.SelectedNode;
 
-                string selectedNode = node.Text;
-                string path = @"Resources\backupplans\" + selectedNode;
+                var selectedNode = node.Text;
+                var path = @"Resources\backupplans\" + selectedNode;
                 string[] content = File.ReadAllLines(path);
 
                 cache.Add(path);
 
                 treeView2.Nodes.Clear();
 
-                foreach (string line in content)
+                foreach (var line in content)
                 {
                     treeView2.Nodes.Add(line);
                 }

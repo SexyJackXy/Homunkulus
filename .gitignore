@@ -224,3 +224,13 @@ AppPackages/
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
+.vs/Homunkulus/DesignTimeBuild
+.vs/Homunkulus/FileContentIndex
+Homunkulus/bin/Debug/net6.0-windows
+Homunkulus/obj/Homunkulus.csproj.nuget.dgspec.json
+*.props
+Homunkulus/obj/project.assets.json
+Homunkulus/obj/project.nuget.cache
+Homunkulus/logs
+.vs/Homunkulus/v17
+.vs

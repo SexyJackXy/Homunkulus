@@ -28,14 +28,14 @@ namespace Homunkulus
 
             if(ofd.ShowDialog() == DialogResult.OK)
             {
-                string sourceFile = ofd.FileName;
+                var sourceFile = ofd.FileName;
                 fileName = ofd.SafeFileName;
 
                 path_tbx.Text = sourceFile;
 
                 StreamReader sr = new StreamReader(sourceFile);
 
-                string content = sr.ReadToEnd();
+                var content = sr.ReadToEnd();
                 Content_rtb.Text = content;
             }
 
@@ -43,9 +43,9 @@ namespace Homunkulus
         private void save_btn_Click(object sender, EventArgs e)
         {
             DateTime datetime = DateTime.Today;
-            string date = datetime.ToString("dd/MM/yyyy");
-            string source = path_tbx.Text;
-            string destination = @"Resources\backupplans\Backup_" + date + ".config";
+            var date = datetime.ToString("dd/MM/yyyy");
+            var source = path_tbx.Text;
+            var destination = @"Resources\backupplans\Backup_" + date + ".config";
 
             if(source.Length == 0 )
             {
