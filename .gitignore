@@ -234,3 +234,4 @@ Homunkulus/obj/project.nuget.cache
 Homunkulus/logs
 .vs/Homunkulus/v17
 .vs
+Homunkulus/obj/Debug/net6.0-windows

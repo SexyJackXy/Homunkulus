@@ -9,6 +9,7 @@ using System.Windows;
 using DocumentFormat.OpenXml.Vml;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using System;
 
 namespace Homunkulus
 {
@@ -22,7 +23,6 @@ namespace Homunkulus
             InitializeComponent();
         }
 
-        //Own Methoden
         private void Overview_Load(object sender, EventArgs e)
         {
             source_rtb.Text = savedBackups.backupPlan;
@@ -40,21 +40,20 @@ namespace Homunkulus
                 check_complimentary.Checked = true;
             }
         }
-        public static void Copy(string sourceDirectory, string targetDirectory)
+        public void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
 
             CopyAll(diSource, diTarget);
         }
-        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
 
             // Copy each file into the new directory.
             foreach (FileInfo fi in source.GetFiles())
             {
-                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
                 fi.CopyTo(System.IO.Path.Combine(target.FullName, fi.Name), true);
             }
             try
@@ -72,16 +71,34 @@ namespace Homunkulus
 
             }
         }
-        public static void NormalBackup(string newBackupFolder, string sourceDirectory, string targetDirectory)
+        public void copyFromList(List<string> pathList)
         {
-            if (Directory.Exists(newBackupFolder))
+            DateTime datetime = DateTime.Today;
+
+            var shrt = "";
+            var sourceDirectory = "";
+            var targetDirectory = "";
+            var destFolder = Destination_txt.Text;
+            var date = datetime.ToString("dd/MM/yyyy");
+            var newBackupFolder = destFolder + "Backup " + date;
+
+            for (var i = 0; i < folderlist.Count; i++)
             {
-                Copy(sourceDirectory, targetDirectory);
-            }
-            else
-            {
-                Directory.CreateDirectory(newBackupFolder);
-                Copy(sourceDirectory, targetDirectory);
+                sourceDirectory = folderlist.ElementAt(i);
+                shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+
+                if (Directory.Exists(newBackupFolder))
+                {
+                    Copy(sourceDirectory, targetDirectory);
+                }
+                else
+                {
+                    Directory.CreateDirectory(newBackupFolder);
+                    Copy(sourceDirectory, targetDirectory);
+                }
+
+
             }
         }
 
@@ -93,16 +110,16 @@ namespace Homunkulus
 
             DateTime datetime = DateTime.Today;
 
-            string destFolder = Destination_txt.Text;
-            string logPath = @"Resources\logs";
-            string date = datetime.ToString("dd/MM/yyyy");
-            string newBackupFolder = destFolder + "Backup " + date;
-            string logFile = logPath + @"\" + date + ".txt";
-            string shrt;
-            string sourceDirectory;
-            string targetDirectory;
+            var destFolder = Destination_txt.Text;
+            var logPath = @"Resources\logs";
+            var date = datetime.ToString("dd/MM/yyyy");
+            var newBackupFolder = destFolder + "Backup " + date;
+            var logFile = logPath + @"\" + date + ".txt";
+            var shrt = "";
+            var sourceDirectory = "";
+            var targetDirectory = "";
 
-            int caseNumber = 0;
+            var caseNumber = 0;
 
             var richTextBox = source_rtb.Lines.Count();
 
@@ -115,34 +132,17 @@ namespace Homunkulus
                 case 0:
                     if (folderlist.Count > 0)
                     {
-                        MessageBox.Show("Liste ist Leer");
-                        for (int i = 0; i < folderlist.Count; i++)
-                        {
-                            sourceDirectory = folderlist.ElementAt(i);
-                            shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                            targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
-                            NormalBackup(newBackupFolder, sourceDirectory, targetDirectory);
-                        }
+                        copyFromList(folderlist);
                     }
                     else
                     {
-                        int richTextBoxInt = Convert.ToInt32(richTextBox);
-
-                        MessageBox.Show(Convert.ToString(richTextBoxInt));
-
-                        for (int i = 0; i < richTextBox - 2; i++)
+                        for (var i = 0; i < richTextBox - 2; i++)
                         {
                             string rtbCurrentLine = source_rtb.Lines[i];
                             folderlist.Add(rtbCurrentLine);
                         }
 
-                        for (int i = 0; i < folderlist.Count; i++)
-                        {
-                            sourceDirectory = folderlist.ElementAt(i);
-                            shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                            targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
-                            NormalBackup(newBackupFolder, sourceDirectory, targetDirectory);
-                        }
+                        copyFromList(folderlist);
                     }
                     break;
                 case 1:
