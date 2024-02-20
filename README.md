@@ -1,11 +1,15 @@
 # Homunkulus
- **Homunkulus** is a simple and free solution for easy backup of files. Compared to other backup programs, you can freely decide where you want to store your backup.
 
-You can find more information here: [Coming soon]
+>The homunculus or Latin homunculus ("little man") refers to an artificially created (small) human being.
 
-## Homunkulus meaning
-Homunkulus refers to an artificially created copy of the human being. This program does the similar only that of the copies of their data creation.
+## Description
+ Similarly, the homonculus is supposed to be an artificially created likeness of a human being. With my program I try to create an artificially created image of the data from your computer. This program is used for this activity.
+ 
+**Or in short**
+
+It is a backup program which works with C# and WinForms.
 
 ## Versions
-### BETA
-Homunklus is still under development and therefore there is no finished version yet. But you are always welcome to download the program further or just use it as is
+Currently Working on Version 2
+
+## Installation
