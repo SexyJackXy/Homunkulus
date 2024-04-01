@@ -26,7 +26,7 @@ namespace Homunkulus
             OpenFileDialog ofd = new OpenFileDialog();
 
 
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 var sourceFile = ofd.FileName;
                 fileName = ofd.SafeFileName;
@@ -47,7 +47,7 @@ namespace Homunkulus
             var source = path_tbx.Text;
             var destination = @"Resources\backupplans\Backup_" + date + ".config";
 
-            if(source.Length == 0 )
+            if (source.Length == 0)
             {
                 MessageBox.Show(" You need to Import a File at first");
             }

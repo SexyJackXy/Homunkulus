@@ -97,31 +97,16 @@ namespace Homunkulus
                     Directory.CreateDirectory(newBackupFolder);
                     Copy(sourceDirectory, targetDirectory);
                 }
-
-
             }
         }
 
         //Button Methoden
         private void start_btn_Click(object sender, EventArgs e)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            DateTime datetime = DateTime.Today;
-
-            var destFolder = Destination_txt.Text;
-            var logPath = @"Resources\logs";
-            var date = datetime.ToString("dd/MM/yyyy");
-            var newBackupFolder = destFolder + "Backup " + date;
-            var logFile = logPath + @"\" + date + ".txt";
-            var shrt = "";
-            var sourceDirectory = "";
-            var targetDirectory = "";
-
             var caseNumber = 0;
 
-            var richTextBox = source_rtb.Lines.Count();
+            var rtbLines = source_rtb.Lines.Count();
+            var rtbToList = source_rtb;
 
             if (check_complimentary.Checked) { caseNumber++; }
             if (check_compress.Checked) { caseNumber++; }
@@ -136,7 +121,7 @@ namespace Homunkulus
                     }
                     else
                     {
-                        for (var i = 0; i < richTextBox - 2; i++)
+                        for (var i = 0; i < rtbLines; i++)
                         {
                             string rtbCurrentLine = source_rtb.Lines[i];
                             folderlist.Add(rtbCurrentLine);
@@ -163,7 +148,6 @@ namespace Homunkulus
         private void src_btn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            var folderPath = "";
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -245,6 +229,8 @@ namespace Homunkulus
             File.AppendAllText(path, "Compliemntray " + strCompliemntray + "\n");
             MessageBox.Show("Saved");
         }
+
+        //Navigation Methoden
         private void create_pbox_Click(object sender, EventArgs e)
         {
             new createBackup().ShowDialog();

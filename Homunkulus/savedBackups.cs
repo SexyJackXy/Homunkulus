@@ -101,7 +101,7 @@ namespace Homunkulus
                 }
             }
 
-            source.RemoveAt(source.Count - 1);
+            source.RemoveAt(0);
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
@@ -130,10 +130,14 @@ namespace Homunkulus
                     treeView2.Nodes.Add(line);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Sie haben keine Datein ausgewählt");
-            } 
+            }
+        }
+        private void Edit_btn_Click(object sender, EventArgs e)
+        {
+            //öffnet entweder ein dialog zum Ordner editren oder öffnenen pfad wo die datei Liegt
         }
         private void back_btn_Click(object sender, EventArgs e)
         {
@@ -172,7 +176,5 @@ namespace Homunkulus
             bps.ShowDialog();
             this.Close();
         }
-
-
     }
 }
