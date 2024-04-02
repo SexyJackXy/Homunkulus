@@ -1,15 +1,4 @@
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Reflection;
 using System.Text.RegularExpressions;
-using ClosedXML.Excel;
-using System.Xml;
-using System.IO;
-using System.Windows;
-using DocumentFormat.OpenXml.Vml;
-using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using System;
 
 namespace Homunkulus
 {
@@ -224,7 +213,7 @@ namespace Homunkulus
             string destination = Destination_txt.Text;
 
             File.WriteAllText(path, "Destination" + "\n" + destination + "\n");
-            File.AppendAllText(path, "Source" + "\n" + soruce + "\n");
+            File.AppendAllText(path, "Source" + "\n" + soruce + "\n" + "\n");
             File.AppendAllText(path, "Compress " + strCompress + "\n");
             File.AppendAllText(path, "Compliemntray " + strCompliemntray + "\n");
             MessageBox.Show("Saved");

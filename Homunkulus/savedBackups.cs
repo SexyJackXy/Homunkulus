@@ -1,21 +1,5 @@
-using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Drawing;
-using DocumentFormat.OpenXml.EMMA;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using DocumentFormat.OpenXml.Vml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
+using System.Diagnostics;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Homunkulus
 {
@@ -33,9 +17,10 @@ namespace Homunkulus
 
         List<string> cache = new List<string>();
 
-        string path = @"Resources\backupplans";
+        string path = @"Resources\backupplans\";
+        string editedNode = "";
 
-        public void PopulateTree(string dir, TreeNode node)
+        public void PopulateTree(string dir, TreeNode? node)
         {
             DirectoryInfo directory = new DirectoryInfo(dir);
 
@@ -57,12 +42,10 @@ namespace Homunkulus
         {
             TreeNode node = treeView2.SelectedNode;
 
-
-            var seltedDataPath = string.Empty;
             var destination = string.Empty;
 
             var selectedNode = node.Text;
-            seltedDataPath = @"Resources\backupplans\" + selectedNode;
+            var seltedDataPath = path + selectedNode;
 
             var source = new List<string>();
 
@@ -118,10 +101,10 @@ namespace Homunkulus
                 TreeNode node = treeView2.SelectedNode;
 
                 var selectedNode = node.Text;
-                var path = @"Resources\backupplans\" + selectedNode;
-                string[] content = File.ReadAllLines(path);
+                var nodePath = path + selectedNode;
+                string[] content = File.ReadAllLines(nodePath);
 
-                cache.Add(path);
+                cache.Add(nodePath);
 
                 treeView2.Nodes.Clear();
 
@@ -138,9 +121,43 @@ namespace Homunkulus
         private void Edit_btn_Click(object sender, EventArgs e)
         {
             //öffnet entweder ein dialog zum Ordner editren oder öffnenen pfad wo die datei Liegt
+            TreeNode node = treeView2.SelectedNode;
+            if(node !=  null)
+            {
+                editedNode = node.Text;
+                var nodePath = path + node.Text;
+
+                StreamReader sr = new StreamReader(nodePath);
+                var content = sr.ReadToEndAsync();
+
+                edit_rtb.Visible = true;
+                save_Changes_btn.Visible = true;
+                label1.Visible = true;
+                treeView2.Visible = false;
+
+                edit_rtb.Text = content.Result;
+            }
+
+            
+
         }
+
+        private void open_backups_btn_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"runtimes\win\");
+        }
+
+        private void save_Changes_btn_Click(object sender, EventArgs e)
+        {
+            var editedContent = edit_rtb.Text;
+            var savePath = path + editedNode;
+        }
+
         private void back_btn_Click(object sender, EventArgs e)
         {
+            edit_rtb.Visible = false;
+            treeView2.Visible = true;
+
             treeView2.Nodes.Clear();
             PopulateTree(path, null);
         }
