@@ -43,6 +43,8 @@
             edit_rtb = new RichTextBox();
             save_Changes_btn = new Button();
             label1 = new Label();
+            folderName_tbox = new TextBox();
+            delete_btn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)restore_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
@@ -138,7 +140,7 @@
             Open_btn.Name = "Open_btn";
             Open_btn.Size = new Size(153, 30);
             Open_btn.TabIndex = 8;
-            Open_btn.Text = "Open Selected";
+            Open_btn.Text = "Open";
             Open_btn.UseVisualStyleBackColor = false;
             Open_btn.Click += Open_btn_Click;
             // 
@@ -179,7 +181,7 @@
             open_backups_btn.FlatStyle = FlatStyle.Flat;
             open_backups_btn.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             open_backups_btn.ForeColor = Color.White;
-            open_backups_btn.Location = new Point(812, 120);
+            open_backups_btn.Location = new Point(812, 572);
             open_backups_btn.Name = "open_backups_btn";
             open_backups_btn.Size = new Size(153, 30);
             open_backups_btn.TabIndex = 11;
@@ -191,9 +193,9 @@
             // 
             edit_rtb.BackColor = Color.FromArgb(227, 233, 245);
             edit_rtb.BorderStyle = BorderStyle.FixedSingle;
-            edit_rtb.Location = new Point(171, 12);
+            edit_rtb.Location = new Point(171, 48);
             edit_rtb.Name = "edit_rtb";
-            edit_rtb.Size = new Size(635, 590);
+            edit_rtb.Size = new Size(635, 554);
             edit_rtb.TabIndex = 12;
             edit_rtb.Text = "";
             edit_rtb.Visible = false;
@@ -228,12 +230,39 @@
             label1.Text = "Edit Mode";
             label1.Visible = false;
             // 
+            // folderName_tbox
+            // 
+            folderName_tbox.BackColor = Color.FromArgb(227, 233, 245);
+            folderName_tbox.BorderStyle = BorderStyle.FixedSingle;
+            folderName_tbox.Location = new Point(171, 14);
+            folderName_tbox.Name = "folderName_tbox";
+            folderName_tbox.Size = new Size(635, 26);
+            folderName_tbox.TabIndex = 15;
+            folderName_tbox.Visible = false;
+            // 
+            // delete_btn
+            // 
+            delete_btn.AutoSize = true;
+            delete_btn.BackColor = Color.FromArgb(128, 19, 54);
+            delete_btn.FlatStyle = FlatStyle.Flat;
+            delete_btn.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            delete_btn.ForeColor = Color.White;
+            delete_btn.Location = new Point(812, 120);
+            delete_btn.Name = "delete_btn";
+            delete_btn.Size = new Size(153, 30);
+            delete_btn.TabIndex = 16;
+            delete_btn.Text = "Delete";
+            delete_btn.UseVisualStyleBackColor = false;
+            delete_btn.Click += delete_btn_Click;
+            // 
             // savedBackups
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
+            Controls.Add(delete_btn);
+            Controls.Add(folderName_tbox);
             Controls.Add(label1);
             Controls.Add(save_Changes_btn);
             Controls.Add(edit_rtb);
@@ -275,5 +304,7 @@
         private RichTextBox edit_rtb;
         private Button save_Changes_btn;
         private Label label1;
+        private TextBox folderName_tbox;
+        private Button delete_btn;
     }
 }

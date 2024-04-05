@@ -120,47 +120,81 @@ namespace Homunkulus
         }
         private void Edit_btn_Click(object sender, EventArgs e)
         {
-            //öffnet entweder ein dialog zum Ordner editren oder öffnenen pfad wo die datei Liegt
             TreeNode node = treeView2.SelectedNode;
-            if(node !=  null)
+            if (node != null)
             {
                 editedNode = node.Text;
                 var nodePath = path + node.Text;
+                if (File.Exists(nodePath))
+                {
+                    StreamReader sr = new StreamReader(nodePath);
+                    var content = sr.ReadToEnd();
 
-                StreamReader sr = new StreamReader(nodePath);
-                var content = sr.ReadToEndAsync();
+                    treeView2.Visible = false;
 
-                edit_rtb.Visible = true;
-                save_Changes_btn.Visible = true;
-                label1.Visible = true;
-                treeView2.Visible = false;
+                    folderName_tbox.Visible = true;
+                    edit_rtb.Visible = true;
+                    save_Changes_btn.Visible = true;
+                    label1.Visible = true;
 
-                edit_rtb.Text = content.Result;
+                    folderName_tbox.Text = node.Text;
+                    edit_rtb.Text = content;
+                }
+                else
+                {
+                    MessageBox.Show("The selected file does not exist.");
+                }
             }
-
-            
-
-        }
-
-        private void open_backups_btn_Click(object sender, EventArgs e)
-        {
-            Process.Start(@"runtimes\win\");
+            else
+            {
+                MessageBox.Show("You need to select a file.");
+            }
         }
 
         private void save_Changes_btn_Click(object sender, EventArgs e)
         {
             var editedContent = edit_rtb.Text;
             var savePath = path + editedNode;
+            var folderName = folderName_tbox.Text;
+
+            if (folderName != editedNode)
+            {
+                savePath = path + folderName;
+                File.WriteAllText(savePath, editedContent);
+
+                MessageBox.Show("Succefully Saved");
+            }
+            File.WriteAllText(savePath, editedContent);
+
+            MessageBox.Show("Succefully Saved");
+        }
+
+        private void open_backups_btn_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", path);
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
+            folderName_tbox.Visible = false;
             edit_rtb.Visible = false;
             treeView2.Visible = true;
 
             treeView2.Nodes.Clear();
             PopulateTree(path, null);
         }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            TreeNode node = treeView2.SelectedNode;
+            var deletePath = path + node.Text;
+
+            File.Delete(deletePath);
+            MessageBox.Show("Deleted");
+
+            PopulateTree(path, null);
+        }
+
         private void History_Load(object sender, EventArgs e)
         {
             PopulateTree(path, null);
