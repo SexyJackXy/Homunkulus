@@ -1,4 +1,6 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
+using Ionic.Zip;
 
 namespace Homunkulus
 {
@@ -77,14 +79,18 @@ namespace Homunkulus
                 shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
                 targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
 
-                if (Directory.Exists(newBackupFolder))
+                if (Directory.Exists(newBackupFolder) && !String.IsNullOrEmpty(sourceDirectory))
                 {
+                    Copy(sourceDirectory, targetDirectory);
+                }
+                else if (!String.IsNullOrEmpty(sourceDirectory))
+                {
+                    Directory.CreateDirectory(newBackupFolder);
                     Copy(sourceDirectory, targetDirectory);
                 }
                 else
                 {
-                    Directory.CreateDirectory(newBackupFolder);
-                    Copy(sourceDirectory, targetDirectory);
+                    break;
                 }
             }
         }
@@ -93,7 +99,7 @@ namespace Homunkulus
         private void start_btn_Click(object sender, EventArgs e)
         {
             var caseNumber = 0;
-
+            var dateTime = DateTime.Now.ToString("dd/MM/yyyy").Replace('/', '.');
             var rtbLines = source_rtb.Lines.Count();
             var rtbToList = source_rtb;
 
@@ -123,16 +129,50 @@ namespace Homunkulus
                     if (check_complimentary.Checked)
                     {
                         //Here comes the Complimentray method
+                        MessageBox.Show("DEBUG: Hier ist Complimentray");
                     }
                     if (check_compress.Checked)
                     {
                         //Here comes the Compressed method
+                        MessageBox.Show("DEBUG: Hier ist Compressed");
+                        if (folderlist.Count > 0)
+                        {
+                            copyFromList(folderlist);
+                        }
+                        else
+                        {
+                            for (var i = 0; i < rtbLines; i++)
+                            {
+                                string rtbCurrentLine = source_rtb.Lines[i];
+                                folderlist.Add(rtbCurrentLine);
+                            }
+
+                            copyFromList(folderlist);
+                        }
+                        try
+                        {
+                            var destinationFolder = Destination_txt.Text;
+
+                            using (ZipFile zip = new ZipFile())
+                            {
+                                zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
+                                zip.AddDirectory(destinationFolder + "Backup " + dateTime);
+                                zip.Save(destinationFolder + "Comp Backup " + dateTime + ".zip");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
                     }
                     break;
                 case 2:
                     //Here comes the Compressed and Complimentray method  
                     break;
             }
+            source_rtb.Clear();
+            source_rtb.Text = "Backup has been completed successfully";
         }
         private void src_btn_Click(object sender, EventArgs e)
         {
@@ -222,6 +262,7 @@ namespace Homunkulus
         //Navigation Methoden
         private void create_pbox_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new createBackup().ShowDialog();
             this.Close();
         }
