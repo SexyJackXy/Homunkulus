@@ -17,13 +17,13 @@ namespace Homunkulus
 
         List<string> cache = new List<string>();
 
-        string path = @"Resources\backupplans\";
+        string path = @"..\..\..\backupplans\";
         string editedNode = "";
 
         public void PopulateTree(string dir, TreeNode? node)
         {
             DirectoryInfo directory = new DirectoryInfo(dir);
-
+            var files = directory.GetFiles();
             foreach (DirectoryInfo d in directory.GetDirectories())
             {
                 TreeNode t = new TreeNode(d.Name);
