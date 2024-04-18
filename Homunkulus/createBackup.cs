@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
 
@@ -7,8 +6,6 @@ namespace Homunkulus
     public partial class createBackup : Form
     {
         List<string> folderlist = new List<string>();
-        List<string> destFolderList = new List<string>();
-        List<string> newFoldersList = new List<string>();
         public createBackup()
         {
             InitializeComponent();
@@ -98,9 +95,7 @@ namespace Homunkulus
         private void start_btn_Click(object sender, EventArgs e)
         {
             var caseNumber = 0;
-            var dateTime = DateTime.Now.ToString("dd/MM/yyyy").Replace('/', '.');
             var rtbLines = source_rtb.Lines.Count();
-            var rtbToList = source_rtb;
 
             if (check_complimentary.Checked) { caseNumber++; }
             if (check_compress.Checked) { caseNumber++; }
@@ -158,7 +153,7 @@ namespace Homunkulus
                                 Directory.Delete(destinationFolder);
                             }
                         }
-                        catch (Exception ex)
+                        catch
                         {
 
                         }
@@ -179,8 +174,6 @@ namespace Homunkulus
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var folder = fbd.SelectedPath;
-                var regex = new Regex(@"\s");
-                var lineCount = source_rtb.Lines.Count();
 
                 if (String.IsNullOrEmpty(folder))
                 {

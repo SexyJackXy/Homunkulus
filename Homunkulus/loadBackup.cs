@@ -2,10 +2,7 @@
 {
     public partial class loadBackup : Form
     {
-        public loadBackup()
-        {
-            InitializeComponent();
-        }
+        public loadBackup() => InitializeComponent();
 
         public string fileName;
 
