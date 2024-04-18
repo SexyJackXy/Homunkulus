@@ -9,7 +9,7 @@
 
         private void Landingpage_Load(object sender, EventArgs e)
         {
-            var path = @"Resources\backupplans";
+            var path = @"..\..\..\backupplans";
             var runPath = @"..\..\..\logs";
 
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
