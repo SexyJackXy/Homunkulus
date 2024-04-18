@@ -1,14 +1,6 @@
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Reflection;
+using System.Globalization;
+using System.IO.Compression;
 using System.Text.RegularExpressions;
-using ClosedXML.Excel;
-using System.Xml;
-using System.IO;
-using System.Windows;
-using DocumentFormat.OpenXml.Vml;
-using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 namespace Homunkulus
 {
@@ -22,14 +14,13 @@ namespace Homunkulus
             InitializeComponent();
         }
 
-        //Own Methoden
         private void Overview_Load(object sender, EventArgs e)
         {
             source_rtb.Text = savedBackups.backupPlan;
             Destination_txt.Text = savedBackups.backupPlanDest;
 
-            bool Compress = savedBackups.booCompress;
-            bool Compliemntray = savedBackups.booCompliemntray;
+            var Compress = savedBackups.booCompress;
+            var Compliemntray = savedBackups.booCompliemntray;
 
             if (Compress == true)
             {
@@ -40,21 +31,20 @@ namespace Homunkulus
                 check_complimentary.Checked = true;
             }
         }
-        public static void Copy(string sourceDirectory, string targetDirectory)
+        public void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
 
             CopyAll(diSource, diTarget);
         }
-        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
 
             // Copy each file into the new directory.
             foreach (FileInfo fi in source.GetFiles())
             {
-                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
                 fi.CopyTo(System.IO.Path.Combine(target.FullName, fi.Name), true);
             }
             try
@@ -72,40 +62,46 @@ namespace Homunkulus
 
             }
         }
-        public static void NormalBackup(string newBackupFolder, string sourceDirectory, string targetDirectory)
+        public void copyFromList(List<string> pathList)
         {
-            if (Directory.Exists(newBackupFolder))
+            DateTime datetime = DateTime.Today;
+
+            var shrt = "";
+            var sourceDirectory = "";
+            var targetDirectory = "";
+            var destFolder = Destination_txt.Text;
+            var date = datetime.ToString("dd/MM/yyyy");
+            var newBackupFolder = destFolder + "Backup " + date;
+
+            for (var i = 0; i < folderlist.Count; i++)
             {
-                Copy(sourceDirectory, targetDirectory);
-            }
-            else
-            {
-                Directory.CreateDirectory(newBackupFolder);
-                Copy(sourceDirectory, targetDirectory);
+                sourceDirectory = folderlist.ElementAt(i);
+                shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
+                targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+
+                if (Directory.Exists(newBackupFolder) && !String.IsNullOrEmpty(sourceDirectory))
+                {
+                    Copy(sourceDirectory, targetDirectory);
+                }
+                else if (!String.IsNullOrEmpty(sourceDirectory))
+                {
+                    Directory.CreateDirectory(newBackupFolder);
+                    Copy(sourceDirectory, targetDirectory);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 
         //Button Methoden
         private void start_btn_Click(object sender, EventArgs e)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            DateTime datetime = DateTime.Today;
-
-            string destFolder = Destination_txt.Text;
-            string logPath = @"Resources\logs";
-            string elapsedTime;
-            string date = datetime.ToString("dd/MM/yyyy");
-            string newBackupFolder = destFolder + "Backup " + date;
-            string logFile = logPath + @"\" + date + ".txt";
-            string shrt;
-            string sourceDirectory;
-            string targetDirectory;
-
-            int caseNumber = 0;
-
-            var richTextBox = source_rtb.Lines.Count();
+            var caseNumber = 0;
+            var dateTime = DateTime.Now.ToString("dd/MM/yyyy").Replace('/', '.');
+            var rtbLines = source_rtb.Lines.Count();
+            var rtbToList = source_rtb;
 
             if (check_complimentary.Checked) { caseNumber++; }
             if (check_compress.Checked) { caseNumber++; }
@@ -116,59 +112,76 @@ namespace Homunkulus
                 case 0:
                     if (folderlist.Count > 0)
                     {
-                        MessageBox.Show("Liste ist Leer");
-                        for (int i = 0; i < folderlist.Count; i++)
-                        {
-                            sourceDirectory = folderlist.ElementAt(i);
-                            shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                            targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
-                            NormalBackup(newBackupFolder, sourceDirectory, targetDirectory);
-                        }
+                        copyFromList(folderlist);
                     }
                     else
                     {
-                        int richTextBoxInt = Convert.ToInt32(richTextBox);
-
-                        MessageBox.Show(Convert.ToString(richTextBoxInt));
-
-                        for (int i = 0; i < richTextBox - 2; i++)
+                        for (var i = 0; i < rtbLines; i++)
                         {
                             string rtbCurrentLine = source_rtb.Lines[i];
                             folderlist.Add(rtbCurrentLine);
                         }
 
-                        for (int i = 0; i < folderlist.Count; i++)
-                        {
-                            sourceDirectory = folderlist.ElementAt(i);
-                            shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                            targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
-                            NormalBackup(newBackupFolder, sourceDirectory, targetDirectory);
-                        }
+                        copyFromList(folderlist);
                     }
                     break;
                 case 1:
                     if (check_complimentary.Checked)
                     {
                         //Here comes the Complimentray method
+                        MessageBox.Show("DEBUG: Hier ist Complimentray");
                     }
                     if (check_compress.Checked)
                     {
                         //Here comes the Compressed method
+                        MessageBox.Show("DEBUG: Hier ist Compressed");
+                        if (folderlist.Count > 0)
+                        {
+                            copyFromList(folderlist);
+                        }
+                        else
+                        {
+                            for (var i = 0; i < rtbLines; i++)
+                            {
+                                string rtbCurrentLine = source_rtb.Lines[i];
+                                folderlist.Add(rtbCurrentLine);
+                            }
+
+                            copyFromList(folderlist);
+                        }
+                        try
+                        {
+                            var destinationFolder = Destination_txt.Text;
+                            var destinationZip = destinationFolder + ".zip";
+
+                            ZipFile.CreateFromDirectory(destinationFolder, destinationZip, CompressionLevel.SmallestSize, true);
+
+                            if (Directory.Exists(destinationFolder))
+                            {
+                                Directory.Delete(destinationFolder);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
                     }
                     break;
                 case 2:
                     //Here comes the Compressed and Complimentray method  
                     break;
             }
+            source_rtb.Clear();
+            source_rtb.Text = "Backup has been completed successfully";
         }
         private void src_btn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            string folderPath;
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string folder = fbd.SelectedPath;
+                var folder = fbd.SelectedPath;
                 var regex = new Regex(@"\s");
                 var lineCount = source_rtb.Lines.Count();
 
@@ -207,7 +220,7 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string folder = fbd.SelectedPath;
+                var folder = fbd.SelectedPath;
                 var regex = new Regex(@"\s");
 
                 if (String.IsNullOrEmpty(folder))
@@ -241,13 +254,16 @@ namespace Homunkulus
             string destination = Destination_txt.Text;
 
             File.WriteAllText(path, "Destination" + "\n" + destination + "\n");
-            File.AppendAllText(path, "Source" + "\n" + soruce + "\n");
+            File.AppendAllText(path, "Source" + "\n" + soruce + "\n" + "\n");
             File.AppendAllText(path, "Compress " + strCompress + "\n");
             File.AppendAllText(path, "Compliemntray " + strCompliemntray + "\n");
             MessageBox.Show("Saved");
         }
+
+        //Navigation Methoden
         private void create_pbox_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new createBackup().ShowDialog();
             this.Close();
         }

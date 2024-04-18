@@ -1,21 +1,5 @@
-﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Drawing;
-using DocumentFormat.OpenXml.EMMA;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using DocumentFormat.OpenXml.Vml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
+using System.Diagnostics;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Homunkulus
 {
@@ -33,12 +17,13 @@ namespace Homunkulus
 
         List<string> cache = new List<string>();
 
-        string path = @"Resources\backupplans";
+        string path = @"..\..\..\backupplans\";
+        string editedNode = "";
 
-        public void PopulateTree(string dir, TreeNode node)
+        public void PopulateTree(string dir, TreeNode? node)
         {
             DirectoryInfo directory = new DirectoryInfo(dir);
-
+            var files = directory.GetFiles();
             foreach (DirectoryInfo d in directory.GetDirectories())
             {
                 TreeNode t = new TreeNode(d.Name);
@@ -57,21 +42,19 @@ namespace Homunkulus
         {
             TreeNode node = treeView2.SelectedNode;
 
+            var destination = string.Empty;
 
-            string seltedDataPath = string.Empty;
-            string destination = string.Empty;
+            var selectedNode = node.Text;
+            var seltedDataPath = path + selectedNode;
 
-            string selectedNode = node.Text;
-            seltedDataPath = @"Resources\backupplans\" + selectedNode;
-
-            List<string> source = new List<string>();
+            var source = new List<string>();
 
             StreamReader sr = new StreamReader(seltedDataPath);
 
-            int lineCout = File.ReadAllLines(seltedDataPath).Length;
-            int stopAtLine = lineCout - 5;
+            var lineCout = File.ReadAllLines(seltedDataPath).Length;
+            var stopAtLine = lineCout - 5;
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 if (sr.ReadLine().Contains("Source"))
                 {
@@ -81,18 +64,18 @@ namespace Homunkulus
                 destination = sr.ReadLine();
             }
 
-            for (int i = 0; i <= stopAtLine; i++)
+            for (var i = 0; i <= stopAtLine; i++)
             {
-                string currentLine = sr.ReadLine();
+                var currentLine = sr.ReadLine();
                 if (currentLine == null) break;
                 if (currentLine.Contains("Compress True"))
                 {
-                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
+                    var rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
                     booCompress = true;
                 }
                 else if (currentLine.Contains("Compliemntray True"))
                 {
-                    string rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1); ;
+                    var rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1); ;
                     booCompliemntray = true;
                 }
                 else
@@ -101,7 +84,7 @@ namespace Homunkulus
                 }
             }
 
-            source.RemoveAt(source.Count - 1);
+            source.RemoveAt(0);
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
@@ -117,29 +100,101 @@ namespace Homunkulus
             {
                 TreeNode node = treeView2.SelectedNode;
 
-                string selectedNode = node.Text;
-                string path = @"Resources\backupplans\" + selectedNode;
-                string[] content = File.ReadAllLines(path);
+                var selectedNode = node.Text;
+                var nodePath = path + selectedNode;
+                string[] content = File.ReadAllLines(nodePath);
 
-                cache.Add(path);
+                cache.Add(nodePath);
 
                 treeView2.Nodes.Clear();
 
-                foreach (string line in content)
+                foreach (var line in content)
                 {
                     treeView2.Nodes.Add(line);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Sie haben keine Datein ausgewählt");
-            } 
+            }
         }
+        private void Edit_btn_Click(object sender, EventArgs e)
+        {
+            TreeNode node = treeView2.SelectedNode;
+            if (node != null)
+            {
+                editedNode = node.Text;
+                var nodePath = path + node.Text;
+                if (File.Exists(nodePath))
+                {
+                    StreamReader sr = new StreamReader(nodePath);
+                    var content = sr.ReadToEnd();
+
+                    treeView2.Visible = false;
+
+                    folderName_tbox.Visible = true;
+                    edit_rtb.Visible = true;
+                    save_Changes_btn.Visible = true;
+                    label1.Visible = true;
+
+                    folderName_tbox.Text = node.Text;
+                    edit_rtb.Text = content;
+                }
+                else
+                {
+                    MessageBox.Show("The selected file does not exist.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You need to select a file.");
+            }
+        }
+
+        private void save_Changes_btn_Click(object sender, EventArgs e)
+        {
+            var editedContent = edit_rtb.Text;
+            var savePath = path + editedNode;
+            var folderName = folderName_tbox.Text;
+
+            if (folderName != editedNode)
+            {
+                savePath = path + folderName;
+                File.WriteAllText(savePath, editedContent);
+
+                MessageBox.Show("Succefully Saved");
+            }
+            File.WriteAllText(savePath, editedContent);
+
+            MessageBox.Show("Succefully Saved");
+        }
+
+        private void open_backups_btn_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", path);
+        }
+
         private void back_btn_Click(object sender, EventArgs e)
         {
+            folderName_tbox.Visible = false;
+            edit_rtb.Visible = false;
+            treeView2.Visible = true;
+
             treeView2.Nodes.Clear();
             PopulateTree(path, null);
         }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+            TreeNode node = treeView2.SelectedNode;
+            var deletePath = path + node.Text;
+
+            File.Delete(deletePath);
+            MessageBox.Show("Deleted");
+
+            PopulateTree(path, null);
+        }
+
         private void History_Load(object sender, EventArgs e)
         {
             PopulateTree(path, null);
@@ -172,7 +227,5 @@ namespace Homunkulus
             bps.ShowDialog();
             this.Close();
         }
-
-
     }
 }

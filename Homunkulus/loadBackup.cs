@@ -1,16 +1,4 @@
-﻿using DocumentFormat.OpenXml.Vml;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Homunkulus
+﻿namespace Homunkulus
 {
     public partial class loadBackup : Form
     {
@@ -26,16 +14,16 @@ namespace Homunkulus
             OpenFileDialog ofd = new OpenFileDialog();
 
 
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string sourceFile = ofd.FileName;
+                var sourceFile = ofd.FileName;
                 fileName = ofd.SafeFileName;
 
                 path_tbx.Text = sourceFile;
 
                 StreamReader sr = new StreamReader(sourceFile);
 
-                string content = sr.ReadToEnd();
+                var content = sr.ReadToEnd();
                 Content_rtb.Text = content;
             }
 
@@ -43,11 +31,11 @@ namespace Homunkulus
         private void save_btn_Click(object sender, EventArgs e)
         {
             DateTime datetime = DateTime.Today;
-            string date = datetime.ToString("dd/MM/yyyy");
-            string source = path_tbx.Text;
-            string destination = @"Resources\backupplans\Backup_" + date + ".config";
+            var date = datetime.ToString("dd/MM/yyyy");
+            var source = path_tbx.Text;
+            var destination = @"Resources\backupplans\Backup_" + date + ".config";
 
-            if(source.Length == 0 )
+            if (source.Length == 0)
             {
                 MessageBox.Show(" You need to Import a File at first");
             }

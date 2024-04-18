@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ClosedXML.Excel;
-
-namespace Homunkulus
+﻿namespace Homunkulus
 {
     public partial class Landingpage : Form
     {
@@ -20,23 +9,23 @@ namespace Homunkulus
 
         private void Landingpage_Load(object sender, EventArgs e)
         {
-            string path = @"Resources\backupplans";
-            string runPath = @"Resources\logs";
+            var path = @"..\..\..\backupplans";
+            var runPath = @"..\..\..\logs";
 
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
-            int count = dir.GetFiles().Length;
+            var count = dir.GetFiles().Length;
             numb_backup.Text = Convert.ToString(count);
 
             System.IO.DirectoryInfo dir2 = new System.IO.DirectoryInfo(runPath);
-            int runCount = dir2.GetFiles().Length;
+            var runCount = dir2.GetFiles().Length;
             numb_execute.Text = Convert.ToString(runCount);
         }
         private void create_btn_Click(object sender, EventArgs e)
-        {     
+        {
             this.Hide();
             createBackup ov = new createBackup();
             ov.ShowDialog();
-            this.Close();  
+            this.Close();
         }
         private void show_backup_btn_Click(object sender, EventArgs e)
         {
