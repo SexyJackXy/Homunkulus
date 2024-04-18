@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Homunkulus
 {
@@ -41,8 +40,9 @@ namespace Homunkulus
         private void Load_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
-            StreamReader? sr;
-            var destination = string.Empty;
+			StreamReader? sr;
+            var destination = "";
+
             var selectedNode = node.Text;
             var seltedDataPath = path + selectedNode;
             var source = new List<string>();
