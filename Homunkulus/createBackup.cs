@@ -1,6 +1,6 @@
 using System.Globalization;
+using System.IO.Compression;
 using System.Text.RegularExpressions;
-using Ionic.Zip;
 
 namespace Homunkulus
 {
@@ -152,12 +152,13 @@ namespace Homunkulus
                         try
                         {
                             var destinationFolder = Destination_txt.Text;
+                            var destinationZip = destinationFolder + ".zip";
 
-                            using (ZipFile zip = new ZipFile())
+                            ZipFile.CreateFromDirectory(destinationFolder, destinationZip, CompressionLevel.SmallestSize, true);
+
+                            if (Directory.Exists(destinationFolder))
                             {
-                                zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
-                                zip.AddDirectory(destinationFolder + "Backup " + dateTime);
-                                zip.Save(destinationFolder + "Comp Backup " + dateTime + ".zip");
+                                Directory.Delete(destinationFolder);
                             }
                         }
                         catch (Exception ex)
