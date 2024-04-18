@@ -29,308 +29,307 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(createBackup));
-            this.import_backup_btn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.restore_pbox = new System.Windows.Forms.PictureBox();
-            this.create_pbox = new System.Windows.Forms.PictureBox();
-            this.plans_pbox = new System.Windows.Forms.PictureBox();
-            this.home_pbox = new System.Windows.Forms.PictureBox();
-            this.Destination_txt = new System.Windows.Forms.TextBox();
-            this.add_folder_btn = new System.Windows.Forms.Button();
-            this.Source_btn = new System.Windows.Forms.Label();
-            this.Destination_btn = new System.Windows.Forms.Label();
-            this.dest_folder_btn = new System.Windows.Forms.Button();
-            this.source_rtb = new System.Windows.Forms.RichTextBox();
-            this.start_btn = new System.Windows.Forms.Button();
-            this.add_data_btn = new System.Windows.Forms.Button();
-            this.save_btn = new System.Windows.Forms.Button();
-            this.clear_btn = new System.Windows.Forms.Button();
-            this.check_compress = new System.Windows.Forms.CheckBox();
-            this.check_complimentary = new System.Windows.Forms.CheckBox();
-            this.multifolder_select_btn = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.home_pbox)).BeginInit();
-            this.SuspendLayout();
+            import_backup_btn = new Button();
+            panel1 = new Panel();
+            restore_pbox = new PictureBox();
+            create_pbox = new PictureBox();
+            plans_pbox = new PictureBox();
+            home_pbox = new PictureBox();
+            Destination_txt = new TextBox();
+            add_folder_btn = new Button();
+            Source_btn = new Label();
+            Destination_btn = new Label();
+            dest_folder_btn = new Button();
+            source_rtb = new RichTextBox();
+            start_btn = new Button();
+            add_data_btn = new Button();
+            save_btn = new Button();
+            clear_btn = new Button();
+            check_compress = new CheckBox();
+            check_complimentary = new CheckBox();
+            multifolder_select_btn = new Button();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)restore_pbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)home_pbox).BeginInit();
+            SuspendLayout();
             // 
             // import_backup_btn
             // 
-            this.import_backup_btn.AutoSize = true;
-            this.import_backup_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.import_backup_btn.FlatAppearance.BorderSize = 0;
-            this.import_backup_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.import_backup_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.import_backup_btn.ForeColor = System.Drawing.Color.White;
-            this.import_backup_btn.Location = new System.Drawing.Point(331, 559);
-            this.import_backup_btn.Name = "import_backup_btn";
-            this.import_backup_btn.Size = new System.Drawing.Size(345, 40);
-            this.import_backup_btn.TabIndex = 2;
-            this.import_backup_btn.Text = "Load Backup";
-            this.import_backup_btn.UseVisualStyleBackColor = false;
-            this.import_backup_btn.Click += new System.EventHandler(this.import_backup_btn_Click);
+            import_backup_btn.AutoSize = true;
+            import_backup_btn.BackColor = Color.FromArgb(128, 19, 54);
+            import_backup_btn.FlatAppearance.BorderSize = 0;
+            import_backup_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            import_backup_btn.FlatStyle = FlatStyle.Flat;
+            import_backup_btn.ForeColor = Color.White;
+            import_backup_btn.Location = new Point(331, 559);
+            import_backup_btn.Name = "import_backup_btn";
+            import_backup_btn.Size = new Size(345, 40);
+            import_backup_btn.TabIndex = 2;
+            import_backup_btn.Text = "Load Backup";
+            import_backup_btn.UseVisualStyleBackColor = false;
+            import_backup_btn.Click += import_backup_btn_Click;
             // 
             // panel1
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
-            this.panel1.Controls.Add(this.restore_pbox);
-            this.panel1.Controls.Add(this.create_pbox);
-            this.panel1.Controls.Add(this.plans_pbox);
-            this.panel1.Controls.Add(this.home_pbox);
-            this.panel1.Location = new System.Drawing.Point(-3, 606);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(982, 40);
-            this.panel1.TabIndex = 0;
+            panel1.AutoSize = true;
+            panel1.BackColor = Color.FromArgb(227, 233, 245);
+            panel1.Controls.Add(restore_pbox);
+            panel1.Controls.Add(create_pbox);
+            panel1.Controls.Add(plans_pbox);
+            panel1.Controls.Add(home_pbox);
+            panel1.Location = new Point(-3, 606);
+            panel1.Margin = new Padding(4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(982, 40);
+            panel1.TabIndex = 0;
             // 
             // restore_pbox
             // 
-            this.restore_pbox.Image = global::Homunkulus.Properties.Resources.restore;
-            this.restore_pbox.Location = new System.Drawing.Point(579, 5);
-            this.restore_pbox.Name = "restore_pbox";
-            this.restore_pbox.Size = new System.Drawing.Size(32, 32);
-            this.restore_pbox.TabIndex = 17;
-            this.restore_pbox.TabStop = false;
-            this.restore_pbox.Click += new System.EventHandler(this.restore_pbox_Click);
+            restore_pbox.Image = Properties.Resources.restore;
+            restore_pbox.Location = new Point(579, 5);
+            restore_pbox.Name = "restore_pbox";
+            restore_pbox.Size = new Size(32, 32);
+            restore_pbox.TabIndex = 17;
+            restore_pbox.TabStop = false;
+            restore_pbox.Click += restore_pbox_Click;
             // 
             // create_pbox
             // 
-            this.create_pbox.Image = global::Homunkulus.Properties.Resources.create;
-            this.create_pbox.Location = new System.Drawing.Point(441, 5);
-            this.create_pbox.Name = "create_pbox";
-            this.create_pbox.Size = new System.Drawing.Size(32, 32);
-            this.create_pbox.TabIndex = 15;
-            this.create_pbox.TabStop = false;
-            this.create_pbox.Click += new System.EventHandler(this.create_pbox_Click);
+            create_pbox.Image = Properties.Resources.create;
+            create_pbox.Location = new Point(441, 5);
+            create_pbox.Name = "create_pbox";
+            create_pbox.Size = new Size(32, 32);
+            create_pbox.TabIndex = 15;
+            create_pbox.TabStop = false;
+            create_pbox.Click += create_pbox_Click;
             // 
             // plans_pbox
             // 
-            this.plans_pbox.Image = global::Homunkulus.Properties.Resources.backupplans;
-            this.plans_pbox.Location = new System.Drawing.Point(510, 5);
-            this.plans_pbox.Name = "plans_pbox";
-            this.plans_pbox.Size = new System.Drawing.Size(32, 32);
-            this.plans_pbox.TabIndex = 16;
-            this.plans_pbox.TabStop = false;
-            this.plans_pbox.Click += new System.EventHandler(this.plans_pbox_Click);
+            plans_pbox.Image = Properties.Resources.backupplans;
+            plans_pbox.Location = new Point(510, 5);
+            plans_pbox.Name = "plans_pbox";
+            plans_pbox.Size = new Size(32, 32);
+            plans_pbox.TabIndex = 16;
+            plans_pbox.TabStop = false;
+            plans_pbox.Click += plans_pbox_Click;
             // 
             // home_pbox
             // 
-            this.home_pbox.Image = global::Homunkulus.Properties.Resources.home;
-            this.home_pbox.Location = new System.Drawing.Point(377, 5);
-            this.home_pbox.Name = "home_pbox";
-            this.home_pbox.Size = new System.Drawing.Size(32, 32);
-            this.home_pbox.TabIndex = 14;
-            this.home_pbox.TabStop = false;
-            this.home_pbox.Click += new System.EventHandler(this.home_pbox_Click);
+            home_pbox.Image = Properties.Resources.home;
+            home_pbox.Location = new Point(377, 5);
+            home_pbox.Name = "home_pbox";
+            home_pbox.Size = new Size(32, 32);
+            home_pbox.TabIndex = 14;
+            home_pbox.TabStop = false;
+            home_pbox.Click += home_pbox_Click;
             // 
             // Destination_txt
             // 
-            this.Destination_txt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
-            this.Destination_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Destination_txt.Location = new System.Drawing.Point(12, 30);
-            this.Destination_txt.Name = "Destination_txt";
-            this.Destination_txt.Size = new System.Drawing.Size(794, 26);
-            this.Destination_txt.TabIndex = 3;
+            Destination_txt.BackColor = Color.FromArgb(227, 233, 245);
+            Destination_txt.BorderStyle = BorderStyle.FixedSingle;
+            Destination_txt.Location = new Point(12, 30);
+            Destination_txt.Name = "Destination_txt";
+            Destination_txt.Size = new Size(794, 26);
+            Destination_txt.TabIndex = 3;
             // 
             // add_folder_btn
             // 
-            this.add_folder_btn.AutoSize = true;
-            this.add_folder_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.add_folder_btn.FlatAppearance.BorderSize = 0;
-            this.add_folder_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.add_folder_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_folder_btn.ForeColor = System.Drawing.Color.White;
-            this.add_folder_btn.Location = new System.Drawing.Point(812, 112);
-            this.add_folder_btn.Name = "add_folder_btn";
-            this.add_folder_btn.Size = new System.Drawing.Size(153, 28);
-            this.add_folder_btn.TabIndex = 4;
-            this.add_folder_btn.Text = "Add Folder";
-            this.add_folder_btn.UseVisualStyleBackColor = false;
-            this.add_folder_btn.Click += new System.EventHandler(this.src_btn_Click);
+            add_folder_btn.AutoSize = true;
+            add_folder_btn.BackColor = Color.FromArgb(128, 19, 54);
+            add_folder_btn.FlatAppearance.BorderSize = 0;
+            add_folder_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            add_folder_btn.FlatStyle = FlatStyle.Flat;
+            add_folder_btn.ForeColor = Color.White;
+            add_folder_btn.Location = new Point(812, 112);
+            add_folder_btn.Name = "add_folder_btn";
+            add_folder_btn.Size = new Size(153, 28);
+            add_folder_btn.TabIndex = 4;
+            add_folder_btn.Text = "Add Folder";
+            add_folder_btn.UseVisualStyleBackColor = false;
+            add_folder_btn.Click += src_btn_Click;
             // 
             // Source_btn
             // 
-            this.Source_btn.AutoSize = true;
-            this.Source_btn.Location = new System.Drawing.Point(12, 91);
-            this.Source_btn.Name = "Source_btn";
-            this.Source_btn.Size = new System.Drawing.Size(86, 18);
-            this.Source_btn.TabIndex = 5;
-            this.Source_btn.Text = "Add Folder";
+            Source_btn.AutoSize = true;
+            Source_btn.Location = new Point(12, 91);
+            Source_btn.Name = "Source_btn";
+            Source_btn.Size = new Size(86, 18);
+            Source_btn.TabIndex = 5;
+            Source_btn.Text = "Add Folder";
             // 
             // Destination_btn
             // 
-            this.Destination_btn.AutoSize = true;
-            this.Destination_btn.Location = new System.Drawing.Point(12, 9);
-            this.Destination_btn.Name = "Destination_btn";
-            this.Destination_btn.Size = new System.Drawing.Size(184, 18);
-            this.Destination_btn.TabIndex = 8;
-            this.Destination_btn.Text = "Select Destination Folder";
+            Destination_btn.AutoSize = true;
+            Destination_btn.Location = new Point(12, 9);
+            Destination_btn.Name = "Destination_btn";
+            Destination_btn.Size = new Size(184, 18);
+            Destination_btn.TabIndex = 8;
+            Destination_btn.Text = "Select Destination Folder";
             // 
             // dest_folder_btn
             // 
-            this.dest_folder_btn.AutoSize = true;
-            this.dest_folder_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.dest_folder_btn.FlatAppearance.BorderSize = 0;
-            this.dest_folder_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.dest_folder_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dest_folder_btn.ForeColor = System.Drawing.Color.White;
-            this.dest_folder_btn.Location = new System.Drawing.Point(812, 30);
-            this.dest_folder_btn.Name = "dest_folder_btn";
-            this.dest_folder_btn.Size = new System.Drawing.Size(153, 28);
-            this.dest_folder_btn.TabIndex = 7;
-            this.dest_folder_btn.Text = "Add Folder";
-            this.dest_folder_btn.UseVisualStyleBackColor = false;
-            this.dest_folder_btn.Click += new System.EventHandler(this.dest_folder_btn_Click);
+            dest_folder_btn.AutoSize = true;
+            dest_folder_btn.BackColor = Color.FromArgb(128, 19, 54);
+            dest_folder_btn.FlatAppearance.BorderSize = 0;
+            dest_folder_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            dest_folder_btn.FlatStyle = FlatStyle.Flat;
+            dest_folder_btn.ForeColor = Color.White;
+            dest_folder_btn.Location = new Point(812, 30);
+            dest_folder_btn.Name = "dest_folder_btn";
+            dest_folder_btn.Size = new Size(153, 28);
+            dest_folder_btn.TabIndex = 7;
+            dest_folder_btn.Text = "Add Folder";
+            dest_folder_btn.UseVisualStyleBackColor = false;
+            dest_folder_btn.Click += dest_folder_btn_Click;
             // 
             // source_rtb
             // 
-            this.source_rtb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
-            this.source_rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.source_rtb.EnableAutoDragDrop = true;
-            this.source_rtb.Location = new System.Drawing.Point(12, 112);
-            this.source_rtb.Name = "source_rtb";
-            this.source_rtb.Size = new System.Drawing.Size(794, 393);
-            this.source_rtb.TabIndex = 9;
-            this.source_rtb.TabStop = false;
-            this.source_rtb.Text = "";
+            source_rtb.BackColor = Color.FromArgb(227, 233, 245);
+            source_rtb.BorderStyle = BorderStyle.None;
+            source_rtb.EnableAutoDragDrop = true;
+            source_rtb.Location = new Point(12, 112);
+            source_rtb.Name = "source_rtb";
+            source_rtb.Size = new Size(794, 393);
+            source_rtb.TabIndex = 9;
+            source_rtb.TabStop = false;
+            source_rtb.Text = "";
             // 
             // start_btn
             // 
-            this.start_btn.AutoSize = true;
-            this.start_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.start_btn.FlatAppearance.BorderSize = 0;
-            this.start_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.start_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.start_btn.ForeColor = System.Drawing.Color.White;
-            this.start_btn.Location = new System.Drawing.Point(12, 559);
-            this.start_btn.Name = "start_btn";
-            this.start_btn.Size = new System.Drawing.Size(298, 40);
-            this.start_btn.TabIndex = 10;
-            this.start_btn.Text = "Start Backup";
-            this.start_btn.UseVisualStyleBackColor = false;
-            this.start_btn.Click += new System.EventHandler(this.start_btn_Click);
+            start_btn.AutoSize = true;
+            start_btn.BackColor = Color.FromArgb(128, 19, 54);
+            start_btn.FlatAppearance.BorderSize = 0;
+            start_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            start_btn.FlatStyle = FlatStyle.Flat;
+            start_btn.ForeColor = Color.White;
+            start_btn.Location = new Point(12, 559);
+            start_btn.Name = "start_btn";
+            start_btn.Size = new Size(298, 40);
+            start_btn.TabIndex = 10;
+            start_btn.Text = "Start Backup";
+            start_btn.UseVisualStyleBackColor = false;
+            start_btn.Click += start_btn_Click;
             // 
             // add_data_btn
             // 
-            this.add_data_btn.AutoSize = true;
-            this.add_data_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.add_data_btn.FlatAppearance.BorderSize = 0;
-            this.add_data_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.add_data_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_data_btn.ForeColor = System.Drawing.Color.White;
-            this.add_data_btn.Location = new System.Drawing.Point(812, 146);
-            this.add_data_btn.Name = "add_data_btn";
-            this.add_data_btn.Size = new System.Drawing.Size(153, 28);
-            this.add_data_btn.TabIndex = 12;
-            this.add_data_btn.Text = "Add Data";
-            this.add_data_btn.UseVisualStyleBackColor = false;
-            this.add_data_btn.Click += new System.EventHandler(this.add_data_btn_Click);
+            add_data_btn.AutoSize = true;
+            add_data_btn.BackColor = Color.FromArgb(128, 19, 54);
+            add_data_btn.FlatAppearance.BorderSize = 0;
+            add_data_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            add_data_btn.FlatStyle = FlatStyle.Flat;
+            add_data_btn.ForeColor = Color.White;
+            add_data_btn.Location = new Point(812, 146);
+            add_data_btn.Name = "add_data_btn";
+            add_data_btn.Size = new Size(153, 28);
+            add_data_btn.TabIndex = 12;
+            add_data_btn.Text = "Add Data";
+            add_data_btn.UseVisualStyleBackColor = false;
+            add_data_btn.Click += add_data_btn_Click;
             // 
             // save_btn
             // 
-            this.save_btn.AutoSize = true;
-            this.save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.save_btn.FlatAppearance.BorderSize = 0;
-            this.save_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.save_btn.ForeColor = System.Drawing.Color.White;
-            this.save_btn.Location = new System.Drawing.Point(698, 559);
-            this.save_btn.Name = "save_btn";
-            this.save_btn.Size = new System.Drawing.Size(267, 40);
-            this.save_btn.TabIndex = 13;
-            this.save_btn.Text = "Save Backup";
-            this.save_btn.UseVisualStyleBackColor = false;
-            this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
+            save_btn.AutoSize = true;
+            save_btn.BackColor = Color.FromArgb(128, 19, 54);
+            save_btn.FlatAppearance.BorderSize = 0;
+            save_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            save_btn.FlatStyle = FlatStyle.Flat;
+            save_btn.ForeColor = Color.White;
+            save_btn.Location = new Point(698, 559);
+            save_btn.Name = "save_btn";
+            save_btn.Size = new Size(267, 40);
+            save_btn.TabIndex = 13;
+            save_btn.Text = "Save Backup";
+            save_btn.UseVisualStyleBackColor = false;
+            save_btn.Click += save_btn_Click;
             // 
             // clear_btn
             // 
-            this.clear_btn.AutoSize = true;
-            this.clear_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.clear_btn.FlatAppearance.BorderSize = 0;
-            this.clear_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.clear_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clear_btn.ForeColor = System.Drawing.Color.White;
-            this.clear_btn.Location = new System.Drawing.Point(812, 477);
-            this.clear_btn.Name = "clear_btn";
-            this.clear_btn.Size = new System.Drawing.Size(153, 28);
-            this.clear_btn.TabIndex = 14;
-            this.clear_btn.Text = "Clear";
-            this.clear_btn.UseVisualStyleBackColor = false;
-            this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
+            clear_btn.AutoSize = true;
+            clear_btn.BackColor = Color.FromArgb(128, 19, 54);
+            clear_btn.FlatAppearance.BorderSize = 0;
+            clear_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            clear_btn.FlatStyle = FlatStyle.Flat;
+            clear_btn.ForeColor = Color.White;
+            clear_btn.Location = new Point(812, 477);
+            clear_btn.Name = "clear_btn";
+            clear_btn.Size = new Size(153, 28);
+            clear_btn.TabIndex = 14;
+            clear_btn.Text = "Clear";
+            clear_btn.UseVisualStyleBackColor = false;
+            clear_btn.Click += clear_btn_Click;
             // 
             // check_compress
             // 
-            this.check_compress.AutoSize = true;
-            this.check_compress.BackColor = System.Drawing.Color.Transparent;
-            this.check_compress.Location = new System.Drawing.Point(812, 215);
-            this.check_compress.Name = "check_compress";
-            this.check_compress.Size = new System.Drawing.Size(118, 22);
-            this.check_compress.TabIndex = 15;
-            this.check_compress.Text = "Compressed";
-            this.check_compress.UseVisualStyleBackColor = false;
+            check_compress.AutoSize = true;
+            check_compress.BackColor = Color.Transparent;
+            check_compress.Location = new Point(812, 215);
+            check_compress.Name = "check_compress";
+            check_compress.Size = new Size(118, 22);
+            check_compress.TabIndex = 15;
+            check_compress.Text = "Compressed";
+            check_compress.UseVisualStyleBackColor = false;
             // 
             // check_complimentary
             // 
-            this.check_complimentary.AutoSize = true;
-            this.check_complimentary.Location = new System.Drawing.Point(812, 243);
-            this.check_complimentary.Name = "check_complimentary";
-            this.check_complimentary.Size = new System.Drawing.Size(132, 22);
-            this.check_complimentary.TabIndex = 16;
-            this.check_complimentary.Text = "Complimentary";
-            this.check_complimentary.UseVisualStyleBackColor = true;
+            check_complimentary.AutoSize = true;
+            check_complimentary.Location = new Point(812, 243);
+            check_complimentary.Name = "check_complimentary";
+            check_complimentary.Size = new Size(132, 22);
+            check_complimentary.TabIndex = 16;
+            check_complimentary.Text = "Complimentary";
+            check_complimentary.UseVisualStyleBackColor = true;
             // 
             // multifolder_select_btn
             // 
-            this.multifolder_select_btn.AutoSize = true;
-            this.multifolder_select_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(19)))), ((int)(((byte)(54)))));
-            this.multifolder_select_btn.FlatAppearance.BorderSize = 0;
-            this.multifolder_select_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(10)))), ((int)(((byte)(50)))));
-            this.multifolder_select_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.multifolder_select_btn.ForeColor = System.Drawing.Color.White;
-            this.multifolder_select_btn.Location = new System.Drawing.Point(812, 180);
-            this.multifolder_select_btn.Name = "multifolder_select_btn";
-            this.multifolder_select_btn.Size = new System.Drawing.Size(153, 28);
-            this.multifolder_select_btn.TabIndex = 17;
-            this.multifolder_select_btn.Text = "Multifolder Select";
-            this.multifolder_select_btn.UseVisualStyleBackColor = false;
-            this.multifolder_select_btn.Click += new System.EventHandler(this.multifolder_select_btn_Click);
+            multifolder_select_btn.AutoSize = true;
+            multifolder_select_btn.BackColor = Color.FromArgb(128, 19, 54);
+            multifolder_select_btn.FlatAppearance.BorderSize = 0;
+            multifolder_select_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            multifolder_select_btn.FlatStyle = FlatStyle.Flat;
+            multifolder_select_btn.ForeColor = Color.White;
+            multifolder_select_btn.Location = new Point(812, 180);
+            multifolder_select_btn.Name = "multifolder_select_btn";
+            multifolder_select_btn.Size = new Size(153, 28);
+            multifolder_select_btn.TabIndex = 17;
+            multifolder_select_btn.Text = "Multifolder Select";
+            multifolder_select_btn.UseVisualStyleBackColor = false;
+            multifolder_select_btn.Click += multifolder_select_btn_Click;
             // 
             // createBackup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(977, 644);
-            this.Controls.Add(this.multifolder_select_btn);
-            this.Controls.Add(this.check_complimentary);
-            this.Controls.Add(this.check_compress);
-            this.Controls.Add(this.clear_btn);
-            this.Controls.Add(this.save_btn);
-            this.Controls.Add(this.add_data_btn);
-            this.Controls.Add(this.start_btn);
-            this.Controls.Add(this.source_rtb);
-            this.Controls.Add(this.Destination_btn);
-            this.Controls.Add(this.dest_folder_btn);
-            this.Controls.Add(this.Source_btn);
-            this.Controls.Add(this.add_folder_btn);
-            this.Controls.Add(this.Destination_txt);
-            this.Controls.Add(this.import_backup_btn);
-            this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "createBackup";
-            this.Load += new System.EventHandler(this.Overview_Load);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.restore_pbox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.create_pbox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plans_pbox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.home_pbox)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(9F, 18F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(977, 644);
+            Controls.Add(multifolder_select_btn);
+            Controls.Add(check_complimentary);
+            Controls.Add(check_compress);
+            Controls.Add(clear_btn);
+            Controls.Add(save_btn);
+            Controls.Add(add_data_btn);
+            Controls.Add(start_btn);
+            Controls.Add(source_rtb);
+            Controls.Add(Destination_btn);
+            Controls.Add(dest_folder_btn);
+            Controls.Add(Source_btn);
+            Controls.Add(add_folder_btn);
+            Controls.Add(Destination_txt);
+            Controls.Add(import_backup_btn);
+            Controls.Add(panel1);
+            Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4);
+            Name = "createBackup";
+            Load += Overview_Load;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)restore_pbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)plans_pbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)home_pbox).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
