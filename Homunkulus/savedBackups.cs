@@ -5,8 +5,8 @@ namespace Homunkulus
 {
     public partial class savedBackups : Form
     {
-        public static string backupPlan = " ";
-        public static string backupPlanDest = " ";
+        public static string? backupPlan = " ";
+        public static string? backupPlanDest = " ";
         public static bool booCompress = false;
         public static bool booCompliemntray = false;
 
@@ -41,34 +41,29 @@ namespace Homunkulus
         private void Load_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
-
+            StreamReader? sr;
             var destination = string.Empty;
-
             var selectedNode = node.Text;
             var seltedDataPath = path + selectedNode;
-
             var source = new List<string>();
-
-            StreamReader sr = new StreamReader(seltedDataPath);
-
+            sr = new StreamReader(seltedDataPath);
             var lineCout = File.ReadAllLines(seltedDataPath).Length;
             var stopAtLine = lineCout - 5;
 
             for (var i = 0; i < 3; i++)
             {
-                if (!sr.ReadLine().Contains("Source"))
-                {
-                    destination = sr.ReadLine();
-                }
-                else
+                if (sr.ReadLine().Contains("Source"))
                 {
                     break;
                 }
+
+                destination = sr.ReadLine();
             }
 
             for (var i = 0; i <= stopAtLine; i++)
             {
                 var currentLine = sr.ReadLine();
+
                 if (currentLine == null) break;
                 if (currentLine.Contains("Compress True"))
                 {
