@@ -52,14 +52,13 @@ namespace Homunkulus
                 // Copy each subdirectory using recursion.
                 foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
                 {
-                    DirectoryInfo nextTargetSubDir =
-                        target.CreateSubdirectory(diSourceSubDir.Name);
+                    DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
                     CopyAll(diSourceSubDir, nextTargetSubDir);
                 }
             }
             catch
             {
-
+                //Do Something
             }
         }
         public void copyFromList(List<string> pathList)
@@ -133,8 +132,6 @@ namespace Homunkulus
                     }
                     if (check_compress.Checked)
                     {
-                        //Here comes the Compressed method
-                        MessageBox.Show("DEBUG: Hier ist Compressed");
                         if (folderlist.Count > 0)
                         {
                             copyFromList(folderlist);
@@ -249,7 +246,7 @@ namespace Homunkulus
             string strCompress = Convert.ToString(compress);
             string strCompliemntray = Convert.ToString(compliemntray);
             string date = datetime.ToString("dd/MM/yyyy");
-            string path = (@"Resources\backupplans\Backup_" + date + ".txt");
+            string path = (@"..\..\..\backupplans\Backup_" + date + ".txt");
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
