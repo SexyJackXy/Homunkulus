@@ -56,12 +56,14 @@ namespace Homunkulus
 
             for (var i = 0; i < 3; i++)
             {
-                if (sr.ReadLine().Contains("Source"))
+                if (!sr.ReadLine().Contains("Source"))
+                {
+                    destination = sr.ReadLine();
+                }
+                else
                 {
                     break;
                 }
-
-                destination = sr.ReadLine();
             }
 
             for (var i = 0; i <= stopAtLine; i++)
