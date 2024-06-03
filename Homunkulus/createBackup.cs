@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Wordprocessing;
 using System.Globalization;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
@@ -93,14 +94,17 @@ namespace Homunkulus
                 }
             }
         }
-
         //Button Methoden
         private void start_btn_Click(object sender, EventArgs e)
         {
             var caseNumber = 0;
             var dateTime = DateTime.Now.ToString("dd/MM/yyyy").Replace('/', '.');
+            var comparisonString = "Backup " + dateTime;
             var rtbLines = source_rtb.Lines.Count();
             var rtbToList = source_rtb;
+            var destinationFolder = Destination_txt.Text;
+            var destinationZip = destinationFolder + ".zip";
+            var rtbCurrentLine = string.Empty;
 
             if (check_complimentary.Checked) { caseNumber++; }
             if (check_compress.Checked) { caseNumber++; }
@@ -117,7 +121,7 @@ namespace Homunkulus
                     {
                         for (var i = 0; i < rtbLines; i++)
                         {
-                            string rtbCurrentLine = source_rtb.Lines[i];
+                            rtbCurrentLine = source_rtb.Lines[i];
                             folderlist.Add(rtbCurrentLine);
                         }
 
@@ -127,8 +131,7 @@ namespace Homunkulus
                 case 1:
                     if (check_complimentary.Checked)
                     {
-                        //Here comes the Complimentray method
-                        MessageBox.Show("DEBUG: Hier ist Complimentray");
+                        string[] subdirectoryEntries = Directory.GetDirectories(destinationFolder);
                     }
                     if (check_compress.Checked)
                     {
@@ -140,7 +143,7 @@ namespace Homunkulus
                         {
                             for (var i = 0; i < rtbLines; i++)
                             {
-                                string rtbCurrentLine = source_rtb.Lines[i];
+                                rtbCurrentLine = source_rtb.Lines[i];
                                 folderlist.Add(rtbCurrentLine);
                             }
 
@@ -148,9 +151,6 @@ namespace Homunkulus
                         }
                         try
                         {
-                            var destinationFolder = Destination_txt.Text;
-                            var destinationZip = destinationFolder + ".zip";
-
                             ZipFile.CreateFromDirectory(destinationFolder, destinationZip, CompressionLevel.SmallestSize, true);
 
                             if (Directory.Exists(destinationFolder))
@@ -160,9 +160,8 @@ namespace Homunkulus
                         }
                         catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.Message,"Something went Wrong");
                         }
-
                     }
                     break;
                 case 2:
