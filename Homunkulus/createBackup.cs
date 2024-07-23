@@ -131,7 +131,9 @@ namespace Homunkulus
                 case 1:
                     if (check_complimentary.Checked)
                     {
-                        string[] subdirectoryEntries = Directory.GetDirectories(destinationFolder);
+                        var subDirectories = Directory.GetDirectories(destinationFolder).Select(x => new DirectoryInfo(x).CreationTime).ToArray();
+                        var latest = subDirectories.Max().ToString().Substring(0,10);
+
                     }
                     if (check_compress.Checked)
                     {
@@ -160,7 +162,7 @@ namespace Homunkulus
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message,"Something went Wrong");
+                            MessageBox.Show(ex.Message, "Something went Wrong");
                         }
                     }
                     break;
@@ -170,6 +172,7 @@ namespace Homunkulus
             }
             source_rtb.Clear();
             source_rtb.Text = "Backup has been completed successfully";
+            Destination_txt.Clear();
         }
         private void src_btn_Click(object sender, EventArgs e)
         {

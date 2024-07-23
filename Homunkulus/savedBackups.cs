@@ -67,21 +67,25 @@ namespace Homunkulus
                 if (currentLine == null) break;
                 if (currentLine.Contains("Compress True"))
                 {
-                    var rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1);
                     booCompress = true;
+                }
+                else if (currentLine.Contains("Compress False"))
+                {
+                    booCompress = false;
                 }
                 else if (currentLine.Contains("Compliemntray True"))
                 {
-                    var rightStatus = currentLine.Substring(currentLine.IndexOf(" ") + 1); ;
                     booCompliemntray = true;
+                }
+                else if (currentLine.Contains("Compliemntray False"))
+                {
+                    booCompliemntray = false;
                 }
                 else
                 {
                     source.Add(currentLine);
                 }
             }
-
-            source.RemoveAt(0);
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
