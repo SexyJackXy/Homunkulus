@@ -8,8 +8,10 @@ namespace Homunkulus
     public partial class createBackup : Form
     {
         List<string> folderlist = new List<string>();
+        List<string> fileList = new List<string>();
         List<string> destFolderList = new List<string>();
         List<string> newFoldersList = new List<string>();
+
         public createBackup()
         {
             InitializeComponent();
@@ -73,13 +75,26 @@ namespace Homunkulus
             var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = destFolder + "Backup " + date;
 
-            for (var i = 0; i < folderlist.Count; i++)
+            for (var i = 0; i < pathList.Count; i++)
             {
                 sourceDirectory = folderlist.ElementAt(i);
                 shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
                 targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
 
-                if (Directory.Exists(newBackupFolder) && !String.IsNullOrEmpty(sourceDirectory))
+                var attributs = File.GetAttributes(sourceDirectory);
+
+                if ((attributs & FileAttributes.Directory) != FileAttributes.Directory)
+                {
+                    try
+                    {
+                        File.Copy(sourceDirectory, targetDirectory);
+                    }
+                    catch
+                    {
+                        //skip this File
+                    }
+                }
+                else if (Directory.Exists(newBackupFolder) && !String.IsNullOrEmpty(sourceDirectory))
                 {
                     Copy(sourceDirectory, targetDirectory);
                 }
@@ -93,6 +108,21 @@ namespace Homunkulus
                     break;
                 }
             }
+        }
+        public static List<string> GetFile(string path, string oldPath)
+        {
+            string[] filesInOldPath = Directory.GetFiles(oldPath, "*.*", SearchOption.AllDirectories);
+
+            var complimentaryFiles = new List<string>();
+            var latestOldFileTime = filesInOldPath.Select(file => new FileInfo(file).LastWriteTime).Max();
+            var newerFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).Select(file => new FileInfo(file)).Where(fileInfo => fileInfo.LastWriteTime > latestOldFileTime);
+
+            foreach (var fileInfo in newerFiles)
+            {
+                complimentaryFiles.Add(fileInfo.FullName);
+            }
+
+            return complimentaryFiles;
         }
         //Button Methoden
         private void start_btn_Click(object sender, EventArgs e)
@@ -131,9 +161,36 @@ namespace Homunkulus
                 case 1:
                     if (check_complimentary.Checked)
                     {
-                        var subDirectories = Directory.GetDirectories(destinationFolder).Select(x => new DirectoryInfo(x).CreationTime).ToArray();
-                        var latest = subDirectories.Max().ToString().Substring(0,10);
+                        DateTime datetime = DateTime.Today;
+                        var oldDestimntionFolder = @"C:\Users\Tim\Desktop\Testordner\Homu\";    //Folder wich the source will compared with
+                        var sourceFolder = @"C:\Users\Tim\Documents\16151814";                  //Folder from Where the Data Comes
+                        var destFolder = @"C:\Users\Tim\Desktop\Testordner\Homu\";              //Folder where The Data goes              
 
+                        var directorySourceFolderList = Directory.GetDirectories(sourceFolder).ToList();
+                        var match = directorySourceFolderList.Where(stc => stc.Contains("Backup"));
+                        var date = datetime.ToString("dd/MM/yyyy");
+                        var newBackupFolder = destFolder + "Backup " + date;
+
+                        oldDestimntionFolder = directorySourceFolderList.ElementAt(0);
+
+                        if (match != null)
+                        {
+                            if (!Directory.Exists(newBackupFolder))
+                            {
+                                Directory.CreateDirectory(newBackupFolder);
+                                fileList = GetFile(oldDestimntionFolder, newBackupFolder);
+                            }
+                            else
+                            {
+                                fileList = GetFile(sourceFolder, oldDestimntionFolder);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Hier passiert nichts");
+                        }
+
+                        copyFromList(fileList);
                     }
                     if (check_compress.Checked)
                     {
