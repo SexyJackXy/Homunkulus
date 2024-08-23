@@ -46,7 +46,7 @@
             save_btn = new Button();
             clear_btn = new Button();
             check_compress = new CheckBox();
-            check_complimentary = new CheckBox();
+            check_incremental = new CheckBox();
             multifolder_select_btn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)restore_pbox).BeginInit();
@@ -271,15 +271,15 @@
             check_compress.Text = "Compressed";
             check_compress.UseVisualStyleBackColor = false;
             // 
-            // check_complimentary
+            // check_incremental
             // 
-            check_complimentary.AutoSize = true;
-            check_complimentary.Location = new Point(812, 243);
-            check_complimentary.Name = "check_complimentary";
-            check_complimentary.Size = new Size(132, 22);
-            check_complimentary.TabIndex = 16;
-            check_complimentary.Text = "Complimentary";
-            check_complimentary.UseVisualStyleBackColor = true;
+            check_incremental.AutoSize = true;
+            check_incremental.Location = new Point(812, 243);
+            check_incremental.Name = "check_incremental";
+            check_incremental.Size = new Size(106, 22);
+            check_incremental.TabIndex = 16;
+            check_incremental.Text = "Incremental";
+            check_incremental.UseVisualStyleBackColor = true;
             // 
             // multifolder_select_btn
             // 
@@ -304,7 +304,7 @@
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
             Controls.Add(multifolder_select_btn);
-            Controls.Add(check_complimentary);
+            Controls.Add(check_incremental);
             Controls.Add(check_compress);
             Controls.Add(clear_btn);
             Controls.Add(save_btn);
@@ -350,7 +350,7 @@
         private PictureBox home_pbox;
         private Button clear_btn;
         private CheckBox check_compress;
-        private CheckBox check_complimentary;
+        private CheckBox check_incremental;
         private Button multifolder_select_btn;
     }
 }
