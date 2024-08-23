@@ -2,15 +2,15 @@ This is a C# code that defines a Windows Form Application called "Homunkulus". T
 
 The code includes various using statements that import necessary namespaces such as System.Diagnostics, System.Collections.Generic, System.Reflection, System.Text.RegularExpressions, ClosedXML.Excel, System.Xml, and System.IO.
 
-The createBackup class is the main class that extends the Form class. It has a List of strings called "folderlist" which is initialized in the constructor.
+The createBackup class is the main class that extends the Form class. It has a List of strings called "sourceFolderList" which is initialized in the constructor.
 
 The Overview_Load method sets the text of two text boxes based on savedBackups.backupPlan and savedBackups.backupPlanDest.
 
-The Copy and CopyAll methods are static methods that recursively copy files and directories from a source directory to a target directory.
+The Copy and copyAll methods are static methods that recursively copy files and directories from a source directory to a target directory.
 
-The src_btn_Click method is an event handler for the click event of a button that opens a FolderBrowserDialog and allows the user to select a folder. The method then adds the selected folder to the source text box and to the folderlist.
+The src_btn_Click method is an event handler for the click event of a button that opens a FolderBrowserDialog and allows the user to select a folder. The method then adds the selected folder to the source text box and to the sourceFolderList.
 
-The start_btn_Click method is an event handler for the click event of a button that initiates the backup process. It first creates a log file in the Resources\logs directory and creates a destination directory based on the current date. If the destination directory already exists, it asks the user if they want to select a different path or exit the application. It then loops through the folderlist and copies each folder and its contents to the destination directory. Finally, it writes the start and end times of the backup process to the log file.
+The start_btn_Click method is an event handler for the click event of a button that initiates the backup process. It first creates a log file in the Resources\logs directory and creates a destination directory based on the current date. If the destination directory already exists, it asks the user if they want to select a different path or exit the application. It then loops through the sourceFolderList and copies each folder and its contents to the destination directory. Finally, it writes the start and end times of the backup process to the log file.
 
 The add_data_btn_Click method is an event handler for the click event of a button that opens an OpenFileDialog and allows the user to select a file to add to the source text box.
 

@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Homunkulus
 {
@@ -41,8 +40,9 @@ namespace Homunkulus
         private void Load_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
-            StreamReader? sr;
-            var destination = string.Empty;
+			StreamReader? sr;
+            var destination = "";
+
             var selectedNode = node.Text;
             var seltedDataPath = path + selectedNode;
             var source = new List<string>();
@@ -151,7 +151,6 @@ namespace Homunkulus
                 MessageBox.Show("You need to select a file.");
             }
         }
-
         private void save_Changes_btn_Click(object sender, EventArgs e)
         {
             var editedContent = edit_rtb.Text;
@@ -169,12 +168,10 @@ namespace Homunkulus
 
             MessageBox.Show("Succefully Saved");
         }
-
         private void open_backups_btn_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", path);
         }
-
         private void back_btn_Click(object sender, EventArgs e)
         {
             folderName_tbox.Visible = false;
@@ -184,7 +181,6 @@ namespace Homunkulus
             treeView2.Nodes.Clear();
             PopulateTree(path, null);
         }
-
         private void delete_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;

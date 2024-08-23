@@ -208,7 +208,7 @@ namespace Homunkulus
                                 Directory.Delete(destinationFolder);
                             }
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             MessageBox.Show(ex.Message, "Something went Wrong");
                         }
@@ -228,8 +228,6 @@ namespace Homunkulus
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var folder = fbd.SelectedPath;
-                var regex = new Regex(@"\s");
-                var lineCount = source_rtb.Lines.Count();
 
                 if (String.IsNullOrEmpty(folder))
                 {
