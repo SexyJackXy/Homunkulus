@@ -236,3 +236,6 @@ Homunkulus/logs
 .vs
 Homunkulus/obj/Debug/net6.0-windows
 Homunkulus/bin/Debug/net6.0-windows/Resources/backupplans
+*.dll
+*.exe
+*.pdb
