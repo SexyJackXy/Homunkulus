@@ -1,4 +1,6 @@
+using DocumentFormat.OpenXml.Office2019.Excel.RichData2;
 using DocumentFormat.OpenXml.Wordprocessing;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
@@ -7,16 +9,15 @@ namespace Homunkulus
 {
     public partial class createBackup : Form
     {
-        List<string> folderlist = new List<string>();
+        List<string> sourceFolderList = new List<string>();
         List<string> fileList = new List<string>();
-        List<string> destFolderList = new List<string>();
+        List<string> destsourceFolderList = new List<string>();
         List<string> newFoldersList = new List<string>();
 
         public createBackup()
         {
             InitializeComponent();
         }
-
         private void Overview_Load(object sender, EventArgs e)
         {
             source_rtb.Text = savedBackups.backupPlan;
@@ -31,7 +32,7 @@ namespace Homunkulus
             }
             if (Compliemntray == true)
             {
-                check_complimentary.Checked = true;
+                check_incremental.Checked = true;
             }
         }
         public void Copy(string sourceDirectory, string targetDirectory)
@@ -39,9 +40,9 @@ namespace Homunkulus
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
 
-            CopyAll(diSource, diTarget);
+            copyAll(diSource, diTarget);
         }
-        public void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public void copyAll(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
 
@@ -56,7 +57,7 @@ namespace Homunkulus
                 foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                    CopyAll(diSourceSubDir, nextTargetSubDir);
+                    copyAll(diSourceSubDir, nextTargetSubDir);
                 }
             }
             catch
@@ -77,7 +78,7 @@ namespace Homunkulus
 
             for (var i = 0; i < pathList.Count; i++)
             {
-                sourceDirectory = folderlist.ElementAt(i);
+                sourceDirectory = sourceFolderList.ElementAt(i);
                 shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
                 targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
 
@@ -109,107 +110,97 @@ namespace Homunkulus
                 }
             }
         }
-        public static List<string> GetFile(string path, string oldPath)
+        public void copyFilesFromList(List<FileInfo> fileList, string destinationPath)
         {
-            string[] filesInOldPath = Directory.GetFiles(oldPath, "*.*", SearchOption.AllDirectories);
+            var dirs = fileList.Select(f => f.DirectoryName);
+            var date = DateTime.Now.ToString("dd/MM/yyyy");
+            var documents = @"C:\Users\Tim\Documents\";
+            destinationPath = destinationPath + "\\Backup " + date;
 
-            var complimentaryFiles = new List<string>();
-            var latestOldFileTime = filesInOldPath.Select(file => new FileInfo(file).LastWriteTime).Max();
-            var newerFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).Select(file => new FileInfo(file)).Where(fileInfo => fileInfo.LastWriteTime > latestOldFileTime);
-
-            foreach (var fileInfo in newerFiles)
+            foreach (var file in fileList) 
             {
-                complimentaryFiles.Add(fileInfo.FullName);
+                var fileName = file.Name;
+                var fullName = file.FullName;
+                var topFolder = file.DirectoryName;
+
+                if (topFolder.StartsWith(documents))
+                {
+                    var newtopFolder = topFolder.Substring(documents.Length);
+                    var newDestinationPath = Path.Combine(destinationPath, newtopFolder);
+
+                    if (!Directory.Exists(newDestinationPath))
+                    {
+                        Directory.CreateDirectory(newDestinationPath);
+                    }
+
+                    File.Copy(fullName, newDestinationPath + "\\" + fileName);
+                }
             }
 
-            return complimentaryFiles;
         }
+
+        public void incrementalCopy(string destinationPath, List<string> sourceList)
+        {
+            var newestDirectoryPath = Directory.GetDirectories(destinationPath, "*.*", SearchOption.TopDirectoryOnly)
+                .Select(dir => new DirectoryInfo(dir))
+                .Where(dirInfo => dirInfo.LastWriteTime < DateTime.Now)
+                .OrderBy(dirInfo => dirInfo.LastWriteTime)
+                .FirstOrDefault();
+
+            var fileInOldDirectory = Directory.GetFiles(newestDirectoryPath.FullName, "*.*", SearchOption.AllDirectories);
+            var latestBackupDate = fileInOldDirectory.Select(file => new FileInfo(file).LastWriteTime).Max();
+            var complimentaryFiles = new List<string>();
+
+            if (newestDirectoryPath != null)
+            {
+                for (var i = 0; i < sourceFolderList.Count; i++)
+                {
+                    if (sourceFolderList[i] != "")
+                    {
+                        var sourcePath = sourceFolderList.ElementAt(i).Trim();
+                        var filesToCopy = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories).Select(file => new FileInfo(file)).Where(fileInfo => fileInfo.LastWriteTime > latestBackupDate).ToList();
+
+                        copyFilesFromList(filesToCopy, destinationPath);
+                    }
+                }
+            }
+        }
+
         //Button Methoden
         private void start_btn_Click(object sender, EventArgs e)
         {
             var caseNumber = 0;
-            var dateTime = DateTime.Now.ToString("dd/MM/yyyy").Replace('/', '.');
-            var comparisonString = "Backup " + dateTime;
-            var rtbLines = source_rtb.Lines.Count();
-            var rtbToList = source_rtb;
+            var linesInRtb = source_rtb.Lines.Count();
             var destinationFolder = Destination_txt.Text;
             var destinationZip = destinationFolder + ".zip";
-            var rtbCurrentLine = string.Empty;
 
-            if (check_complimentary.Checked) { caseNumber++; }
+            if (check_incremental.Checked) { caseNumber++; }
             if (check_compress.Checked) { caseNumber++; }
 
+            if (sourceFolderList.Count == 0)
+            {
+                for (var i = 0; i < linesInRtb; i++)
+                {
+                    sourceFolderList.Add(source_rtb.Lines[i]);
+                }
+            }
 
             switch (caseNumber)
             {
                 case 0:
-                    if (folderlist.Count > 0)
-                    {
-                        copyFromList(folderlist);
-                    }
-                    else
-                    {
-                        for (var i = 0; i < rtbLines; i++)
-                        {
-                            rtbCurrentLine = source_rtb.Lines[i];
-                            folderlist.Add(rtbCurrentLine);
-                        }
-
-                        copyFromList(folderlist);
-                    }
+                    copyFromList(sourceFolderList);
                     break;
                 case 1:
-                    if (check_complimentary.Checked)
+                    if (check_incremental.Checked)
                     {
-                        DateTime datetime = DateTime.Today;
-                        var oldDestimntionFolder = @"C:\Users\Tim\Desktop\Testordner\Homu\";    //Folder wich the source will compared with
-                        var sourceFolder = @"C:\Users\Tim\Documents\16151814";                  //Folder from Where the Data Comes
-                        var destFolder = @"C:\Users\Tim\Desktop\Testordner\Homu\";              //Folder where The Data goes              
-
-                        var directorySourceFolderList = Directory.GetDirectories(sourceFolder).ToList();
-                        var match = directorySourceFolderList.Where(stc => stc.Contains("Backup"));
-                        var date = datetime.ToString("dd/MM/yyyy");
-                        var newBackupFolder = destFolder + "Backup " + date;
-
-                        oldDestimntionFolder = directorySourceFolderList.ElementAt(0);
-
-                        if (match != null)
-                        {
-                            if (!Directory.Exists(newBackupFolder))
-                            {
-                                Directory.CreateDirectory(newBackupFolder);
-                                fileList = GetFile(oldDestimntionFolder, newBackupFolder);
-                            }
-                            else
-                            {
-                                fileList = GetFile(sourceFolder, oldDestimntionFolder);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Hier passiert nichts");
-                        }
-
-                        copyFromList(fileList);
+                        incrementalCopy(destinationFolder, sourceFolderList);
                     }
                     if (check_compress.Checked)
                     {
-                        if (folderlist.Count > 0)
-                        {
-                            copyFromList(folderlist);
-                        }
-                        else
-                        {
-                            for (var i = 0; i < rtbLines; i++)
-                            {
-                                rtbCurrentLine = source_rtb.Lines[i];
-                                folderlist.Add(rtbCurrentLine);
-                            }
-
-                            copyFromList(folderlist);
-                        }
                         try
                         {
+                            copyFromList(sourceFolderList);
+
                             ZipFile.CreateFromDirectory(destinationFolder, destinationZip, CompressionLevel.SmallestSize, true);
 
                             if (Directory.Exists(destinationFolder))
@@ -227,9 +218,8 @@ namespace Homunkulus
                     //Here comes the Compressed and Complimentray method  
                     break;
             }
-            source_rtb.Clear();
+
             source_rtb.Text = "Backup has been completed successfully";
-            Destination_txt.Clear();
         }
         private void src_btn_Click(object sender, EventArgs e)
         {
@@ -246,7 +236,7 @@ namespace Homunkulus
                     MessageBox.Show("You can not add nothing");
                 }
                 source_rtb.AppendText(Environment.NewLine + folder);
-                folderlist.Add(folder);
+                sourceFolderList.Add(folder);
             }
         }
         private void add_data_btn_Click(object sender, EventArgs e)
@@ -301,7 +291,7 @@ namespace Homunkulus
             DateTime datetime = DateTime.Today;
 
             bool compress = check_compress.Checked ? true : false;
-            bool compliemntray = check_complimentary.Checked ? true : false;
+            bool compliemntray = check_incremental.Checked ? true : false;
             string strCompress = Convert.ToString(compress);
             string strCompliemntray = Convert.ToString(compliemntray);
             string date = datetime.ToString("dd/MM/yyyy");
