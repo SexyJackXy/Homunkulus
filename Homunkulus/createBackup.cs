@@ -112,33 +112,35 @@ namespace Homunkulus
         }
         public void copyFilesFromList(List<FileInfo> fileList, string destinationPath)
         {
-            var dirs = fileList.Select(f => f.DirectoryName);
-            var date = DateTime.Now.ToString("dd/MM/yyyy");
-            var documents = @"C:\Users\Tim\Documents\";
-            destinationPath = destinationPath + "\\Backup " + date;
+            string documentsPath = @"C:\Users\Tim\Documents\";
+            string userRootPath = @"C:\Users\Tim\";
+            string backupFolderName = "Backup " + DateTime.Now.ToString("dd-MM-yyyy");
+            string finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
 
-            foreach (var file in fileList) 
+            foreach (var file in fileList)
             {
-                var fileName = file.Name;
-                var fullName = file.FullName;
-                var topFolder = file.DirectoryName;
+                string fileName = file.Name;
+                string sourceFilePath = file.FullName;
+                string sourceDirPath = file.DirectoryName;
+                string relativeDirPath = sourceDirPath;
 
-                if (topFolder.StartsWith(documents))
+                relativeDirPath = relativeDirPath.Replace(documentsPath, "").Replace(userRootPath, "");
+
+                if (relativeDirPath.StartsWith(@"\") || relativeDirPath.StartsWith("/"))
                 {
-                    var newtopFolder = topFolder.Substring(documents.Length);
-                    var newDestinationPath = Path.Combine(destinationPath, newtopFolder);
-
-                    if (!Directory.Exists(newDestinationPath))
-                    {
-                        Directory.CreateDirectory(newDestinationPath);
-                    }
-
-                    File.Copy(fullName, newDestinationPath + "\\" + fileName);
+                    relativeDirPath = relativeDirPath.Substring(1);
                 }
+
+                string targetDirPath = Path.Combine(finalDestinationPath, relativeDirPath);
+                if (!Directory.Exists(targetDirPath))
+                {
+                    Directory.CreateDirectory(targetDirPath);
+                }
+
+                string targetFilePath = Path.Combine(targetDirPath, fileName);
+                File.Copy(sourceFilePath, targetFilePath);
             }
-
         }
-
         public void incrementalCopy(string destinationPath, List<string> sourceList)
         {
             var newestDirectoryPath = Directory.GetDirectories(destinationPath, "*.*", SearchOption.TopDirectoryOnly)
