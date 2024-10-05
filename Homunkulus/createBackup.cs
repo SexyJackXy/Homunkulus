@@ -171,13 +171,9 @@ namespace Homunkulus
         //Button Methoden
         private void start_btn_Click(object sender, EventArgs e)
         {
-            var caseNumber = 0;
             var linesInRtb = source_rtb.Lines.Count();
             var destinationFolder = Destination_txt.Text;
             var destinationZip = destinationFolder + ".zip";
-
-            if (check_incremental.Checked) { caseNumber++; }
-            if (check_compress.Checked) { caseNumber++; }
 
             if (sourceFolderList.Count == 0)
             {
@@ -187,38 +183,33 @@ namespace Homunkulus
                 }
             }
 
-            switch (caseNumber)
+            if (check_incremental.Checked)
             {
-                case 0:
+                incrementalCopy(destinationFolder, sourceFolderList);
+            }
+
+            if (check_compress.Checked)
+            {
+                try
+                {
                     copyFromList(sourceFolderList);
-                    break;
-                case 1:
-                    if (check_incremental.Checked)
-                    {
-                        incrementalCopy(destinationFolder, sourceFolderList);
-                    }
-                    if (check_compress.Checked)
-                    {
-                        try
-                        {
-                            copyFromList(sourceFolderList);
 
-                            ZipFile.CreateFromDirectory(destinationFolder, destinationZip, CompressionLevel.SmallestSize, true);
+                    ZipFile.CreateFromDirectory(destinationFolder, destinationZip, CompressionLevel.SmallestSize, true);
 
-                            if (Directory.Exists(destinationFolder))
-                            {
-                                Directory.Delete(destinationFolder);
-                            }
-                        }
-                        catch
-                        {
-                            MessageBox.Show(ex.Message, "Something went Wrong");
-                        }
+                    if (Directory.Exists(destinationFolder))
+                    {
+                        Directory.Delete(destinationFolder);
                     }
-                    break;
-                case 2:
-                    //Here comes the Compressed and Complimentray method  
-                    break;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Something went Wrong");
+                }
+            }
+
+            if(!check_compress.Checked && !check_incremental.Checked)
+            {
+                copyFromList(sourceFolderList);
             }
 
             source_rtb.Text = "Backup has been completed successfully";
