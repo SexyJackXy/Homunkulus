@@ -108,35 +108,34 @@ namespace Homunkulus
         }
         public void copyFilesFromList(List<string> fileList, string destinationPath)
         {
-            string documentsPath = @"C:\Users\Tim\Documents\";
-            string userRootPath = @"C:\Users\Tim\";
-            string backupFolderName = "Backup " + DateTime.Now.ToString("dd-MM-yyyy");
-            string finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
+            var documentsPath = @"C:\Users\Tim\Documents\";
+            var userRootPath = @"C:\Users\Tim\";
+            var backupFolderName = "Backup " + DateTime.Now.ToString("dd.MM.yyyy");
+            var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
 
             foreach (var file in fileList)
             {
-                string fileName = "";
-                string sourceFilePath = "";
-                string sourceDirPath = "file.DirectoryName";
-                string relativeDirPath = sourceDirPath;
+                var fi = new FileInfo(file);
+                var fileName = fi.Name;
+                var sourceDirPath = fi.DirectoryName;
+                var relativeDirPath = sourceDirPath;
 
-                relativeDirPath = relativeDirPath.Replace(documentsPath, "").Replace(userRootPath, "");
 
                 if (relativeDirPath.StartsWith(@"\") || relativeDirPath.StartsWith("/"))
                 {
                     relativeDirPath = relativeDirPath.Substring(1);
                 }
 
-                string targetDirPath = Path.Combine(finalDestinationPath, relativeDirPath);
+                var targetDirPath = Path.Combine(finalDestinationPath, relativeDirPath);
                 if (!Directory.Exists(targetDirPath))
                 {
                     Directory.CreateDirectory(targetDirPath);
                 }
 
-                string targetFilePath = Path.Combine(targetDirPath, fileName);
+                var targetFilePath = Path.Combine(targetDirPath, fileName);
                 try
                 {
-                    File.Copy(sourceFilePath, targetFilePath);
+                    File.Copy(sourceDirPath, targetFilePath);
                 }
                 catch { }
 
@@ -144,35 +143,27 @@ namespace Homunkulus
         }
         public void incrementalCopy(string destinationPath, List<string> sourceList)
         {
-            var newestDirectoryPath = Directory.GetDirectories(destinationPath, "*.*", SearchOption.TopDirectoryOnly)
-                .Select(dir => new DirectoryInfo(dir))
-                .Where(dirInfo => dirInfo.LastWriteTime < DateTime.Now)
-                .OrderBy(dirInfo => dirInfo.LastWriteTime)
-                .FirstOrDefault();
-
             var tfs = new TemporaryFileStore(destinationPath);
-
-            var oldFiles = Directory.GetFiles(newestDirectoryPath.FullName, "*.*", SearchOption.AllDirectories);
             var complimentaryFiles = new List<string>();
 
-            if (newestDirectoryPath != null)
+            for (var i = 0; i < sourceList.Count; i++)
             {
-                for (var i = 0; i < sourceFolderList.Count; i++)
+                if (sourceList[i] != "")
                 {
-                    if (sourceFolderList[i] != "")
-                    {
-                        var sourcePath = sourceFolderList.ElementAt(i).Trim();
-                        var sourcePathFiles = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories);
+                    var sourcePath = sourceList.ElementAt(i).Trim();
+                    var sourcePathFiles = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories);
+                    var existingFiles = tfs.Files.Where(x => x.Contains(sourcePath.Substring(3))).ToList();
 
-                        var list1 = tfs.Files.ToList();
-                        var list2 = sourcePathFiles.ToList();
-                        var list3 = list1.Except(list2); //list3 contains only 1, 2
-                        var list4 = list2.Except(list1); //list4 contains only 6, 7
+                    var sourcePathFilesShort = sourcePathFiles.Select(file => file.Length > 29 ? file.Substring(3) : file).ToList();
+                    var existingFilesShort = existingFiles.Select(file => file.Length > 29 ? file.Substring(28) : file).ToList();
 
-                        var dif = list3.Concat(list4).ToList();
+                    var gemeinsameElemente = sourcePathFilesShort.Intersect(existingFilesShort).ToList();
 
-                        copyFilesFromList(dif, destinationPath);
-                    }
+                    sourcePathFilesShort = sourcePathFilesShort.Except(gemeinsameElemente).ToList();
+                    existingFilesShort = existingFilesShort.Except(gemeinsameElemente).ToList();
+
+                    var filesToCopy = sourcePathFilesShort.Concat(existingFilesShort).ToList();
+                    copyFilesFromList(filesToCopy, destinationPath);
                 }
             }
         }
@@ -216,7 +207,7 @@ namespace Homunkulus
                 }
             }
 
-            if(!check_compress.Checked && !check_incremental.Checked)
+            if (!check_compress.Checked && !check_incremental.Checked)
             {
                 copyFromList(sourceFolderList);
             }

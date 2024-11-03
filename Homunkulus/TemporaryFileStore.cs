@@ -42,8 +42,13 @@ namespace Homunkulus
             foreach (var file in s_allOldFiles)
             {
                 var fi = new FileInfo(file);
+                var fiDir = fi.Directory.ToString();
                 FileName.Add(fi.Name); // Hinzufügen des Dateinamens zur Liste
-                Direcorty.Add(fi.FullName); // Hinzufügen des vollständigen Pfads zur Liste
+
+                if (!Direcorty.Contains(fiDir))
+                {
+                    Direcorty.Add(fi.Directory.ToString()); // Hinzufügen des vollständigen Pfads zur Liste
+                }
             }
         }
     }
