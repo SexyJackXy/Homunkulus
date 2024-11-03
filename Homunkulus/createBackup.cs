@@ -1,7 +1,3 @@
-using DocumentFormat.OpenXml.Office2019.Excel.RichData2;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using System.IO.Compression;
 using System.Text.RegularExpressions;
 
@@ -110,7 +106,7 @@ namespace Homunkulus
                 }
             }
         }
-        public void copyFilesFromList(List<FileInfo> fileList, string destinationPath)
+        public void copyFilesFromList(List<string> fileList, string destinationPath)
         {
             string documentsPath = @"C:\Users\Tim\Documents\";
             string userRootPath = @"C:\Users\Tim\";
@@ -119,9 +115,9 @@ namespace Homunkulus
 
             foreach (var file in fileList)
             {
-                string fileName = file.Name;
-                string sourceFilePath = file.FullName;
-                string sourceDirPath = file.DirectoryName;
+                string fileName = "";
+                string sourceFilePath = "";
+                string sourceDirPath = "file.DirectoryName";
                 string relativeDirPath = sourceDirPath;
 
                 relativeDirPath = relativeDirPath.Replace(documentsPath, "").Replace(userRootPath, "");
@@ -138,7 +134,12 @@ namespace Homunkulus
                 }
 
                 string targetFilePath = Path.Combine(targetDirPath, fileName);
-                File.Copy(sourceFilePath, targetFilePath);
+                try
+                {
+                    File.Copy(sourceFilePath, targetFilePath);
+                }
+                catch { }
+
             }
         }
         public void incrementalCopy(string destinationPath, List<string> sourceList)
@@ -149,8 +150,9 @@ namespace Homunkulus
                 .OrderBy(dirInfo => dirInfo.LastWriteTime)
                 .FirstOrDefault();
 
-            var fileInOldDirectory = Directory.GetFiles(newestDirectoryPath.FullName, "*.*", SearchOption.AllDirectories);
-            var latestBackupDate = fileInOldDirectory.Select(file => new FileInfo(file).LastWriteTime).Max();
+            var tfs = new TemporaryFileStore(destinationPath);
+
+            var oldFiles = Directory.GetFiles(newestDirectoryPath.FullName, "*.*", SearchOption.AllDirectories);
             var complimentaryFiles = new List<string>();
 
             if (newestDirectoryPath != null)
@@ -160,9 +162,16 @@ namespace Homunkulus
                     if (sourceFolderList[i] != "")
                     {
                         var sourcePath = sourceFolderList.ElementAt(i).Trim();
-                        var filesToCopy = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories).Select(file => new FileInfo(file)).Where(fileInfo => fileInfo.LastWriteTime > latestBackupDate).ToList();
+                        var sourcePathFiles = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories);
 
-                        copyFilesFromList(filesToCopy, destinationPath);
+                        var list1 = tfs.Files.ToList();
+                        var list2 = sourcePathFiles.ToList();
+                        var list3 = list1.Except(list2); //list3 contains only 1, 2
+                        var list4 = list2.Except(list1); //list4 contains only 6, 7
+
+                        var dif = list3.Concat(list4).ToList();
+
+                        copyFilesFromList(dif, destinationPath);
                     }
                 }
             }
