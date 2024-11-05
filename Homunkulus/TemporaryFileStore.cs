@@ -10,9 +10,10 @@ namespace Homunkulus
 {
     internal class TemporaryFileStore
     {
-        public IEnumerable<string> Files { get; set; }
+        public List<FileInfo> OldFiles { get; set; }
         public List<string> Direcorty { get; set; }
         public List<string> FileName { get; set; }
+        public List<DirectoryInfo> OldBackups {  get; set; }
 
         public TemporaryFileStore(string destination)
         {
@@ -22,32 +23,32 @@ namespace Homunkulus
             var today = DateTime.Now;
             var dirList = Directory.GetDirectories(destination, "*.*", SearchOption.TopDirectoryOnly)
                                     .Select(dir => new DirectoryInfo(dir))
-                                    .Where(dirInfo => dirInfo.LastWriteTime != today)
+                                    .Where(dirInfo => dirInfo.LastWriteTime < today)
                                     .ToList();
 
-            var allOldFiles = new List<string>();
+            var allOldFiles = new List<FileInfo> ();
 
             foreach (var dir in dirList)
             {
                 var filesInDir = Directory.GetFiles(dir.FullName, "*.*", SearchOption.AllDirectories).ToList();
                 foreach (var file in filesInDir)
                 {
-                    allOldFiles.Add(file);
+                    var fi = new FileInfo(file);
+                    allOldFiles.Add(fi);
                 }
             }
 
-            var s_allOldFiles = allOldFiles.Distinct().OrderBy(f => f).ToList();
-            Files = s_allOldFiles;
+            OldBackups = dirList;
+            OldFiles = allOldFiles;
 
-            foreach (var file in s_allOldFiles)
+            foreach (var file in OldFiles)
             {
-                var fi = new FileInfo(file);
-                var fiDir = fi.Directory.ToString();
-                FileName.Add(fi.Name); // Hinzufügen des Dateinamens zur Liste
+                var fiDir = file.Directory.ToString();
+                FileName.Add(file.Name); // Hinzufügen des Dateinamens zur Liste
 
                 if (!Direcorty.Contains(fiDir))
                 {
-                    Direcorty.Add(fi.Directory.ToString()); // Hinzufügen des vollständigen Pfads zur Liste
+                    Direcorty.Add(file.Directory.ToString()); // Hinzufügen des vollständigen Pfads zur Liste
                 }
             }
         }

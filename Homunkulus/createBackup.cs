@@ -106,19 +106,33 @@ namespace Homunkulus
                 }
             }
         }
-        public void copyFilesFromList(List<string> fileList, string destinationPath)
+        public void copyFilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
-            var documentsPath = @"C:\Users\Tim\Documents\";
-            var userRootPath = @"C:\Users\Tim\";
+            var homunkulusPath = @"C:\Users\Tim\Documents\GitHub\Homunkulus\Homunkulus\bin\Debug\net6.0-windows";
+            var documentPath = @"C:\Users\Tim\Documents";
+            var rootUserPaht = @"C:\Users\Tim";
             var backupFolderName = "Backup " + DateTime.Now.ToString("dd.MM.yyyy");
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
+            var driveLetter = sourcePath.Substring(0, 3);
 
             foreach (var file in fileList)
             {
-                var fi = new FileInfo(file);
-                var fileName = fi.Name;
-                var sourceDirPath = fi.DirectoryName;
-                var relativeDirPath = sourceDirPath;
+                var fileName = file.Name;
+                var sourceDirPath = file.FullName;
+                var relativeDirPath = file.Directory.ToString();
+
+                if (relativeDirPath.Contains(documentPath))
+                {
+                    relativeDirPath = relativeDirPath.Replace(documentPath, "");
+                }
+                else if (relativeDirPath.Contains(rootUserPaht))
+                {
+                    relativeDirPath = relativeDirPath.Replace(rootUserPaht, "");
+                }
+                else if (relativeDirPath.Contains(driveLetter))
+                {
+                    relativeDirPath = relativeDirPath.Replace(driveLetter, "");
+                }
 
 
                 if (relativeDirPath.StartsWith(@"\") || relativeDirPath.StartsWith("/"))
@@ -138,33 +152,23 @@ namespace Homunkulus
                     File.Copy(sourceDirPath, targetFilePath);
                 }
                 catch { }
-
+                var stopHere = "";
             }
         }
         public void incrementalCopy(string destinationPath, List<string> sourceList)
         {
             var tfs = new TemporaryFileStore(destinationPath);
             var complimentaryFiles = new List<string>();
+            var latestedBackupDate = tfs.OldBackups.Max(dir => dir.CreationTime);
 
-            for (var i = 0; i < sourceList.Count; i++)
+            foreach (var source in sourceList)
             {
-                if (sourceList[i] != "")
-                {
-                    var sourcePath = sourceList.ElementAt(i).Trim();
-                    var sourcePathFiles = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories);
-                    var existingFiles = tfs.Files.Where(x => x.Contains(sourcePath.Substring(3))).ToList();
+                var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path)).ToList();
+                var oldFiles = tfs.Direcorty.ToList();
+                var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestedBackupDate).Select(file => file).ToList();
+                var parentDirectories = newFiles.Select(file => file.Directory).Where(dir => dir != null).Distinct().ToList();
 
-                    var sourcePathFilesShort = sourcePathFiles.Select(file => file.Length > 29 ? file.Substring(3) : file).ToList();
-                    var existingFilesShort = existingFiles.Select(file => file.Length > 29 ? file.Substring(28) : file).ToList();
-
-                    var gemeinsameElemente = sourcePathFilesShort.Intersect(existingFilesShort).ToList();
-
-                    sourcePathFilesShort = sourcePathFilesShort.Except(gemeinsameElemente).ToList();
-                    existingFilesShort = existingFilesShort.Except(gemeinsameElemente).ToList();
-
-                    var filesToCopy = sourcePathFilesShort.Concat(existingFilesShort).ToList();
-                    copyFilesFromList(filesToCopy, destinationPath);
-                }
+                copyFilesFromList(newFiles, destinationPath, source);
             }
         }
 
