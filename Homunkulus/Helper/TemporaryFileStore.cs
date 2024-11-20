@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homunkulus
+namespace Homunkulus.Helper
 {
     internal class TemporaryFileStore
     {
         public List<FileInfo> OldFiles { get; set; }
         public List<string> Direcorty { get; set; }
         public List<string> FileName { get; set; }
-        public List<DirectoryInfo> OldBackups {  get; set; }
+        public List<DirectoryInfo> OldBackups { get; set; }
 
         public TemporaryFileStore(string destination)
         {
@@ -26,7 +26,7 @@ namespace Homunkulus
                                     .Where(dirInfo => dirInfo.LastWriteTime < today)
                                     .ToList();
 
-            var allOldFiles = new List<FileInfo> ();
+            var allOldFiles = new List<FileInfo>();
 
             foreach (var dir in dirList)
             {
