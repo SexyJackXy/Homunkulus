@@ -8,7 +8,7 @@
             var bph = new BackupplanHelper();
             var backupplan = createBlackupplan(compress, incremental, soruce, destination);
 
-            if (backupplan.DestinationPath == null) 
+            if (backupplan.DestinationPath == null)
             {
                 throw new ArgumentNullException(backupplan.DestinationPath);
             }
@@ -20,17 +20,14 @@
             saveFileName = util.toTextFile(saveFileName);
 
             var savePath = @"../../../backupplans/" + saveFileName;
-            File.Create(savePath);
 
-            var IBackupPlan = bph.toIEnumerable(backupplan);
-
-            File.AppendAllLines(savePath, IBackupPlan);
+            bph.Save(backupplan, savePath);
         }
 
         public BackupplanHelper createBlackupplan(bool compress, bool incremental, string soruce, string destination)
         {
             var plan = new BackupplanHelper();
-            plan.Fill(compress, incremental,soruce,destination);
+            plan.Fill(compress, incremental, soruce, destination);
 
             return plan;
         }

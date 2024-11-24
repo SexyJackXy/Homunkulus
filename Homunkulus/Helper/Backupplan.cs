@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using Homunkulus.Helper;
 
 namespace Homunkulus.Helper
@@ -13,8 +14,8 @@ namespace Homunkulus.Helper
         public string SourcePath { get; set; }
         public string DestinationPath { get; set; }
         public List<string> Files { get; set; }
-        public bool incrementel {  get; set; }
-        public bool compress {  get; set; }
+        public bool incrementel { get; set; }
+        public bool compress { get; set; }
 
         public void Fill(bool g_compress, bool compliemntray, string source, string destination)
         {
@@ -25,28 +26,40 @@ namespace Homunkulus.Helper
             DestinationPath = destination;
             Files = new List<string>();
 
-            var filesList = util.stringToList(source,true);
+            var filesList = util.stringToList(source, true);
 
-            foreach (var file in filesList) 
-            { 
+            foreach (var file in filesList)
+            {
                 Files.Add(file);
             }
         }
 
-        //TO DO Fix the return of the Enumerable
-        public IEnumerable<string> toIEnumerable(BackupplanHelper backupplan)
+        public void Save(BackupplanHelper backupplan, string savePath)
         {
-            var IBackupPlan =  Enumerable.Empty<string>();
+            string[] destination = { backupplan.DestinationPath };
+            string[] incrementel = { backupplan.incrementel.ToString() };
+            string[] compress = { backupplan.compress.ToString() };
+            var tempFiles = new List<string>();
 
-            IBackupPlan.Append(backupplan.DestinationPath);
-            IBackupPlan.Append(backupplan.incrementel.ToString());
-            IBackupPlan.Append(backupplan.compress.ToString());
-
-            foreach (var file in backupplan.Files) 
+            foreach (var file in backupplan.Files)
             {
-                IBackupPlan.Append(file);
+                tempFiles.Add(file);
             }
-            return IBackupPlan;
+
+            var files = string.Join("\n", tempFiles);
+
+            var retrunString =
+                $"Destination:\n" +
+                $"{backupplan.DestinationPath}\n" +
+                $"\n" +
+                $"Files: \n" +
+                $"{files}" +
+                $"\n" +
+                $"Status:\n" +
+                $"{backupplan.incrementel.ToString()}\n" +
+                $"{backupplan.compress.ToString()}\n";
+
+            File.WriteAllText(savePath,retrunString);
         }
     }
 }

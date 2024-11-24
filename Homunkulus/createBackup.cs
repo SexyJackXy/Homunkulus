@@ -78,7 +78,14 @@ namespace Homunkulus
                 {
                     MessageBox.Show("You can not add nothing");
                 }
-                source_rtb.AppendText(Environment.NewLine + folder);
+                if (source_rtb.Text.Length == 0)
+                {
+                    source_rtb.AppendText(folder);
+                }
+                else
+                {
+                    source_rtb.AppendText("\n" + folder);
+                }
                 sourceFolderList.Add(folder);
             }
         }

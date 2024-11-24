@@ -21,11 +21,10 @@ namespace Homunkulus.Helper
             var IReturnList = str.Replace("\r", "").Split(new[] { '\n' }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
             return IReturnList.ToList();
         }
-        public string toTextFile(string fileName) 
+        public string toTextFile(string fileName)
         {
             return fileName + ".txt";
         }
-
     }
 
     ///TODO: added this next
