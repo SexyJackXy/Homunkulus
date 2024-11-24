@@ -3,13 +3,15 @@
 >The homunculus or Latin homunculus ("little man") refers to an artificially created (small) human being.
 
 ## Description
- Similarly, the homonculus is supposed to be an artificially created likeness of a human being. With my program I try to create an artificially created image of the data from your computer. This program is used for this activity.
+
+In der Alchemie ist ein Homunkulus eine künstlich geschaffene, kleine menschliche Figur, die oft als Diener oder Helfer gedacht wurde. Übertragen auf dieses Programm bedeutet, dass es wie ein kleiner, unsichtbarer Helfer im Hintergrund arbeitet, Daten kopiert, ohne dass man sich ständig darum kümmern muss.
  
 **Or in short**
 
-It is a backup program which works with C# and WinForms.
+It is a Backupprogram which works with C# and WinForms.
 
 ## Versions
-Currently Working on Version 2
+
+The Current Version is the Second Version of it.
 
 ## Installation
