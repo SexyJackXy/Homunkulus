@@ -4,9 +4,6 @@
     <Compile Update="createBackup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="loadBackup.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Custom Controls\Custombutton.cs">
       <SubType>Component</SubType>
     </Compile>

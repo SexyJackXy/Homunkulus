@@ -177,14 +177,9 @@ namespace Homunkulus
             new savedBackups().ShowDialog();
             this.Close();
         }
-        private void restore_pbox_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new loadBackup().ShowDialog();
-            this.Close();
-        }
         private void multifolder_select_btn_Click(object sender, EventArgs e)
         {
+            throw new NotImplementedException();
             new multiFolderSelect().ShowDialog();
         }
     }

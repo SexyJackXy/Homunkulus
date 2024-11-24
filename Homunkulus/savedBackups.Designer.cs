@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(savedBackups));
             panel1 = new Panel();
-            restore_pbox = new PictureBox();
             create_pbox = new PictureBox();
             plans_pbox = new PictureBox();
             home_pbox = new PictureBox();
@@ -46,7 +45,6 @@
             folderName_tbox = new TextBox();
             delete_btn = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)restore_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).BeginInit();
@@ -56,30 +54,19 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(227, 233, 245);
-            panel1.Controls.Add(restore_pbox);
             panel1.Controls.Add(create_pbox);
             panel1.Controls.Add(plans_pbox);
             panel1.Controls.Add(home_pbox);
-            panel1.Location = new Point(0, 609);
+            panel1.Location = new Point(-3, 606);
             panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(982, 40);
+            panel1.Size = new Size(982, 38);
             panel1.TabIndex = 4;
-            // 
-            // restore_pbox
-            // 
-            restore_pbox.Image = Properties.Resources.restore;
-            restore_pbox.Location = new Point(590, 3);
-            restore_pbox.Name = "restore_pbox";
-            restore_pbox.Size = new Size(32, 32);
-            restore_pbox.TabIndex = 14;
-            restore_pbox.TabStop = false;
-            restore_pbox.Click += restore_pbox_Click;
             // 
             // create_pbox
             // 
             create_pbox.Image = Properties.Resources.create;
-            create_pbox.Location = new Point(452, 3);
+            create_pbox.Location = new Point(479, 3);
             create_pbox.Name = "create_pbox";
             create_pbox.Size = new Size(32, 32);
             create_pbox.TabIndex = 12;
@@ -89,7 +76,7 @@
             // plans_pbox
             // 
             plans_pbox.Image = Properties.Resources.backupplans;
-            plans_pbox.Location = new Point(521, 3);
+            plans_pbox.Location = new Point(548, 3);
             plans_pbox.Name = "plans_pbox";
             plans_pbox.Size = new Size(32, 32);
             plans_pbox.TabIndex = 13;
@@ -99,7 +86,7 @@
             // home_pbox
             // 
             home_pbox.Image = Properties.Resources.home;
-            home_pbox.Location = new Point(388, 3);
+            home_pbox.Location = new Point(415, 3);
             home_pbox.Name = "home_pbox";
             home_pbox.Size = new Size(32, 32);
             home_pbox.TabIndex = 11;
@@ -223,7 +210,7 @@
             label1.FlatStyle = FlatStyle.System;
             label1.Font = new Font("Arial", 15F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(12, 90);
+            label1.Location = new Point(36, 90);
             label1.Name = "label1";
             label1.Size = new Size(105, 24);
             label1.TabIndex = 14;
@@ -280,7 +267,6 @@
             Text = "History";
             Load += History_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)restore_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).EndInit();
@@ -291,7 +277,6 @@
         #endregion
 
         private Panel panel1;
-        private PictureBox restore_pbox;
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;

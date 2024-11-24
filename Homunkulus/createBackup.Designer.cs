@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(createBackup));
             import_backup_btn = new Button();
             panel1 = new Panel();
-            restore_pbox = new PictureBox();
             create_pbox = new PictureBox();
             plans_pbox = new PictureBox();
             home_pbox = new PictureBox();
@@ -49,7 +48,6 @@
             check_incremental = new CheckBox();
             multifolder_select_btn = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)restore_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).BeginInit();
@@ -75,7 +73,6 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(227, 233, 245);
-            panel1.Controls.Add(restore_pbox);
             panel1.Controls.Add(create_pbox);
             panel1.Controls.Add(plans_pbox);
             panel1.Controls.Add(home_pbox);
@@ -85,20 +82,10 @@
             panel1.Size = new Size(982, 40);
             panel1.TabIndex = 0;
             // 
-            // restore_pbox
-            // 
-            restore_pbox.Image = Properties.Resources.restore;
-            restore_pbox.Location = new Point(579, 5);
-            restore_pbox.Name = "restore_pbox";
-            restore_pbox.Size = new Size(32, 32);
-            restore_pbox.TabIndex = 17;
-            restore_pbox.TabStop = false;
-            restore_pbox.Click += restore_pbox_Click;
-            // 
             // create_pbox
             // 
             create_pbox.Image = Properties.Resources.create;
-            create_pbox.Location = new Point(441, 5);
+            create_pbox.Location = new Point(480, 3);
             create_pbox.Name = "create_pbox";
             create_pbox.Size = new Size(32, 32);
             create_pbox.TabIndex = 15;
@@ -108,7 +95,7 @@
             // plans_pbox
             // 
             plans_pbox.Image = Properties.Resources.backupplans;
-            plans_pbox.Location = new Point(510, 5);
+            plans_pbox.Location = new Point(549, 3);
             plans_pbox.Name = "plans_pbox";
             plans_pbox.Size = new Size(32, 32);
             plans_pbox.TabIndex = 16;
@@ -118,7 +105,7 @@
             // home_pbox
             // 
             home_pbox.Image = Properties.Resources.home;
-            home_pbox.Location = new Point(377, 5);
+            home_pbox.Location = new Point(416, 3);
             home_pbox.Name = "home_pbox";
             home_pbox.Size = new Size(32, 32);
             home_pbox.TabIndex = 14;
@@ -284,7 +271,7 @@
             // multifolder_select_btn
             // 
             multifolder_select_btn.AutoSize = true;
-            multifolder_select_btn.BackColor = Color.FromArgb(128, 19, 54);
+            multifolder_select_btn.BackColor = Color.FromArgb(198, 149, 166);
             multifolder_select_btn.FlatAppearance.BorderSize = 0;
             multifolder_select_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
             multifolder_select_btn.FlatStyle = FlatStyle.Flat;
@@ -324,7 +311,6 @@
             Name = "createBackup";
             Load += Overview_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)restore_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).EndInit();
@@ -344,7 +330,6 @@
         private Button start_btn;
         private Button add_data_btn;
         private Button save_btn;
-        private PictureBox restore_pbox;
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;

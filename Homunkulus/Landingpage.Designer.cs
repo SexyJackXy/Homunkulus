@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Landingpage));
             show_backup_btn = new Button();
             panel1 = new Panel();
-            restore_pbox = new PictureBox();
             plans_pbox = new PictureBox();
             create_pbox = new PictureBox();
             home_pbox = new PictureBox();
@@ -45,7 +44,6 @@
             pictureBox1 = new PictureBox();
             label3 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)restore_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).BeginInit();
@@ -74,30 +72,19 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(227, 233, 245);
-            panel1.Controls.Add(restore_pbox);
             panel1.Controls.Add(plans_pbox);
             panel1.Controls.Add(create_pbox);
             panel1.Controls.Add(home_pbox);
-            panel1.Location = new Point(0, 605);
+            panel1.Location = new Point(-3, 606);
             panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
             panel1.Size = new Size(982, 40);
             panel1.TabIndex = 3;
             // 
-            // restore_pbox
-            // 
-            restore_pbox.Image = Properties.Resources.restore;
-            restore_pbox.Location = new Point(577, 5);
-            restore_pbox.Name = "restore_pbox";
-            restore_pbox.Size = new Size(32, 32);
-            restore_pbox.TabIndex = 10;
-            restore_pbox.TabStop = false;
-            restore_pbox.Click += restore_pbox_Click;
-            // 
             // plans_pbox
             // 
             plans_pbox.Image = (Image)resources.GetObject("plans_pbox.Image");
-            plans_pbox.Location = new Point(508, 5);
+            plans_pbox.Location = new Point(551, 3);
             plans_pbox.Name = "plans_pbox";
             plans_pbox.Size = new Size(32, 32);
             plans_pbox.TabIndex = 9;
@@ -107,7 +94,7 @@
             // create_pbox
             // 
             create_pbox.Image = Properties.Resources.create;
-            create_pbox.Location = new Point(439, 5);
+            create_pbox.Location = new Point(482, 3);
             create_pbox.Name = "create_pbox";
             create_pbox.Size = new Size(32, 32);
             create_pbox.TabIndex = 8;
@@ -117,7 +104,7 @@
             // home_pbox
             // 
             home_pbox.Image = (Image)resources.GetObject("home_pbox.Image");
-            home_pbox.Location = new Point(375, 5);
+            home_pbox.Location = new Point(418, 3);
             home_pbox.Name = "home_pbox";
             home_pbox.Size = new Size(32, 32);
             home_pbox.TabIndex = 7;
@@ -240,7 +227,6 @@
             Text = "Landingpage";
             Load += Landingpage_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)restore_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).EndInit();
@@ -264,7 +250,6 @@
         private Label numb_backup;
         private Label numb_execute;
         private Label label2;
-        private PictureBox restore_pbox;
         private PictureBox plans_pbox;
         private PictureBox create_pbox;
         private PictureBox home_pbox;
