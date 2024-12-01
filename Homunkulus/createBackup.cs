@@ -163,12 +163,16 @@ namespace Homunkulus
 
             foreach (var source in sourceList)
             {
-                var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path)).ToList();
-                var oldFiles = tfs.Direcorty.ToList();
-                var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestedBackupDate).Select(file => file).ToList();
-                var parentDirectories = newFiles.Select(file => file.Directory).Where(dir => dir != null).Distinct().ToList();
+                try
+                {
+                    var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path)).ToList();
+                    var oldFiles = tfs.Direcorty.ToList();
+                    var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestedBackupDate).Select(file => file).ToList();
+                    var parentDirectories = newFiles.Select(file => file.Directory).Where(dir => dir != null).Distinct().ToList();
 
-                copyFilesFromList(newFiles, destinationPath, source);
+                    copyFilesFromList(newFiles, destinationPath, source);
+                }
+                catch { }
             }
         }
 
