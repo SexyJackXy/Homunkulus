@@ -1,6 +1,4 @@
-using System.IO.Compression;
 using System.Text.RegularExpressions;
-using DocumentFormat.OpenXml.Drawing;
 using Homunkulus.Helper;
 
 namespace Homunkulus
@@ -119,7 +117,7 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var folder = fbd.SelectedPath;
+                var folder = util.stringClean(fbd.SelectedPath);
                 var regex = new Regex(@"\s");
 
                 if (String.IsNullOrEmpty(folder))
@@ -179,11 +177,6 @@ namespace Homunkulus
             this.Hide();
             new savedBackups().ShowDialog();
             this.Close();
-        }
-        private void multifolder_select_btn_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-            new multiFolderSelect().ShowDialog();
         }
     }
 }

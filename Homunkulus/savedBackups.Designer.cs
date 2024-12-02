@@ -53,7 +53,6 @@
             // panel1
             // 
             panel1.AutoSize = true;
-            panel1.BackColor = Color.FromArgb(227, 233, 245);
             panel1.Controls.Add(create_pbox);
             panel1.Controls.Add(plans_pbox);
             panel1.Controls.Add(home_pbox);
@@ -110,7 +109,7 @@
             // 
             // treeView2
             // 
-            treeView2.BackColor = Color.FromArgb(227, 233, 245);
+            treeView2.BackColor = Color.FromArgb(220, 221, 225);
             treeView2.Location = new Point(171, 12);
             treeView2.Name = "treeView2";
             treeView2.Size = new Size(635, 590);
@@ -178,7 +177,7 @@
             // 
             // edit_rtb
             // 
-            edit_rtb.BackColor = Color.FromArgb(227, 233, 245);
+            edit_rtb.BackColor = Color.FromArgb(220, 221, 225);
             edit_rtb.BorderStyle = BorderStyle.FixedSingle;
             edit_rtb.Location = new Point(171, 48);
             edit_rtb.Name = "edit_rtb";
@@ -219,9 +218,9 @@
             // 
             // folderName_tbox
             // 
-            folderName_tbox.BackColor = Color.FromArgb(227, 233, 245);
+            folderName_tbox.BackColor = Color.FromArgb(220, 221, 225);
             folderName_tbox.BorderStyle = BorderStyle.FixedSingle;
-            folderName_tbox.Location = new Point(171, 14);
+            folderName_tbox.Location = new Point(171, 12);
             folderName_tbox.Name = "folderName_tbox";
             folderName_tbox.Size = new Size(635, 26);
             folderName_tbox.TabIndex = 15;

@@ -40,7 +40,7 @@ namespace Homunkulus
         private void Load_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
-			StreamReader? sr;
+            StreamReader? sr;
             var destination = "";
 
             var selectedNode = node.Text;

@@ -284,7 +284,6 @@
             multifolder_select_btn.TabIndex = 17;
             multifolder_select_btn.Text = "Multifolder Select";
             multifolder_select_btn.UseVisualStyleBackColor = false;
-            multifolder_select_btn.Click += multifolder_select_btn_Click;
             // 
             // createBackup
             // 
