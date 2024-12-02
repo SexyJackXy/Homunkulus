@@ -114,7 +114,7 @@
             // 
             // Destination_txt
             // 
-            Destination_txt.BackColor = Color.FromArgb(227, 233, 245);
+            Destination_txt.BackColor = Color.FromArgb(220, 221, 225);
             Destination_txt.BorderStyle = BorderStyle.FixedSingle;
             Destination_txt.Location = new Point(12, 30);
             Destination_txt.Name = "Destination_txt";
@@ -173,11 +173,12 @@
             // 
             // source_rtb
             // 
-            source_rtb.BackColor = Color.FromArgb(227, 233, 245);
+            source_rtb.BackColor = Color.FromArgb(220, 221, 225);
             source_rtb.BorderStyle = BorderStyle.None;
             source_rtb.EnableAutoDragDrop = true;
             source_rtb.Location = new Point(12, 112);
             source_rtb.Name = "source_rtb";
+            source_rtb.ReadOnly = true;
             source_rtb.Size = new Size(794, 393);
             source_rtb.TabIndex = 9;
             source_rtb.TabStop = false;
@@ -272,6 +273,7 @@
             // 
             multifolder_select_btn.AutoSize = true;
             multifolder_select_btn.BackColor = Color.FromArgb(198, 149, 166);
+            multifolder_select_btn.Enabled = false;
             multifolder_select_btn.FlatAppearance.BorderSize = 0;
             multifolder_select_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
             multifolder_select_btn.FlatStyle = FlatStyle.Flat;

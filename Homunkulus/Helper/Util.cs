@@ -25,6 +25,16 @@ namespace Homunkulus.Helper
         {
             return fileName + ".txt";
         }
+
+        public string stringClean(string str)
+        {
+            if (!string.IsNullOrEmpty(str) && char.IsWhiteSpace(str[0]))
+            {
+                str = str.TrimStart();
+            }
+
+            return str;
+        }
     }
 
     ///TODO: added this next

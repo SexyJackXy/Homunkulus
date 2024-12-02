@@ -1,5 +1,6 @@
 using System.IO.Compression;
 using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml.Drawing;
 using Homunkulus.Helper;
 
 namespace Homunkulus
@@ -10,6 +11,7 @@ namespace Homunkulus
         List<string> fileList = new List<string>();
         List<string> destsourceFolderList = new List<string>();
         List<string> newFoldersList = new List<string>();
+        Util util = new Util();
 
         public createBackup()
         {
@@ -72,14 +74,15 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var folder = fbd.SelectedPath;
+                var folder = util.stringClean(fbd.SelectedPath);
 
                 if (String.IsNullOrEmpty(folder))
                 {
                     MessageBox.Show("You can not add nothing");
                 }
-                if (source_rtb.Text.Length == 0)
+                if (source_rtb.Text.Length == 1)
                 {
+                    source_rtb.Clear();
                     source_rtb.AppendText(folder);
                 }
                 else
