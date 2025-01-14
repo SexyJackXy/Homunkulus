@@ -35,6 +35,13 @@ namespace Homunkulus.Helper
 
             return str;
         }
+
+        public void createBinData()
+        {
+            var backupPath = @"";   //TODO: HERE NEED TO ADD THE BACKUPPATH 
+            var guid = Guid.NewGuid();
+            var content = "";       //TODO: HERE I NEED TO THINK ABOUT POSSIBLE CONTENT WHICH I CAN PUT IN THIS .JSON FILE
+        }
     }
 
     ///TODO: added this next
