@@ -34,6 +34,7 @@ namespace Homunkulus
         }
 
         //Button Methoden
+        //Here the start button is clicked and the backup is started
         private void start_btn_Click(object sender, EventArgs e)
         {
             var linesInRtb = source_rtb.Lines.Count();
@@ -72,7 +73,7 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var folder = util.stringClean(fbd.SelectedPath);
+                var folder = fbd.SelectedPath.stringClean();
 
                 if (String.IsNullOrEmpty(folder))
                 {
@@ -117,7 +118,7 @@ namespace Homunkulus
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var folder = util.stringClean(fbd.SelectedPath);
+                var folder = fbd.SelectedPath.stringClean();
                 var regex = new Regex(@"\s");
 
                 if (String.IsNullOrEmpty(folder))
