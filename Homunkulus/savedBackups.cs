@@ -40,7 +40,7 @@ namespace Homunkulus
         private void Load_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
-			StreamReader? sr;
+            StreamReader? sr;
             var destination = "";
 
             var selectedNode = node.Text;
@@ -215,13 +215,6 @@ namespace Homunkulus
             this.Hide();
             savedBackups hs = new savedBackups();
             hs.ShowDialog();
-            this.Close();
-        }
-        private void restore_pbox_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            loadBackup bps = new loadBackup();
-            bps.ShowDialog();
             this.Close();
         }
     }
