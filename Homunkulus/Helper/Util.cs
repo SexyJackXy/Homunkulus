@@ -38,5 +38,26 @@ namespace Homunkulus.Helper
             File.WriteAllText(savePath, binData.ToString());
 
         }
+        public void createBackupPlan(bool compress, bool incremental, string soruce, string destination)
+        {
+            var util = new Util();
+            var bph = new Backupplan();
+            bph.Fill(compress, incremental, soruce, destination);
+
+            if (bph.DestinationPath == null)
+            {
+                throw new ArgumentNullException(bph.DestinationPath);
+            }
+            var date = DateTime.Now.ToString("dd MM yyyy");
+            date = date.Replace(" ", "");
+
+            var saveDir = Directory.GetFiles(@"../../../backupplans");
+            var saveFileName = date + "_" + saveDir.Length.ToString();
+            //saveFileName = util.toTextFile(saveFileName);
+
+            var savePath = @"../../../backupplans/" + saveFileName;
+
+            bph.saveToJson(bph, savePath);
+        }
     }
 }

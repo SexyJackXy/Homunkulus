@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Vml.Spreadsheet;
 using Homunkulus.Helper;
+using System.Xml;
+using System.IO;
 
 namespace Homunkulus.Helper
 {
-    internal class BackupplanHelper
+    internal class Backupplan
     {
         public string SourcePath { get; set; }
         public string DestinationPath { get; set; }
@@ -34,19 +36,9 @@ namespace Homunkulus.Helper
             }
         }
 
-        public void Save(BackupplanHelper backupplan, string savePath)
+        public void saveToTxt(Backupplan backupplan, string savePath)
         {
-            string[] destination = { backupplan.DestinationPath };
-            string[] incrementel = { backupplan.incrementel.ToString() };
-            string[] compress = { backupplan.compress.ToString() };
-            var tempFiles = new List<string>();
-
-            foreach (var file in backupplan.Files)
-            {
-                tempFiles.Add(file);
-            }
-
-            var files = string.Join("\n", tempFiles);
+            var files = string.Join("\n", backupplan.Files);
 
             var retrunString =
                 $"Destination:\n" +
@@ -59,7 +51,39 @@ namespace Homunkulus.Helper
                 $"{backupplan.incrementel.ToString()}\n" +
                 $"{backupplan.compress.ToString()}\n";
 
-            File.WriteAllText(savePath,retrunString);
+            File.WriteAllText(savePath, retrunString);
+        }
+
+        public void saveToJson(Backupplan backupplan, string savePath)
+        {
+
+            var destination = backupplan.DestinationPath;
+            var incrementel = backupplan.incrementel.ToString();
+            var compress = backupplan.compress.ToString();
+
+            XmlTextWriter writer = new XmlTextWriter(savePath + ".xml", null);
+            writer.WriteStartDocument();
+            writer.WriteStartElement("Backup");
+
+            writer.WriteStartElement("Destination");
+            writer.WriteElementString("path", destination);
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("SavedFiles");
+            foreach (var file in Files)
+            {
+                writer.WriteElementString("File", file);
+            }
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("Status");
+            writer.WriteElementString("Incrementel", incrementel);
+            writer.WriteElementString("Compressed", compress);
+            writer.WriteEndElement();
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
         }
     }
 }

@@ -140,13 +140,13 @@ namespace Homunkulus
         }
         private void save_btn_Click(object sender, EventArgs e)
         {
-            var create = new Create();
+            var util = new Util();
             bool compress = check_compress.Checked ? true : false;
             bool compliemntray = check_incremental.Checked ? true : false;
             string soruce = source_rtb.Text;
             string destination = Destination_txt.Text;
 
-            create.Save(compress, compliemntray, soruce, destination);
+            util.createBackupPlan(compress, compliemntray, soruce, destination);
         }
 
         //Navigation Methoden

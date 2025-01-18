@@ -35,7 +35,7 @@ namespace Homunkulus
                 TreeNode t = new TreeNode(f.Name);
                 if (node != null) node.Nodes.Add(t);
                 else treeView2.Nodes.Add(t);
-            }
+            } 
         }
         private void Load_btn_Click(object sender, EventArgs e)
         {
