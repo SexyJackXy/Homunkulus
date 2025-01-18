@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Homunkulus.Helper
 {
-    public class Copy
+    public class Clone
     {
-        public void CopyNormal(string sourceDirectory, string targetDirectory)
+        public Util util = new Util();
+        private void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
@@ -41,10 +42,9 @@ namespace Homunkulus.Helper
         public void FromList(List<string> pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
-
-            var shrt = "";
-            var sourceDirectory = "";
-            var targetDirectory = "";
+            var shrt = string.Empty;
+            var sourceDirectory = string.Empty;
+            var targetDirectory = string.Empty;
             var destFolder = destinationTextBox.Text;
             var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = destFolder + "Backup " + date;
@@ -55,26 +55,15 @@ namespace Homunkulus.Helper
                 shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
                 targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
 
-                var attributs = File.GetAttributes(sourceDirectory);
-
-                if ((attributs & FileAttributes.Directory) != FileAttributes.Directory)
+                if (Directory.Exists(newBackupFolder) && !string.IsNullOrEmpty(sourceDirectory))
                 {
-                    try
-                    {
-                        File.Copy(sourceDirectory, targetDirectory);
-                    }
-                    catch
-                    {
-                    }
-                }
-                else if (Directory.Exists(newBackupFolder) && !string.IsNullOrEmpty(sourceDirectory))
-                {
-                    CopyNormal(sourceDirectory, targetDirectory);
+                    Copy(sourceDirectory, targetDirectory);
                 }
                 else if (!string.IsNullOrEmpty(sourceDirectory))
                 {
                     Directory.CreateDirectory(newBackupFolder);
-                    CopyNormal(sourceDirectory, targetDirectory);
+                    util.createBinData(newBackupFolder, "LMMA");
+                    Copy(sourceDirectory, targetDirectory);
                 }
                 else
                 {
@@ -84,8 +73,8 @@ namespace Homunkulus.Helper
         }
         public void FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
-            var documentPath = @"C:\Users\Tim\Documents";
-            var rootUserPaht = @"C:\Users\Tim";
+            var documentPath = @"C:\Users\Tim\Documents";   //TODO: sollte flexibler werde
+            var rootUserPaht = @"C:\Users\Tim";             //TODO: sollte flexibler werde
             var backupFolderName = "Backup " + DateTime.Now.ToString("dd.MM.yyyy");
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
