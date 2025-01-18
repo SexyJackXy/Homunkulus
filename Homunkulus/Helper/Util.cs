@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -28,75 +29,21 @@ namespace Homunkulus.Helper
             return fileName + ".txt";
         }
 
-        public void createBinData()
+        public void createBinData(string dest, string type)
         {
-            var backupPath = @"";   //TODO: HERE NEED TO ADD THE BACKUPPATH 
-            var guid = Guid.NewGuid();
-            var content = "";       //TODO: HERE I NEED TO THINK ABOUT POSSIBLE CONTENT WHICH I CAN PUT IN THIS .JSON FILE
-        }
-    }
+            var savePath = Path.Combine(dest, "HomunkulusSig.json");
+            var guid = Guid.NewGuid().ToString();
+            var date = DateTime.Now.ToString();
 
-    public static class StringExtensions
-    {
-        public static void ThrowIfNullOrEmpty(this string source, string paramName, string paramNameDescription = null)
-        {
-            if (string.IsNullOrWhiteSpace(source))
-            {
-                var callingMethod = new StackFrame(1).GetMethod();
-                throw new ArgumentOutOfRangeException(
-                    paramName: paramName,
-                    message: $"'{paramNameDescription ?? paramName}' can not be null or empty in method '{callingMethod.Name}' of '{callingMethod.DeclaringType.FullName}'");
-            }
-        }
+            JObject binData = new JObject(
+                new JProperty("ProgramName", "Homunukulus"),
+                new JProperty("Guid", guid),
+                new JProperty("BackupType", type),
+                new JProperty("Timestampp", date),
+                new JProperty("Destination", dest));
 
-        public static bool ContainsOic(this string s1, string s2)
-        {
-            if (s1 == null)
-            {
-                throw new ArgumentNullException(nameof(s1));
-            }
-            if (s2 == null)
-            {
-                throw new ArgumentNullException(nameof(s2));
-            }
-            return s1.IndexOf(s2, StringComparison.OrdinalIgnoreCase) != -1;
-        }
+            File.WriteAllText(savePath, binData.ToString());
 
-        public static bool IsNullOrEmpty([NotNullWhen(false)] this string source)
-        {
-            return String.IsNullOrEmpty(source);
-        }
-
-        public static bool StartsWithOic(this string s1, string s2)
-        {
-            if (s1 == null)
-            {
-                throw new ArgumentNullException(nameof(s1));
-            }
-            if (s2 == null)
-            {
-                throw new ArgumentNullException(nameof(s2));
-            }
-            return s1.StartsWith(s2, StringComparison.OrdinalIgnoreCase);
-        }
-
-        public static bool EqualsOic(this string s1, string s2)
-        {
-            if (s1 == null)
-            {
-                throw new ArgumentNullException(nameof(s1));
-            }
-            return s1.Equals(s2, StringComparison.OrdinalIgnoreCase);
-        }
-
-        public static string stringClean(this string str)
-        {
-            if (!string.IsNullOrEmpty(str) && char.IsWhiteSpace(str[0]))
-            {
-                str = str.TrimStart();
-            }
-
-            return str;
         }
     }
 }
