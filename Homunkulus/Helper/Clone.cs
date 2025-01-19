@@ -73,8 +73,8 @@ namespace Homunkulus.Helper
         }
         public void FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
-            var documentPath = @"C:\Users\Tim\Documents";   //TODO: sollte flexibler werde
-            var rootUserPaht = @"C:\Users\Tim";             //TODO: sollte flexibler werde
+            var userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var backupFolderName = "Backup " + DateTime.Now.ToString("dd.MM.yyyy");
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
@@ -89,9 +89,9 @@ namespace Homunkulus.Helper
                 {
                     relativeDirPath = relativeDirPath.Replace(documentPath, "");
                 }
-                else if (relativeDirPath.Contains(rootUserPaht))
+                else if (relativeDirPath.Contains(userProfilePath))
                 {
-                    relativeDirPath = relativeDirPath.Replace(rootUserPaht, "");
+                    relativeDirPath = relativeDirPath.Replace(userProfilePath, "");
                 }
                 else if (relativeDirPath.Contains(driveLetter))
                 {

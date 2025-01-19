@@ -36,7 +36,6 @@ namespace Homunkulus.Helper
                 new JProperty("Destination", dest));
 
             File.WriteAllText(savePath, binData.ToString());
-
         }
         public void createBackupPlan(bool compress, bool incremental, string soruce, string destination)
         {

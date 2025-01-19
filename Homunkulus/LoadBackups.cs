@@ -1,3 +1,5 @@
+using Homunkulus.Helper;
+using System;
 using System.Diagnostics;
 
 namespace Homunkulus
@@ -8,16 +10,15 @@ namespace Homunkulus
         public static string? backupPlanDest = " ";
         public static bool booCompress = false;
         public static bool booCompliemntray = false;
+        private List<string> cache = new List<string>();
+        private string path = @"..\..\..\backupplans\";
+        private string editedNode = string.Empty;
+        private string tmpFile = string.Empty;
 
         public savedBackups()
         {
             InitializeComponent();
         }
-
-        List<string> cache = new List<string>();
-
-        string path = @"..\..\..\backupplans\";
-        string editedNode = "";
 
         public void PopulateTree(string dir, TreeNode? node)
         {
@@ -39,6 +40,8 @@ namespace Homunkulus
         }
         private void Load_btn_Click(object sender, EventArgs e)
         {
+            //TODO: Make it possible to load XML Files
+            
             TreeNode node = treeView2.SelectedNode;
             StreamReader? sr;
             var destination = "";
@@ -103,6 +106,7 @@ namespace Homunkulus
 
                 var selectedNode = node.Text;
                 var nodePath = path + selectedNode;
+
                 string[] content = File.ReadAllLines(nodePath);
 
                 cache.Add(nodePath);
@@ -122,11 +126,17 @@ namespace Homunkulus
         private void Edit_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
+            var guid = Guid.NewGuid().ToString();
+
             if (node != null)
             {
                 editedNode = node.Text;
                 var nodePath = path + node.Text;
-                if (File.Exists(nodePath))
+
+                var tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
+                File.Copy(nodePath, tmpPath);
+
+                if (File.Exists(tmpPath))
                 {
                     StreamReader sr = new StreamReader(nodePath);
                     var content = sr.ReadToEnd();
@@ -164,9 +174,6 @@ namespace Homunkulus
 
                 MessageBox.Show("Succefully Saved");
             }
-            File.WriteAllText(savePath, editedContent);
-
-            MessageBox.Show("Succefully Saved");
         }
         private void open_backups_btn_Click(object sender, EventArgs e)
         {
@@ -180,6 +187,11 @@ namespace Homunkulus
 
             treeView2.Nodes.Clear();
             PopulateTree(path, null);
+
+            if (!tmpFile.IsNullOrEmpty())
+            {
+                File.Delete(tmpFile);
+            }
         }
         private void delete_btn_Click(object sender, EventArgs e)
         {

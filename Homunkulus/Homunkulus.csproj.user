@@ -7,7 +7,7 @@
     <Compile Update="LandingPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="savedBackups.cs">
+    <Compile Update="LoadBackups.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
