@@ -36,12 +36,12 @@ namespace Homunkulus
                 TreeNode t = new TreeNode(f.Name);
                 if (node != null) node.Nodes.Add(t);
                 else treeView2.Nodes.Add(t);
-            } 
+            }
         }
         private void Load_btn_Click(object sender, EventArgs e)
         {
             //TODO: Make it possible to load XML Files
-            
+
             TreeNode node = treeView2.SelectedNode;
             StreamReader? sr;
             var destination = "";
@@ -133,8 +133,10 @@ namespace Homunkulus
                 editedNode = node.Text;
                 var nodePath = path + node.Text;
 
-                var tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
+                var tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");//TODO: Hier muss dann auch noch geprüft werden welches setting ist und danach soll dann die endung erstellt werden
                 File.Copy(nodePath, tmpPath);
+                tmpFile = tmpPath;
+
 
                 if (File.Exists(tmpPath))
                 {
