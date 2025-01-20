@@ -195,13 +195,21 @@ namespace Homunkulus
         }
         private void delete_btn_Click(object sender, EventArgs e)
         {
-            TreeNode node = treeView2.SelectedNode;
-            var deletePath = path + node.Text;
+            DialogResult dialogResult = MessageBox.Show("Sure", "Some Title", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                TreeNode node = treeView2.SelectedNode;
+                var deletePath = path + node.Text;
 
-            File.Delete(deletePath);
-            MessageBox.Show("Deleted");
+                File.Delete(deletePath);
+                MessageBox.Show("Deleted");
 
-            PopulateTree(path, null);
+                PopulateTree(path, null);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
         }
 
         private void History_Load(object sender, EventArgs e)

@@ -40,23 +40,25 @@ namespace Homunkulus.Helper
         public void createBackupPlan(bool compress, bool incremental, string soruce, string destination)
         {
             var util = new Util();
-            var bph = new Backupplan();
-            bph.Fill(compress, incremental, soruce, destination);
+            var backupPlan = new Backupplan();
+            backupPlan.Fill(compress, incremental, soruce, destination);
 
-            if (bph.DestinationPath == null)
+            if (backupPlan.DestinationPath == null)
             {
-                throw new ArgumentNullException(bph.DestinationPath);
+                throw new ArgumentNullException(backupPlan.DestinationPath);
             }
             var date = DateTime.Now.ToString("dd MM yyyy");
             date = date.Replace(" ", "");
 
             var saveDir = Directory.GetFiles(@"../../../backupplans");
             var saveFileName = date + "_" + saveDir.Length.ToString();
+            //TODO: Build a Settings where you can Choose what type of file you want to save your Backupplan
+
             //saveFileName = util.toTextFile(saveFileName);
 
             var savePath = @"../../../backupplans/" + saveFileName;
 
-            bph.saveToJson(bph, savePath);
+            backupPlan.saveToJson(backupPlan, savePath);
         }
     }
 }
