@@ -1,6 +1,6 @@
 ﻿namespace Homunkulus
 {
-    partial class createBackup
+    partial class pageBackupConfiguration
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(createBackup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pageBackupConfiguration));
             import_backup_btn = new Button();
             panel1 = new Panel();
             create_pbox = new PictureBox();

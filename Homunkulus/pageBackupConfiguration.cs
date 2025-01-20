@@ -3,7 +3,7 @@ using Homunkulus.Helper;
 
 namespace Homunkulus
 {
-    public partial class createBackup : Form
+    public partial class pageBackupConfiguration : Form
     {
         List<string> sourceFolderList = new List<string>();
         List<string> fileList = new List<string>();
@@ -11,7 +11,7 @@ namespace Homunkulus
         List<string> newFoldersList = new List<string>();
         Util util = new Util();
 
-        public createBackup()
+        public pageBackupConfiguration()
         {
             InitializeComponent();
         }
@@ -153,13 +153,13 @@ namespace Homunkulus
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new createBackup().ShowDialog();
+            new pageBackupConfiguration().ShowDialog();
             this.Close();
         }
         private void home_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Landingpage().ShowDialog();
+            new pageHomeSite().ShowDialog();
             this.Close();
         }
         private void plans_pbox_Click(object sender, EventArgs e)
