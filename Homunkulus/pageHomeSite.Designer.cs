@@ -1,6 +1,6 @@
 ﻿namespace Homunkulus
 {
-    partial class Landingpage
+    partial class pageHomeSite
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Landingpage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pageHomeSite));
             show_backup_btn = new Button();
             panel1 = new Panel();
             plans_pbox = new PictureBox();

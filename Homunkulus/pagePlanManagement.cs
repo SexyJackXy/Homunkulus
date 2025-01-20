@@ -94,7 +94,7 @@ namespace Homunkulus
             backupPlan = string.Join("\n", source);
 
             this.Hide();
-            createBackup ov = new createBackup();
+            pageBackupConfiguration ov = new pageBackupConfiguration();
             ov.ShowDialog();
             this.Close();
         }
@@ -219,14 +219,14 @@ namespace Homunkulus
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            createBackup ov = new createBackup();
+            pageBackupConfiguration ov = new pageBackupConfiguration();
             ov.ShowDialog();
             this.Close();
         }
         private void home_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Landingpage lp = new Landingpage();
+            pageHomeSite lp = new pageHomeSite();
             lp.ShowDialog();
             this.Close();
         }

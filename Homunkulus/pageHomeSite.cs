@@ -1,8 +1,8 @@
 ﻿namespace Homunkulus
 {
-    public partial class Landingpage : Form
+    public partial class pageHomeSite : Form
     {
-        public Landingpage()
+        public pageHomeSite()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@
         private void create_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            createBackup ov = new createBackup();
+            pageBackupConfiguration ov = new pageBackupConfiguration();
             ov.ShowDialog();
             this.Close();
         }
@@ -37,14 +37,14 @@
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            createBackup ov = new createBackup();
+            pageBackupConfiguration ov = new pageBackupConfiguration();
             ov.ShowDialog();
             this.Close();
         }
         private void home_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Landingpage lp = new Landingpage();
+            pageHomeSite lp = new pageHomeSite();
             lp.ShowDialog();
             this.Close();
         }
