@@ -133,7 +133,7 @@ namespace Homunkulus
                 editedNode = node.Text;
                 var nodePath = path + node.Text;
 
-                var tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");//TODO: Hier muss dann auch noch geprüft werden welches setting ist und danach soll dann die endung erstellt werden
+                var tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml"); //TODO: Hier muss dann auch noch geprüft werden welches setting ist und danach soll dann die endung erstellt werden
                 File.Copy(nodePath, tmpPath);
                 tmpFile = tmpPath;
 
