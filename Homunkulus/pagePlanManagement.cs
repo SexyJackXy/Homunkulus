@@ -126,14 +126,25 @@ namespace Homunkulus
         private void Edit_btn_Click(object sender, EventArgs e)
         {
             TreeNode node = treeView2.SelectedNode;
+            editedNode = node.Text;
+            var saveSetting = "xml";
+            var tmpPath = string.Empty;
             var guid = Guid.NewGuid().ToString();
+            var nodePath = path + node.Text;
 
             if (node != null)
             {
-                editedNode = node.Text;
-                var nodePath = path + node.Text;
+                switch (saveSetting)
+                {
+                    case "xml":
+                        tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
+                        break;
 
-                var tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml"); //TODO: Hier muss dann auch noch geprüft werden welches setting ist und danach soll dann die endung erstellt werden
+                    case "txt":
+                        tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
+                        break;
+                }
+
                 File.Copy(nodePath, tmpPath);
                 tmpFile = tmpPath;
 
