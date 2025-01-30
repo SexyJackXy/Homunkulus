@@ -30,32 +30,50 @@
         {
             comboBox1 = new ComboBox();
             label1 = new Label();
+            saveSettings_btn = new Button();
             SuspendLayout();
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Text", "XML" });
-            comboBox1.Location = new Point(667, 62);
+            comboBox1.Location = new Point(128, 56);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
+            comboBox1.Size = new Size(681, 23);
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(347, 57);
+            label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(128, 35);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(91, 18);
             label1.TabIndex = 1;
-            label1.Text = "label1";
+            label1.Text = "Save to File";
+            // 
+            // saveSettings_btn
+            // 
+            saveSettings_btn.AutoSize = true;
+            saveSettings_btn.BackColor = Color.FromArgb(128, 19, 54);
+            saveSettings_btn.FlatAppearance.BorderSize = 0;
+            saveSettings_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
+            saveSettings_btn.FlatStyle = FlatStyle.Flat;
+            saveSettings_btn.ForeColor = Color.White;
+            saveSettings_btn.Location = new Point(812, 604);
+            saveSettings_btn.Name = "saveSettings_btn";
+            saveSettings_btn.Size = new Size(153, 28);
+            saveSettings_btn.TabIndex = 15;
+            saveSettings_btn.Text = "Save";
+            saveSettings_btn.UseVisualStyleBackColor = false;
             // 
             // pageSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(977, 644);
+            Controls.Add(saveSettings_btn);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Name = "pageSettings";
@@ -68,5 +86,6 @@
 
         private ComboBox comboBox1;
         private Label label1;
+        private Button saveSettings_btn;
     }
 }
