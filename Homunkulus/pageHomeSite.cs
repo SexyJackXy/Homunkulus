@@ -55,5 +55,13 @@
             hs.ShowDialog();
             this.Close();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            pageSettings ps = new pageSettings();
+            ps.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -43,6 +43,7 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             label3 = new Label();
+            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
@@ -50,6 +51,7 @@
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // show_backup_btn
@@ -72,6 +74,7 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(227, 233, 245);
+            panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(plans_pbox);
             panel1.Controls.Add(create_pbox);
             panel1.Controls.Add(home_pbox);
@@ -207,7 +210,17 @@
             label3.TabIndex = 8;
             label3.Text = "Welcome back to Homunkulus";
             // 
-            // Landingpage
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(947, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(32, 32);
+            pictureBox2.TabIndex = 10;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // pageHomeSite
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -223,7 +236,7 @@
             Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
-            Name = "Landingpage";
+            Name = "pageHomeSite";
             Text = "Landingpage";
             Load += Landingpage_Load;
             panel1.ResumeLayout(false);
@@ -235,6 +248,7 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -255,5 +269,6 @@
         private PictureBox home_pbox;
         private PictureBox pictureBox1;
         private Label label3;
+        private PictureBox pictureBox2;
     }
 }

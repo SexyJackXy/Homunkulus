@@ -67,6 +67,7 @@
             saveSettings_btn.TabIndex = 15;
             saveSettings_btn.Text = "Save";
             saveSettings_btn.UseVisualStyleBackColor = false;
+            saveSettings_btn.Click += saveSettings_btn_Click;
             // 
             // pageSettings
             // 
