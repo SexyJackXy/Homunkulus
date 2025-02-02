@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
+            fileExtDropDown = new ComboBox();
             label1 = new Label();
             saveSettings_btn = new Button();
             SuspendLayout();
             // 
-            // comboBox1
+            // fileExtDropDown
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Text", "XML" });
-            comboBox1.Location = new Point(128, 56);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(681, 23);
-            comboBox1.TabIndex = 0;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            fileExtDropDown.BackColor = Color.FromArgb(220, 221, 225);
+            fileExtDropDown.FormattingEnabled = true;
+            fileExtDropDown.Items.AddRange(new object[] { "Text", "XML" });
+            fileExtDropDown.Location = new Point(128, 56);
+            fileExtDropDown.Name = "fileExtDropDown";
+            fileExtDropDown.Size = new Size(681, 23);
+            fileExtDropDown.TabIndex = 0;
+            fileExtDropDown.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -60,6 +61,7 @@
             saveSettings_btn.FlatAppearance.BorderSize = 0;
             saveSettings_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
             saveSettings_btn.FlatStyle = FlatStyle.Flat;
+            saveSettings_btn.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             saveSettings_btn.ForeColor = Color.White;
             saveSettings_btn.Location = new Point(812, 604);
             saveSettings_btn.Name = "saveSettings_btn";
@@ -73,10 +75,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(977, 644);
             Controls.Add(saveSettings_btn);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(fileExtDropDown);
             Name = "pageSettings";
             Text = "pageSettings";
             ResumeLayout(false);
@@ -85,7 +88,7 @@
 
         #endregion
 
-        private ComboBox comboBox1;
+        private ComboBox fileExtDropDown;
         private Label label1;
         private Button saveSettings_btn;
     }

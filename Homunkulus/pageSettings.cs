@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using DocumentFormat.OpenXml.Presentation;
+using Newtonsoft.Json.Linq;
 
 namespace Homunkulus
 {
@@ -24,7 +17,15 @@ namespace Homunkulus
 
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
+            var guid = Guid.NewGuid().ToString();
+            var savePath = @"../../../config/config_" + guid + ".json ";
+            var fileExtension = fileExtDropDown.Text;
 
+            JObject binData = new JObject(
+                new JProperty("fileExtension", fileExtension)
+                );
+
+            File.WriteAllText(savePath, binData.ToString());
         }
     }
 }
