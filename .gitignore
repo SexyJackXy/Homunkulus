@@ -241,3 +241,4 @@ Homunkulus/bin/Debug/net6.0-windows/Resources/backupplans
 *.pdb
 Homunkulus/bin/Debug/net6.0-windows
 Homunkulus/tmp-in
+Homunkulus/config

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Homunkulus.Helper
 {
@@ -21,7 +22,6 @@ namespace Homunkulus.Helper
         {
             return fileName + ".txt";
         }
-
         public void createBinData(string dest, string type)
         {
             var savePath = Path.Combine(dest, "HomunkulusSig.json");
@@ -37,28 +37,13 @@ namespace Homunkulus.Helper
 
             File.WriteAllText(savePath, binData.ToString());
         }
-        public void createBackupPlan(bool compress, bool incremental, string soruce, string destination)
-        {
-            var util = new Util();
-            var backupPlan = new Backupplan();
-            backupPlan.Fill(compress, incremental, soruce, destination);
-
-            if (backupPlan.DestinationPath == null)
+        public void readJsonFIle(string filePath) 
+        { 
+            dynamic fileContent = JsonConvert.DeserializeObject(filePath);
+            foreach(var content in fileContent)
             {
-                throw new ArgumentNullException(backupPlan.DestinationPath);
+
             }
-            var date = DateTime.Now.ToString("dd MM yyyy");
-            date = date.Replace(" ", "");
-
-            var saveDir = Directory.GetFiles(@"../../../backupplans");
-            var saveFileName = date + "_" + saveDir.Length.ToString();
-            //TODO: Build a Settings where you can Choose what type of file you want to save your Backupplan
-
-            //saveFileName = util.toTextFile(saveFileName);
-
-            var savePath = @"../../../backupplans/" + saveFileName;
-
-            backupPlan.saveToJson(backupPlan, savePath);
         }
     }
 }

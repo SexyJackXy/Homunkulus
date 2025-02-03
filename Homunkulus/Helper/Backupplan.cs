@@ -36,6 +36,29 @@ namespace Homunkulus.Helper
             }
         }
 
+        public void Create(bool compress, bool incremental, string soruce, string destination)
+        {
+            var util = new Util();
+            var backupPlan = new Backupplan();
+            var date = DateTime.Now.ToString("dd MM yyyy").Replace(" ", "");
+            var saveDir = Directory.GetFiles(@"../../../backupplans");
+            var saveFileName = date + "_" + saveDir.Length.ToString();
+            var settingsPath = @"../../../config/";
+            var dir = new DirectoryInfo(settingsPath);
+            var newestSettingsFile = dir.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
+            var savePath = @"../../../backupplans/" + saveFileName;
+
+            backupPlan.Fill(compress, incremental, soruce, destination);
+
+            if (backupPlan.DestinationPath == null)
+            {
+                throw new ArgumentNullException(backupPlan.DestinationPath);
+            }
+
+
+            backupPlan.saveToXml(backupPlan, savePath);
+        }
+
         public void saveToTxt(Backupplan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
@@ -54,7 +77,7 @@ namespace Homunkulus.Helper
             File.WriteAllText(savePath, retrunString);
         }
 
-        public void saveToJson(Backupplan backupplan, string savePath)
+        public void saveToXml(Backupplan backupplan, string savePath)
         {
 
             var destination = backupplan.DestinationPath;

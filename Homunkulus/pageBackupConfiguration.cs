@@ -97,9 +97,9 @@ namespace Homunkulus
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string Fullpath = ofd.FileName;
-                string Filename = ofd.SafeFileName;
-                string folder = Fullpath.Replace(Filename, "");
+                var Fullpath = ofd.FileName;
+                var Filename = ofd.SafeFileName;
+                var folder = Fullpath.Replace(Filename, "");
 
                 if (String.IsNullOrEmpty(folder))
                 {
@@ -140,13 +140,13 @@ namespace Homunkulus
         }
         private void save_btn_Click(object sender, EventArgs e)
         {
-            var util = new Util();
-            bool compress = check_compress.Checked ? true : false;
-            bool compliemntray = check_incremental.Checked ? true : false;
-            string soruce = source_rtb.Text;
-            string destination = Destination_txt.Text;
+            var backupplan = new Backupplan();
+            var compress = check_compress.Checked ? true : false;
+            var compliemntray = check_incremental.Checked ? true : false;
+            var soruce = source_rtb.Text;
+            var destination = Destination_txt.Text;
 
-            util.createBackupPlan(compress, compliemntray, soruce, destination);
+            backupplan.Create(compress,false,soruce,destination);
         }
 
         //Navigation Methoden
