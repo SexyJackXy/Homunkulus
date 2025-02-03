@@ -9,12 +9,6 @@ namespace Homunkulus
         {
             InitializeComponent();
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
             var guid = Guid.NewGuid().ToString();
@@ -26,6 +20,24 @@ namespace Homunkulus
                 );
 
             File.WriteAllText(savePath, binData.ToString());
+        }
+        private void create_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new pageBackupConfiguration().ShowDialog();
+            this.Close();
+        }
+        private void home_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new pageHomeSite().ShowDialog();
+            this.Close();
+        }
+        private void plans_pbox_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new savedBackups().ShowDialog();
+            this.Close();
         }
     }
 }
