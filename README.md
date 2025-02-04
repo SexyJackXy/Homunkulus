@@ -2,16 +2,32 @@
 
 >The homunculus or Latin homunculus ("little man") refers to an artificially created (small) human being.
 
-## Description
+## What is Homunkulus?
+In alchemy, a Homunculus is an artificially created small human figure, often thought of as a servant or helper. Just like its namesake, this program works invisibly in the background, automatically securing your data without requiring constant attention.
 
-In der Alchemie ist ein Homunkulus eine künstlich geschaffene, kleine menschliche Figur, die oft als Diener oder Helfer gedacht wurde. Übertragen auf dieses Programm bedeutet, dass es wie ein kleiner, unsichtbarer Helfer im Hintergrund arbeitet, Daten kopiert, ohne dass man sich ständig darum kümmern muss.
- 
-**Or in short**
+## How It Works
+Homunkulus is a backup program developed in C# and WinForms. It provides a simple and reliable way to back up important files and folders, ensuring your data remains safe.
 
-It is a Backupprogram which works with C# and WinForms.
-
-## Versions
-
-The Current Version is the Second Version of it.
+## Features
+- Manual backups
+- User-friendly interface for easy operation
+- Customizable backup paths
+- Logging of backup operations
+- Runs discreetly in the background
 
 ## Installation
+Download the latest version from the Releases section. Extract the files to a directory of your choice. 
+Start Homunkulus.exe to use the application.
+
+## Usage
+
+1. Select the files or folders to be backed up.
+2. Choose the backup destination.
+3. Start the backup manually .
+4. Check the backup logs for details on completed backups.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contributors
+Contributions are always welcome! Feel free to open an issue or submit a pull request.
