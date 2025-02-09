@@ -19,7 +19,6 @@ namespace Homunkulus
 
         private void pageSettings_Load(object sender, EventArgs e)
         {
-
             var savePath = @"../../../config";
             var directoryInfo = new DirectoryInfo(savePath);
             var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
@@ -33,7 +32,6 @@ namespace Homunkulus
             }
         }
 
-
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
             var guid = Guid.NewGuid().ToString();
@@ -46,6 +44,7 @@ namespace Homunkulus
 
             File.WriteAllText(savePath, binData.ToString());
         }
+
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();

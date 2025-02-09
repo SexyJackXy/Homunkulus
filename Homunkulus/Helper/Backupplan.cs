@@ -1,4 +1,7 @@
-﻿using System.Xml;
+﻿using Homunkulus.helper;
+using System.Xml;
+using static Homunkulus.helper.configHander;
+using static Homunkulus.pageSettings;
 
 namespace Homunkulus.Helper
 {
@@ -10,7 +13,7 @@ namespace Homunkulus.Helper
         public bool incrementel { get; set; }
         public bool compress { get; set; }
 
-        public void Fill(bool g_compress, bool compliemntray, string source, string destination)
+        private void Fill(bool g_compress, bool compliemntray, string source, string destination)
         {
             var util = new Util();
 
@@ -39,18 +42,27 @@ namespace Homunkulus.Helper
             var newestSettingsFile = dir.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
             var savePath = @"../../../backupplans/" + saveFileName;
 
-            backupPlan.Fill(compress, incremental, soruce, destination);
+            Fill(compress, incremental, soruce, destination);
 
             if (backupPlan.DestinationPath == null)
             {
                 throw new ArgumentNullException(backupPlan.DestinationPath);
             }
 
+            var saveInFileExtension = readSettingsFile().FileExtension;
+            switch (saveInFileExtension)
+            {
+                case "txt":
+                    saveToTxt(backupPlan, savePath);
+                    break;
 
-            backupPlan.saveToXml(backupPlan, savePath);
+                case "xml":
+                    saveToXml(backupPlan, savePath);
+                    break;
+            }
         }
 
-        public void saveToTxt(Backupplan backupplan, string savePath)
+        private void saveToTxt(Backupplan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
 
@@ -68,7 +80,7 @@ namespace Homunkulus.Helper
             File.WriteAllText(savePath, retrunString);
         }
 
-        public void saveToXml(Backupplan backupplan, string savePath)
+        private void saveToXml(Backupplan backupplan, string savePath)
         {
 
             var destination = backupplan.DestinationPath;
@@ -98,6 +110,22 @@ namespace Homunkulus.Helper
             writer.WriteEndElement();
             writer.WriteEndDocument();
             writer.Close();
+        }
+
+        private configFile readSettingsFile()
+        {
+            var savePath = @"../../../config";
+            var directoryInfo = new DirectoryInfo(savePath);
+            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
+            var jsonFileContent = System.Text.Json.JsonSerializer.Deserialize<config[]>(File.ReadAllText(firstFilePath.FullName));
+            var fileExt = jsonFileContent.Select(x => x.fileExtension).FirstOrDefault();
+
+            var configFile = new configHander.configFile
+            {
+                FileExtension = fileExt
+            };
+
+            return configFile;
         }
     }
 }
