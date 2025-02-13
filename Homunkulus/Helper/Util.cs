@@ -38,7 +38,8 @@ namespace Homunkulus.Helper
             File.WriteAllText(savePath, binData.ToString());
         }
         public void readJsonFIle(string filePath) 
-        { 
+        {
+            //TODO:Schreib das ding Fertig oder mach es neu
             dynamic fileContent = JsonConvert.DeserializeObject(filePath);
             foreach(var content in fileContent)
             {

@@ -10,6 +10,7 @@ namespace Homunkulus.helper
     {
         public class configFile
         {
+            //TODO: Extend the Configfile with more User Settings
             public string FileExtension { get; set; }
         }
     }
