@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pageHomeSite));
             show_backup_btn = new Button();
             panel1 = new Panel();
+            pictureBox2 = new PictureBox();
             plans_pbox = new PictureBox();
             create_pbox = new PictureBox();
             home_pbox = new PictureBox();
@@ -43,15 +44,14 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             label3 = new Label();
-            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // show_backup_btn
@@ -83,6 +83,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(982, 40);
             panel1.TabIndex = 3;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.settings;
+            pictureBox2.Location = new Point(947, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(32, 32);
+            pictureBox2.TabIndex = 10;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // plans_pbox
             // 
@@ -210,16 +220,6 @@
             label3.TabIndex = 8;
             label3.Text = "Welcome back to Homunkulus";
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(947, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(32, 32);
-            pictureBox2.TabIndex = 10;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
-            // 
             // pageHomeSite
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
@@ -240,6 +240,7 @@
             Text = "Landingpage";
             Load += Landingpage_Load;
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).EndInit();
@@ -248,7 +249,6 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

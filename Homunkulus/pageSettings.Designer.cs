@@ -90,7 +90,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(982, 40);
             panel1.TabIndex = 16;
-//TODO: Add a Picutre to the settings menu button
             // 
             // create_pbox
             // 
