@@ -1,23 +1,23 @@
-﻿using Homunkulus.helper;
+﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
+using Homunkulus.helper;
 using System.Xml;
-using static Homunkulus.helper.configHander;
+using static Homunkulus.helper.configHandler;
 using static Homunkulus.pageSettings;
 
 namespace Homunkulus.Helper
 {
     internal class Backupplan
     {
-        public string SourcePath { get; set; }
         public string DestinationPath { get; set; }
         public List<string> Files { get; set; }
         public bool incrementel { get; set; }
         public bool compress { get; set; }
 
-        private void Fill(bool g_compress, bool compliemntray, string source, string destination)
+        private void Fill(bool compress, bool compliemntray, string source, string destination)
         {
             var util = new Util();
 
-            compress = g_compress;
+            this.compress = compress;
             incrementel = compliemntray;
             DestinationPath = destination;
             Files = new List<string>();
@@ -32,32 +32,31 @@ namespace Homunkulus.Helper
 
         public void Create(bool compress, bool incremental, string soruce, string destination)
         {
-            var util = new Util();
+            var configHandler = new configHandler();
             var backupPlan = new Backupplan();
             var date = DateTime.Now.ToString("dd MM yyyy").Replace(" ", "");
             var saveDir = Directory.GetFiles(@"../../../backupplans");
             var saveFileName = date + "_" + saveDir.Length.ToString();
             var settingsPath = @"../../../config/";
             var dir = new DirectoryInfo(settingsPath);
-            var newestSettingsFile = dir.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
-            var savePath = @"../../../backupplans/" + saveFileName;
+            var backuPlanSavePath = @"../../../backupplans/" + saveFileName;
 
-            Fill(compress, incremental, soruce, destination);
+            backupPlan.Fill(compress, incremental, soruce, destination);
 
             if (backupPlan.DestinationPath == null)
             {
-                throw new ArgumentNullException(backupPlan.DestinationPath);
+                throw new ArgumentNullException("The Destination path is null");
             }
 
-            var saveInFileExtension = readSettingsFile().FileExtension;
-            switch (saveInFileExtension)
+            var saveInFileExtension = configHandler.getConfigFile();
+            switch (saveInFileExtension.FileExtension)
             {
                 case "txt":
-                    saveToTxt(backupPlan, savePath);
+                    saveToTxt(backupPlan, backuPlanSavePath);
                     break;
 
-                case "xml":
-                    saveToXml(backupPlan, savePath);
+                case "XML":
+                    saveToXml(backupPlan, backuPlanSavePath);
                     break;
             }
         }
@@ -110,22 +109,6 @@ namespace Homunkulus.Helper
             writer.WriteEndElement();
             writer.WriteEndDocument();
             writer.Close();
-        }
-
-        private configFile readSettingsFile()
-        {
-            var savePath = @"../../../config";
-            var directoryInfo = new DirectoryInfo(savePath);
-            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
-            var jsonFileContent = System.Text.Json.JsonSerializer.Deserialize<config[]>(File.ReadAllText(firstFilePath.FullName));
-            var fileExt = jsonFileContent.Select(x => x.fileExtension).FirstOrDefault();
-
-            var configFile = new configHander.configFile
-            {
-                FileExtension = fileExt
-            };
-
-            return configFile;
         }
     }
 }
