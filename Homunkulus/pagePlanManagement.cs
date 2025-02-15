@@ -127,7 +127,7 @@ namespace Homunkulus
         {
             TreeNode node = treeView2.SelectedNode;
             editedNode = node.Text;
-            var saveSetting = "xml";
+            var saveSetting = Path.GetExtension(editedNode);
             var tmpPath = string.Empty;
             var guid = Guid.NewGuid().ToString();
             var nodePath = path + node.Text;
@@ -136,11 +136,11 @@ namespace Homunkulus
             {
                 switch (saveSetting)
                 {
-                    case "xml":
+                    case ".xml":
                         tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
                         break;
 
-                    case "txt":
+                    case ".txt":
                         tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
                         break;
                 }
