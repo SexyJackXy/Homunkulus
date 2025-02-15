@@ -85,6 +85,7 @@ namespace Homunkulus.Helper
             var destination = backupplan.DestinationPath;
             var incrementel = backupplan.incrementel.ToString();
             var compress = backupplan.compress.ToString();
+            var sourceFiles = backupplan.Files;
 
             XmlTextWriter writer = new XmlTextWriter(savePath + ".xml", null);
             writer.WriteStartDocument();
@@ -95,10 +96,15 @@ namespace Homunkulus.Helper
             writer.WriteEndElement();
 
             writer.WriteStartElement("SavedFiles");
-            foreach (var file in Files)
+
+            if (sourceFiles.Count > 0)
             {
-                writer.WriteElementString("File", file);
+                foreach (var file in sourceFiles)
+                {
+                    writer.WriteElementString("File", file);
+                }
             }
+
             writer.WriteEndElement();
 
             writer.WriteStartElement("Status");
