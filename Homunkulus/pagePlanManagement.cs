@@ -216,7 +216,7 @@ namespace Homunkulus
 
                 File.Delete(deletePath);
                 MessageBox.Show("Deleted");
-
+                treeView2.Nodes.Clear();
                 PopulateTree(path, null);
             }
             else if (dialogResult == DialogResult.No)

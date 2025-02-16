@@ -53,6 +53,7 @@
             // panel1
             // 
             panel1.AutoSize = true;
+            panel1.BackColor = Color.FromArgb(227, 233, 245);
             panel1.Controls.Add(create_pbox);
             panel1.Controls.Add(plans_pbox);
             panel1.Controls.Add(home_pbox);
