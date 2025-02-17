@@ -1,6 +1,6 @@
 using Homunkulus.Helper;
-using System;
 using System.Diagnostics;
+using System.Xml;
 
 namespace Homunkulus
 {
@@ -23,7 +23,6 @@ namespace Homunkulus
         public void PopulateTree(string dir, TreeNode? node)
         {
             DirectoryInfo directory = new DirectoryInfo(dir);
-            var files = directory.GetFiles();
             foreach (DirectoryInfo d in directory.GetDirectories())
             {
                 TreeNode t = new TreeNode(d.Name);
@@ -38,66 +37,84 @@ namespace Homunkulus
                 else treeView2.Nodes.Add(t);
             }
         }
-        private void Load_btn_Click(object sender, EventArgs e)
+        public void loadTextFile(string path)
         {
-            //TODO: Make it possible to load XML Files
-
-            TreeNode node = treeView2.SelectedNode;
-            StreamReader? sr;
             var destination = "";
-
-            var selectedNode = node.Text;
-            var seltedDataPath = path + selectedNode;
             var source = new List<string>();
-            sr = new StreamReader(seltedDataPath);
-            var lineCout = File.ReadAllLines(seltedDataPath).Length;
-            var stopAtLine = lineCout - 5;
+            using var sr = new StreamReader(path);
+            var lines = File.ReadLines(path).ToList();
+            var stopAtLine = lines.Count - 5;
 
-            for (var i = 0; i < 3; i++)
+            foreach (var line in lines.Take(3))
             {
-                if (sr.ReadLine().Contains("Source"))
-                {
-                    break;
-                }
-
+                if (line.Contains("Source")) break;
                 destination = sr.ReadLine();
             }
 
-            for (var i = 0; i <= stopAtLine; i++)
+            foreach (var line in lines.Take(stopAtLine))
             {
-                var currentLine = sr.ReadLine();
-
-                if (currentLine == null) break;
-                if (currentLine.Contains("Compress True"))
-                {
-                    booCompress = true;
-                }
-                else if (currentLine.Contains("Compress False"))
-                {
-                    booCompress = false;
-                }
-                else if (currentLine.Contains("Compliemntray True"))
-                {
-                    booCompliemntray = true;
-                }
-                else if (currentLine.Contains("Compliemntray False"))
-                {
-                    booCompliemntray = false;
-                }
-                else
-                {
-                    source.Add(currentLine);
-                }
+                if (line.Contains("Compress True")) booCompress = true;
+                else if (line.Contains("Compress False")) booCompress = false;
+                else if (line.Contains("Compliemntray True")) booCompliemntray = true;
+                else if (line.Contains("Compliemntray False")) booCompliemntray = false;
+                else source.Add(line);
             }
 
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
+        }
+        public void loadXmlFile(string path)
+        {
+            var xDoc = new XmlDocument();
+            xDoc.Load(path);
+            var nodes = xDoc.DocumentElement.ChildNodes;
+            var source = new List<string>();
+
+            foreach (var node in nodes)
+            {
+                var xmlNode = node as XmlElement;
+                var elementName = xmlNode.Name;
+
+                switch (elementName)
+                {
+                    case "Destination":
+                        backupPlanDest = xmlNode.InnerText;
+                        break;
+                    case "SavedFiles":
+                        var util = new Util();
+                        backupPlan = util.sanitizedXmlString(xmlNode.InnerXml);
+
+                        break;
+                    case "Status":
+                        break;
+                }
+            }
+        }
+        private void Load_btn_Click(object sender, EventArgs e)
+        {
+            //TODO: Make it possible to load XML Files
+
+            var node = treeView2.SelectedNode;
+            var seltedDataPath = path + node.Text;
+            var fileExtension = new FileInfo(seltedDataPath).Extension;
+
+            switch (fileExtension)
+            {
+                case ".txt":
+                    loadTextFile(seltedDataPath);
+                    break;
+
+                case ".xml":
+                    loadXmlFile(seltedDataPath);
+                    break;
+            }
 
             this.Hide();
             pageBackupConfiguration ov = new pageBackupConfiguration();
             ov.ShowDialog();
             this.Close();
         }
+
         private void Open_btn_Click(object sender, EventArgs e)
         {
             try
