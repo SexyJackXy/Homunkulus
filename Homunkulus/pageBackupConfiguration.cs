@@ -40,7 +40,7 @@ namespace Homunkulus
             var linesInRtb = source_rtb.Lines.Count();
             var destinationFolder = Destination_txt.Text;
             var destinationZip = destinationFolder + ".zip";
-            var copy = new Clone();
+            var backupConfigurationHelper = new pageBackupConfigurationHelper();
 
             if (sourceFolderList.Count == 0)
             {
@@ -52,7 +52,7 @@ namespace Homunkulus
 
             if (check_incremental.Checked)
             {
-                copy.Incremental(destinationFolder, sourceFolderList);
+                backupConfigurationHelper.Copy_Incremental(destinationFolder, sourceFolderList);
             }
 
             if (check_compress.Checked)
@@ -62,7 +62,7 @@ namespace Homunkulus
 
             if (!check_compress.Checked && !check_incremental.Checked)
             {
-                copy.FromList(sourceFolderList, Destination_txt);
+                backupConfigurationHelper.Copy_FromList(sourceFolderList, Destination_txt);
             }
 
             source_rtb.Text = "Backup has been completed successfully";
@@ -140,7 +140,7 @@ namespace Homunkulus
         }
         private void save_btn_Click(object sender, EventArgs e)
         {
-            var backupplan = new Backupplan();
+            var backupplan = new pageBackupConfigurationHelper();
             var compress = check_compress.Checked ? true : false;
             var compliemntray = check_incremental.Checked ? true : false;
             var soruce = source_rtb.Text;

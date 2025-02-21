@@ -1,23 +1,26 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
+using Homunkulus.helper;
+using System.Xml;
+using static Homunkulus.helper.pageSettingsHandler;
+using static Homunkulus.pageSettings;
 
 namespace Homunkulus.Helper
 {
-    public class Clone
+    internal class pageBackupConfigurationHelper
     {
-        public Util util = new Util();
+        public string DestinationPath { get; set; }
+        public List<string> Files { get; set; }
+        public bool incrementel { get; set; }
+        public bool compress { get; set; }
+
         private void Copy(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
 
-            All(diSource, diTarget);
+            Copy_All(diSource, diTarget);
         }
-        public void All(DirectoryInfo source, DirectoryInfo target)
+        public void Copy_All(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
 
@@ -32,16 +35,17 @@ namespace Homunkulus.Helper
                 foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                    All(diSourceSubDir, nextTargetSubDir);
+                    Copy_All(diSourceSubDir, nextTargetSubDir);
                 }
             }
             catch
             {
             }
         }
-        public void FromList(List<string> pathList, TextBox destinationTextBox)
+        public void Copy_FromList(List<string> pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
+            var util = new Util();
             var shrt = string.Empty;
             var sourceDirectory = string.Empty;
             var targetDirectory = string.Empty;
@@ -71,7 +75,7 @@ namespace Homunkulus.Helper
                 }
             }
         }
-        public void FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
+        public void Copy_FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
             var userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -118,7 +122,7 @@ namespace Homunkulus.Helper
                 catch { }
             }
         }
-        public void Incremental(string destinationPath, List<string> sourceList)
+        public void Copy_Incremental(string destinationPath, List<string> sourceList)
         {
             var tfs = new TemporaryFileStore(destinationPath);
             var complimentaryFiles = new List<string>();
@@ -131,8 +135,112 @@ namespace Homunkulus.Helper
                 var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestedBackupDate).Select(file => file).ToList();
                 var parentDirectories = newFiles.Select(file => file.Directory).Where(dir => dir != null).Distinct().ToList();
 
-                FilesFromList(newFiles, destinationPath, source);
+                Copy_FilesFromList(newFiles, destinationPath, source);
             }
+        }
+
+        private void Fill(bool compress, bool compliemntray, string source, string destination)
+        {
+            var util = new Util();
+
+            this.compress = compress;
+            incrementel = compliemntray;
+            DestinationPath = destination;
+            Files = new List<string>();
+
+            var filesList = util.stringToList(source, true);
+
+            foreach (var file in filesList)
+            {
+                Files.Add(file);
+            }
+        }
+
+        public void Create(bool compress, bool incremental, string soruce, string destination)
+        {
+            var configHandler = new pageSettingsHandler();
+            var backupPlan = new pageBackupConfigurationHelper();
+            var date = DateTime.Now.ToString("dd MM yyyy").Replace(" ", "");
+            var saveDir = Directory.GetFiles(@"../../../backupplans");
+            var saveFileName = date + "_" + saveDir.Length.ToString();
+            var settingsPath = @"../../../config/";
+            var dir = new DirectoryInfo(settingsPath);
+            var backuPlanSavePath = @"../../../backupplans/" + saveFileName;
+
+            backupPlan.Fill(compress, incremental, soruce, destination);
+
+            if (backupPlan.DestinationPath == null)
+            {
+                throw new ArgumentNullException("The Destination path is null");
+            }
+
+            var saveInFileExtension = configHandler.getConfigFile();
+            switch (saveInFileExtension.FileExtension)
+            {
+                case "txt":
+                    saveToTxt(backupPlan, backuPlanSavePath);
+                    break;
+
+                case "XML":
+                    saveToXml(backupPlan, backuPlanSavePath);
+                    break;
+            }
+        }
+
+        private void saveToTxt(pageBackupConfigurationHelper backupplan, string savePath)
+        {
+            var files = string.Join("\n", backupplan.Files);
+
+            var retrunString =
+                $"Destination:\n" +
+                $"{backupplan.DestinationPath}\n" +
+                $"\n" +
+                $"Files: \n" +
+                $"{files}" +
+                $"\n" +
+                $"Status:\n" +
+                $"{backupplan.incrementel.ToString()}\n" +
+                $"{backupplan.compress.ToString()}\n";
+
+            File.WriteAllText(savePath, retrunString);
+        }
+
+        private void saveToXml(pageBackupConfigurationHelper backupplan, string savePath)
+        {
+
+            var destination = backupplan.DestinationPath;
+            var incrementel = backupplan.incrementel.ToString();
+            var compress = backupplan.compress.ToString();
+            var sourceFiles = backupplan.Files;
+
+            XmlTextWriter writer = new XmlTextWriter(savePath + ".xml", null);
+            writer.WriteStartDocument();
+            writer.WriteStartElement("Backup");
+
+            writer.WriteStartElement("Destination");
+            writer.WriteElementString("path", destination);
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("SavedFiles");
+
+            if (sourceFiles.Count > 0)
+            {
+                foreach (var file in sourceFiles)
+                {
+                    writer.WriteElementString("File", file);
+                }
+            }
+
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("Status");
+            writer.WriteElementString("Incrementel", incrementel);
+            writer.WriteElementString("Compressed", compress);
+            writer.WriteEndElement();
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
         }
     }
 }

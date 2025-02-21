@@ -133,6 +133,7 @@
             Controls.Add(fileExtDropDown);
             Name = "pageSettings";
             Text = "pageSettings";
+            Load += pageSettings_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).EndInit();

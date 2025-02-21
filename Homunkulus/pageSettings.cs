@@ -1,4 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Presentation;
+using Homunkulus.helper;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Homunkulus
@@ -9,6 +11,27 @@ namespace Homunkulus
         {
             InitializeComponent();
         }
+
+        public class config
+        {
+            public string fileExtension { get; set; }
+        }
+
+        private void pageSettings_Load(object sender, EventArgs e)
+        {
+            var savePath = @"../../../config";
+            var directoryInfo = new DirectoryInfo(savePath);
+            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
+            var jsonFileContent = System.Text.Json.JsonSerializer.Deserialize<config[]>(File.ReadAllText(firstFilePath.FullName));
+
+            var fileExt = jsonFileContent.Select(x => x.fileExtension).FirstOrDefault();
+
+            if (fileExt != null)
+            {
+                fileExtDropDown.Text = fileExt;
+            }
+        }
+
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
             var guid = Guid.NewGuid().ToString();
@@ -21,6 +44,7 @@ namespace Homunkulus
 
             File.WriteAllText(savePath, binData.ToString());
         }
+
         private void create_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();

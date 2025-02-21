@@ -37,13 +37,22 @@ namespace Homunkulus.Helper
 
             File.WriteAllText(savePath, binData.ToString());
         }
-        public void readJsonFIle(string filePath) 
-        { 
+        public void readJsonFIle(string filePath)
+        {
+            //TODO:Schreib das ding Fertig oder mach es neu
             dynamic fileContent = JsonConvert.DeserializeObject(filePath);
-            foreach(var content in fileContent)
+            foreach (var content in fileContent)
             {
 
             }
+        }
+
+        public string sanitizedXmlString(string xmlString)
+        {
+            var res = xmlString.Replace("<File>", "");
+            res = res.Replace("</File>", "\n");
+
+            return res;
         }
     }
 }
