@@ -9,7 +9,7 @@ using static Homunkulus.pageSettings;
 
 namespace Homunkulus.helper
 {
-    internal class configHandler
+    internal class pageSettingsHandler
     {
         public class configFile
         {

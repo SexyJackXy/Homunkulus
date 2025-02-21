@@ -90,6 +90,7 @@ namespace Homunkulus
                 }
             }
         }
+
         private void Load_btn_Click(object sender, EventArgs e)
         {
             //TODO: Make it possible to load XML Files
@@ -114,7 +115,6 @@ namespace Homunkulus
             ov.ShowDialog();
             this.Close();
         }
-
         private void Open_btn_Click(object sender, EventArgs e)
         {
             try

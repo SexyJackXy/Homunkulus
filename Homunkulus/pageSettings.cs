@@ -26,7 +26,7 @@ namespace Homunkulus
 
             var fileExt = jsonFileContent.Select(x => x.fileExtension).FirstOrDefault();
 
-            if (fileExt != null) 
+            if (fileExt != null)
             {
                 fileExtDropDown.Text = fileExt;
             }
