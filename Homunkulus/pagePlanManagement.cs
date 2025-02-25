@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace Homunkulus
 {
-    public partial class savedBackups : Form
+    public partial class pagePlanManagement : Form
     {
         public static string? backupPlan = " ";
         public static string? backupPlanDest = " ";
@@ -15,7 +15,7 @@ namespace Homunkulus
         private string editedNode = string.Empty;
         private string tmpFile = string.Empty;
 
-        public savedBackups()
+        public pagePlanManagement()
         {
             InitializeComponent();
         }
@@ -263,7 +263,7 @@ namespace Homunkulus
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            savedBackups hs = new savedBackups();
+            pagePlanManagement hs = new pagePlanManagement();
             hs.ShowDialog();
             this.Close();
         }

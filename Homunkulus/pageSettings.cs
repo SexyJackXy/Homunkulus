@@ -60,7 +60,7 @@ namespace Homunkulus
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new savedBackups().ShowDialog();
+            new pagePlanManagement().ShowDialog();
             this.Close();
         }
     }

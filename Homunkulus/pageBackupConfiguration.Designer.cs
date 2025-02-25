@@ -285,7 +285,7 @@
             multifolder_select_btn.Text = "Multifolder Select";
             multifolder_select_btn.UseVisualStyleBackColor = false;
             // 
-            // createBackup
+            // pageBackupConfiguration
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -309,7 +309,8 @@
             Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
-            Name = "createBackup";
+            Name = "pageBackupConfiguration";
+            Text = "pageBackupConfiguration";
             Load += Overview_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();

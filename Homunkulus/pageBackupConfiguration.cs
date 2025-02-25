@@ -17,11 +17,11 @@ namespace Homunkulus
         }
         private void Overview_Load(object sender, EventArgs e)
         {
-            source_rtb.Text = savedBackups.backupPlan;
-            Destination_txt.Text = savedBackups.backupPlanDest;
+            source_rtb.Text = pagePlanManagement.backupPlan;
+            Destination_txt.Text = pagePlanManagement.backupPlanDest;
 
-            var Compress = savedBackups.booCompress;
-            var Compliemntray = savedBackups.booCompliemntray;
+            var Compress = pagePlanManagement.booCompress;
+            var Compliemntray = pagePlanManagement.booCompliemntray;
 
             if (Compress == true)
             {
@@ -165,7 +165,7 @@ namespace Homunkulus
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new savedBackups().ShowDialog();
+            new pagePlanManagement().ShowDialog();
             this.Close();
         }
         private void clear_btn_Click(object sender, EventArgs e)
@@ -176,7 +176,7 @@ namespace Homunkulus
         private void import_backup_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new savedBackups().ShowDialog();
+            new pagePlanManagement().ShowDialog();
             this.Close();
         }
     }

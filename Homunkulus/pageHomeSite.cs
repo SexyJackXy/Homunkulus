@@ -11,6 +11,7 @@
         {
             var path = @"..\..\..\backupplans";
             var runPath = @"..\..\..\logs";
+            var test = this.Text;
 
             System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
             var count = dir.GetFiles().Length;
@@ -30,7 +31,7 @@
         private void show_backup_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            savedBackups his = new savedBackups();
+            pagePlanManagement his = new pagePlanManagement();
             his.ShowDialog();
             this.Close();
         }
@@ -51,7 +52,7 @@
         private void plans_pbox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            savedBackups hs = new savedBackups();
+            pagePlanManagement hs = new pagePlanManagement();
             hs.ShowDialog();
             this.Close();
         }

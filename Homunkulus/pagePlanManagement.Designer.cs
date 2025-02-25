@@ -1,6 +1,6 @@
 ﻿namespace Homunkulus
 {
-    partial class savedBackups
+    partial class pagePlanManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(savedBackups));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pagePlanManagement));
             panel1 = new Panel();
             create_pbox = new PictureBox();
             plans_pbox = new PictureBox();
@@ -242,7 +242,7 @@
             delete_btn.UseVisualStyleBackColor = false;
             delete_btn.Click += delete_btn_Click;
             // 
-            // savedBackups
+            // pagePlanManagement
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -263,8 +263,8 @@
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
-            Name = "savedBackups";
-            Text = "History";
+            Name = "pagePlanManagement";
+            Text = "pagePlanManagement";
             Load += History_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
