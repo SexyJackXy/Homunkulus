@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pageHomeSite));
+            PictureBox home_pbox;
             show_backup_btn = new Button();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             plans_pbox = new PictureBox();
             create_pbox = new PictureBox();
-            home_pbox = new PictureBox();
             create_btn = new Button();
             panel2 = new Panel();
             numb_execute = new Label();
@@ -44,6 +44,7 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             label3 = new Label();
+            home_pbox = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
