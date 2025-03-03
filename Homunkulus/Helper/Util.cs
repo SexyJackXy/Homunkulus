@@ -46,13 +46,5 @@ namespace Homunkulus.Helper
 
             }
         }
-
-        public string sanitizedXmlString(string xmlString)
-        {
-            var res = xmlString.Replace("<File>", "");
-            res = res.Replace("</File>", "\n");
-
-            return res;
-        }
     }
 }

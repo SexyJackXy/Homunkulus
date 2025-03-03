@@ -1,5 +1,7 @@
+using Homunkulus.helper;
 using Homunkulus.Helper;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace Homunkulus
@@ -8,8 +10,8 @@ namespace Homunkulus
     {
         public static string? backupPlan = " ";
         public static string? backupPlanDest = " ";
-        public static bool booCompress = false;
-        public static bool booCompliemntray = false;
+        public static bool compressedBackup = false;
+        public static bool incrementelBackup = false;
         private List<string> cache = new List<string>();
         private string path = @"..\..\..\backupplans\";
         private string editedNode = string.Empty;
@@ -53,10 +55,10 @@ namespace Homunkulus
 
             foreach (var line in lines.Take(stopAtLine))
             {
-                if (line.Contains("Compress True")) booCompress = true;
-                else if (line.Contains("Compress False")) booCompress = false;
-                else if (line.Contains("Compliemntray True")) booCompliemntray = true;
-                else if (line.Contains("Compliemntray False")) booCompliemntray = false;
+                if (line.Contains("Compress True")) compressedBackup = true;
+                else if (line.Contains("Compress False")) compressedBackup = false;
+                else if (line.Contains("Compliemntray True")) incrementelBackup = true;
+                else if (line.Contains("Compliemntray False")) incrementelBackup = false;
                 else source.Add(line);
             }
 
@@ -65,10 +67,11 @@ namespace Homunkulus
         }
         public void loadXmlFile(string path)
         {
+            var planManagementHandler = new pagePlanManagementHandler();
             var xDoc = new XmlDocument();
             xDoc.Load(path);
             var nodes = xDoc.DocumentElement.ChildNodes;
-            var source = new List<string>();
+
 
             foreach (var node in nodes)
             {
@@ -81,16 +84,35 @@ namespace Homunkulus
                         backupPlanDest = xmlNode.InnerText;
                         break;
                     case "SavedFiles":
-                        var util = new Util();
-                        backupPlan = util.sanitizedXmlString(xmlNode.InnerXml);
+                        backupPlan = planManagementHandler.sanatizeFileXML(xmlNode.InnerXml);
 
                         break;
                     case "Status":
+                        var nodeContent = xmlNode.InnerXml.Replace("><", ">\n<").SplitByNewLines(true);
+
+                        foreach (var line in nodeContent)
+                        {
+                            if (line.Contains("Incrementel"))
+                            {
+                                var innerContent = Regex.Match(line, @">([^<]+)<").Groups[1].Value;
+                                if(innerContent.Contains("true"))
+                                {
+                                    incrementelBackup =true;
+                                }
+                            }
+                            else if (line.Contains("Compressed"))
+                            {
+                                var innerContent = Regex.Match(line, @">([^<]+)<").Groups[1].Value;
+                                if (innerContent.Contains("true"))
+                                {
+                                    compressedBackup = true;
+                                }
+                            }
+                        }
                         break;
                 }
             }
         }
-
         private void Load_btn_Click(object sender, EventArgs e)
         {
             //TODO: Make it possible to load XML Files

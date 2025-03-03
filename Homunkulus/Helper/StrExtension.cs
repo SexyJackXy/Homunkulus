@@ -70,5 +70,15 @@ namespace Homunkulus.Helper
         {
             return str;
         }
+
+        public static IEnumerable<string> SplitByNewLines(this string input, bool removeEmptyEntries)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return new string[] { };
+            }
+
+            return input.Replace("\r", "").Split(new[] { '\n' }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+        }
     }
 }

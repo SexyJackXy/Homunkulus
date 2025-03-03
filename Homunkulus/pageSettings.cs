@@ -1,7 +1,4 @@
-﻿using DocumentFormat.OpenXml.Presentation;
-using Homunkulus.helper;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace Homunkulus
 {
@@ -14,8 +11,8 @@ namespace Homunkulus
 
         public class config
         {
-            public string fileExtension { get; set; }
-            public string startMips { get; set; }
+            public string? fileExtension { get; set; }
+            public string? startMips { get; set; }
         }
 
         private void pageSettings_Load(object sender, EventArgs e)
@@ -24,23 +21,20 @@ namespace Homunkulus
 
             var savePath = @"../../../config";
             var directoryInfo = new DirectoryInfo(savePath);
-            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
-            var jsonFileContent = System.Text.Json.JsonSerializer.Deserialize<config[]>(File.ReadAllText(firstFilePath.FullName));
+            var firstFile = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
+            var jsonContent = File.ReadAllText(firstFile.FullName);
+            var configArray = System.Text.Json.JsonSerializer.Deserialize<config>(jsonContent);
 
-            var fileExt = jsonFileContent.Select(x => x.fileExtension).FirstOrDefault();
-
-            if (fileExt != null)
-            {
-                fileExtDropDown.Text = fileExt;
-            }
+            file_save_cb.Text = configArray.fileExtension;
+            start_mips_cb.Text = configArray.startMips;
         }
 
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
             var guid = Guid.NewGuid().ToString();
             var savePath = @"../../../config/config_" + guid + ".json ";
-            var fileExtension = fileExtDropDown.Text;
-            var startMips = start_MIPS_cb.Text;
+            var fileExtension = file_save_cb.Text;
+            var startMips = start_mips_cb.Text;
 
             JObject binData = new JObject(
                 new JProperty("fileExtension", fileExtension),

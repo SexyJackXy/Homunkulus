@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            fileExtDropDown = new ComboBox();
+            file_save_cb = new ComboBox();
             label1 = new Label();
             saveSettings_btn = new Button();
             panel1 = new Panel();
@@ -36,22 +36,22 @@
             plans_pbox = new PictureBox();
             home_pbox = new PictureBox();
             label2 = new Label();
-            start_MIPS_cb = new ComboBox();
+            start_mips_cb = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)home_pbox).BeginInit();
             SuspendLayout();
             // 
-            // fileExtDropDown
+            // file_save_cb
             // 
-            fileExtDropDown.BackColor = Color.FromArgb(220, 221, 225);
-            fileExtDropDown.FormattingEnabled = true;
-            fileExtDropDown.Items.AddRange(new object[] { "Text", "XML" });
-            fileExtDropDown.Location = new Point(279, 56);
-            fileExtDropDown.Name = "fileExtDropDown";
-            fileExtDropDown.Size = new Size(566, 23);
-            fileExtDropDown.TabIndex = 0;
+            file_save_cb.BackColor = Color.FromArgb(220, 221, 225);
+            file_save_cb.FormattingEnabled = true;
+            file_save_cb.Items.AddRange(new object[] { "Text", "XML" });
+            file_save_cb.Location = new Point(279, 56);
+            file_save_cb.Name = "file_save_cb";
+            file_save_cb.Size = new Size(566, 23);
+            file_save_cb.TabIndex = 0;
             // 
             // label1
             // 
@@ -133,15 +133,15 @@
             label2.TabIndex = 17;
             label2.Text = "Start M.I.P.S";
             // 
-            // start_MIPS_cb
+            // start_mips_cb
             // 
-            start_MIPS_cb.BackColor = Color.FromArgb(220, 221, 225);
-            start_MIPS_cb.FormattingEnabled = true;
-            start_MIPS_cb.Items.AddRange(new object[] { "Yes", "No" });
-            start_MIPS_cb.Location = new Point(279, 109);
-            start_MIPS_cb.Name = "start_MIPS_cb";
-            start_MIPS_cb.Size = new Size(566, 23);
-            start_MIPS_cb.TabIndex = 18;
+            start_mips_cb.BackColor = Color.FromArgb(220, 221, 225);
+            start_mips_cb.FormattingEnabled = true;
+            start_mips_cb.Items.AddRange(new object[] { "Yes", "No" });
+            start_mips_cb.Location = new Point(279, 109);
+            start_mips_cb.Name = "start_mips_cb";
+            start_mips_cb.Size = new Size(566, 23);
+            start_mips_cb.TabIndex = 18;
             // 
             // pageSettings
             // 
@@ -149,12 +149,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
-            Controls.Add(start_MIPS_cb);
+            Controls.Add(start_mips_cb);
             Controls.Add(label2);
             Controls.Add(panel1);
             Controls.Add(saveSettings_btn);
             Controls.Add(label1);
-            Controls.Add(fileExtDropDown);
+            Controls.Add(file_save_cb);
             Name = "pageSettings";
             Text = "pageSettings";
             Load += pageSettings_Load;
@@ -168,7 +168,7 @@
 
         #endregion
 
-        private ComboBox fileExtDropDown;
+        private ComboBox file_save_cb;
         private Label label1;
         private Button saveSettings_btn;
         private Panel panel1;
@@ -176,6 +176,6 @@
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
         private Label label2;
-        private ComboBox start_MIPS_cb;
+        private ComboBox start_mips_cb;
     }
 }

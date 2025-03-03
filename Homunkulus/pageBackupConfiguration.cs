@@ -20,8 +20,8 @@ namespace Homunkulus
             source_rtb.Text = savedBackups.backupPlan;
             Destination_txt.Text = savedBackups.backupPlanDest;
 
-            var Compress = savedBackups.booCompress;
-            var Compliemntray = savedBackups.booCompliemntray;
+            var Compress = savedBackups.compressedBackup;
+            var Compliemntray = savedBackups.incrementelBackup;
 
             if (Compress == true)
             {
