@@ -35,6 +35,8 @@
             create_pbox = new PictureBox();
             plans_pbox = new PictureBox();
             home_pbox = new PictureBox();
+            label2 = new Label();
+            start_MIPS_cb = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
@@ -46,16 +48,16 @@
             fileExtDropDown.BackColor = Color.FromArgb(220, 221, 225);
             fileExtDropDown.FormattingEnabled = true;
             fileExtDropDown.Items.AddRange(new object[] { "Text", "XML" });
-            fileExtDropDown.Location = new Point(128, 56);
+            fileExtDropDown.Location = new Point(279, 56);
             fileExtDropDown.Name = "fileExtDropDown";
-            fileExtDropDown.Size = new Size(681, 23);
+            fileExtDropDown.Size = new Size(566, 23);
             fileExtDropDown.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(128, 35);
+            label1.Location = new Point(120, 56);
             label1.Name = "label1";
             label1.Size = new Size(91, 18);
             label1.TabIndex = 1;
@@ -121,12 +123,34 @@
             home_pbox.TabStop = false;
             home_pbox.Click += home_pbox_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(120, 114);
+            label2.Name = "label2";
+            label2.Size = new Size(93, 18);
+            label2.TabIndex = 17;
+            label2.Text = "Start M.I.P.S";
+            // 
+            // start_MIPS_cb
+            // 
+            start_MIPS_cb.BackColor = Color.FromArgb(220, 221, 225);
+            start_MIPS_cb.FormattingEnabled = true;
+            start_MIPS_cb.Items.AddRange(new object[] { "Yes", "No" });
+            start_MIPS_cb.Location = new Point(279, 109);
+            start_MIPS_cb.Name = "start_MIPS_cb";
+            start_MIPS_cb.Size = new Size(566, 23);
+            start_MIPS_cb.TabIndex = 18;
+            // 
             // pageSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
+            Controls.Add(start_MIPS_cb);
+            Controls.Add(label2);
             Controls.Add(panel1);
             Controls.Add(saveSettings_btn);
             Controls.Add(label1);
@@ -151,5 +175,7 @@
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
+        private Label label2;
+        private ComboBox start_MIPS_cb;
     }
 }

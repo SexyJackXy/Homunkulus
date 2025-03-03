@@ -15,10 +15,13 @@ namespace Homunkulus
         public class config
         {
             public string fileExtension { get; set; }
+            public string startMips { get; set; }
         }
 
         private void pageSettings_Load(object sender, EventArgs e)
         {
+            //TODO: Added startMips Setting
+
             var savePath = @"../../../config";
             var directoryInfo = new DirectoryInfo(savePath);
             var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
@@ -37,9 +40,11 @@ namespace Homunkulus
             var guid = Guid.NewGuid().ToString();
             var savePath = @"../../../config/config_" + guid + ".json ";
             var fileExtension = fileExtDropDown.Text;
+            var startMips = start_MIPS_cb.Text;
 
             JObject binData = new JObject(
-                new JProperty("fileExtension", fileExtension)
+                new JProperty("fileExtension", fileExtension),
+                new JProperty("startMips", startMips)
                 );
 
             File.WriteAllText(savePath, binData.ToString());
