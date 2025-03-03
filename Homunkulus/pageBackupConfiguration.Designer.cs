@@ -46,7 +46,6 @@
             clear_btn = new Button();
             check_compress = new CheckBox();
             check_incremental = new CheckBox();
-            multifolder_select_btn = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
@@ -252,7 +251,7 @@
             // 
             check_compress.AutoSize = true;
             check_compress.BackColor = Color.Transparent;
-            check_compress.Location = new Point(812, 215);
+            check_compress.Location = new Point(812, 180);
             check_compress.Name = "check_compress";
             check_compress.Size = new Size(118, 22);
             check_compress.TabIndex = 15;
@@ -262,36 +261,19 @@
             // check_incremental
             // 
             check_incremental.AutoSize = true;
-            check_incremental.Location = new Point(812, 243);
+            check_incremental.Location = new Point(812, 208);
             check_incremental.Name = "check_incremental";
             check_incremental.Size = new Size(106, 22);
             check_incremental.TabIndex = 16;
             check_incremental.Text = "Incremental";
             check_incremental.UseVisualStyleBackColor = true;
             // 
-            // multifolder_select_btn
-            // 
-            multifolder_select_btn.AutoSize = true;
-            multifolder_select_btn.BackColor = Color.FromArgb(198, 149, 166);
-            multifolder_select_btn.Enabled = false;
-            multifolder_select_btn.FlatAppearance.BorderSize = 0;
-            multifolder_select_btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(81, 10, 50);
-            multifolder_select_btn.FlatStyle = FlatStyle.Flat;
-            multifolder_select_btn.ForeColor = Color.White;
-            multifolder_select_btn.Location = new Point(812, 180);
-            multifolder_select_btn.Name = "multifolder_select_btn";
-            multifolder_select_btn.Size = new Size(153, 28);
-            multifolder_select_btn.TabIndex = 17;
-            multifolder_select_btn.Text = "Multifolder Select";
-            multifolder_select_btn.UseVisualStyleBackColor = false;
-            // 
-            // createBackup
+            // pageBackupConfiguration
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
-            Controls.Add(multifolder_select_btn);
             Controls.Add(check_incremental);
             Controls.Add(check_compress);
             Controls.Add(clear_btn);
@@ -309,7 +291,7 @@
             Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
-            Name = "createBackup";
+            Name = "pageBackupConfiguration";
             Load += Overview_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)create_pbox).EndInit();
@@ -337,6 +319,5 @@
         private Button clear_btn;
         private CheckBox check_compress;
         private CheckBox check_incremental;
-        private Button multifolder_select_btn;
     }
 }

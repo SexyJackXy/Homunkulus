@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Homunkulus.Helper;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Homunkulus
 {
@@ -69,31 +70,34 @@ namespace Homunkulus
         }
         private void src_btn_Click(object sender, EventArgs e)
         {
-            var fbd = new FolderBrowserDialog();
-
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            using var dialog = new CommonOpenFileDialog
             {
-                var folder = fbd.SelectedPath.stringClean();
+                IsFolderPicker = true,
+                Multiselect = true
+            };
 
-                if (String.IsNullOrEmpty(folder))
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                var folders = dialog.FileNames;
+                if (folders == null)
                 {
-                    MessageBox.Show("You can not add nothing");
-                }
-                if (source_rtb.Text.Length == 1)
-                {
-                    source_rtb.Clear();
-                    source_rtb.AppendText(folder);
+                    MessageBox.Show("You can't add nothing");
                 }
                 else
                 {
-                    source_rtb.AppendText("\n" + folder);
+                    source_rtb.Text = string.Join("\n", folders);
                 }
-                sourceFolderList.Add(folder);
             }
         }
         private void add_data_btn_Click(object sender, EventArgs e)
         {
             var ofd = new OpenFileDialog();
+
+            using var dialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Multiselect = true
+            };
 
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -146,7 +150,7 @@ namespace Homunkulus
             var soruce = source_rtb.Text;
             var destination = Destination_txt.Text;
 
-            backupplan.Create(compress,false,soruce,destination);
+            backupplan.Create(compress, false, soruce, destination);
         }
 
         //Navigation Methoden
