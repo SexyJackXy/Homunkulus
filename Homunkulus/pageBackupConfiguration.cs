@@ -146,11 +146,11 @@ namespace Homunkulus
         {
             var backupplan = new pageBackupConfigurationHelper();
             var compress = check_compress.Checked ? true : false;
-            var compliemntray = check_incremental.Checked ? true : false;
+            var incremental = check_incremental.Checked ? true : false;
             var soruce = source_rtb.Text;
             var destination = Destination_txt.Text;
 
-            backupplan.Create(compress, false, soruce, destination);
+            backupplan.Create(compress, incremental, soruce, destination);
         }
 
         //Navigation Methoden

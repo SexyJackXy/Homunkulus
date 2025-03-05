@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Vml.Spreadsheet;
-using Homunkulus.helper;
+﻿using Homunkulus.helper;
 using System.Xml;
 using static Homunkulus.helper.pageSettingsHandler;
 using static Homunkulus.pageSettings;
@@ -8,10 +7,17 @@ namespace Homunkulus.Helper
 {
     internal class pageBackupConfigurationHelper
     {
-        public string DestinationPath { get; set; }
-        public List<string> Files { get; set; }
-        public bool incrementel { get; set; }
-        public bool compress { get; set; }
+        private class backuPlan : pageBackupConfigurationHelper
+        {
+            public string DestinationPath { get; set; }
+            public List<string> Files { get; set; }
+            public bool incrementel { get; set; }
+            public bool compress { get; set; }
+            public string type {  get; set; }
+
+        }
+
+        public Util util1 = new Util();
 
         private void Copy(string sourceDirectory, string targetDirectory)
         {
@@ -66,7 +72,7 @@ namespace Homunkulus.Helper
                 else if (!string.IsNullOrEmpty(sourceDirectory))
                 {
                     Directory.CreateDirectory(newBackupFolder);
-                    util.createBinData(newBackupFolder, "LMMA");
+                    util1.createBinData(newBackupFolder, "Full");
                     Copy(sourceDirectory, targetDirectory);
                 }
                 else
@@ -82,6 +88,8 @@ namespace Homunkulus.Helper
             var backupFolderName = "Backup " + DateTime.Now.ToString("dd.MM.yyyy");
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
+
+            util1.createBinData(finalDestinationPath, "Incremental");
 
             foreach (var file in fileList)
             {
@@ -138,28 +146,46 @@ namespace Homunkulus.Helper
                 Copy_FilesFromList(newFiles, destinationPath, source);
             }
         }
-
-        private void Fill(bool compress, bool compliemntray, string source, string destination)
+        private void Fill(bool compress, bool incrementel, string source, string destination)
         {
-            var util = new Util();
+            var plan = new backuPlan();
 
-            this.compress = compress;
-            incrementel = compliemntray;
-            DestinationPath = destination;
-            Files = new List<string>();
+            plan.compress = compress;
+            plan.incrementel = incrementel;
+            plan.DestinationPath = destination;
+            plan.Files = new List<string>();
 
-            var filesList = util.stringToList(source, true);
+            var filesList = util1.stringToList(source, true);
+
+            if(plan.incrementel == true)
+            {
+                plan.type = "incrementel";
+            }
+
+            if (plan.compress == true)
+            {
+                plan.type = "compress";
+            }
+
+            if (plan.incrementel == true && plan.compress)
+            {
+                plan.type = "incrementel, compress";
+            }
+
+            if (plan.incrementel == true || plan.compress)
+            {
+                plan.type = "full";
+            }
 
             foreach (var file in filesList)
             {
-                Files.Add(file);
+                plan.Files.Add(file);
             }
         }
-
         public void Create(bool compress, bool incremental, string soruce, string destination)
         {
             var configHandler = new pageSettingsHandler();
-            var backupPlan = new pageBackupConfigurationHelper();
+            var backupPlan = new backuPlan();
             var date = DateTime.Now.ToString("dd MM yyyy").Replace(" ", "");
             var saveDir = Directory.GetFiles(@"../../../backupplans");
             var saveFileName = date + "_" + saveDir.Length.ToString();
@@ -186,8 +212,7 @@ namespace Homunkulus.Helper
                     break;
             }
         }
-
-        private void saveToTxt(pageBackupConfigurationHelper backupplan, string savePath)
+        private void saveToTxt(backuPlan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
 
@@ -204,8 +229,7 @@ namespace Homunkulus.Helper
 
             File.WriteAllText(savePath, retrunString);
         }
-
-        private void saveToXml(pageBackupConfigurationHelper backupplan, string savePath)
+        private void saveToXml(backuPlan backupplan, string savePath)
         {
 
             var destination = backupplan.DestinationPath;
