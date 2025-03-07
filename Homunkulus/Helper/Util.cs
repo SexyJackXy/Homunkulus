@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using static Homunkulus.helper.pageSettingsHandler;
 
 namespace Homunkulus.Helper
 {
@@ -37,14 +38,13 @@ namespace Homunkulus.Helper
 
             File.WriteAllText(savePath, binData.ToString());
         }
-        public void readJsonFIle(string filePath)
+        public List<string> readJsonFIle(string filePath)
         {
-            //TODO:Schreib das ding Fertig oder mach es neu
-            dynamic fileContent = JsonConvert.DeserializeObject(filePath);
-            foreach (var content in fileContent)
-            {
+            var streamReader = new StreamReader(filePath);
+            var json = streamReader.ReadToEnd();
+            var jsonContent = JsonConvert.DeserializeObject<List<string>>(json);
 
-            }
+            return jsonContent;
         }
     }
 }
