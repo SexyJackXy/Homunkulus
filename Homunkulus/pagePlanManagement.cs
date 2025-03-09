@@ -11,7 +11,7 @@ namespace Homunkulus
         public static string? backupPlan = " ";
         public static string? backupPlanDest = " ";
         public static bool compressedBackup = false;
-        public static bool incrementelBackup = false;
+        public static bool incrementalBackup = false;
         private List<string> cache = new List<string>();
         private string path = @"..\..\..\backupplans\";
         private string editedNode = string.Empty;
@@ -57,8 +57,8 @@ namespace Homunkulus
             {
                 if (line.Contains("Compress True")) compressedBackup = true;
                 else if (line.Contains("Compress False")) compressedBackup = false;
-                else if (line.Contains("Compliemntray True")) incrementelBackup = true;
-                else if (line.Contains("Compliemntray False")) incrementelBackup = false;
+                else if (line.Contains("Compliemntray True")) incrementalBackup = true;
+                else if (line.Contains("Compliemntray False")) incrementalBackup = false;
                 else source.Add(line);
             }
 
@@ -92,12 +92,12 @@ namespace Homunkulus
 
                         foreach (var line in nodeContent)
                         {
-                            if (line.Contains("Incrementel"))
+                            if (line.Contains("incremental"))
                             {
                                 var innerContent = Regex.Match(line, @">([^<]+)<").Groups[1].Value;
                                 if(innerContent.Contains("true"))
                                 {
-                                    incrementelBackup =true;
+                                    incrementalBackup =true;
                                 }
                             }
                             else if (line.Contains("Compressed"))

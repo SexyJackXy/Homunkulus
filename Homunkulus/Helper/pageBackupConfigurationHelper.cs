@@ -1,17 +1,15 @@
 ﻿using Homunkulus.helper;
 using System.Xml;
-using static Homunkulus.helper.pageSettingsHandler;
-using static Homunkulus.pageSettings;
 
 namespace Homunkulus.Helper
 {
     internal class pageBackupConfigurationHelper
     {
-        private class backuPlan : pageBackupConfigurationHelper
+        private class backupPlan : pageBackupConfigurationHelper
         {
             public string DestinationPath { get; set; }
             public List<string> Files { get; set; }
-            public bool incrementel { get; set; }
+            public bool incremental { get; set; }
             public bool compress { get; set; }
             public string type {  get; set; }
 
@@ -146,46 +144,38 @@ namespace Homunkulus.Helper
                 Copy_FilesFromList(newFiles, destinationPath, source);
             }
         }
-        private void Fill(bool compress, bool incrementel, string source, string destination)
+        private void InitializeBackupPlan(backupPlan backupPlan, bool compress, bool incremental, string destination, string source)
         {
-            var plan = new backuPlan();
-
-            plan.compress = compress;
-            plan.incrementel = incrementel;
-            plan.DestinationPath = destination;
-            plan.Files = new List<string>();
+            backupPlan.compress = compress;
+            backupPlan.incremental = incremental;
+            backupPlan.DestinationPath = destination;
+            backupPlan.Files = new List<string>();
 
             var filesList = util1.stringToList(source, true);
 
-            if(plan.incrementel == true)
+            if (compress && incremental)
             {
-                plan.type = "incrementel";
+                backupPlan.type = "incremental, compress";
+            }
+            else if (incremental)
+            {
+                backupPlan.type = "incremental";
+            }
+            else if (compress)
+            {
+                backupPlan.type = "compress";
+            }
+            else
+            {
+                backupPlan.type = "full";
             }
 
-            if (plan.compress == true)
-            {
-                plan.type = "compress";
-            }
-
-            if (plan.incrementel == true && plan.compress)
-            {
-                plan.type = "incrementel, compress";
-            }
-
-            if (plan.incrementel == true || plan.compress)
-            {
-                plan.type = "full";
-            }
-
-            foreach (var file in filesList)
-            {
-                plan.Files.Add(file);
-            }
+            backupPlan.Files.AddRange(filesList);
         }
-        public void Create(bool compress, bool incremental, string soruce, string destination)
+        public void Create(bool compress, bool incremental, string source, string destination)
         {
             var configHandler = new pageSettingsHandler();
-            var backupPlan = new backuPlan();
+            var backupPlan = new backupPlan();
             var date = DateTime.Now.ToString("dd MM yyyy").Replace(" ", "");
             var saveDir = Directory.GetFiles(@"../../../backupplans");
             var saveFileName = date + "_" + saveDir.Length.ToString();
@@ -193,7 +183,7 @@ namespace Homunkulus.Helper
             var dir = new DirectoryInfo(settingsPath);
             var backuPlanSavePath = @"../../../backupplans/" + saveFileName;
 
-            backupPlan.Fill(compress, incremental, soruce, destination);
+            InitializeBackupPlan(backupPlan, compress, incremental, destination, source);
 
             if (backupPlan.DestinationPath == null)
             {
@@ -212,7 +202,7 @@ namespace Homunkulus.Helper
                     break;
             }
         }
-        private void saveToTxt(backuPlan backupplan, string savePath)
+        private void saveToTxt(backupPlan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
 
@@ -224,16 +214,16 @@ namespace Homunkulus.Helper
                 $"{files}" +
                 $"\n" +
                 $"Status:\n" +
-                $"{backupplan.incrementel.ToString()}\n" +
+                $"{backupplan.incremental.ToString()}\n" +
                 $"{backupplan.compress.ToString()}\n";
 
             File.WriteAllText(savePath, retrunString);
         }
-        private void saveToXml(backuPlan backupplan, string savePath)
+        private void saveToXml(backupPlan backupplan, string savePath)
         {
 
             var destination = backupplan.DestinationPath;
-            var incrementel = backupplan.incrementel.ToString();
+            var incremental = backupplan.incremental.ToString();
             var compress = backupplan.compress.ToString();
             var sourceFiles = backupplan.Files;
 
@@ -258,7 +248,7 @@ namespace Homunkulus.Helper
             writer.WriteEndElement();
 
             writer.WriteStartElement("Status");
-            writer.WriteElementString("Incrementel", incrementel);
+            writer.WriteElementString("incremental", incremental);
             writer.WriteElementString("Compressed", compress);
             writer.WriteEndElement();
 

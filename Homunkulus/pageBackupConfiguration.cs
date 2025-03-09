@@ -22,7 +22,7 @@ namespace Homunkulus
             Destination_txt.Text = savedBackups.backupPlanDest;
 
             var Compress = savedBackups.compressedBackup;
-            var Compliemntray = savedBackups.incrementelBackup;
+            var Compliemntray = savedBackups.incrementalBackup;
 
             if (Compress == true)
             {
@@ -38,6 +38,7 @@ namespace Homunkulus
         //Here the start button is clicked and the backup is started
         private void start_btn_Click(object sender, EventArgs e)
         {
+            var test = @"..\..\..\;ogs";
             var linesInRtb = source_rtb.Lines.Count();
             var destinationFolder = Destination_txt.Text;
             var destinationZip = destinationFolder + ".zip";
