@@ -95,9 +95,9 @@ namespace Homunkulus
                             if (line.Contains("incremental"))
                             {
                                 var innerContent = Regex.Match(line, @">([^<]+)<").Groups[1].Value;
-                                if(innerContent.Contains("true"))
+                                if (innerContent.Contains("true"))
                                 {
-                                    incrementalBackup =true;
+                                    incrementalBackup = true;
                                 }
                             }
                             else if (line.Contains("Compressed"))
@@ -115,8 +115,6 @@ namespace Homunkulus
         }
         private void Load_btn_Click(object sender, EventArgs e)
         {
-            //TODO: Make it possible to load XML Files
-
             var node = treeView2.SelectedNode;
             var seltedDataPath = path + node.Text;
             var fileExtension = new FileInfo(seltedDataPath).Extension;
