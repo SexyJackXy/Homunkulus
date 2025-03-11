@@ -21,7 +21,6 @@ namespace Homunkulus
         {
             InitializeComponent();
         }
-
         public void PopulateTree(string dir, TreeNode? node)
         {
             DirectoryInfo directory = new DirectoryInfo(dir);
@@ -261,7 +260,6 @@ namespace Homunkulus
                 return;
             }
         }
-
         private void History_Load(object sender, EventArgs e)
         {
             PopulateTree(path, null);
