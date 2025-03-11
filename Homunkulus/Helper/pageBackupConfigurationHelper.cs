@@ -24,125 +24,137 @@ namespace Homunkulus.Helper
 
             Copy_All(diSource, diTarget);
         }
-        public void Copy_All(DirectoryInfo source, DirectoryInfo target)
+        private void Copy_All(DirectoryInfo source, DirectoryInfo target)
         {
-            Directory.CreateDirectory(target.FullName);
+            Directory.CreateDirectory(target.FullName);  // Erstellt den Zielordner nur, falls nötig.
 
-            // Copy each file into the new directory.
-            foreach (FileInfo fi in source.GetFiles())
-            {
-                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
-            }
             try
             {
-                // Copy each subdirectory using recursion.
-                foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+                Parallel.ForEach(source.GetFiles(), fi =>
                 {
-                    DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                    Copy_All(diSourceSubDir, nextTargetSubDir);
-                }
+                    try
+                    {
+                        fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Kopieren von {fi.FullName}: {ex.Message}");
+                    }
+                });
+
+                Parallel.ForEach(source.GetDirectories(), diSourceSubDir =>
+                {
+                    try
+                    {
+                        var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                        Copy_All(diSourceSubDir, nextTargetSubDir);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Erstellen des Verzeichnisses {diSourceSubDir.FullName}: {ex.Message}");
+                    }
+                });
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Fehler beim Kopieren des Verzeichnisses {source.FullName}: {ex.Message}");
             }
+
         }
-        public void Copy_FromList(List<string> pathList, TextBox destinationTextBox)
+        private void Copy_FromList(List<string> pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
             var util = new Util();
-            var shrt = string.Empty;
-            var sourceDirectory = string.Empty;
-            var targetDirectory = string.Empty;
             var destFolder = destinationTextBox.Text;
-            var date = datetime.ToString("dd/MM/yyyy");
-            var newBackupFolder = destFolder + "Backup " + date;
+            var date = datetime.ToString("dd/MM/yyyy"); 
+            var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
 
-            for (var i = 0; i < pathList.Count; i++)
+            Directory.CreateDirectory(newBackupFolder);
+            util.createBinData(newBackupFolder, "Full");
+
+            Parallel.ForEach(pathList, sourceDirectory =>
             {
-                sourceDirectory = pathList.ElementAt(i);
-                shrt = sourceDirectory.Substring(sourceDirectory.LastIndexOf("\\") + 1);
-                targetDirectory = destFolder + "/Backup " + date + "/" + shrt;
+                try
+                {
+                    if (string.IsNullOrEmpty(sourceDirectory)) return;
 
-                if (Directory.Exists(newBackupFolder) && !string.IsNullOrEmpty(sourceDirectory))
-                {
+                    var shrt = Path.GetFileName(sourceDirectory);  
+                    var targetDirectory = Path.Combine(newBackupFolder, shrt);
+
                     Copy(sourceDirectory, targetDirectory);
                 }
-                else if (!string.IsNullOrEmpty(sourceDirectory))
+                catch (Exception ex)
                 {
-                    Directory.CreateDirectory(newBackupFolder);
-                    util1.createBinData(newBackupFolder, "Full");
-                    Copy(sourceDirectory, targetDirectory);
+                    Console.WriteLine($"Fehler beim Kopieren von {sourceDirectory}: {ex.Message}");
                 }
-                else
-                {
-                    break;
-                }
-            }
+            });
+
         }
-        public void Copy_FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
+        private void Copy_FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
             var userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var backupFolderName = "Backup " + DateTime.Now.ToString("dd.MM.yyyy");
+            var backupFolderName = $"Backup {DateTime.Now:dd.MM.yyyy}";
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
 
             util1.createBinData(finalDestinationPath, "Incremental");
 
-            foreach (var file in fileList)
+            Parallel.ForEach(fileList, file =>
             {
-                var fileName = file.Name;
-                var sourceDirPath = file.FullName;
-                var relativeDirPath = file.Directory.ToString();
-
-                if (relativeDirPath.Contains(documentPath))
-                {
-                    relativeDirPath = relativeDirPath.Replace(documentPath, "");
-                }
-                else if (relativeDirPath.Contains(userProfilePath))
-                {
-                    relativeDirPath = relativeDirPath.Replace(userProfilePath, "");
-                }
-                else if (relativeDirPath.Contains(driveLetter))
-                {
-                    relativeDirPath = relativeDirPath.Replace(driveLetter, "");
-                }
-
-
-                if (relativeDirPath.StartsWith(@"\") || relativeDirPath.StartsWith("/"))
-                {
-                    relativeDirPath = relativeDirPath.Substring(1);
-                }
-
-                var targetDirPath = Path.Combine(finalDestinationPath, relativeDirPath);
-                if (!Directory.Exists(targetDirPath))
-                {
-                    Directory.CreateDirectory(targetDirPath);
-                }
-
-                var targetFilePath = Path.Combine(targetDirPath, fileName);
                 try
                 {
-                    File.Copy(sourceDirPath, targetFilePath);
+                    var fileName = file.Name;
+                    var sourceDirPath = file.FullName;
+                    var relativeDirPath = file.DirectoryName!;  // Null-Sicherheit
+
+                    if (relativeDirPath.StartsWith(documentPath))
+                        relativeDirPath = relativeDirPath.Substring(documentPath.Length);
+                    else if (relativeDirPath.StartsWith(userProfilePath))
+                        relativeDirPath = relativeDirPath.Substring(userProfilePath.Length);
+                    else if (relativeDirPath.StartsWith(driveLetter))
+                        relativeDirPath = relativeDirPath.Substring(driveLetter.Length);
+
+                    relativeDirPath = relativeDirPath.TrimStart('\\', '/'); // Entfernt führende Trennzeichen
+
+                    var targetDirPath = Path.Combine(finalDestinationPath, relativeDirPath);
+                    Directory.CreateDirectory(targetDirPath);  // Keine Notwendigkeit für Exists-Check
+
+                    var targetFilePath = Path.Combine(targetDirPath, fileName);
+                    File.Copy(sourceDirPath, targetFilePath, true);  // `true` überschreibt existierende Dateien
                 }
-                catch { }
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fehler beim Kopieren von {file.FullName}: {ex.Message}");
+                }
+            });
         }
-        public void Copy_Incremental(string destinationPath, List<string> sourceList)
+        private void Copy_Incremental(string destinationPath, List<string> sourceList)
         {
             var tfs = new TemporaryFileStore(destinationPath);
-            var complimentaryFiles = new List<string>();
-            var latestedBackupDate = tfs.OldBackups.Max(dir => dir.CreationTime);
+            var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
 
             foreach (var source in sourceList)
             {
-                var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path)).ToList();
-                var oldFiles = tfs.Direcorty.ToList();
-                var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestedBackupDate).Select(file => file).ToList();
-                var parentDirectories = newFiles.Select(file => file.Directory).Where(dir => dir != null).Distinct().ToList();
+                var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path));
+                var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestBackupDate).ToList();
 
-                Copy_FilesFromList(newFiles, destinationPath, source);
+                if (newFiles.Any())  
+                {
+                    Parallel.ForEach(newFiles, file =>
+                    {
+                        try
+                        {
+                            Copy_FilesFromList(new List<FileInfo> { file }, destinationPath, source);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Fehler beim Kopieren von {file.FullName}: {ex.Message}");
+                        }
+                    });
+                }
             }
+
         }
         private void InitializeBackupPlan(backupPlan backupPlan, bool compress, bool incremental, string destination, string source)
         {
