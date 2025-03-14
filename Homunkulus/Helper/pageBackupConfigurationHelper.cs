@@ -1,5 +1,5 @@
 ﻿using Homunkulus.helper;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Homunkulus.Helper
 {
@@ -11,8 +11,7 @@ namespace Homunkulus.Helper
             public List<string> Files { get; set; }
             public bool incremental { get; set; }
             public bool compress { get; set; }
-            public string type {  get; set; }
-
+            public string type { get; set; }
         }
 
         public Util util1 = new Util();
@@ -24,17 +23,20 @@ namespace Homunkulus.Helper
 
             Copy_All(diSource, diTarget);
         }
-        private void Copy_All(DirectoryInfo source, DirectoryInfo target)
+        static async Task Copy_All(DirectoryInfo source, DirectoryInfo target)
         {
-            Directory.CreateDirectory(target.FullName);  // Erstellt den Zielordner nur, falls nötig.
+            Directory.CreateDirectory(target.FullName);
 
             try
             {
-                Parallel.ForEach(source.GetFiles(), fi =>
+                var fileTasks = source.GetFiles().Select(async fi =>
                 {
                     try
                     {
-                        fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                        string targetPath = Path.Combine(target.FullName, fi.Name);
+                        using var sourceStream = new FileStream(fi.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, true);
+                        using var targetStream = new FileStream(targetPath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true);
+                        await sourceStream.CopyToAsync(targetStream);
                     }
                     catch (Exception ex)
                     {
@@ -42,31 +44,32 @@ namespace Homunkulus.Helper
                     }
                 });
 
-                Parallel.ForEach(source.GetDirectories(), diSourceSubDir =>
+                var dirTasks = source.GetDirectories().Select(async diSourceSubDir =>
                 {
                     try
                     {
                         var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                        Copy_All(diSourceSubDir, nextTargetSubDir);
+                        await Copy_All(diSourceSubDir, nextTargetSubDir);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Fehler beim Erstellen des Verzeichnisses {diSourceSubDir.FullName}: {ex.Message}");
                     }
                 });
+
+                await Task.WhenAll(fileTasks.Concat(dirTasks));
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Fehler beim Kopieren des Verzeichnisses {source.FullName}: {ex.Message}");
             }
-
         }
         private void Copy_FromList(List<string> pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
             var util = new Util();
             var destFolder = destinationTextBox.Text;
-            var date = datetime.ToString("dd/MM/yyyy"); 
+            var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
 
             Directory.CreateDirectory(newBackupFolder);
@@ -78,7 +81,7 @@ namespace Homunkulus.Helper
                 {
                     if (string.IsNullOrEmpty(sourceDirectory)) return;
 
-                    var shrt = Path.GetFileName(sourceDirectory);  
+                    var shrt = Path.GetFileName(sourceDirectory);
                     var targetDirectory = Path.Combine(newBackupFolder, shrt);
 
                     Copy(sourceDirectory, targetDirectory);
@@ -139,7 +142,7 @@ namespace Homunkulus.Helper
                 var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path));
                 var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestBackupDate).ToList();
 
-                if (newFiles.Any())  
+                if (newFiles.Any())
                 {
                     Parallel.ForEach(newFiles, file =>
                     {
@@ -161,28 +164,12 @@ namespace Homunkulus.Helper
             backupPlan.compress = compress;
             backupPlan.incremental = incremental;
             backupPlan.DestinationPath = destination;
-            backupPlan.Files = new List<string>();
+            backupPlan.Files = util1.stringToList(source, true);
 
-            var filesList = util1.stringToList(source, true);
-
-            if (compress && incremental)
-            {
-                backupPlan.type = "incremental, compress";
-            }
-            else if (incremental)
-            {
-                backupPlan.type = "incremental";
-            }
-            else if (compress)
-            {
-                backupPlan.type = "compress";
-            }
-            else
-            {
-                backupPlan.type = "full";
-            }
-
-            backupPlan.Files.AddRange(filesList);
+            var types = new List<string>();
+            if (incremental) types.Add("incremental");
+            if (compress) types.Add("compress");
+            backupPlan.type = types.Any() ? string.Join(", ", types) : "full";
         }
         public void Create(bool compress, bool incremental, string source, string destination)
         {
@@ -233,40 +220,23 @@ namespace Homunkulus.Helper
         }
         private void saveToXml(backupPlan backupplan, string savePath)
         {
+            var xml = new XDocument(
+                new XDeclaration("1.0", "utf-8", "yes"),
+                new XElement("Backup",
+                    new XElement("Destination",
+                        new XElement("Path", backupplan.DestinationPath)
+                    ),
+                    new XElement("SavedFiles",
+                        backupplan.Files.Select(file => new XElement("File", file))
+                    ),
+                    new XElement("Status",
+                        new XElement("Incremental", backupplan.incremental),
+                        new XElement("Compressed", backupplan.compress)
+                    )
+                )
+            );
 
-            var destination = backupplan.DestinationPath;
-            var incremental = backupplan.incremental.ToString();
-            var compress = backupplan.compress.ToString();
-            var sourceFiles = backupplan.Files;
-
-            XmlTextWriter writer = new XmlTextWriter(savePath + ".xml", null);
-            writer.WriteStartDocument();
-            writer.WriteStartElement("Backup");
-
-            writer.WriteStartElement("Destination");
-            writer.WriteElementString("path", destination);
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("SavedFiles");
-
-            if (sourceFiles.Count > 0)
-            {
-                foreach (var file in sourceFiles)
-                {
-                    writer.WriteElementString("File", file);
-                }
-            }
-
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Status");
-            writer.WriteElementString("incremental", incremental);
-            writer.WriteElementString("Compressed", compress);
-            writer.WriteEndElement();
-
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
-            writer.Close();
+            xml.Save(savePath + ".xml");
         }
     }
 }
