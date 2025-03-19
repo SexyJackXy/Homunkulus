@@ -64,7 +64,7 @@ namespace Homunkulus.Helper
                 Console.WriteLine($"Fehler beim Kopieren des Verzeichnisses {source.FullName}: {ex.Message}");
             }
         }
-        private void Copy_FromList(List<string> pathList, TextBox destinationTextBox)
+        public void Copy_FromList(List<string>? pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
             var util = new Util();
@@ -132,7 +132,7 @@ namespace Homunkulus.Helper
                 }
             });
         }
-        private void Copy_Incremental(string destinationPath, List<string> sourceList)
+        public void Copy_Incremental(string destinationPath, List<string>? sourceList)
         {
             var tfs = new TemporaryFileStore(destinationPath);
             var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
