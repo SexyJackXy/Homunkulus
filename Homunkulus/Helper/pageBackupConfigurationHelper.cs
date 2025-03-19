@@ -134,8 +134,10 @@ namespace Homunkulus.Helper
         }
         public void Copy_Incremental(string destinationPath, List<string>? sourceList)
         {
+            var psh = new pageSettingsHandler();
             var tfs = new TemporaryFileStore(destinationPath);
             var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
+            var startMips = psh.getConfigFile().startMips;
 
             foreach (var source in sourceList)
             {

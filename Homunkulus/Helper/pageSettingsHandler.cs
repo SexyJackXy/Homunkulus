@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Homunkulus.Helper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,27 +16,25 @@ namespace Homunkulus.helper
         {
             //TODO: Extend the Configfile with more User Settings
             public string FileExtension { get; set; }
+            public string? startMips { get; set; }
         }
 
         public configFile getConfigFile()
         {
+            //TODO: Try to impleet Mips
+
+            var util = new Util();
             var cf = new configFile();
             var savePath = @"../../../config";
             var directoryInfo = new DirectoryInfo(savePath);
-            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
+            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault().FullName;
+            var content = new StreamReader(firstFilePath).ReadToEnd();
+            configFile[] items = JsonConvert.DeserializeObject<configFile[]>(content);
 
-            using (StreamReader r = new StreamReader(firstFilePath.FullName))
-            {
-                string json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<configFile>>(json);
-
-                dynamic array = JsonConvert.DeserializeObject(json);
-                foreach (var item in items)
+            foreach (var item in items)
                 {
-                    cf.FileExtension = item.FileExtension;
                 }
-
-            }
+     
 
             return cf;
         }

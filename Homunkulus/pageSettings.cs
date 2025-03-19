@@ -17,8 +17,6 @@ namespace Homunkulus
 
         private void pageSettings_Load(object sender, EventArgs e)
         {
-            //TODO: Added startMips Setting
-
             var savePath = @"../../../config";
             var directoryInfo = new DirectoryInfo(savePath);
             var firstFile = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
