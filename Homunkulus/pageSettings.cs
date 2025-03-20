@@ -34,10 +34,19 @@ namespace Homunkulus
             var fileExtension = file_save_cb.Text;
             var startMips = start_mips_cb.Text;
 
-            JObject binData = new JObject(
-                new JProperty("fileExtension", fileExtension),
-                new JProperty("startMips", startMips)
-                );
+            var binData = new JObject()
+            {
+                new JArray
+                {
+                    {
+                        new JObject()
+                        {
+                            { "fileExtension", fileExtension },
+                            { "startMips", startMips }
+                        }
+                    }
+                }
+            };
 
             File.WriteAllText(savePath, binData.ToString());
         }
