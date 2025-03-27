@@ -1,5 +1,6 @@
 ﻿using Homunkulus.Helper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +20,27 @@ namespace Homunkulus.helper
             public string? startMips { get; set; }
         }
 
-        public configFile getConfigFile()
+        public configFile GetConfigFile()
         {
-            //TODO: Try to impleet Mips
-
-            var util = new Util();
-            var cf = new configFile();
             var savePath = @"../../../config";
-            var directoryInfo = new DirectoryInfo(savePath);
-            var firstFilePath = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault().FullName;
-            var content = new StreamReader(firstFilePath).ReadToEnd();
-            configFile[] items = JsonConvert.DeserializeObject<configFile[]>(content);
+            var latestFile = new DirectoryInfo(savePath)
+                .GetFiles()
+                .OrderByDescending(file => file.LastWriteTime)
+                .FirstOrDefault();
 
-            foreach (var item in items)
-                {
-                }
-     
+            if (latestFile == null)
+            {
+                throw new FileNotFoundException("Es wurde keine Datei im angegebenen Verzeichnis gefunden.");
+            }
+
+            var content = File.ReadAllText(latestFile.FullName);
+            var jsonObject = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+
+            var cf = new configFile
+            {
+                FileExtension = jsonObject.GetValueOrDefault("Extension"),
+                startMips = jsonObject.GetValueOrDefault("M.I.P.S")
+            };
 
             return cf;
         }

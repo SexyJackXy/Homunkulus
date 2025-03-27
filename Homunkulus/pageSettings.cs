@@ -31,24 +31,14 @@ namespace Homunkulus
         {
             var guid = Guid.NewGuid().ToString();
             var savePath = @"../../../config/config_" + guid + ".json ";
-            var fileExtension = file_save_cb.Text;
-            var startMips = start_mips_cb.Text;
 
-            var binData = new JObject()
+            var configValues = new JObject()
             {
-                new JArray
-                {
-                    {
-                        new JObject()
-                        {
-                            { "fileExtension", fileExtension },
-                            { "startMips", startMips }
-                        }
-                    }
-                }
+                new JProperty("Extension",file_save_cb.Text),
+                new JProperty("M.I.P.S",start_mips_cb.Text)
             };
 
-            File.WriteAllText(savePath, binData.ToString());
+            File.WriteAllText(savePath, configValues.ToString());
         }
 
         private void create_pbox_Click(object sender, EventArgs e)

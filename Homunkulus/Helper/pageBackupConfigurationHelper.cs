@@ -137,7 +137,12 @@ namespace Homunkulus.Helper
             var psh = new pageSettingsHandler();
             var tfs = new TemporaryFileStore(destinationPath);
             var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
-            var startMips = psh.getConfigFile().startMips;
+            var startMips = psh.GetConfigFile().startMips;
+
+            if (startMips.EqualsOic("yes"))
+            {
+                //TODO: Implement that the Powershell script is started
+            }
 
             foreach (var source in sourceList)
             {
@@ -191,7 +196,7 @@ namespace Homunkulus.Helper
                 throw new ArgumentNullException("The Destination path is null");
             }
 
-            var saveInFileExtension = configHandler.getConfigFile();
+            var saveInFileExtension = configHandler.GetConfigFile();
             switch (saveInFileExtension.FileExtension)
             {
                 case "txt":
