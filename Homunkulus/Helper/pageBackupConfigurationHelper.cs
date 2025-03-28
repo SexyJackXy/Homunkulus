@@ -1,4 +1,5 @@
 ﻿using Homunkulus.helper;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace Homunkulus.Helper
@@ -72,6 +73,11 @@ namespace Homunkulus.Helper
             var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
 
+            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
+            {
+                new Util().RunPowershellScript(@"../../mips.ps1");
+            }
+
             Directory.CreateDirectory(newBackupFolder);
             util.createBinData(newBackupFolder, "Full");
 
@@ -134,14 +140,13 @@ namespace Homunkulus.Helper
         }
         public void Copy_Incremental(string destinationPath, List<string>? sourceList)
         {
-            var psh = new pageSettingsHandler();
+
             var tfs = new TemporaryFileStore(destinationPath);
             var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
-            var startMips = psh.GetConfigFile().startMips;
 
-            if (startMips.EqualsOic("yes"))
+            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
             {
-                //TODO: Implement that the Powershell script is started
+                new Util().RunPowershellScript(@"../../mips.ps1");
             }
 
             foreach (var source in sourceList)
@@ -164,7 +169,6 @@ namespace Homunkulus.Helper
                     });
                 }
             }
-
         }
         private void InitializeBackupPlan(backupPlan backupPlan, bool compress, bool incremental, string destination, string source)
         {

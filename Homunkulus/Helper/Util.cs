@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 using static Homunkulus.helper.pageSettingsHandler;
 
 namespace Homunkulus.Helper
@@ -45,6 +46,22 @@ namespace Homunkulus.Helper
             var jsonContent = JsonConvert.DeserializeObject<List<string>>(json);
 
             return jsonContent;
+        }
+        public async Task RunPowershellScript(string path)
+        {
+            var arguments = $"-ExecutionPolicy Bypass -File {path}";
+            var processStart = new ProcessStartInfo("powershell.exe", arguments)
+            {
+                RedirectStandardOutput = true,  
+                RedirectStandardError = true,   
+                UseShellExecute = false,        
+                CreateNoWindow = true           
+            };
+
+            using var process = new Process { StartInfo = processStart };
+
+            process.Start();
+            await process.WaitForExitAsync(); // Asynchron warten, ohne Rückgabe
         }
     }
 }
