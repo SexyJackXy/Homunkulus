@@ -17,14 +17,14 @@ namespace Homunkulus.Helper
 
         public Util util1 = new Util();
 
-        private void Copy(string sourceDirectory, string targetDirectory)
+        private void CopyDirectory(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
 
-            Copy_All(diSource, diTarget);
+            CopyDirectoryRecursiveAsync(diSource, diTarget);
         }
-        static async Task Copy_All(DirectoryInfo source, DirectoryInfo target)
+        static async Task CopyDirectoryRecursiveAsync(DirectoryInfo source, DirectoryInfo target)
         {
             Directory.CreateDirectory(target.FullName);
 
@@ -50,7 +50,7 @@ namespace Homunkulus.Helper
                     try
                     {
                         var nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                        await Copy_All(diSourceSubDir, nextTargetSubDir);
+                        await CopyDirectoryRecursiveAsync(diSourceSubDir, nextTargetSubDir);
                     }
                     catch (Exception ex)
                     {
@@ -65,7 +65,7 @@ namespace Homunkulus.Helper
                 Console.WriteLine($"Fehler beim Kopieren des Verzeichnisses {source.FullName}: {ex.Message}");
             }
         }
-        public void Copy_FromList(List<string>? pathList, TextBox destinationTextBox)
+        public void CopyDirectoriesFromList(List<string>? pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
             var util = new Util();
@@ -90,7 +90,7 @@ namespace Homunkulus.Helper
                     var shrt = Path.GetFileName(sourceDirectory);
                     var targetDirectory = Path.Combine(newBackupFolder, shrt);
 
-                    Copy(sourceDirectory, targetDirectory);
+                    CopyDirectory(sourceDirectory, targetDirectory);
                 }
                 catch (Exception ex)
                 {
@@ -99,7 +99,7 @@ namespace Homunkulus.Helper
             });
 
         }
-        private void Copy_FilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
+        private void CopyFilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
             var userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var documentPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -138,7 +138,7 @@ namespace Homunkulus.Helper
                 }
             });
         }
-        public void Copy_Incremental(string destinationPath, List<string>? sourceList)
+        public void CopyIncrementalBackup(string destinationPath, List<string>? sourceList)
         {
 
             var tfs = new TemporaryFileStore(destinationPath);
@@ -160,7 +160,7 @@ namespace Homunkulus.Helper
                     {
                         try
                         {
-                            Copy_FilesFromList(new List<FileInfo> { file }, destinationPath, source);
+                            CopyFilesFromList(new List<FileInfo> { file }, destinationPath, source);
                         }
                         catch (Exception ex)
                         {
@@ -182,7 +182,7 @@ namespace Homunkulus.Helper
             if (compress) types.Add("compress");
             backupPlan.type = types.Any() ? string.Join(", ", types) : "full";
         }
-        public void Create(bool compress, bool incremental, string source, string destination)
+        public void CreatePlan(bool compress, bool incremental, string source, string destination)
         {
             var configHandler = new pageSettingsHandler();
             var backupPlan = new backupPlan();

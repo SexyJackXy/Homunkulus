@@ -54,7 +54,7 @@ namespace Homunkulus
 
             if (check_incremental.Checked)
             {
-                backupConfigurationHelper.Copy_Incremental(destinationFolder, sourceFolderList);
+                backupConfigurationHelper.CopyIncrementalBackup(destinationFolder, sourceFolderList);
             }
 
             if (check_compress.Checked)
@@ -64,7 +64,7 @@ namespace Homunkulus
 
             if (!check_compress.Checked && !check_incremental.Checked)
             {
-                backupConfigurationHelper.Copy_FromList(sourceFolderList, Destination_txt);
+                backupConfigurationHelper.CopyDirectoriesFromList(sourceFolderList, Destination_txt);
             }
 
             source_rtb.Text = "Backup has been completed successfully";
@@ -151,7 +151,7 @@ namespace Homunkulus
             var soruce = source_rtb.Text;
             var destination = Destination_txt.Text;
 
-            backupplan.Create(compress, incremental, soruce, destination);
+            backupplan.CreatePlan(compress, incremental, soruce, destination);
         }
 
         //Navigation Methoden

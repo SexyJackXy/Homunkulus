@@ -61,7 +61,7 @@ namespace Homunkulus.Helper
             using var process = new Process { StartInfo = processStart };
 
             process.Start();
-            await process.WaitForExitAsync(); // Asynchron warten, ohne Rückgabe
+            await process.WaitForExitAsync();
         }
     }
 }
