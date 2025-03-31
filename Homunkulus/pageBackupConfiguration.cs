@@ -59,12 +59,12 @@ namespace Homunkulus
 
             if (check_compress.Checked)
             {
-                throw new NotImplementedException();
+                backupConfigurationHelper.CopyCompressedBackup(destinationFolder, sourceFolderList);
             }
 
             if (!check_compress.Checked && !check_incremental.Checked)
             {
-                backupConfigurationHelper.CopyDirectoriesFromList(sourceFolderList, Destination_txt);
+                backupConfigurationHelper.CopyFullBackup(sourceFolderList, Destination_txt);
             }
 
             source_rtb.Text = "Backup has been completed successfully";

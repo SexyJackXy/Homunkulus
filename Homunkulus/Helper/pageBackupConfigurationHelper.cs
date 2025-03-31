@@ -65,40 +65,6 @@ namespace Homunkulus.Helper
                 Console.WriteLine($"Fehler beim Kopieren des Verzeichnisses {source.FullName}: {ex.Message}");
             }
         }
-        public void CopyDirectoriesFromList(List<string>? pathList, TextBox destinationTextBox)
-        {
-            DateTime datetime = DateTime.Today;
-            var util = new Util();
-            var destFolder = destinationTextBox.Text;
-            var date = datetime.ToString("dd/MM/yyyy");
-            var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
-
-            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
-            {
-                new Util().RunPowershellScript(@"../../mips.ps1");
-            }
-
-            Directory.CreateDirectory(newBackupFolder);
-            util.createBinData(newBackupFolder, "Full");
-
-            Parallel.ForEach(pathList, sourceDirectory =>
-            {
-                try
-                {
-                    if (string.IsNullOrEmpty(sourceDirectory)) return;
-
-                    var shrt = Path.GetFileName(sourceDirectory);
-                    var targetDirectory = Path.Combine(newBackupFolder, shrt);
-
-                    CopyDirectory(sourceDirectory, targetDirectory);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Fehler beim Kopieren von {sourceDirectory}: {ex.Message}");
-                }
-            });
-
-        }
         private void CopyFilesFromList(List<FileInfo> fileList, string destinationPath, string sourcePath)
         {
             var userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -138,6 +104,40 @@ namespace Homunkulus.Helper
                 }
             });
         }
+        public void CopyFullBackup(List<string>? pathList, TextBox destinationTextBox)
+        {
+            DateTime datetime = DateTime.Today;
+            var util = new Util();
+            var destFolder = destinationTextBox.Text;
+            var date = datetime.ToString("dd/MM/yyyy");
+            var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
+
+            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
+            {
+                using var _ = new Util().RunPowershellScript(@"../../mips.ps1");
+            }
+
+            Directory.CreateDirectory(newBackupFolder);
+            util.createBinData(newBackupFolder, "Full");
+
+            Parallel.ForEach(pathList, sourceDirectory =>
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(sourceDirectory)) return;
+
+                    var shrt = Path.GetFileName(sourceDirectory);
+                    var targetDirectory = Path.Combine(newBackupFolder, shrt);
+
+                    CopyDirectory(sourceDirectory, targetDirectory);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fehler beim Kopieren von {sourceDirectory}: {ex.Message}");
+                }
+            });
+
+        }
         public void CopyIncrementalBackup(string destinationPath, List<string>? sourceList)
         {
 
@@ -169,6 +169,10 @@ namespace Homunkulus.Helper
                     });
                 }
             }
+        }
+        public void CopyCompressedBackup(string destinationPath, List<string>? sourceList)
+        {
+
         }
         private void InitializeBackupPlan(backupPlan backupPlan, bool compress, bool incremental, string destination, string source)
         {
@@ -212,6 +216,8 @@ namespace Homunkulus.Helper
                     break;
             }
         }
+
+        //Helper Classes for the Helperclass
         private void saveToTxt(backupPlan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
