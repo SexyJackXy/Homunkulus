@@ -20,6 +20,14 @@ namespace Homunkulus.Helper
             var IReturnList = str.Replace("\r", "").Split(new[] { '\n' }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
             return IReturnList.ToList();
         }
+
+        public List<string> CleanList(List<string> list) 
+        {
+            var res = list.Where(x => !string.IsNullOrEmpty(x)).ToList();
+
+            return res;
+        }
+
         public string toTextFile(string fileName)
         {
             return fileName + ".txt";

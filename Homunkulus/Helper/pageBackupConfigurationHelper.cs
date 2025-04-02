@@ -15,7 +15,7 @@ namespace Homunkulus.Helper
             public string type { get; set; }
         }
 
-        public Util util1 = new Util();
+        public Util util = new Util();
 
         private void CopyDirectory(string sourceDirectory, string targetDirectory)
         {
@@ -73,7 +73,6 @@ namespace Homunkulus.Helper
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
 
-            //util1.createBinData(finalDestinationPath, "Incremental");
 
             Parallel.ForEach(fileList, file =>
             {
@@ -107,14 +106,13 @@ namespace Homunkulus.Helper
         public void CopyFullBackup(List<string>? pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
-            var util = new Util();
             var destFolder = destinationTextBox.Text;
             var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
 
             if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
             {
-                using var _ = new Util().RunPowershellScript(@"../../mips.ps1");
+                using var _ = util.RunPowershellScript(@"../../mips.ps1");
             }
 
             Directory.CreateDirectory(newBackupFolder);
@@ -140,7 +138,7 @@ namespace Homunkulus.Helper
         }
         public void CopyIncrementalBackup(string destinationPath, List<string>? sourceList)
         {
-
+            sourceList = util.CleanList(sourceList);
             var tfs = new TemporaryFileStore(destinationPath);
             var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
 
@@ -151,7 +149,6 @@ namespace Homunkulus.Helper
 
             foreach (var source in sourceList)
             {
-                //TODO: Hier gibts ein Bug
                 var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path));
                 var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestBackupDate).ToList();
 
@@ -180,7 +177,7 @@ namespace Homunkulus.Helper
             backupPlan.compress = compress;
             backupPlan.incremental = incremental;
             backupPlan.DestinationPath = destination;
-            backupPlan.Files = util1.stringToList(source, true);
+            backupPlan.Files = util.stringToList(source, true);
 
             var types = new List<string>();
             if (incremental) types.Add("incremental");

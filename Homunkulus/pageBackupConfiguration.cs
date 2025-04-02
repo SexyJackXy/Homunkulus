@@ -38,10 +38,8 @@ namespace Homunkulus
         //Here the start button is clicked and the backup is started
         private void start_btn_Click(object sender, EventArgs e)
         {
-            var test = @"..\..\..\;ogs";
             var linesInRtb = source_rtb.Lines.Count();
             var destinationFolder = Destination_txt.Text;
-            var destinationZip = destinationFolder + ".zip";
             var backupConfigurationHelper = new pageBackupConfigurationHelper();
 
             if (sourceFolderList.Count == 0)
@@ -59,6 +57,7 @@ namespace Homunkulus
 
             if (check_compress.Checked)
             {
+                var destinationZip = destinationFolder + ".zip";
                 backupConfigurationHelper.CopyCompressedBackup(destinationFolder, sourceFolderList);
             }
 
