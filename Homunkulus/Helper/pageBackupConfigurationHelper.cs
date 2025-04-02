@@ -73,7 +73,7 @@ namespace Homunkulus.Helper
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
 
-            util1.createBinData(finalDestinationPath, "Incremental");
+            //util1.createBinData(finalDestinationPath, "Incremental");
 
             Parallel.ForEach(fileList, file =>
             {
@@ -151,6 +151,7 @@ namespace Homunkulus.Helper
 
             foreach (var source in sourceList)
             {
+                //TODO: Hier gibts ein Bug
                 var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path));
                 var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestBackupDate).ToList();
 
