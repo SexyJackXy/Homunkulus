@@ -6,6 +6,8 @@ namespace Homunkulus.Helper
 {
     internal class pageBackupConfigurationHelper
     {
+        public Util util = new Util();
+
         private class backupPlan : pageBackupConfigurationHelper
         {
             public string DestinationPath { get; set; }
@@ -14,9 +16,6 @@ namespace Homunkulus.Helper
             public bool compress { get; set; }
             public string type { get; set; }
         }
-
-        public Util util = new Util();
-
         private void CopyDirectory(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
@@ -72,7 +71,6 @@ namespace Homunkulus.Helper
             var backupFolderName = $"Backup {DateTime.Now:dd.MM.yyyy}";
             var finalDestinationPath = Path.Combine(destinationPath, backupFolderName);
             var driveLetter = sourcePath.Substring(0, 3);
-
 
             Parallel.ForEach(fileList, file =>
             {
@@ -134,7 +132,6 @@ namespace Homunkulus.Helper
                     Console.WriteLine($"Fehler beim Kopieren von {sourceDirectory}: {ex.Message}");
                 }
             });
-
         }
         public void CopyIncrementalBackup(string destinationPath, List<string>? sourceList)
         {
@@ -170,7 +167,8 @@ namespace Homunkulus.Helper
         }
         public void CopyCompressedBackup(string destinationPath, List<string>? sourceList)
         {
-
+            var ex = new NotImplementedException();
+            MessageBox.Show(ex.Message);
         }
         private void InitializeBackupPlan(backupPlan backupPlan, bool compress, bool incremental, string destination, string source)
         {
@@ -215,7 +213,6 @@ namespace Homunkulus.Helper
             }
         }
 
-        //Helper Classes for the Helperclass
         private void saveToTxt(backupPlan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
