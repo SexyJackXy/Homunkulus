@@ -2,10 +2,10 @@
 {
     internal class TemporaryFileStore
     {
-        public List<FileInfo> OldFiles { get; set; }
+        public List<FileInfo> OldFiles { get; set; } = new List<FileInfo>();
         public List<string> Direcorty { get; set; }
         public List<string> FileName { get; set; }
-        public List<DirectoryInfo> OldBackups { get; set; }
+        public List<DirectoryInfo> OldBackups { get; set; } = new List<DirectoryInfo>();
 
         public TemporaryFileStore(string destination)
         {
@@ -33,15 +33,14 @@
             OldBackups = dirList;
             OldFiles = allOldFiles;
 
+            if (OldFiles == null) return; 
+
             foreach (var file in OldFiles)
             {
-                var fiDir = file.Directory.ToString();
-                FileName.Add(file.Name); // Hinzufügen des Dateinamens zur Liste
+                if (file?.Directory == null) continue;
 
-                if (!Direcorty.Contains(fiDir))
-                {
-                    Direcorty.Add(file.Directory.ToString()); // Hinzufügen des vollständigen Pfads zur Liste
-                }
+                var fiDir = file.Directory.ToString();
+                Console.WriteLine(fiDir);
             }
         }
     }
