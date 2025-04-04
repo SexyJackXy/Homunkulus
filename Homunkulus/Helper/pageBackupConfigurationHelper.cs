@@ -10,18 +10,18 @@ namespace Homunkulus.Helper
 
         private class backupPlan : pageBackupConfigurationHelper
         {
-            public string DestinationPath { get; set; }
-            public List<string> Files { get; set; }
+            public string? DestinationPath { get; set; }
+            public List<string> Files { get; set; } = new List<string>();
             public bool incremental { get; set; }
             public bool compress { get; set; }
-            public string type { get; set; }
+            public string? type { get; set; }
         }
-        private void CopyDirectory(string sourceDirectory, string targetDirectory)
+        private async void CopyDirectory(string sourceDirectory, string targetDirectory)
         {
             var diSource = new DirectoryInfo(sourceDirectory);
             var diTarget = new DirectoryInfo(targetDirectory);
 
-            CopyDirectoryRecursiveAsync(diSource, diTarget);
+            await CopyDirectoryRecursiveAsync(diSource, diTarget);
         }
         static async Task CopyDirectoryRecursiveAsync(DirectoryInfo source, DirectoryInfo target)
         {
@@ -78,7 +78,7 @@ namespace Homunkulus.Helper
                 {
                     var fileName = file.Name;
                     var sourceDirPath = file.FullName;
-                    var relativeDirPath = file.DirectoryName!;  // Null-Sicherheit
+                    var relativeDirPath = file.DirectoryName!;
 
                     if (relativeDirPath.StartsWith(documentPath))
                         relativeDirPath = relativeDirPath.Substring(documentPath.Length);
@@ -87,13 +87,13 @@ namespace Homunkulus.Helper
                     else if (relativeDirPath.StartsWith(driveLetter))
                         relativeDirPath = relativeDirPath.Substring(driveLetter.Length);
 
-                    relativeDirPath = relativeDirPath.TrimStart('\\', '/'); // Entfernt führende Trennzeichen
+                    relativeDirPath = relativeDirPath.TrimStart('\\', '/');
 
                     var targetDirPath = Path.Combine(finalDestinationPath, relativeDirPath);
-                    Directory.CreateDirectory(targetDirPath);  // Keine Notwendigkeit für Exists-Check
+                    Directory.CreateDirectory(targetDirPath);
 
                     var targetFilePath = Path.Combine(targetDirPath, fileName);
-                    File.Copy(sourceDirPath, targetFilePath, true);  // `true` überschreibt existierende Dateien
+                    File.Copy(sourceDirPath, targetFilePath, true);
                 }
                 catch (Exception ex)
                 {
@@ -101,14 +101,14 @@ namespace Homunkulus.Helper
                 }
             });
         }
-        public void CopyFullBackup(List<string>? pathList, TextBox destinationTextBox)
+        public void CopyFullBackup(List<string> pathList, TextBox destinationTextBox)
         {
             DateTime datetime = DateTime.Today;
             var destFolder = destinationTextBox.Text;
             var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
 
-            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
+            if ((new pageSettingsHandler()?.GetConfigFile()?.startMips ?? "").EqualsOic("yes"))
             {
                 using var _ = util.RunPowershellScript(@"../../mips.ps1");
             }
@@ -133,15 +133,15 @@ namespace Homunkulus.Helper
                 }
             });
         }
-        public void CopyIncrementalBackup(string destinationPath, List<string>? sourceList)
+        public async void CopyIncrementalBackup(string destinationPath, List<string> sourceList)
         {
             sourceList = util.CleanList(sourceList);
             var tfs = new TemporaryFileStore(destinationPath);
             var latestBackupDate = tfs.OldBackups.Any() ? tfs.OldBackups.Max(dir => dir.CreationTime) : DateTime.MinValue;
 
-            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
+            if ((new pageSettingsHandler()?.GetConfigFile()?.startMips ?? "").EqualsOic("yes"))
             {
-                new Util().RunPowershellScript(@"../../mips.ps1");
+                await new Util().RunPowershellScript(@"../../mips.ps1");
             }
 
             foreach (var source in sourceList)
@@ -149,20 +149,22 @@ namespace Homunkulus.Helper
                 var sourcePathFiles = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Select(path => new FileInfo(path));
                 var newFiles = sourcePathFiles.Where(file => file.LastWriteTime > latestBackupDate).ToList();
 
-                if (newFiles.Any())
+                if (!newFiles.Any())
                 {
-                    Parallel.ForEach(newFiles, file =>
-                    {
-                        try
-                        {
-                            CopyFilesFromList(new List<FileInfo> { file }, destinationPath, source);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Fehler beim Kopieren von {file.FullName}: {ex.Message}");
-                        }
-                    });
+                    continue;
                 }
+
+                Parallel.ForEach(newFiles, file =>
+                {
+                    try
+                    {
+                        CopyFilesFromList(new List<FileInfo> { file }, destinationPath, source);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fehler beim Kopieren von {file.FullName}: {ex.Message}");
+                    }
+                });
             }
         }
         public void CopyCompressedBackup(string destinationPath, List<string>? sourceList)
