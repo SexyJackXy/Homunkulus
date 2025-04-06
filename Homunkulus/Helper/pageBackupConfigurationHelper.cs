@@ -1,5 +1,4 @@
 ﻿using Homunkulus.helper;
-using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace Homunkulus.Helper
@@ -189,11 +188,11 @@ namespace Homunkulus.Helper
             var configHandler = new pageSettingsHandler();
             var backupPlan = new backupPlan();
             var date = DateTime.Now.ToString("dd MM yyyy").Replace(" ", "");
-            var saveDir = Directory.GetFiles(@"../../../backupplans");
+            var saveDir = Directory.GetFiles(util.mainDirectory + "backupplans");
             var saveFileName = date + "_" + saveDir.Length.ToString();
-            var settingsPath = @"../../../config/";
+            var settingsPath = util.mainDirectory + "config/";
             var dir = new DirectoryInfo(settingsPath);
-            var backuPlanSavePath = @"../../../backupplans/" + saveFileName;
+            var backuPlanSavePath = util.mainDirectory + "backupplans/" + saveFileName;
 
             InitializeBackupPlan(backupPlan, compress, incremental, destination, source);
 

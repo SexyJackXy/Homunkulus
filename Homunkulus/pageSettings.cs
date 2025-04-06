@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Homunkulus.Helper;
+using Newtonsoft.Json.Linq;
 
 namespace Homunkulus
 {
     public partial class pageSettings : Form
     {
+        private Util util = new Util();
+
         public pageSettings()
         {
             InitializeComponent();
@@ -14,10 +17,9 @@ namespace Homunkulus
             public string? fileExtension { get; set; }
             public string? startMips { get; set; }
         }
-
         private void pageSettings_Load(object sender, EventArgs e)
         {
-            var savePath = @"../../../config";
+            var savePath = util.mainDirectory + "config";
             var directoryInfo = new DirectoryInfo(savePath);
             var firstFile = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
             var jsonContent = File.ReadAllText(firstFile.FullName);
@@ -30,7 +32,7 @@ namespace Homunkulus
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
             var guid = Guid.NewGuid().ToString();
-            var savePath = @"../../../config/config_" + guid + ".json ";
+            var savePath = util.mainDirectory + "config/config_" + guid + ".json ";
 
             var configValues = new JObject()
             {

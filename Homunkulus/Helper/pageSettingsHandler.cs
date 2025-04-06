@@ -1,18 +1,12 @@
 ﻿using Homunkulus.Helper;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using static Homunkulus.pageSettings;
 
 namespace Homunkulus.helper
 {
     internal class pageSettingsHandler
     {
+        private Util util = new Util();
+
         public class configFile
         {
             //TODO: Extend the Configfile with more User Settings
@@ -22,7 +16,7 @@ namespace Homunkulus.helper
 
         public configFile GetConfigFile()
         {
-            var savePath = @"../../../config";
+            var savePath = util.mainDirectory + "config";
             var latestFile = new DirectoryInfo(savePath)
                 .GetFiles()
                 .OrderByDescending(file => file.LastWriteTime)

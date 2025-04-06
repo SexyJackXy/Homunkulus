@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
-using static Homunkulus.helper.pageSettingsHandler;
 
 namespace Homunkulus.Helper
 {
     public class Util
     {
+        public string mainDirectory = @"../../../";
         public List<string> stringToList(string str, bool removeEmptyEntries)
         {
             var returnList = new List<string>();
@@ -20,14 +20,12 @@ namespace Homunkulus.Helper
             var IReturnList = str.Replace("\r", "").Split(new[] { '\n' }, removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
             return IReturnList.ToList();
         }
-
         public List<string> CleanList(List<string> list) 
         {
             var res = list.Where(x => !string.IsNullOrEmpty(x)).ToList();
 
             return res;
         }
-
         public string toTextFile(string fileName)
         {
             return fileName + ".txt";
