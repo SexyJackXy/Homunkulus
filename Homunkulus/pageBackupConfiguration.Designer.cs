@@ -46,6 +46,7 @@
             clear_btn = new Button();
             check_compress = new CheckBox();
             check_incremental = new CheckBox();
+            saved_label = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
@@ -268,12 +269,24 @@
             check_incremental.Text = "Incremental";
             check_incremental.UseVisualStyleBackColor = true;
             // 
+            // saved_label
+            // 
+            saved_label.AutoSize = true;
+            saved_label.ForeColor = Color.FromArgb(39, 174, 96);
+            saved_label.Location = new Point(912, 538);
+            saved_label.Name = "saved_label";
+            saved_label.Size = new Size(53, 18);
+            saved_label.TabIndex = 17;
+            saved_label.Text = "Saved";
+            saved_label.Visible = false;
+            // 
             // pageBackupConfiguration
             // 
             AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
+            Controls.Add(saved_label);
             Controls.Add(check_incremental);
             Controls.Add(check_compress);
             Controls.Add(clear_btn);
@@ -319,5 +332,6 @@
         private Button clear_btn;
         private CheckBox check_compress;
         private CheckBox check_incremental;
+        private Label saved_label;
     }
 }

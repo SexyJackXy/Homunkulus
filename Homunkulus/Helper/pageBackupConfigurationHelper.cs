@@ -210,6 +210,10 @@ namespace Homunkulus.Helper
                 case "XML":
                     saveToXml(backupPlan, backuPlanSavePath);
                     break;
+
+                case "Text":
+                    saveToTxt(backupPlan, backuPlanSavePath);
+                    break;
             }
         }
 

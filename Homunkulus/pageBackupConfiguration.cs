@@ -85,8 +85,14 @@ namespace Homunkulus
                 }
                 else
                 {
-                    source_rtb.Text = string.Join("\n", folders);
+                    var existingContent = source_rtb.Text;
+                    if (existingContent == null) { source_rtb.Text = string.Join("\n", folders).Trim(); }
+                    else
+                    {
+                        source_rtb.Text = existingContent + "\n" + string.Join("\n", folders).Trim();
+                    }
                 }
+
             }
         }
         private void add_data_btn_Click(object sender, EventArgs e)
@@ -151,6 +157,7 @@ namespace Homunkulus
             var destination = Destination_txt.Text;
 
             backupplan.CreatePlan(compress, incremental, soruce, destination);
+            saved_label.Visible = true;
         }
 
         //Navigation Methoden
