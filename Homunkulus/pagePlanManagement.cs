@@ -161,49 +161,38 @@ namespace Homunkulus
         }
         private void Edit_btn_Click(object sender, EventArgs e)
         {
-            TreeNode node = treeView2.SelectedNode;
+            var node = treeView2.SelectedNode;
             editedNode = node.Text;
-            var saveSetting = Path.GetExtension(editedNode);
             var tmpPath = string.Empty;
             var guid = Guid.NewGuid().ToString();
             var nodePath = path + node.Text;
 
             if (node != null)
             {
-                switch (saveSetting)
-                {
-                    case ".xml":
-                        tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
-                        break;
+                tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + "-" + editedNode);
+            }
 
-                    case ".txt":
-                        tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + ".xml");
-                        break;
+            File.Copy(nodePath, tmpPath);
+            tmpFile = tmpPath;
+
+
+            if (File.Exists(tmpPath))
+            {
+                string content;
+                using (StreamReader sr = new StreamReader(nodePath))
+                {
+                    content = sr.ReadToEnd();
                 }
 
-                File.Copy(nodePath, tmpPath);
-                tmpFile = tmpPath;
+                treeView2.Visible = false;
 
+                folderName_tbox.Visible = true;
+                edit_rtb.Visible = true;
+                save_Changes_btn.Visible = true;
+                label1.Visible = true;
 
-                if (File.Exists(tmpPath))
-                {
-                    StreamReader sr = new StreamReader(nodePath);
-                    var content = sr.ReadToEnd();
-
-                    treeView2.Visible = false;
-
-                    folderName_tbox.Visible = true;
-                    edit_rtb.Visible = true;
-                    save_Changes_btn.Visible = true;
-                    label1.Visible = true;
-
-                    folderName_tbox.Text = node.Text;
-                    edit_rtb.Text = content;
-                }
-                else
-                {
-                    MessageBox.Show("The selected file does not exist.");
-                }
+                folderName_tbox.Text = node.Text;
+                edit_rtb.Text = content;
             }
             else
             {
@@ -215,13 +204,39 @@ namespace Homunkulus
             var editedContent = edit_rtb.Text;
             var savePath = path + editedNode;
             var folderName = folderName_tbox.Text;
-
-            if (folderName != editedNode)
+            var oldContent = string.Empty;
+            using (var reader = new StreamReader(tmpFile))
             {
-                savePath = path + folderName;
-                File.WriteAllText(savePath, editedContent);
+                oldContent = reader.ReadToEnd();
+            }
 
-                MessageBox.Show("Succefully Saved");
+            try
+            {
+                if (!editedContent.Equals(oldContent) && folderName != editedNode)
+                {
+                    var newSavePath = path + folderName;
+                    File.WriteAllText(newSavePath, editedContent);
+                }
+                else if (folderName != editedNode)
+                {
+                    var newSavePath = path + folderName;
+                    File.WriteAllText(newSavePath, oldContent);
+
+                    MessageBox.Show("Succefully Saved");
+                }
+                else if (!editedContent.Equals(oldContent))
+                {
+                    File.Delete(savePath);
+                    File.WriteAllText(savePath, editedContent);
+
+                    MessageBox.Show("Succefully Saved");
+                }
+
+                File.Delete(tmpFile);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error occured: " + ex.Message);
             }
         }
         private void open_backups_btn_Click(object sender, EventArgs e)
