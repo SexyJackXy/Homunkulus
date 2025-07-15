@@ -50,6 +50,8 @@ namespace Homunkulus
                 }
             }
 
+            backupConfigurationHelper.CreateMainfestus(destinationFolder,linesInRtb,sourceFolderList);
+
             if (check_incremental.Checked)
             {
                 backupConfigurationHelper.CopyIncrementalBackup(destinationFolder, sourceFolderList);

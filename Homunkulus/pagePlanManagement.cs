@@ -169,7 +169,7 @@ namespace Homunkulus
 
             if (node != null)
             {
-                tmpPath = Path.Combine(@"..\..\..\tmp-in\", guid + "-" + editedNode);
+                tmpPath = Path.Combine(@"..\..\..\tmp-in\configs\", guid + "-" + editedNode);
             }
 
             File.Copy(nodePath, tmpPath);

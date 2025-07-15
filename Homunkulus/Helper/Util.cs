@@ -30,20 +30,18 @@ namespace Homunkulus.Helper
         {
             return fileName + ".txt";
         }
-        public void createBinData(string dest, string type)
+        public JObject createBinData(string dest)
         {
-            var savePath = Path.Combine(dest, "HomunkulusSig.json");
             var guid = Guid.NewGuid().ToString();
             var date = DateTime.Now.ToString();
 
-            JObject binData = new JObject(
+            var binData = new JObject(
                 new JProperty("ProgramName", "Homunukulus"),
                 new JProperty("Guid", guid),
-                new JProperty("BackupType", type),
                 new JProperty("Timestampp", date),
                 new JProperty("Destination", dest));
 
-            File.WriteAllText(savePath, binData.ToString());
+            return binData;
         }
         public List<string> readJsonFIle(string filePath)
         {

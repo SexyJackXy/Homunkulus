@@ -113,7 +113,6 @@ namespace Homunkulus.Helper
             }
 
             Directory.CreateDirectory(newBackupFolder);
-            util.createBinData(newBackupFolder, "Full");
 
             Parallel.ForEach(pathList, sourceDirectory =>
             {
@@ -217,7 +216,6 @@ namespace Homunkulus.Helper
                     break;
             }
         }
-
         private void saveToTxt(backupPlan backupplan, string savePath)
         {
             var files = string.Join("\n", backupplan.Files);
@@ -254,6 +252,21 @@ namespace Homunkulus.Helper
             );
 
             xml.Save(savePath + ".xml");
+        }
+        public void CreateMainfestus(string destinationPath, int listCount, List<string>? sourceList)
+        {
+            var manf = new manfFile();
+
+            var guid = Guid.NewGuid();
+            var fileName = ".manifestus_" + guid + ".manf";
+            var path = Path.Combine(destinationPath, fileName);
+
+            manf.CreateFile(destinationPath,fileName);
+            manf.StartSection(path,"Source");
+            manf.WriteLine("");
+
+
+            var x = "";
         }
     }
 }
