@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Homunkulus.Helper;
 
 namespace Homunkulus
 {
     internal class manfFile
     {
+        public Util util = new Util();
+
         public void CreateFile(string filePath, string fileName)
         {
             DirectoryInfo dirIfno = new DirectoryInfo(filePath);
@@ -25,6 +23,8 @@ namespace Homunkulus
                 throw new ArgumentNullException(nameof(path));
             if (sektion == null)
                 throw new ArgumentNullException(nameof(sektion));
+
+            util.UnlockFile(path, util.IsFileLocked(new FileInfo(path)));
 
             using (StreamWriter sw = new StreamWriter(path))
             {
