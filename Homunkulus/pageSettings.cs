@@ -1,9 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Homunkulus.Helper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using static Homunkulus.pageSettings;
 
 namespace Homunkulus
 {
     public partial class pageSettings : Form
     {
+        private Util util = new Util();
+        public string configPath =  @"../../../config/configuratio.json ";
         public pageSettings()
         {
             InitializeComponent();
@@ -11,34 +16,40 @@ namespace Homunkulus
 
         public class config
         {
+            [JsonProperty("Extension")]
             public string? fileExtension { get; set; }
-            public string? startMips { get; set; }
         }
 
         private void pageSettings_Load(object sender, EventArgs e)
         {
-            var savePath = @"../../../config";
-            var directoryInfo = new DirectoryInfo(savePath);
-            var firstFile = directoryInfo.GetFiles().OrderByDescending(x => x.LastWriteTime).FirstOrDefault();
-            var jsonContent = File.ReadAllText(firstFile.FullName);
-            var configArray = System.Text.Json.JsonSerializer.Deserialize<config>(jsonContent);
+            savedLable.Visible = false;
 
-            file_save_cb.Text = configArray.fileExtension;
-            start_mips_cb.Text = configArray.startMips;
+            if (!File.Exists(configPath))
+            {
+                File.Create(configPath);
+            }
+
+            var jsonContent = File.ReadAllText(configPath);
+            if (!String.IsNullOrEmpty(jsonContent))
+            {
+                config config = JsonConvert.DeserializeObject<config>(jsonContent);
+
+                file_save_cb.Text = config.fileExtension;
+            }
         }
 
         private void saveSettings_btn_Click(object sender, EventArgs e)
         {
             var guid = Guid.NewGuid().ToString();
-            var savePath = @"../../../config/config_" + guid + ".json ";
 
             var configValues = new JObject()
             {
-                new JProperty("Extension",file_save_cb.Text),
-                new JProperty("M.I.P.S",start_mips_cb.Text)
+                new JProperty("Extension",file_save_cb.Text)
             };
 
-            File.WriteAllText(savePath, configValues.ToString());
+            File.WriteAllText(configPath, configValues.ToString());
+
+            savedLable.Visible = true;
         }
 
         private void create_pbox_Click(object sender, EventArgs e)

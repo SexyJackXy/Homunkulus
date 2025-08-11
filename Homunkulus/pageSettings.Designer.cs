@@ -35,8 +35,7 @@
             create_pbox = new PictureBox();
             plans_pbox = new PictureBox();
             home_pbox = new PictureBox();
-            label2 = new Label();
-            start_mips_cb = new ComboBox();
+            savedLable = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)create_pbox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)plans_pbox).BeginInit();
@@ -123,25 +122,16 @@
             home_pbox.TabStop = false;
             home_pbox.Click += home_pbox_Click;
             // 
-            // label2
+            // savedLable
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(120, 114);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 18);
-            label2.TabIndex = 17;
-            label2.Text = "Start M.I.P.S";
-            // 
-            // start_mips_cb
-            // 
-            start_mips_cb.BackColor = Color.FromArgb(220, 221, 225);
-            start_mips_cb.FormattingEnabled = true;
-            start_mips_cb.Items.AddRange(new object[] { "Yes", "No" });
-            start_mips_cb.Location = new Point(279, 109);
-            start_mips_cb.Name = "start_mips_cb";
-            start_mips_cb.Size = new Size(566, 23);
-            start_mips_cb.TabIndex = 18;
+            savedLable.AutoSize = true;
+            savedLable.ForeColor = Color.ForestGreen;
+            savedLable.Location = new Point(812, 555);
+            savedLable.Name = "savedLable";
+            savedLable.Size = new Size(38, 15);
+            savedLable.TabIndex = 19;
+            savedLable.Text = "Saved";
+            savedLable.Visible = false;
             // 
             // pageSettings
             // 
@@ -149,8 +139,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(977, 644);
-            Controls.Add(start_mips_cb);
-            Controls.Add(label2);
+            Controls.Add(savedLable);
             Controls.Add(panel1);
             Controls.Add(saveSettings_btn);
             Controls.Add(label1);
@@ -175,7 +164,6 @@
         private PictureBox create_pbox;
         private PictureBox plans_pbox;
         private PictureBox home_pbox;
-        private Label label2;
-        private ComboBox start_mips_cb;
+        private Label savedLable;
     }
 }

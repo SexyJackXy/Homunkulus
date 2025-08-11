@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using System.Text;
 using static Homunkulus.helper.pageSettingsHandler;
 
 namespace Homunkulus.Helper
@@ -21,7 +22,7 @@ namespace Homunkulus.Helper
             return IReturnList.ToList();
         }
 
-        public List<string> CleanList(List<string> list) 
+        public List<string> CleanList(List<string> list)
         {
             var res = list.Where(x => !string.IsNullOrEmpty(x)).ToList();
 
@@ -60,16 +61,23 @@ namespace Homunkulus.Helper
             var arguments = $"-ExecutionPolicy Bypass -File {path}";
             var processStart = new ProcessStartInfo("powershell.exe", arguments)
             {
-                RedirectStandardOutput = true,  
-                RedirectStandardError = true,   
-                UseShellExecute = false,        
-                CreateNoWindow = true           
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
             };
 
             using var process = new Process { StartInfo = processStart };
 
             process.Start();
             await process.WaitForExitAsync();
+        }
+        public void createDirIfNotExsits(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
     }
 }

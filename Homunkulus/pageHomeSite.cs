@@ -1,7 +1,10 @@
-﻿namespace Homunkulus
+﻿using Homunkulus.Helper;
+
+namespace Homunkulus
 {
     public partial class pageHomeSite : Form
     {
+        private Util util = new Util();
         public pageHomeSite()
         {
             InitializeComponent();
@@ -9,15 +12,18 @@
 
         private void Landingpage_Load(object sender, EventArgs e)
         {
-            var path = @"..\..\..\backupplans";
-            var runPath = @"..\..\..\logs";
+            var backupPath = @"..\..\..\backupplans";
+            var logPath = @"..\..\..\logs";
 
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
-            var count = dir.GetFiles().Length;
+            util.createDirIfNotExsits(backupPath);
+            util.createDirIfNotExsits(logPath);
+
+            System.IO.DirectoryInfo planDir = new System.IO.DirectoryInfo(backupPath);
+            var count = planDir.GetFiles().Length;
             numb_backup.Text = Convert.ToString(count);
 
-            System.IO.DirectoryInfo dir2 = new System.IO.DirectoryInfo(runPath);
-            var runCount = dir2.GetFiles().Length;
+            System.IO.DirectoryInfo runDir = new System.IO.DirectoryInfo(logPath);
+            var runCount = runDir.GetFiles().Length;
             numb_execute.Text = Convert.ToString(runCount);
         }
         private void create_btn_Click(object sender, EventArgs e)

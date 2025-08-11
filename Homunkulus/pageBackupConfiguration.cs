@@ -86,13 +86,16 @@ namespace Homunkulus
                 else
                 {
                     var existingContent = source_rtb.Text;
-                    if (existingContent == null) { source_rtb.Text = string.Join("\n", folders).Trim(); }
+                    var selectedFolder = string.Join("\n", folders).Trim();
+                    if (existingContent == " ") 
+                    { 
+                        source_rtb.Text = selectedFolder; 
+                    }
                     else
                     {
-                        source_rtb.Text = existingContent + "\n" + string.Join("\n", folders).Trim();
+                        source_rtb.Text = existingContent + "\n" + selectedFolder;
                     }
                 }
-
             }
         }
         private void add_data_btn_Click(object sender, EventArgs e)
