@@ -243,3 +243,6 @@ Homunkulus/bin/Debug/net6.0-windows
 Homunkulus/tmp-in
 Homunkulus/config
 Homunkulus/misc/mips.ps1
+Homunkulus/bin/Debug/net6.0-windows/Homunkulus.dll
+Homunkulus/bin/Debug/net6.0-windows/Homunkulus.exe
+Homunkulus/bin/Debug/net6.0-windows/Homunkulus.pdb

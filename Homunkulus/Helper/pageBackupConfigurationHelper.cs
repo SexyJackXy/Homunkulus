@@ -232,7 +232,7 @@ namespace Homunkulus.Helper
                 $"{backupplan.incremental.ToString()}\n" +
                 $"{backupplan.compress.ToString()}\n";
 
-            File.WriteAllText(savePath, retrunString);
+            File.WriteAllText(savePath + ".txt", retrunString);
         }
         private void saveToXml(backupPlan backupplan, string savePath)
         {

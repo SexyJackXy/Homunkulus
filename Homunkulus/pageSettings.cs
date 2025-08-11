@@ -27,14 +27,17 @@ namespace Homunkulus
             if (!File.Exists(configPath))
             {
                 File.Create(configPath);
+                return;
             }
-
-            var jsonContent = File.ReadAllText(configPath);
-            if (!String.IsNullOrEmpty(jsonContent))
+            else
             {
-                config config = JsonConvert.DeserializeObject<config>(jsonContent);
+                var jsonContent = File.ReadAllText(configPath);
+                if (!String.IsNullOrEmpty(jsonContent))
+                {
+                    config config = JsonConvert.DeserializeObject<config>(jsonContent);
 
-                file_save_cb.Text = config.fileExtension;
+                    file_save_cb.Text = config.fileExtension;
+                }
             }
         }
 

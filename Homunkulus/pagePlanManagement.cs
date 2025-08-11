@@ -40,27 +40,17 @@ namespace Homunkulus
         }
         public void loadTextFile(string path)
         {
-            var destination = "";
-            var source = new List<string>();
-            using var sr = new StreamReader(path);
             var lines = File.ReadLines(path).ToList();
-            var stopAtLine = lines.Count - 5;
 
-            foreach (var line in lines.Take(3))
-            {
-                if (line.Contains("Source")) break;
-                destination = sr.ReadLine();
-            }
+            var destination = lines.ElementAt(1);
+            var incremental = lines.ElementAt(lines.Count - 2);
+            var compress = lines.Last();
+            var takeCount = lines.Count - 7;
 
-            foreach (var line in lines.Take(stopAtLine))
-            {
-                if (line.Contains("Compress True")) compressedBackup = true;
-                else if (line.Contains("Compress False")) compressedBackup = false;
-                else if (line.Contains("Compliemntray True")) incrementalBackup = true;
-                else if (line.Contains("Compliemntray False")) incrementalBackup = false;
-                else source.Add(line);
-            }
+            var source = lines.Skip(4).Take(takeCount);
 
+            compressedBackup = compress == "True";
+            incrementalBackup = incremental == "True";
             backupPlanDest = destination;
             backupPlan = string.Join("\n", source);
         }

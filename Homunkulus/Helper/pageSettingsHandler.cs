@@ -26,7 +26,7 @@ namespace Homunkulus.helper
 
             if (latestFile == null)
             {
-                throw new FileNotFoundException("Es wurde keine Datei im angegebenen Verzeichnis gefunden.");
+                MessageBox.Show(new FileNotFoundException("Es wurde keine Datei im angegebenen Verzeichnis gefunden.").Message);
             }
 
             var content = File.ReadAllText(latestFile.FullName);
@@ -35,7 +35,6 @@ namespace Homunkulus.helper
             var cf = new configFile
             {
                 FileExtension = jsonObject.GetValueOrDefault("Extension"),
-                startMips = jsonObject.GetValueOrDefault("M.I.P.S")
             };
 
             return cf;
