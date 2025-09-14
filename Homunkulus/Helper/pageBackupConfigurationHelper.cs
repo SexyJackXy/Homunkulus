@@ -108,12 +108,13 @@ namespace Homunkulus.Helper
             var date = datetime.ToString("dd/MM/yyyy");
             var newBackupFolder = Path.Combine(destFolder, $"Backup {date}");
 
-            if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
-            {
-                using var _ = util.RunPowershellScript(@"../../mips.ps1");
-            }
+            //if (new pageSettingsHandler().GetConfigFile().startMips.EqualsOic("yes"))
+            //{
+            //    using var _ = util.RunPowershellScript(@"../../mips.ps1");
+            //}
 
             Directory.CreateDirectory(newBackupFolder);
+            util.createBinData(newBackupFolder, "Full");
             util.createBinData(newBackupFolder, "Full");
 
             Parallel.ForEach(pathList, sourceDirectory =>
